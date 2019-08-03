@@ -13,7 +13,7 @@ public function login(){
 	$db=new clasedb();//instanciando clasedb
 	$conex=$db->conectar();//conectando con la base de datos
 
-	$sql="SELECT * FROM empleado WHERE borrado='N'";//query
+	$sql="SELECT * FROM empleado,departamentos_has_cargos,departamentos WHERE empleado.id_cargo=departamentos_has_cargos.id and departamentos_has_cargos.id_departamento=departamentos.id";//query
 
 
 	//ejecutando query
