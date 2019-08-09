@@ -1,6 +1,5 @@
 <?php include_once "../includes/menu.php"; 
 extract($_REQUEST);
-$data=unserialize($data);
 ?>
 
         <div class="breadcrumbs">
@@ -31,20 +30,44 @@ $data=unserialize($data);
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title"><i class="fa fa-list"></i> Listados de Empleados</strong>
+                                <strong class="card-title">Empleado</strong>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>N°</th>
+                                         
+                                            
                                             <th>C.I</th>
+                                            <td></td>
                                             <th>Nombres</th>
+                                            <td></td>
+                                            <tr></tr>
                                             <th>Apellidos</th>
+                                            <td></td>
                                             <th>Dirección</th>
+                                            <td></td>
+                                            <tr></tr>
                                             <th>Teléfono</th>
+                                            <td></td>
                                             <th>Fecha de Ingreso</th>
-                                            <th>Opción</th>
+                                            <td></td>
+                                            <tr></tr>
+                                            <th>Condición</th>
+                                            <td></td>
+                                            <th>Fecha de Vencimiento</th>
+                                            <td></td>
+                                            <tr></tr>
+                                            <th>Salario</th>
+                                            <td></td>>
+                                            <th>N° Cuenta</th>
+                                            <td></td>
+                                            <tr></tr>
+                                            <th>Cargo</th>
+                                            <td></td>
+                                            <th>Departamento</th>
+                                            <td></td>
+
 
                                                                                    
                                         </tr>
@@ -56,16 +79,14 @@ $data=unserialize($data);
                                     echo "<tr>";        
                                     ?>  
                                     <td><?=$num?></td>
-                                    <?php for ($j=1; $j <=6; $j++) { ?>
+                                    <?php for ($j=1; $j <=11; $j++) { ?>
                                     <td><?=$data[$i][$j]?></td>
 
                                     <?php } ?>
 
-                                    <td><button><a href="../../Controladores/ControladorEmpleado.php?operacion=modificar&id_empleado=<?=$data[$i][0]?>">Modificar</a></button>
+                                    <td><button><a href="../../Controladores/ControladorDiasLab.php?operacion=modificar&id_empleado=<?=$data[$i][0]?>">Modificar</a></button>
 
-                                    <button><a href="../../Controladores/ControladorEmpleado.php?operacion=vermas&id_empleado=<?=$data[$i][0]?>">Ver Más</a></button>
-
-                                    <button><a href="../../Controladores/ControladorDiasLab.php?operacion=horario&id_empleado=<?=$data[$i][0]?>">Ver Horario</a></button>
+        
 
                                     <button><a href="javascript:eliminar(<?=$data[$i][0]?>)">Eliminar</a></button>
                                     </td>

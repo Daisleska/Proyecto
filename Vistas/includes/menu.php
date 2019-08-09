@@ -83,19 +83,21 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user"></i>Empleados</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-edit"></i><a href="../empleados/registro_empleados.php">Registro</a></li>
-                            <li><i class="menu-icon fa fa-table"></i><a href="../empleados/listados_empleados.php">Listado</a></li>
+                            <li><i class="menu-icon fa fa-edit"></i><a href="../../Controladores/ControladorEmpleado.php?operacion=registrar">Registro</a></li>
+                            <li><i class="menu-icon fa fa-table"></i><a href="../../Controladores/ControladorEmpleado.php?operacion=index">Listado</a></li>
                         </ul>
                     </li>
 
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-users"></i>Asistencia</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user"></i>Asistencia</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-edit"></i><a href="../asistencia/asistencia.php">Registro</a></li>
-                            <li><i class="menu-icon fa fa-table"></i><a href="../listado/listados_empleados.php">Listado</a></li>
-                            <li><i class="menu-icon fa fa-outline"></i><a href="../asistencia/marcar_asistencia.php">Marcar Asistencia</a></li>
+                            <li><i class="menu-icon fa fa-edit"></i><a href="../../Controladores/ControladorDiasLab.php?operacion=registrar">Registro</a></li>
+                            <li><i class="menu-icon fa fa-table"></i><a href="../../Controladores/ControladorDiasLab.php?operacion=index">Listado</a></li>
+                            <li><i class="menu-icon fa fa-outline"></i><a href="../diaslab/marcar.php">Marcar Asistencia</a></li>
                         </ul>
                     </li>
+
+                    
 
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Asig / deducc</a>

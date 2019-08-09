@@ -48,7 +48,7 @@ public function guardar(){
     $db=new clasedb();
     $conex=$db->conectar();
 
-      $sql="SELECT * FROM empleado WHERE ci_e='".$ci_e."'"; 
+      $sql="SELECT * FROM empleado WHERE cedula='".$cedula."'"; 
       $result=mysqli_query($conex,$sql);
       $cuantos=mysqli_num_rows($result);
 
@@ -62,7 +62,8 @@ if ($cuantos>0){
       }   
       else {
 
-     $sql="INSERT INTO empleado (ci_e , nombres_e, apellidos_e, direccion_e, telefono_e, $fecha_ingreso_e, condicion_e, fecha_venc_e, cargo_e, salario_e, ncuenta_e) VALUES ('$ci_e','$nombres_e','$apellidos_e','$direccion_e','$telefono_e','$fecha_ingreso_e', '$condicion_e', '$fecha_venc_e', '$cargo_e', '$salario_e', '$ncuenta_e')";
+     $sql="INSERT INTO empleado  VALUES (NULL,'".$cedula."','".$nombres."','".$apellidos."','".$direccion."','".$telefono."',".$fecha_ingreso.", '".$condicion."', ".$fecha_venc.", '".$salario."', '".$ncuenta."', ".$id_cargo.")";
+        //echo $sql;
 
   $resultado=mysqli_query($conex,$sql);
   
@@ -72,7 +73,7 @@ if ($cuantos>0){
 
       <script type="text/javascript">
         alert("Se registro éxitosamente");
-        window.location="../home.php";
+        window.location="ControladorEmpleado.php?operacion=index";
       </script>
       <?php 
   
@@ -86,13 +87,15 @@ if ($cuantos>0){
       }
         } 
       }
+      
+  
 
 public function modificar(){
   extract($_REQUEST);//extrayendo valores de url
   $db=new clasedb();
   $conex=$db->conectar();//conectando con la base de datos
   
-  $sql="SELECT * FROM empleado WHERE ci_e=".$ci_e."";
+  $sql="SELECT * FROM empleado WHERE cedula=".$cedula."";
   $res=mysqli_query($conex,$sql);//ejecutando consulta
   $data=mysqli_fetch_array($res);//extrayendo datos en array
 
@@ -106,7 +109,7 @@ public function actualizar()
   
 
 
- $sql="UPDATE empleado SET ci_e='".$ci_e."',nombres_e='".$nombres_e."',apellidos_e='".$apellidos_e."',direccion_e='".$direccion_e."',telefono_e='".$telefono_e."' ,fecha_ingreso_e='".$fecha_ingreso_e."' ,condicion_e='".$condicion_e."',fecha_venc_e='".$fecha_venc_e."' ,cargo_e='".$cargo_e."' ,salario_e='".$salario_e."' ,ncuenta_e='".$ncuenta_e."' WHERE id=".$id_e;
+ $sql="UPDATE empleado SET cedula='".$cedula."',nombres='".$nombres."',apellidos='".$apellidos."',direccion='".$direccion."',telefono='".$telefono."' ,fecha_ingreso=".$fecha_ingreso." ,condicion='".$condicion."',fecha_venc=".$fecha_venc." ,salario='".$salario."' ,ncuenta='".$ncuenta."', id_cargo=".$id_cargo." WHERE id=".$id;
 
       $res=mysqli_query($conex,$sql);
         if ($res) {
@@ -132,7 +135,7 @@ public function eliminar()
   $db=new clasedb();
   $conex=$db->conectar();//conectando con la base de datos
 
-  $sql="DELETE FROM empleado WHERE ci_e=".$ci_e;
+  $sql="DELETE FROM empleado WHERE cedula=".$cedula;
 
     $res=mysqli_query($conex,$sql);
     if ($res) {
@@ -151,6 +154,10 @@ public function eliminar()
       <?php
     }
 }//fin de la función eliminar
+
+public function vermas (){
+  header("Location: ../Vistas/empleados/vermas.php");
+}
 
 
 static function controlador($operacion){
@@ -174,6 +181,10 @@ static function controlador($operacion){
       break;
     case 'eliminar':
       $empleado->eliminar();
+      break;
+
+    case 'vermas':
+      $empleado->vermas();
       break;
     
     default:

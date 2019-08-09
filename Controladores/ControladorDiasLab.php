@@ -11,7 +11,7 @@ public function index()
 	$db=new clasedb();
 	$conex=$db->conectar();
 
-	$sql="SELECT empleado.id,empleado.nombres,empleado.ci, empleados_has_dias_lab.dia FROM empleado, empleados_has_dias_lab WHERE empleado.id_empleados_has_dias_lab=empleados_has_dias_lab.id";
+	$sql="SELECT empleado.cedula,empleado.nombres, empleado.apellidos, empleados_has_dias_lab.dia FROM empleado, empleados_has_dias_lab WHERE empleado.id_empleados_has_dias_lab=empleados_has_dias_lab.id";
 	
 	if ($res=mysqli_query($conex,$sql)) {
 		
@@ -41,9 +41,7 @@ public function registrar()
 	$conex=$db->conectar();
 	$cont=0; //para contar si no se ejecutaron consultas
 	//
-		
-	//-------
-	// 
+	
 		$sql="SELECT * FROM empleados_has_dias_lab";
 		if ($res=mysqli_query($conex,$sql)) {
 			# se ejecutó la consulta
@@ -82,7 +80,7 @@ public function guardar()
 	$conex=$db->conectar();
 	$cont=0;
 	//verificado...
-		$sql="SELECT * FROM  empleados_has_dias_lab WHERE...";//Falta 
+		$sql="SELECT * FROM  empleados_has_dias_lab WHERE id=".$id_empleado.""; //Falta 
 		//echo $sql;
 		if ($res=mysqli_query($conex,$sql)) {
 			# se ejecutó la consulta
@@ -173,7 +171,7 @@ public function actualizar()
 	$db=new clasedb();
 	$conex=$db->conectar();
 
-	$sql="SELECT * FROM empleados_has_dias_lab WHERE...";//falta
+	$sql="SELECT * FROM empleados_has_dias_lab WHERE id=".$id."";//falta
 	
 if ($resul=mysqli_query($conex,$sql)){
 	if (mysqli_num_rows($resul)>0){
@@ -238,6 +236,12 @@ public function eliminar()
 }
 	}
 
+public function horario(){
+	header("Location: ../Vistas/diaslab/horario.php");
+}
+
+
+
 static function controlador($operacion){
 	$diaslab=new ControladorDiasLab();
 
@@ -259,6 +263,10 @@ static function controlador($operacion){
 			break;
 			case 'eliminar':
 			$diaslab->eliminar();
+			break;
+
+		case 'horario':
+			$diaslab->horario();
 			break;
 		default:
 			?>

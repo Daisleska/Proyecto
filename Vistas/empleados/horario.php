@@ -1,6 +1,5 @@
 <?php include_once "../includes/menu.php"; 
 extract($_REQUEST);
-$data=unserialize($data);
 ?>
 
         <div class="breadcrumbs">
@@ -31,20 +30,22 @@ $data=unserialize($data);
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title"><i class="fa fa-list"></i> Listados de Empleados</strong>
+                                <strong class="card-title">Horario</strong>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>N°</th>
-                                            <th>C.I</th>
-                                            <th>Nombres</th>
-                                            <th>Apellidos</th>
-                                            <th>Dirección</th>
-                                            <th>Teléfono</th>
-                                            <th>Fecha de Ingreso</th>
-                                            <th>Opción</th>
+                                         
+                                            
+                                            <th>Lunes</th>
+                                            <th>Martes</th>
+                                            <th>Miércoles</th>
+                                            <th>Jueves</th>
+                                            <th>Viernes</th>
+                                            <th>Sábado</th>
+                                            <th>Domingo</th>
+
 
                                                                                    
                                         </tr>
@@ -56,16 +57,14 @@ $data=unserialize($data);
                                     echo "<tr>";        
                                     ?>  
                                     <td><?=$num?></td>
-                                    <?php for ($j=1; $j <=6; $j++) { ?>
+                                    <?php for ($j=1; $j <$campos; $j++) { ?>
                                     <td><?=$data[$i][$j]?></td>
 
                                     <?php } ?>
 
-                                    <td><button><a href="../../Controladores/ControladorEmpleado.php?operacion=modificar&id_empleado=<?=$data[$i][0]?>">Modificar</a></button>
+                                    <td><button></button>
 
-                                    <button><a href="../../Controladores/ControladorEmpleado.php?operacion=vermas&id_empleado=<?=$data[$i][0]?>">Ver Más</a></button>
-
-                                    <button><a href="../../Controladores/ControladorDiasLab.php?operacion=horario&id_empleado=<?=$data[$i][0]?>">Ver Horario</a></button>
+        
 
                                     <button><a href="javascript:eliminar(<?=$data[$i][0]?>)">Eliminar</a></button>
                                     </td>

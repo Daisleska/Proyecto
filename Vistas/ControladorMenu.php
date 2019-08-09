@@ -22,6 +22,7 @@ p><?php
         //Empleados
 		case'registro_empleados':include"empleados/registro_empleados.php";break;
 		case'listado_empleados':include"empleados/listado_empleados";break;
+		
 
 		//Asistencia
 		case'registar':include"Vistas/asistencia/registar.php";break;
