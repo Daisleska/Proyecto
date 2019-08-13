@@ -40,7 +40,7 @@
     <script src="../../assets/js/main.js"></script>
 
 
-    <script src=".../../../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../../../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="../../vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script src="../../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
     <script src="../../vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>

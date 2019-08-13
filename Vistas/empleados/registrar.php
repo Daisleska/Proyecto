@@ -1,6 +1,7 @@
 <?php 
 include_once "../includes/menu.php"; 
 extract($_REQUEST);
+$data=unserialize($data);
 ?>
  
 
@@ -38,72 +39,73 @@ extract($_REQUEST);
                     <form action="../../Controladores/ControladorEmpleado.php" method="post" class="form-horizontal">
                                       
                     <div style="padding-left: 20px; padding-top: 10px;" class="row form-group">
-                     <div class="col col-md-3"><label for="hf-ci" class=" form-control-label">C.I:</label></div>
-                    <div class="col-12 col-md-6"><input type="number" id="hf-ci" name="cedula" placeholder="" class="form-control"><span class="help-block">Ingrese el número de cedula</span></div>
+                     <div class="col col-md-3"><label for="hf-ci" class=" form-control-label">* Cédula:</label></div>
+                    <div class="col-12 col-md-4"><input required="required" type="number" id="hf-ci" name="cedula" placeholder="Ej: 12.345.678" class="form-control"></div>
                     </div>
 
                      <div style="padding-left: 20px;" class="row form-group">
-                    <div class="col col-md-3"><label for="hf-nombres" class=" form-control-label">Nombres:</label></div>
-                    <div class="col-12 col-md-6"><input type="text" id="hf-nombres" name="nombres" placeholder="" class="form-control"><span class="help-block">Ingrese el nombre</span></div>
+                    <div class="col col-md-3"><label for="hf-nombres" class=" form-control-label">* Nombres:</label></div>
+                    <div class="col-12 col-md-4"><input type="text" id="hf-nombres" name="nombres" placeholder="Ej: juan armando" class="form-control"></div>
                      </div>
 
                      <div style="padding-left: 20px;" class="row form-group">
-                     <div class="col col-md-3"><label for="hf-apellidos" class=" form-control-label">Apellidos:</label></div>
-                    <div class="col-12 col-md-6"><input type="text" id="hf-apellidos" name="apellidos" placeholder="" class="form-control"><span class="help-block">Ingrese el apellido</span></div>
+                     <div class="col col-md-3"><label for="hf-apellidos" class=" form-control-label">* Apellidos:</label></div>
+                    <div class="col-12 col-md-4"><input type="text" id="hf-apellidos" name="apellidos" placeholder="Ej: Hernández Ceballos" class="form-control"></div>
                     </div>
 
                      <div style="padding-left: 20px;" class="row form-group">
-                    <div class="col col-md-3"><label for="hf-dir" class=" form-control-label">Dirección:</label></div>
-                    <div class="col-12 col-md-6"><input type="textarea" id="hf-dir" name="direccion" placeholder="" class="form-control"><span class="help-block">Ingrese la dirección</span></div>
+                    <div class="col col-md-3"><label for="hf-dir" class=" form-control-label">* Dirección:</label></div>
+                    <div class="col-12 col-md-4"><input type="textarea" id="hf-dir" name="direccion" placeholder="Ej: La victoria #00" class="form-control"></div>
                     </div>
 
                     <div style="padding-left: 20px;" class="row form-group">
-                     <div class="col col-md-3"><label for="hf-tlf" class=" form-control-label">Teléfono:</label></div>
-                    <div class="col-12 col-md-6"><input type="number" id="hf-tlf" name="telefono" placeholder="" class="form-control"><span class="help-block">Ingrese el número de teléfono</span></div>
+                     <div class="col col-md-3"><label for="hf-tlf" class=" form-control-label">* Teléfono:</label></div>
+                    <div class="col-12 col-md-4"><input type="number" id="hf-tlf" name="telefono" placeholder="Ej: 0212-0120300" class="form-control"></div>
                     </div>
 
                     <div style="padding-left: 20px;" class="row form-group">
-                    <div class="col col-md-3"><label for="hf-fechai" class=" form-control-label">Fecha de Ingreso:</label></div>
-                    <div class="col-12 col-md-6"><input type="date" id="hf-fechai" name="fecha_ingreso" placeholder="Ingrese la fecha de ingreso" class="form-control"><span class="help-block">Ingrese la fecha de ingreso</span></div>
+                    <div class="col col-md-3"><label for="hf-fechai" class=" form-control-label">* Fecha de Ingreso:</label></div>
+                    <div class="col-12 col-md-4"><input type="date" id="hf-fechai" name="fecha_ingreso" placeholder="Ej: 12-00-0000" class="form-control"></div>
                     </div>
 
                      <div style="padding-left: 20px;" class="row form-group">
-                    <div class="col col-md-3"><label for="hf-condicion" class=" form-control-label">Condición</label></div>
-                    <div class="col-12 col-md-6">
+                    <div class="col col-md-3"><label for="hf-condicion" class=" form-control-label">* Condición</label></div>
+                    <div class="col-12 col-md-4">
                     <select id="hf-condicion" name="condicion" class="form-control">
                      <option>Fijo</option>
                     <option>Contratado</option>
                                                                         
                     </select>
 
-                    <span class="help-block">Seleccione la condición</span></div>
+                    </div>
                     </div>
 
                     <div style="padding-left: 20px;" class="row form-group">
                     <div class="col col-md-3"><label for="hf-fechav" class=" form-control-label">Fecha de Vencimiento:</label></div>
-                    <div class="col-12 col-md-6"><input type="date" id="hf-fechav" name="fecha_venc" placeholder="Ingrese la fecha de vencimiento" class="form-control"><span class="help-block">Ingrese la fecha de vencimiento</span></div>
+                    <div class="col-12 col-md-4"><input type="date" id="hf-fechav" name="fecha_venc" placeholder="Ej: 12-00-2000" class="form-control"></div>
                                                             </div>
 
 
                      <div style="padding-left: 20px;" class="row form-group">
                     <div class="col col-md-3"><label for="hf-salario" class=" form-control-label">Salario:</label></div>
-                    <div class="col-12 col-md-6"><input type="number" id="hf-salario" name="salario" placeholder="" class="form-control"><span class="help-block">Ingrese el salario</span></div>
+                    <div class="col-12 col-md-4"><input type="number" id="hf-salario" name="salario" placeholder="Ej: 1.000.000" class="form-control"></div>
                     </div>
 
 
                     <div style="padding-left: 20px;" class="row form-group">
-                     <div class="col col-md-3"><label for="hf-ncuenta" class=" form-control-label">Número de Cuenta:</label></div>
-                    <div class="col-12 col-md-6"><input type="text" id="hf-ncuenta" name="ncuenta" placeholder="" class="form-control"><span class="help-block">Ingrese el número de cuenta</span></div>
+                     <div class="col col-md-3"><label for="hf-ncuenta" class=" form-control-label">* Número de Cuenta:</label></div>
+                    <div class="col-12 col-md-4"><input type="text" id="hf-ncuenta" name="ncuenta" placeholder="Ej: 017503002028919920" class="form-control"></div>
                     </div>
 
                     <div style="padding-left: 20px;" class="row form-group">
-                    <div class="col col-md-3"><label for="hf-cargo" class=" form-control-label">Cargo</label></div>
-                    <div class="col-12 col-md-6">
-                    <select name="id_cargos" title="Seleccione el cargo"class="form-control">
+                    <div class="col col-md-3"><label for="hf-cargo" class=" form-control-label">* Cargo</label></div>
+                    <div class="col-12 col-md-4">
+                    <select name="id_cargo" title="Seleccione el cargo"class="form-control">
+                    <option disabled="disabled" selected="selected" value="">Seleccione el cargo</option>
                     <?php 
                     for ($i=0;$i<$filas;$i++){
                     ?>
-                    <option value="<?=$cargos[$i][0]?>"><?=$cargos[$i][1]?></option>
+                    <option value="<?=$data[$i][0]?>"><?=$data[$i][1]?></option>
                     <?php
                     }
                     ?>
@@ -117,7 +119,7 @@ extract($_REQUEST);
                     <div class="card-footer">
                     <input type="hidden" name="operacion" value="guardar">
                     <button type="submit" class="btn btn-primary btn-sm">
-                    <i class="fa fa-dot-send"></i> Enviar
+                    <i class="fa fa-check"></i> Guardar
                     </button>
                     <button type="reset" class="btn btn-danger btn-sm">
                     <i class="fa fa-ban"></i> Limpiar

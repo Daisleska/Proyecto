@@ -1,15 +1,16 @@
 <?php include_once "../includes/menu.php"; 
 extract($_REQUEST);
+$data=unserialize($data);
 ?>
 
         <div class="breadcrumbs">
-            <div class="col-sm-4">
+            <!-- <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
                         <h1>Listado</h1>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- <div class="col-sm-8">
                 <div class="page-header float-right">
                     <div class="page-title">
@@ -26,47 +27,29 @@ extract($_REQUEST);
         <div class="content mt-3">
             <div class="animated fadeIn">
                 <div class="row">
-
+                    <div style=" padding-left: 18px;">
+                    <button  class="btn btn-primary"><a href="../../Controladores/ControladorEmpleado.php?operacion=index"> Volver</a></button></div>
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Empleado</strong>
+                                <strong class="card-title">Empleado:</strong>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                         
-                                            
                                             <th>C.I</th>
-                                            <td></td>
                                             <th>Nombres</th>
-                                            <td></td>
-                                            <tr></tr>
                                             <th>Apellidos</th>
-                                            <td></td>
                                             <th>Dirección</th>
-                                            <td></td>
-                                            <tr></tr>
                                             <th>Teléfono</th>
-                                            <td></td>
                                             <th>Fecha de Ingreso</th>
-                                            <td></td>
-                                            <tr></tr>
                                             <th>Condición</th>
-                                            <td></td>
                                             <th>Fecha de Vencimiento</th>
-                                            <td></td>
-                                            <tr></tr>
                                             <th>Salario</th>
-                                            <td></td>>
                                             <th>N° Cuenta</th>
-                                            <td></td>
-                                            <tr></tr>
                                             <th>Cargo</th>
-                                            <td></td>
                                             <th>Departamento</th>
-                                            <td></td>
 
 
                                                                                    

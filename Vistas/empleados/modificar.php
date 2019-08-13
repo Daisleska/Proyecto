@@ -2,7 +2,7 @@
 include ('../../Modelos/clasedb.php');
 include_once "../includes/menu.php";
 extract ($_REQUEST);
-
+$data=unserialize($data);
 ?>
  
 
@@ -89,7 +89,10 @@ extract ($_REQUEST);
 
                                     <div class="row form-group">
                                     <div class="col col-md-3"><label for="hf-cargo" class=" form-control-label">Cargo:</label></div>
-                                    <div class="col-12 col-md-6"><input type="text" id="hf-cargo" name="id_cargo" placeholder="Ingrese el cargo" required="required" class="form-control" value="<?php echo $data['id_cargo']; ?>"></div>
+                                    <div class="col-12 col-md-6">
+                                    <select id="hf-cargo" name="id_cargo" required="required" class="form-control">
+                                    <option value="<?php echo $data['nombre']; ?>"></option>            
+                                    </select></div>
                                     </div>
                 <dir>
                 <input type="hidden" name="operacion" value="actualizar">

@@ -4,13 +4,13 @@ $data=unserialize($data);
 ?>
 
         <div class="breadcrumbs">
-            <div class="col-sm-4">
+       <!--      <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
                         <h1>Listado</h1>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- <div class="col-sm-8">
                 <div class="page-header float-right">
                     <div class="page-title">
@@ -61,13 +61,13 @@ $data=unserialize($data);
 
                                     <?php } ?>
 
-                                    <td><button><a href="../../Controladores/ControladorEmpleado.php?operacion=modificar&id_empleado=<?=$data[$i][0]?>">Modificar</a></button>
+                                    <td><a  href="../../Controladores/ControladorEmpleado.php?operacion=modificar&id_empleado=<?=$data[$i][0]?>"><i title="Modificar" class="menu-icon fa fa-edit"></a></i>
 
-                                    <button><a href="../../Controladores/ControladorEmpleado.php?operacion=vermas&id_empleado=<?=$data[$i][0]?>">Ver Más</a></button>
+                                    <a href="../../Controladores/ControladorEmpleado.php?operacion=vermas&id_empleado=<?=$data[$i][0]?>"><i title="Ver más" class="menu-icon fa fa-search-plus "></a></i>
 
-                                    <button><a href="../../Controladores/ControladorDiasLab.php?operacion=horario&id_empleado=<?=$data[$i][0]?>">Ver Horario</a></button>
+                                    <a href="../../Controladores/ControladorDiasLab.php?operacion=horario&id_empleado=<?=$data[$i][0]?>"><i title="Horario" class="menu-icon fa fa-list"></a></i>
 
-                                    <button><a href="javascript:eliminar(<?=$data[$i][0]?>)">Eliminar</a></button>
+                                    <a href="../../Controladores/ControladorEmpleado.php?operacion=eliminar&id_empleado=<?=$data[$i][0]?>"><i title="Eliminar" class="menu-icon fa fa-trash-o"></a></i>
                                     </td>
                                     <?php   
                                     $num++;

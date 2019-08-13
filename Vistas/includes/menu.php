@@ -25,7 +25,7 @@
 
     <link rel="stylesheet" href="../../assets/css/style.css">
 
-    <link href='../../https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
 </head>
 
@@ -93,7 +93,7 @@
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-edit"></i><a href="../../Controladores/ControladorDiasLab.php?operacion=registrar">Registro</a></li>
                             <li><i class="menu-icon fa fa-table"></i><a href="../../Controladores/ControladorDiasLab.php?operacion=index">Listado</a></li>
-                            <li><i class="menu-icon fa fa-outline"></i><a href="../diaslab/marcar.php">Marcar Asistencia</a></li>
+                            <li><i class="menu-icon fa fa-check-circle"></i><a href="../diaslab/marcar.php">Marcar Asistencia</a></li>
                         </ul>
                     </li>
 
@@ -192,9 +192,9 @@
 
             <div class="col-md-9">
 
-                <div class="col-md-3" >
+               <!--  <div class="col-md-3" >
                     <a class="navbar-brand" href="#"><img style="float: left;" width="70" src="../../images/upta.png" width="100" height="70" alt="Logo"></a>
-                    </div>
+                    </div> -->
 
                 <div class="page-tittle" class="col-md-6">
                     <cite>SERVIFORM C.A

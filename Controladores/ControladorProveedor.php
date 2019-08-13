@@ -13,7 +13,7 @@ public function index(){
 	$db=new clasedb();//instanciando clasedb
 	$conex=$db->conectar();//conectando con la base de datos
 
-	$sql="SELECT ci_pro, nombre_pro, email_pro, direccion_pro, telefono_pro FROM proveedor";//query
+	$sql="SELECT cedula, nombre, email, direccion, telefono FROM proveedor";//query
 
 
 	//ejecutando query
@@ -52,7 +52,7 @@ public function guardar(){
 	$db=new clasedb();
 	$conex=$db->conectar();//conectando con la base de datos
 
-	$sql="SELECT  ci_pro, nombre_pro, email_pro, direccion_pro, telefono_pro FROM proveedor  WHERE ci_pro='".$ci_pro."'";
+	$sql="SELECT  * FROM proveedor  WHERE cedula='".$cedula."'";
 
 	$res=mysqli_query($conex,$sql);
 	$cuantos=mysqli_num_rows($res);
@@ -67,7 +67,7 @@ public function guardar(){
 	} else {
 		
 			
-		$sql="INSERT INTO proveedor(ci_pro, nombre_pro, email_pro, direccion_pro, telefono_pro) VALUES('$ci_pro','$nombre_pro','$email_pro','direccion_pro','$telefono_pro')";
+		$sql="INSERT INTO proveedor (cedula, nombre, email, direccion, telefono) VALUES('$cedula','$nombre','$email','direccion','$telefono')";
 
 		$resultado=mysqli_query($conex,$sql);
 	
@@ -96,7 +96,7 @@ public function modificar(){
 	$db=new clasedb();
 	$conex=$db->conectar();//conectando con la base de datos
 	
-	$sql="SELECT * FROM usuarios WHERE id=".$id_usuarios."";
+	$sql="SELECT * FROM proveedor WHERE id=".$id_proveedor."";
 	$res=mysqli_query($conex,$sql);//ejecutando consulta
 	$data=mysqli_fetch_array($res);//extrayendo datos en array
 
@@ -111,7 +111,7 @@ public function actualizar()
 	$db=new clasedb();
 	$conex=$db->conectar();//conectando con la base de datos
 	
-	$sql="SELECT * FROM usuarios WHERE correo='".$correo."' AND id<>".$id_usuario;
+	$sql="SELECT * FROM proveedor WHERE cedula='".$cedula."' AND id<>".$id_proveedor;
 //echo $sql;
 	$res=mysqli_query($conex,$sql);
 
@@ -120,76 +120,30 @@ public function actualizar()
 			?>
 				<script type="text/javascript">
 					alert("USUARIO YA REGISTRADO");
-					window.location="controladorUsuario.php?operacion=login";
+					window.location="ControladorProveedor.php?operacion=login";
 				</script>
 			<?php
 		}else{
-			//modificando en caso de que quiera cambiar la clave
-			if (isset($cambiar)) {
-				$sql="SELECT clave FROM usuarios WHERE id=".$id_usuario;
-				$res=mysqli_query($conex,$sql);
-				$row=mysqli_fetch_object($res);
-				$clave_anterior=hash('sha256',$clave_anterior); 
-				if ($row->clave==$clave_anterior) {
-					if ($clave_repetir==$clave) {
-						$clave=hash('sha256',$clave);
-						$sql="UPDATE usuarios SET nombre='".$nombre."',correo='".$correo."',tipo_usuario='".$tipo_usuario."',clave='".$clave."',pregunta='".$pregunta."',respuesta='".$respuesta."' WHERE id=".$id_usuario;
+		
+						$sql="UPDATE proveedor SET cedula='".$cedula."',nombre='".$nombre."',email='".$email."',direccion='".$direccion."',telefono='".$telefono."' WHERE id=".$id_proveedor;
 
 							$res=mysqli_query($conex,$sql);
 							if ($res) {
 								?>
 									<script type="text/javascript">
 										alert("REGISTRO MODIFICADO");
-										window.location="controladorUsuario.php?operacion=login";
+										window.location="ControladorProveedor.php?operacion=login";
 									</script>
 								<?php
 							} else {
 								?>
 									<script type="text/javascript">
 										alert("ERROR AL MODIFICAR EL REGISTRO");
-										window.location="controladorUsuario.php?operacion=login";
+										window.location="ControladorProveedor.php?operacion=login";
 									</script>
 								<?php
 							}			
-					} else {
-						?>
-						<script type="text/javascript">
-							alert("LA CLAVE Y REPETIR CLAVE NO COINCIDEN");
-							window.location="controladorUsuario.php?operacion=login";
-						</script>
-						<?php	
-					}//fin del condicional de la clave y repetir no coinciden
-					
-				} else {
-					?>
-						<script type="text/javascript">
-							alert("LA CLAVE ANTERIOR NO COINCIDE");
-							window.location="controladorUsuario.php?operacion=login";
-						</script>
-					<?php
-				}//fin del condicional de comparacion con clave anterior
-				
-			} else {
 			
-			$sql="UPDATE usuarios SET nombre='".$nombre."',correo='".$correo."',tipo_usuario='".$tipo_usuario."',pregunta='".$pregunta."',respuesta='".$respuesta."' WHERE id=".$id_usuarios;
-
-			$res=mysqli_query($conex,$sql);
-				if ($res) {
-					?>
-						<script type="text/javascript">
-							alert("REGISTRO MODIFICADO");
-							window.location="controladorUsuario.php?operacion=login";
-						</script>
-					<?php
-				} else {
-					?>
-						<script type="text/javascript">
-							alert("ERROR AL MODIFICAR EL REGISTRO");
-							window.location="controladorUsuario.php?operacion=login";
-						</script>
-					<?php
-				}
-			}//fin del condicional de cambiar
 		}//fin del condicional de correo registrado
 }//fin de la función actualizar
 
@@ -200,21 +154,21 @@ public function eliminar()
 	$db=new clasedb();
 	$conex=$db->conectar();//conectando con la base de datos
 
-	$sql="DELETE FROM usuarios WHERE id=".$id_usuario;
+	$sql="DELETE FROM proveedor WHERE id=".$id_proveedor;
 
 		$res=mysqli_query($conex,$sql);
 		if ($res) {
 			?>
 				<script type="text/javascript">
 					alert("REGISTRO ELIMINADO");
-					window.location="controladorUsuario.php?operacion=login";
+					window.location="ControladorProveedor.php?operacion=login";
 				</script>
 			<?php
 		} else {
 			?>
 				<script type="text/javascript">
 					alert("REGISTRO NO ELIMINADO");
-					window.location="controladorUsuario.php?operacion=login";
+					window.location="ControladorProveedor.php?operacion=login";
 				</script>
 			<?php
 		}

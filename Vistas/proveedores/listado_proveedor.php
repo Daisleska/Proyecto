@@ -97,5 +97,4 @@ $data=unserialize($data);
 
 
     </div><!-- /#right-panel -->
-
  <?php include_once "../includes/footer.php"; ?>

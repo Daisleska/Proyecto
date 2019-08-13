@@ -47,27 +47,28 @@
                     <form action="../../Controladores/controladorLogin.php?operacion=login" name="form" method="POST">
                         <input type="hidden" name="operacion" value="login">
                         <div class="form-group">
-                            <label>Correo</label>
+                            <div class="input-group ">
+                          <div class="input-group-addon"><i class="fa  fa-envelope"></i></div>
                             <input required="required" name="correo" maxlength="30" type="email" class="form-control" placeholder="Correo">
                         </div>
-                            <div class="form-group">
-                                <label>Contraseña</label>
+                        </div>
+                            <div class=" input-group form-group">
+                                <div class="input-group-addon"><i class="fa 
+                                fa-key"></i></div>
                                 <input required="required" name="clave" minlength="6" maxlength="20" type="password" class="form-control" placeholder="Contraseña">
                         </div>
                                 <div class="checkbox">
-                                    <label>
-                                <input type="checkbox"> Recordar Clave
-                            </label>
+                                    
                                     <label class="pull-right">
-                                <a href="../../Controladores/controladorLogin.php?operacion=olvido">Olvidó su contraseña?</a>
+                                <a style="color: blue;" href="../../Controladores/controladorLogin.php?operacion=olvido">Olvidó su contraseña?</a>
                             </label>
 
                                 </div>
-                                <button type="submit" value="Iniciar" class="btn btn-success   btn-flat m-b-30 m-t-30">Entrar</button>
+                                <button type="submit" value="Iniciar" class="btn btn-primary  btn-flat m-b-30 m-t-30"><i class="fa fa-check"></i>&nbsp;Entrar</button>
                                 
                                 <div>
                                     <button class="btn btn secondary">
-                                    <a href="../../Controladores/controladorUsuario.php?operacion=registrar"> Registrarte</a>
+                                    <a href="../../Controladores/controladorUsuario.php?operacion=registrar"><i class="fa fa-pencil-square-o"></i>&nbsp; Registrarte</a>
                                     </button>
                                 </div>
                     </form>

@@ -60,7 +60,7 @@
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#datosPersonales" data-toggle="tab">Datos Personales</a></li>
-              <li><a href="#cambiarClave" data-toggle="tab">Cambiar Contraseña</a></li>
+              <li><a href="facebook" data-toggle="tab">Cambiar Contraseña</a></li>
             </ul>
             <div class="tab-content">
               <div class="active tab-pane" id="datosPersonales">
@@ -163,25 +163,27 @@
 
               <!-- /.tab-pane -->
               <div class="tab-pane" id="cambiarClave">
-                <form action="index.php?llave=cambiar_clave" id="cambiar-clave" method="post" class="form-horizontal myaccount" role="form">
+                <form action="../../Controladores/controladorPerfil.php" id="cambiar-clave" method="POST" class="form-horizontal myaccount" role="form">
+                  <input type="hidden" name="operacion" value="cambiar_clave">
+        <input type="hidden" name="id_usuario" value="<?=$id_usuario?>">
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Contraseña Actual</label>
                     <div class="col-sm-10">
-                      <input type="password" name="old_password" id="old_password" class="form-control" placeholder="Contraseña Actual">
+                      <input type="password" name="clave" id="old_password" class="form-control" placeholder="Contraseña Actual">
                       <span class="help-block"></span>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="inputEmail" name="clave" id="clave" class="col-sm-2 control-label">Nueva Contraseña</label>
                     <div class="col-sm-10">
-                      <input type="password" class="form-control" name="password" id="password" placeholder="Nueva Contraseña">
+                      <input type="password" class="form-control" name="clave_nueva" id="password" placeholder="Nueva Contraseña">
                       <span class="help-block"></span>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Confirmar Contraseña</label>
                     <div class="col-sm-10">
-                      <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirmar Contraseña ">
+                      <input type="password" name="clave_nueva_confirm" id="clave_nueva_confirm" class="form-control" placeholder="Confirmar Contraseña ">
                       <span class="help-block"></span>
                     </div>
                   </div>

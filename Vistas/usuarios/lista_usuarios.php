@@ -80,11 +80,11 @@ $data=unserialize($data);
 
 							<?php } ?>
 
-							<td><i class="menu-icon fa fa-edit"><a href="../../Controladores/controladorUsuario.php?operacion=modificar&id_usuarios=<?=$data[$i][0]?>"></i>Modificar</a>
+							<td><a href="../../Controladores/controladorUsuario.php?operacion=modificar&id_usuarios=<?=$data[$i][0]?>"><i title="Modificar" class="menu-icon fa fa-edit"></i></a>
 
-							<i class="menu-icon fa fa-recycle"><a href="../../Controladores/controladorUsuario.php?operacion=eliminar&id_usuarios=<?=$data[$i][0]?>">Eliminar</a></i>
+							<a href="../../Controladores/controladorUsuario.php?operacion=eliminar&id_usuarios=<?=$data[$i][0]?>"><i title="Eliminar" class="menu-icon fa fa-trash-o"></a></i>
 
-               <i class="menu-icon fa fa-edit"> <a href="../../Controladores/controladorUsuario.php?operacion=asignar_registrar">Asignación de Privilegios</a></i>
+                <a href="../../Controladores/controladorUsuario.php?operacion=asignar_registrar"><i title="Asignar privilegios" class="menu-icon fa fa-edit"></a></i>
                                 
 							</td>
 								<?php	

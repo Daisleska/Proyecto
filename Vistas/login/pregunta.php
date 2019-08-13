@@ -54,14 +54,14 @@ extract($_REQUEST);
         <input type="hidden" name="id_usuario" value="<?=$id_usuario?>">
                         
                         <div class="form-group">
-                            <label>Pregunta de Seguridad:</label>
-                            <span><b><?=$pregunta?></b></span>
+                            <label>Pregunta de Seguridad:</label><br>
+                            <span><b><?=$pregunta?>?</b></span>
                         </div>
-
-                        <div class="form-group">
-                            <label>Respuesta</label>
-                            <input required="required" maxlength="90" minlength="2" type="password" name="respuesta" class="form-control"  title="">
-                            <span class="help-block">Ingrese la respuesta a la pregunta de seguridad</span>
+                     <label>Respuesta</label>
+                        <div class="input-group form-group">
+                           <div class="input-group-addon"><i class="fa  fa-shield"></i></div>
+                            <input required="required" maxlength="90" minlength="2" type="password" name="respuesta" class="form-control"  title="Ingrese la respuesta a la pregunta de seguridad">
+                           
                         </div>
 
                         <div class="register-link m-t-15 text-center">
@@ -69,7 +69,7 @@ extract($_REQUEST);
                                          <a href="login.php"> Volver</a>
                                      </p>
                                     </div>
-                            <button type="submit" value="enviar" name="enviar" class="btn btn-primary btn-flat m-b-15">Enviar</button>
+                            <button type="submit" value="enviar" name="enviar" class="btn btn-primary btn-flat m-b-15"><i class="fa fa-check"></i>&nbsp;Enviar</button>
 
                     </form>
                 </div>

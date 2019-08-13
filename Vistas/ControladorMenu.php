@@ -21,7 +21,10 @@ p><?php
         
         //Empleados
 		case'registro_empleados':include"empleados/registro_empleados.php";break;
-		case'listado_empleados':include"empleados/listado_empleados";break;
+		case 'registar_horario':include"empleados/registar_horario.php";
+			break;
+		case'listado_empleados':include"empleados/listado_empleados";
+		break;
 		
 
 		//Asistencia
