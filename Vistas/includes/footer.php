@@ -4,7 +4,7 @@
                     <div class=" col-sm-4">
                         <h4 class="all-tittles">Acerca de</h4>
                         <p style="">
-                           La misión de la empresa SERVIFORM C.A es asegurar la producción y distribución socialista suficiente y oportuna de productos y servicios de calidad que satisfagan las necesidades y expectativas de productores y productoras agrícolas y demás usuarios. </p>
+                           La misión de la empresa SERVIFORM C.A es asegurar la producción y distribución socialista suficiente y oportuna de productos y servicios de calidad que satisfagan las necesidades y expectativas de productores y productoras agrícolas y demás usuarios.</p>
                     </div>
                     <div class="col-sm-4">
                         <h4 class="all-tittles">Desarrolladores</h4>
@@ -29,6 +29,11 @@
                             <li><a href="0244-3362419">Telefono</a></li>
                             <li><a href="www.facebook.com/serviform">Redes Sociales</a></li>
                         </ul>
+                    </div>
+
+                    <div class=" col-sm-4">
+                        <h6 class="all-tittles">Serviform, C.A &copy RIF J-00000</h6>
+                        
                     </div>
                 </div>
             </div>

@@ -13,7 +13,7 @@ public function index(){
 	$db=new clasedb();//instanciando clasedb
 	$conex=$db->conectar();//conectando con la base de datos
 
-	$sql="SELECT cedula, nombre, email, direccion, telefono FROM proveedor";//query
+	$sql="SELECT * FROM proveedor";//query
 
 
 	//ejecutando query
@@ -31,7 +31,7 @@ public function index(){
 			$i++;
 		}
 		
-	    header("Location: ../Vistas/proveedores/listado_proveedor.php?filas=".$filas."&campos=".$campos."&data=".serialize($datos));
+	    header("Location: ../Vistas/proveedores/index.php?filas=".$filas."&campos=".$campos."&data=".serialize($datos));
 	} else {
 		echo "Error en la BASE DE DATOS";
 	}
@@ -44,7 +44,7 @@ public function index(){
 
 public function registrar(){
 
-	header("Location: ../Vistas/proveedores/registro_proveedor.php");
+	header("Location: ../Vistas/proveedores/registrar.php");
 }//fin registrar
 
 public function guardar(){
@@ -60,7 +60,7 @@ public function guardar(){
 	if ($cuantos>0) {
 		?>
 		<script type="text/javascript">
-			alert("EL PROVEEDOR CON ESTA CEDULA/RIF YA EXISTE");
+			alert("El proveedor con esta C.I/Rif ya existe");
 			window.location="ControladorProveedor.php?operacion=registrar";
 		</script>
 			<?php
@@ -75,7 +75,7 @@ public function guardar(){
         ?>
 		<script type="text/javascript">
 			
-			if (confirm("REGISTRO EXITOSO, DESEA REGISTRAR OTRO?")) {
+			if (confirm("Registro exitoso, desea registrar otro?")) {
 				window.location="ControladorProveedor.php?operacion=registrar";	
 			}else{
 				window.location="ControladorProveedor.php?operacion=index";
@@ -100,7 +100,7 @@ public function modificar(){
 	$res=mysqli_query($conex,$sql);//ejecutando consulta
 	$data=mysqli_fetch_array($res);//extrayendo datos en array
 
-	header("Location: ../Vistas/usuarios/modificar.php?data=".serialize($data));
+	header("Location: ../Vistas/proveedores/modificar.php?data=".serialize($data));
 }//fin de la funcion modificar
 
 
@@ -119,8 +119,8 @@ public function actualizar()
 		if ($cant>0) {
 			?>
 				<script type="text/javascript">
-					alert("USUARIO YA REGISTRADO");
-					window.location="ControladorProveedor.php?operacion=login";
+					alert("Proveedor ya registrado");
+					window.location="ControladorProveedor.php?operacion=index";
 				</script>
 			<?php
 		}else{
@@ -131,15 +131,15 @@ public function actualizar()
 							if ($res) {
 								?>
 									<script type="text/javascript">
-										alert("REGISTRO MODIFICADO");
-										window.location="ControladorProveedor.php?operacion=login";
+										alert("Registro modificado");
+										window.location="ControladorProveedor.php?operacion=index";
 									</script>
 								<?php
 							} else {
 								?>
 									<script type="text/javascript">
-										alert("ERROR AL MODIFICAR EL REGISTRO");
-										window.location="ControladorProveedor.php?operacion=login";
+										alert("Error al modificar el registro");
+										window.location="ControladorProveedor.php?operacion=index";
 									</script>
 								<?php
 							}			
@@ -160,15 +160,15 @@ public function eliminar()
 		if ($res) {
 			?>
 				<script type="text/javascript">
-					alert("REGISTRO ELIMINADO");
-					window.location="ControladorProveedor.php?operacion=login";
+					alert("Registro eliminado");
+					window.location="ControladorProveedor.php?operacion=index";
 				</script>
 			<?php
 		} else {
 			?>
 				<script type="text/javascript">
-					alert("REGISTRO NO ELIMINADO");
-					window.location="ControladorProveedor.php?operacion=login";
+					alert("Registro no eliminado");
+					window.location="ControladorProveedor.php?operacion=index";
 				</script>
 			<?php
 		}

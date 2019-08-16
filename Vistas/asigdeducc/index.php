@@ -9,7 +9,7 @@ $data=unserialize($data);
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Listado</h1>
+                   
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@ $data=unserialize($data);
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+                                            <th>N°</th>
                                             <th>Descripción</th>
                                             <th>Tipo</th>
                                             <th>Monto</th>
@@ -68,14 +68,14 @@ $data=unserialize($data);
 
                                     }  ?>
     
-                                    <td><a href="../../Controladores/ControladorAsigDeducc.php?operacion=modificar&id_ad=<?=$data[$i][0]?>">Modificar</a>
+                                    <td><a href="../../Controladores/ControladorAsigDeducc.php?operacion=modificar&id=<?=$data[$i][0]?>"><i title="Modificar" class="menu-icon fa fa-edit"></i>
     
                                     
                                     
-                                   <a href='../../Controladores/ControladorAsigDeducc.php?operacion=eliminar&id_ad(<?=$data[$i][0]?>)'>Eliminar</a>
+                                   <a href='../../Controladores/ControladorAsigDeducc.php?operacion=eliminar&id(<?=$data[$i][0]?>)'><i title="Eliminar" class="menu-icon fa fa-trash-o"></i>
                                     
 
-                                    <a href="../../Controladores/ControladorAsigDeducc.php?"></a>
+                                   
                                 </td>
 
                                     <?php   

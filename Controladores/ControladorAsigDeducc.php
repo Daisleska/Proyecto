@@ -11,7 +11,7 @@ public function index() {
 	extract($_POST);
 	$db=new clasedb();
 	$conex=$db->conectar();
-	$sql="SELECT id_ad, descripcion_ad, tipo_ad, monto_ad FROM asignacion_deduccion"
+	$sql="SELECT * FROM asignacion_deduccion"
 	;
 
 	if ($res=mysqli_query($conex,$sql)) {
@@ -30,7 +30,7 @@ public function index() {
 			$i++;
 		}
 		//enviando datos
-		header("Location: ../Vistas/asigdeducc/listado_ad.php?filas=".$filas."&campos=".$campos."&data=".serialize($datos));
+		header("Location: ../Vistas/asigdeducc/index.php?filas=".$filas."&campos=".$campos."&data=".serialize($datos));
 	}else{
 		echo "Error en la Base de Datos";
 	}
@@ -38,7 +38,7 @@ public function index() {
 
 
 	public function registrar(){
-		 header("Location: ../Vistas/asigdeducc/registrar_ad.php");
+		 header("Location: ../Vistas/asigdeducc/registrar.php");
 	}
 
 	public function guardar(){
@@ -47,7 +47,7 @@ public function index() {
 		$db=new clasedb();
 		$conex=$db->conectar();
 
-	$nomexist="SELECT * FROM asignacion_deduccion WHERE descripcion_ad='".$descripcion_ad."'"; 
+	$nomexist="SELECT * FROM asignacion_deduccion WHERE descripcion='".$descripcion."'"; 
 		$result=mysqli_query($conex,$nomexist);
 		$nombresbd=mysqli_num_rows($result);
 
@@ -60,7 +60,7 @@ if ($nombresbd>0){
 				<?php
 			}		
 			else {
-	$sql="INSERT INTO asignacion_deduccion (descripcion_ad, tipo_ad,monto_ad) VALUES ( '$descripcion_ad', '$tipo_ad', '$monto_ad')";
+	$sql="INSERT INTO asignacion_deduccion (descripcion, tipo,monto) VALUES ( '$descripcion', '$tipo', '$monto')";
 
 	$resultado=mysqli_query($conex,$sql);
 	
@@ -90,12 +90,12 @@ if ($nombresbd>0){
 		$db=new clasedb();
 	$conex=$db->conectar();//conectando con la base de datos
 	
-	$sql="SELECT id_ad, descripcion_ad, tipo_ad, monto_ad FROM asignacion_deduccion WHERE id_ad=".$id_ad."";
+	$sql="SELECT id, descripcion, tipo, monto FROM asignacion_deduccion WHERE id=".$id."";
 
 	$res=mysqli_query($conex,$sql);//ejecutando consulta
 	$data=mysqli_fetch_array($res);//extrayendo datos en array
 
-		header("Location: ../Vistas/asigdeducc/modificar_ad.php?id=".$id_ad);
+		header("Location: ../Vistas/asigdeducc/modificar.php?id=".$id);
 	}
 
 	public function actualizar(){
@@ -104,7 +104,7 @@ if ($nombresbd>0){
 		$db=new clasedb();
 		$conex=$db->conectar();
     
-	$sql="UPDATE asignacion_deduccion SET id_ad='$id',descripcion_ad='$descripcion_ad', tipo_ad='$tipo_ad', monto_ad='$monto_ad' WHERE id_ad='$id'";
+	$sql="UPDATE asignacion_deduccion SET id='$id',descripcion='$descripcion', tipo='$tipo', monto='$monto' WHERE id='$id'";
 	
 
     $resultado=mysqli_query($conex,$sql);
@@ -138,20 +138,20 @@ if ($nombresbd>0){
 		extract($_REQUEST);
 		$db=new clasedb;
 		$conex=$db->conectar();
-		$sql="DELETE FROM asignacion_deduccion WHERE id_ad=".$id_ad;
+		$sql="DELETE FROM asignacion_deduccion WHERE id=".$id;
 		
 	$res=mysqli_query($conex,$sql);
 		if ($res) {
 			?>
 				<script type="text/javascript">
-					alert("REGISTRO ELIMINADO");
+					alert("Registro eliminado");
 					window.location="ControladorAsigDeducc.php?operacion=index";
 				</script>
 			<?php
 		} else {
 			?>
 				<script type="text/javascript">
-					alert("REGISTRO NO ELIMINADO");
+					alert("RRegistro no eliminado");
 					window.location="ControladorAsigDeducc.php?operacion=index";
 				</script>
 			<?php

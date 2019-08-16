@@ -43,26 +43,29 @@
         </p>
            <p align="center">Recuperar Contraseña</p>
 
-                </div>
-                <div class="login-form">
+             
+              
                     <form action="../../Controladores/controladorLogin.php" method="POST" name="form">
                         <input type="hidden" name="operacion" value="validar_correo">
-<label>Correo</label>
+                        <label>Correo</label>
                         <div class="input-group form-group">
                             <div class="input-group-addon"><i class="fa  fa-envelope"></i></div>
                             <input name="correo" required="required" maxlength="30" type="email" class="form-control" placeholder="juan1234@gmail.com" title="correo ingresado al registrarte">
                         </div>
 
                         <div class="register-link m-t-15 text-center">
-                                        <p> desea regresar? <a href="login.php"> Volver</a></p>
+                                        <p> Desea regresar? <a href="login.php"> Volver</a></p>
                                     </div>
                             <button type="submit" name="enviar" value="enviar" class="btn btn-primary btn-flat m-b-15"><i class="fa fa-check"></i>&nbsp;Recuperar</button>
 
                     </form>
-                </div>
+             
             </div>
         </div>
     </div>
+</div>
+
+
 
 
     <script src="../../vendors/jquery/dist/jquery.min.js"></script>

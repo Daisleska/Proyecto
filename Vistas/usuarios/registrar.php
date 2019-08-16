@@ -45,47 +45,47 @@
                 <div class="login-form">
                      </div>
 
-                    <form action="../../Controladores/controladorUsuario.php" method="POST" name="form">
+                    <form action="../../Controladores/controladorUsuario.php?operacion=guardar" method="POST" name="form">
+                     <label>* Nombres</label>
+           
+                        <div  class="input-group form-group">
 
-             <div class="form-group" >
-                <select name="tipo_usuario" title="Seleccione un nivel" required="required" class="form-control">
-                    <option>* Tipo de usuario</option>
-
-                    <option value="Usuario l">Usuario 1</option>
-                    <option value="Usuario 2">Usuario 2</option>
-                </select>
-            </div>
-
-                        <div class="form-group">
-                            <label>* Nombre</label>
-                            <input name="nombre" maxlength="30" type="text" class="form-control" placeholder="nombre">
+                            <div class="input-group-addon"><i class="fa 
+                                fa-male"></i></div>
+                            <input name="nombre" pattern="[A-Za-z]{1,31}" maxlength="30" type="text" class="form-control" placeholder="Juan Perez">
                         </div>
 
-                        
 
-
-                            <div class="form-group">
-                                <label>* Correo</label>
-                                <input name="correo" required="required" maxlength="30" type="email" class="form-control" placeholder="Correo">
-                        </div>
-                                <div class="form-group">
-                                    <label>* Contraseña</label>
-                                    <input name="clave" required="required" minlength="6" maxlength="20" type="password" class="form-control" placeholder="Contraseña">
+                         <label>* Correo</label>
+                            <div class="input-group  form-group">
+                               <div class="input-group-addon"><i class="fa 
+                                fa-envelope"></i></div>
+                                <input name="correo" required="required" maxlength="30" type="email" class="form-control" placeholder="Juan1234@gmail.com">
                         </div>
 
-                         
-                                <div class="form-group">
-                                    <label>* Repetir Contraseña</label>
-                                    <input name="clave_repetir" required="required" minlength="6" maxlength="20" type="password" class="form-control" placeholder="Contraseña">
+                        <label>* Contraseña</label>
+                                <div class="input-group  form-group">
+                                <div class="input-group-addon"><i class="fa 
+                                fa-key"></i></div>
+                                    <input name="clave" required="required" minlength="6" maxlength="20" type="password" class="form-control" placeholder="12345678">
                         </div>
 
-                        <div class="form-group">
-                                    <label>* Pregunta de Seguridad</label>
+                          <label>* Repetir Contraseña</label>
+                                <div class="input-group  form-group">
+                                <div class="input-group-addon"><i class="fa 
+                                 fa-repeat"></i></div>
+                                    <input name="clave_repetir" required="required" minlength="6" maxlength="20" type="password" class="form-control" placeholder="12345678">
+                        </div>
+                     <label>* Pregunta de Seguridad</label>
+                        <div class="input-group form-group">
+                                 <div class="input-group-addon"><i class="fa 
+                                fa-question"></i></div>
                                     <input name="pregunta" required="required" minlength="2" maxlength="90" type="text" class="form-control" placeholder="color favorito?">
                         </div>
-
-                        <div class="form-group">
-                                    <label>* Respuesta</label>
+                         <label>* Respuesta</label>
+                        <div class="input-group form-group">
+                                <div class="input-group-addon"><i class="fa 
+                                 fa-shield"></i></div>
                                     <input name="respuesta" required="required" minlength="2" maxlength="90" type="text" class="form-control" placeholder="Azul">
                         </div>
 
@@ -99,10 +99,10 @@
 
                                 <input type="hidden" name="operacion" value="guardar">
 
-                                    <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30"> Registrar</button>
+                                    <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30"><i class="fa fa-check"></i>&nbsp; Registrar</button>
                             
                                     <div class="register-link m-t-15 text-center">
-                                        <p> Ya posee una cuenta ? <a href="../../login.php"> Volver</a></p>
+                                        <p> Ya posee una cuenta ? <a href="../login/login.php"> Volver</a></p>
                                     </div>
                     </form>
                 </div>

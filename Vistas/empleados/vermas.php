@@ -1,4 +1,5 @@
-<?php include_once "../includes/menu.php"; 
+<?php 
+include_once "../includes/menu.php"; 
 extract($_REQUEST);
 $data=unserialize($data);
 ?>
@@ -38,6 +39,7 @@ $data=unserialize($data);
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
+                                            <th>N°</th>
                                             <th>C.I</th>
                                             <th>Nombres</th>
                                             <th>Apellidos</th>
@@ -50,6 +52,7 @@ $data=unserialize($data);
                                             <th>N° Cuenta</th>
                                             <th>Cargo</th>
                                             <th>Departamento</th>
+                                            <th>Opciones</th>
 
 
                                                                                    
@@ -62,16 +65,16 @@ $data=unserialize($data);
                                     echo "<tr>";        
                                     ?>  
                                     <td><?=$num?></td>
-                                    <?php for ($j=1; $j <=11; $j++) { ?>
+                                    <?php for ($j=0; $j < $campos; $j++) { ?>
                                     <td><?=$data[$i][$j]?></td>
 
                                     <?php } ?>
 
-                                    <td><button><a href="../../Controladores/ControladorDiasLab.php?operacion=modificar&id_empleado=<?=$data[$i][0]?>">Modificar</a></button>
+                                    <td><a  href="../../Controladores/ControladorEmpleado.php?operacion=modificar&id_empleado=<?=$data[$i][0]?>"><i title="Modificar" class="menu-icon fa fa-edit"></a></i>
 
-        
+                                
 
-                                    <button><a href="javascript:eliminar(<?=$data[$i][0]?>)">Eliminar</a></button>
+                                    <a href="../../Controladores/ControladorEmpleado.php?operacion=eliminar&id_empleado=<?=$data[$i][0]?>"><i title="Eliminar" class="menu-icon fa fa-trash-o"></a></i>
                                     </td>
                                     <?php   
                                     $num++;

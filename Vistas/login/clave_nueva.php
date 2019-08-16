@@ -47,27 +47,32 @@ extract($_REQUEST);
            <p align="center">Cambiar Contraseña</p>
 
 
-                </div>
-                <div class="login-form">
+                
                     <form action="../../Controladores/controladorLogin.php" method="POST" name="form">
                         <input type="hidden" name="operacion" value="cambiar_clave">
-        <input type="hidden" name="id_usuario" value="<?=$id_usuario?>">
+                        <input type="hidden" name="id_usuario" value="<?=$id_usuario?>">
 
-                        <div class="form-group">
-                            <label>Clave Nueva:</label>
+                        
+                        <label>Clave Nueva:</label>
+                            <div class="input-group form-group">
+                            <div class="input-group-addon"><i class="fa 
+                                fa-key"></i></div>
                             <input required="required" maxlength="20" minlength="6" type="password" class="form-control"  title="Ingrese nueva clave" name="clave_nueva">
                         </div>
 
-                         <div class="form-group">
-                            <label>Confirmar Clave:</label>
+                    
+                        <label>Confirmar Clave:</label>
+                        <div class="input-group form-group">
+                            <div class="input-group-addon"><i class="fa 
+                                 fa-repeat"></i></div>
                             <input required="required" maxlength="20" minlength="6" type="password" class="form-control"  title="Confirme su nueva clave" name="clave_nueva_confirm">
                         </div>
 
 
                         <div class="register-link m-t-15 text-center">
-                                        <p> desea regresar? <a href="login.php"> Volver</a></p>
+                                        <p> Desea regresar? <a href="login.php"> Volver</a></p>
                                     </div>
-                            <button type="submit" value="enviar" name="enviar" class="btn btn-primary btn-flat m-b-15">Enviar</button>
+                            <button type="submit" value="enviar" name="enviar" class="btn btn-primary btn-flat m-b-15"><i class="fa fa-check"></i>&nbsp;Enviar</button>
 
                     </form>
                 </div>
