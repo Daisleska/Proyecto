@@ -29,6 +29,8 @@ extract($_REQUEST);
 
     <link rel="stylesheet" href="../../assets/css/style.css">
 
+     <link rel="stylesheet" href="../../vendors/plugins/sweetalert2.min.css">
+    <link rel="stylesheet" href="../../vendors/animate.css/animate.css">
     <link href='../../https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
 
@@ -67,7 +69,7 @@ extract($_REQUEST);
                         <div class="register-link m-t-15 text-center">
                                         <p> desea regresar? <a href="login.php"> Volver</a></p>
                                     </div>
-                            <button type="submit" value="enviar" name="enviar" class="btn btn-primary btn-flat m-b-15">Enviar</button>
+                            <button id="btn3" type="submit" value="enviar" name="enviar" class="btn btn-primary btn-flat m-b-15"><i class="fa fa-check"></i>&nbsp;Enviar</button>
 
                     </form>
                 </div>
@@ -80,6 +82,11 @@ extract($_REQUEST);
     <script src="../../vendors/popper.js/dist/umd/popper.min.js"></script>
     <script src="../../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../../assets/js/main.js"></script>
+
+    
+     <!--  plugins sweet alert 2 -->
+   <script src="../../vendors/plugins/sweetalert2.all.min.js"></script>
+   <script src="../../vendors/popper.js/codigo.js"></script>
 
 
 </body>

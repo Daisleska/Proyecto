@@ -25,6 +25,8 @@
 
     <link rel="stylesheet" href="../../assets/css/style.css">
 
+      <link rel="stylesheet" href="../../vendors/plugins/sweetalert2.min.css">
+    <link rel="stylesheet" href="../../vendors/animate.css/animate.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
 </head>
@@ -47,7 +49,7 @@
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active">
+                    <li>
                         <a href="../home/home.php"> <i class="menu-icon fa fa-home"></i>Inicio </a>
                     </li>
                     <h3 class="menu-title">ALMACEN</h3><!-- /.menu-title -->
@@ -145,7 +147,7 @@
             <div class="header-menu">
 
                 <div class="col-sm-7">
-                    <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
+                    <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa-hand-o-left"></i></a>
                     <div class="header-left">
                         <button class="search-trigger"><i class="fa fa-search"></i></button>
                         <div class="form-inline">
@@ -175,8 +177,8 @@
                            
                         </div>
                     </div>
-                     <div  onclick="return confirm('desea salir del sistema?')">
-                    <a  class="nav-link" style="float: right;" href="../../Controladores/controladorLogin.php?operacion=logout"><i class="fa fa-power-off" ></i> Salir</a>
+                     <div>
+                    <a id="btn9"  class="nav-link" style="float: right;" href="../../Controladores/controladorLogin.php?operacion=logout"><i class="fa fa-power-off" ></i> Salir</a>
                 </div>
 
                     <!-- cambio -->

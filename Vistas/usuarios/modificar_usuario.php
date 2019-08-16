@@ -10,7 +10,7 @@ $data=unserialize($data);
             <div class="animated fadeIn">
 
 
-                <div class="col-lg-12">
+                <div class="col-lg-8" style="padding-left: 200px;">
                     <div class="card">
                       <div class="card-header">
                            <strong>Modificar Usuarios</strong> 
@@ -66,16 +66,14 @@ $data=unserialize($data);
             
                                 </div>
                            
-                        </div>
+                       
                 <div><input type="hidden" name="operacion" value="actualizar"><input type="hidden" name="id_usuarios" value="<?=$data[0]?>"><br>
                 </div>
-                <div class="card-footer">
-                <button type="submit" class="btn btn-primary btn-sm">
-                <i class="fa fa-send"></i> Guardar
+                <div style="text-align: center;" class="card-footer">
+                <button id="btn-11" type="submit" class="col-md-8 btn btn-primary btn-sm">
+                <i class="fa fa-check"></i> Guardar
                 </button>
-                <button type="reset" class="btn btn-danger btn-sm">
-                <i class="fa fa-ban"></i> Limpiar
-                </button>
+               
                            </form>       
                                               </div>
                                                 </div>

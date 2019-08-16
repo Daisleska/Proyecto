@@ -154,7 +154,6 @@ public function verificar_respuesta()
 				?>
 				<script type="text/javascript">
 					var id_usuario="<?php echo $id_usuario; ?>"
-					alert('Respuesta correcta...');
 					window.location="../Vistas/login/clave_nueva.php?id_usuario="+id_usuario;
 				</script>
 

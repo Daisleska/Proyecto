@@ -1,8 +1,9 @@
-<?php include_once "../includes/menu.php"; 
+<?php
 extract($_REQUEST);
 $data=unserialize($data);
 ?>
 
+<?php include_once "../includes/menu.php";?> 
         <div class="breadcrumbs">
             <!-- <div class="col-sm-4">
                 <div class="page-header float-left">
@@ -28,17 +29,18 @@ $data=unserialize($data);
             <div class="animated fadeIn">
                 <div class="row">
                     <div style=" padding-left: 18px;">
-                    <button  class="btn btn-primary"><a href="../../Controladores/ControladorEmpleado.php?operacion=index"> Volver</a></button></div>
+                    <button  class="btn btn-primary"><i class="fa fa-mail-reply"><a href="../../Controladores/ControladorEmpleado.php?operacion=index"></i>&nbsp;</a> Volver</button></div>
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Empleado:</strong>
+                                <strong class="card-title">Informacion del Empleado </strong>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>C.I</th>
+                                            <th>#ID</th>
+                                            <th>Cédula</th>
                                             <th>Nombres</th>
                                             <th>Apellidos</th>
                                             <th>Dirección</th>
@@ -50,29 +52,27 @@ $data=unserialize($data);
                                             <th>N° Cuenta</th>
                                             <th>Cargo</th>
                                             <th>Departamento</th>
-
-
-                                                                                   
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
                                     <?php $num=1; 
-                                    for ($i=0; $i < $filas; $i++) { 
+                                    for ($i=0; $i <$filas; $i++) { 
                                     echo "<tr>";        
                                     ?>  
                                     <td><?=$num?></td>
-                                    <?php for ($j=1; $j <=11; $j++) { ?>
+                                    <?php for ($j=1; $j <$campos; $j++) { ?>
                                     <td><?=$data[$i][$j]?></td>
 
                                     <?php } ?>
 
-                                    <td><button><a href="../../Controladores/ControladorDiasLab.php?operacion=modificar&id_empleado=<?=$data[$i][0]?>">Modificar</a></button>
+                                    <button class="btn btn-secondary"><i class="fa fa-edit"><a href="../../Controladores/ControladorDiasLab.php?operacion=modificar&id_empleado=<?=$data[$i][0]?>"></a></i>&nbsp;Modificar</button>
 
         
 
-                                    <button><a href="javascript:eliminar(<?=$data[$i][0]?>)">Eliminar</a></button>
-                                    </td>
+                                    <button class="btn btn-primary"><i class="fa fa-trash-o"><a href="javascript:eliminar(<?=$data[$i][0]?>)"></a></i>&nbsp;Eliminar</button>
+
                                     <?php   
                                     $num++;
                                     }   ?>
@@ -80,6 +80,7 @@ $data=unserialize($data);
                                        
                                         
                                     </tbody>
+
                                 </table>
                             </div>
                         </div>

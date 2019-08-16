@@ -33,7 +33,7 @@ public function cambiar_clave()
 			<script type="text/javascript">
 				var id_usuario="<?php echo $id_usuario; ?>";
 				alert('Los campos de clave nueva no deben estar vacios...');
-				window.location="../Vistas/config/perfil.php?id_usuario="+id_usuario;
+				window.location="../Vistas/config/perfil.php?id_usuario="+id_usuario;h
 			</script>
 		<?php	
 

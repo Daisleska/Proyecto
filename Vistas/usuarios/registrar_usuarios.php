@@ -24,7 +24,8 @@
     <link rel="stylesheet" href="../../vendors/selectFX/css/cs-skin-elastic.css">
 
     <link rel="stylesheet" href="../../assets/css/style.css">
-
+    <link rel="stylesheet" href="../../vendors/plugins/sweetalert2.min.css">
+    <link rel="stylesheet" href="../../vendors/animate.css/animate.css">
     <link href='../../https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
 
@@ -52,7 +53,7 @@
 
                             <div class="input-group-addon"><i class="fa 
                                 fa-male"></i></div>
-                            <input name="nombre" pattern="[A-Za-z]{1,31}" maxlength="30" type="text" class="form-control" placeholder="Juan Perez">
+                            <input name="nombre" maxlength="30" type="text" class="form-control" placeholder="Juan Perez">
                         </div>
 
 
@@ -99,7 +100,7 @@
 
                                 <input type="hidden" name="operacion" value="guardar">
 
-                                    <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30"><i class="fa fa-check"></i>&nbsp; Registrar</button>
+                                    <button id="btn2" type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30"><i class="fa fa-check"></i>&nbsp; Registrar</button>
                             
                                     <div class="register-link m-t-15 text-center">
                                         <p> Ya posee una cuenta ? <a href="../login/login.php"> Volver</a></p>
@@ -115,8 +116,11 @@
     <script src="../../vendors/popper.js/dist/umd/popper.min.js"></script>
     <script src="../../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../../../../assets/js/main.js"></script>
+    <script src="../../vendors/jquery/jquery-3.3.1.min.js"></script>
 
-
+   <!--  plugins sweet alert 2 -->
+   <script src="../../vendors/plugins/sweetalert2.all.min.js"></script>
+   <script src="../../vendors/popper.js/codigo.js"></script>
 </body>
 
 </html>
