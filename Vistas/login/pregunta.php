@@ -55,7 +55,7 @@ extract($_REQUEST);
                         <div class="form-group">
                         <label>Pregunta de Seguridad:</label><br>
                         <div class="input-group form-group">
-                           <div class="input-group-addon"><i class="fa  fa-questions"></i></div>
+                           <div class="input-group-addon"><i class="fa  fa-question"></i></div>
                         <input type="text" name="pregunta" class="form-control" value="<?=$pregunta?>">
                         </div>
                      <label>Respuesta</label>
