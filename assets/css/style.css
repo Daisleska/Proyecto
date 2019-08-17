@@ -957,24 +957,32 @@ p {
   font-family: 'Open Sans' sans-serif;
   font-weight: 400;
   line-height: 24px;
-  color: #878787; }
+  color: #282424; }
 
 p:focus {
   border: none;
   outline: 0; }
 
+ .foo{
+ 	color: #fff;
+ }
+.extras{
+	color: #fff;
+}
+
+
 a,
 button {
   text-decoration: none;
   outline: none !important;
-  color: #878787;
+  color: #1a1212;
   -webkit-transition: all 0.25s ease;
   transition: all 0.25s ease; }
 
 a:focus,
 a:hover {
   text-decoration: none;
-  color: #000; }
+  color: #006699; }
 
 h1,
 h2,
@@ -1024,6 +1032,7 @@ aside.left-panel {
   width: 280px;
   -webkit-transition:width 0.3s ease;
   transition: width 0.3s ease; }
+
 
 .navbar {
   background: #272c33;
@@ -1326,7 +1335,7 @@ header.fixed-top {
   position: inherit; }
 
 .menutoggle {
-  background: #e74c3c;
+  background: #006699;
   border-radius: 50%;
   color: #fff !important;
   cursor: pointer;

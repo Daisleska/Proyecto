@@ -242,11 +242,10 @@ public function horario (){
 
 public function vermas (){
   extract($_REQUEST);
-  extract($_POST);
   $db=new clasedb();//instanciando clasedb
   $conex=$db->conectar();//conectando con la base de datos
 
-  $sql="SELECT id, cedula,nombres,apellidos, direccion, telefono, fecha_ingreso, condicion,  fecha_venc, salario, ncuenta, id_cargo FROM empleado WHERE id=".$id_empleado."";//query
+ $sql="SELECT * FROM empleado,cargos, departamentos WHERE empleado.id_cargo=cargos.id AND cargos.id_departamento=departamentos.id AND id=".$id_empleado."";//query
 
   //ejecutando query
   if ($res=mysqli_query($conex,$sql)) {
@@ -263,13 +262,13 @@ public function vermas (){
       $i++;
     }
     
-      header("Location: ../Vistas/empleados/vermas.php?filas=".$filas."&campos=".$campos."&data=".serialize($data));
+      header("Location: ../Vistas/empleados/vermas.php?filas=".$filas."&campos=".$campos."&data=".serialize($datos));
 
   } else {
     echo "Error en la BD....";
   }
   
-}
+}//fin de la funcion ver mas
 
 
 static function controlador($operacion){

@@ -13,7 +13,7 @@ public function login(){
 	$db=new clasedb();//instanciando clasedb
 	$conex=$db->conectar();//conectando con la base de datos
 
-	$sql="SELECT id,nombre,correo,pregunta,respuesta FROM usuarios WHERE borrado='N'";//query
+	$sql="SELECT id,nombre,correo,pregunta,respuesta, borrado FROM usuarios";//query
 
 
 	//ejecutando query
@@ -83,7 +83,11 @@ public function guardar(){
 			?>
 		<script type="text/javascript">
 			
+<<<<<<< HEAD
 			if (confirm("Registro exitoso, desea registrar otro?")) {
+=======
+			if (confirm("REGISTRO EXITOSO, DESEA REGISTRAR OTRO?")) {
+>>>>>>> 30a5e08d2e9da07455a10325cc1f8669b4bb9764
 				window.location="controladorUsuario.php?operacion=registrar";	
 			}else{
 				window.location="../Vistas/login/login.php";

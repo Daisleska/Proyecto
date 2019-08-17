@@ -21,7 +21,7 @@ $data=unserialize($data);
 
         <div class="breadcrumbs">
            
-            <div class="col-sm-5">
+          <!--   <div class="col-sm-5">
                 <div class="page-header float-left">
                     <div class="page-title">
                         <div>
@@ -38,7 +38,7 @@ $data=unserialize($data);
                             <li class="active"></li>
                         </ol>
                 </div>
-            </div>
+            </div> -->
 
                     
         </div>
@@ -50,10 +50,10 @@ $data=unserialize($data);
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <a style="float: right; padding-right: 40px;" href="../../reportes/reporte_usuarios.php">Descargar PDF</a>
+                                <a title="Descargar PDF" style="float: right; padding-right: 40px;" href="../../reportes/reporte_usuarios.php"><i style="font-size: 30px;" class="fa fa-cloud-download"></i>&nbsp;</a>
 
                                 <strong class="card-title"><i class="fa fa-list">
-                                    </i>Lista de Usuarios Registrados</strong>
+                                    </i> Listado de Usuarios Registrados</strong>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
@@ -64,6 +64,7 @@ $data=unserialize($data);
                                        	<th>Correo</th>
                                        	<th>Pregunta</th>
                                        	<th>Respuesta</th>
+                                        <th>Estado</th>
                                        	<th>Opciones</th>
                                        </tr>
                                     </thead>
