@@ -90,8 +90,8 @@ $data=unserialize($data);
                                     <div class="row form-group">
                                     <div class="col col-md-3"><label for="hf-cargo" class=" form-control-label">Cargo:</label></div>
                                     <div class="col-12 col-md-6">
-                                    <select id="hf-cargo" name="id_cargo" required="required" class="form-control">
-                                    <option value="<?php echo $data['nombre']; ?>"></option>            
+                                    <select id="hf-cargo" name="nombre" required="required" class="form-control">
+                                    <option value="<?php echo $data['cargos.nombre']; ?>"></option>            
                                     </select></div>
                                     </div>
                 <dir>

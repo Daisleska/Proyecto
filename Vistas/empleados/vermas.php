@@ -1,9 +1,10 @@
 <?php
+ include_once "../includes/menu.php";
 extract($_REQUEST);
 $data=unserialize($data);
 ?>
 
-<?php include_once "../includes/menu.php";?> 
+
         <div class="breadcrumbs">
             <!-- <div class="col-sm-4">
                 <div class="page-header float-left">
@@ -29,7 +30,7 @@ $data=unserialize($data);
             <div class="animated fadeIn">
                 <div class="row">
                     <div style=" padding-left: 18px;">
-                    <button  class="btn btn-primary"><i class="fa fa-mail-reply"><a href="../../Controladores/ControladorEmpleado.php?operacion=index"></i>&nbsp;</a> Volver</button></div>
+                    <button  class="btn btn-primary"><a href="../../Controladores/ControladorEmpleado.php?operacion=index"><i class="fa fa-mail-reply"></i>&nbsp; Volver</a></button></div>
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
@@ -67,11 +68,11 @@ $data=unserialize($data);
 
                                     <?php } ?>
 
-                                    <button class="btn btn-secondary"><i class="fa fa-edit"><a href="../../Controladores/ControladorDiasLab.php?operacion=modificar&id_empleado=<?=$data[$i][0]?>"></a></i>&nbsp;Modificar</button>
+                                    <button class="btn btn-secondary"><a href="../../Controladores/ControladorEmpleado.php?operacion=modificar&id_empleado=<?=$data[$i][0]?>"><i class="fa fa-edit"></i>&nbsp;Modificar</a></button>
 
         
 
-                                    <button class="btn btn-primary"><i class="fa fa-trash-o"><a href="javascript:eliminar(<?=$data[$i][0]?>)"></a></i>&nbsp;Eliminar</button>
+                                    <button class="btn btn-primary"><a href="../../Controladores/ControladorEmpleado.php?operacion=eliminar&id_empleado=<?=$data[$i][0]?>"><i class="fa fa-trash-o"></i>&nbsp;Eliminar</a></button>
 
                                     <?php   
                                     $num++;

@@ -43,7 +43,7 @@ public function registrar(){
   $conex=$db->conectar();
   $cont=0; //para contar si no se ejecutaron consultas
   //consulta de categorias
-    $sql="SELECT * FROM cargos";
+    $sql="SELECT * FROM cargos ";
     if ($res=mysqli_query($conex,$sql)) {
       # se ejecutó la consulta
       $campos=mysqli_num_fields($res);
@@ -117,7 +117,7 @@ public function modificar(){
   $db=new clasedb();
   $conex=$db->conectar();//conectando con la base de datos
   
-  $sql="SELECT * FROM empleado WHERE id=".$id_empleado."";
+  $sql="SELECT empleado.id,empleado.cedula, empleado.nombres, empleado.apellidos, empleado.direccion, empleado.telefono, empleado.fecha_ingreso, empleado.condicion, empleado.fecha_venc, empleado.salario, empleado.ncuenta, cargos.nombre, departamentos.nombre FROM empleado,cargos,departamentos WHERE empleado.id_cargo=cargos.id AND cargos.id_departamento=departamentos.id AND empleado.id=".$id_empleado."";
   $res=mysqli_query($conex,$sql);//ejecutando consulta
   $data=mysqli_fetch_array($res);//extrayendo datos en array
 
@@ -242,10 +242,11 @@ public function horario (){
 
 public function vermas (){
   extract($_REQUEST);
+
   $db=new clasedb();//instanciando clasedb
   $conex=$db->conectar();//conectando con la base de datos
 
- $sql="SELECT * FROM empleado,cargos, departamentos WHERE empleado.id_cargo=cargos.id AND cargos.id_departamento=departamentos.id AND id=".$id_empleado."";//query
+ $sql="SELECT empleado.id,empleado.cedula, empleado.nombres, empleado.apellidos, empleado.direccion, empleado.telefono, empleado.fecha_ingreso, empleado.condicion, empleado.fecha_venc, empleado.salario, empleado.ncuenta, cargos.nombre, departamentos.nombre FROM empleado,cargos,departamentos WHERE empleado.id_cargo=cargos.id AND cargos.id_departamento=departamentos.id AND empleado.id=".$id_empleado."";//query
 
   //ejecutando query
   if ($res=mysqli_query($conex,$sql)) {
