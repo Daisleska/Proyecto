@@ -246,7 +246,7 @@ public function vermas (){
   $db=new clasedb();//instanciando clasedb
   $conex=$db->conectar();//conectando con la base de datos
 
- $sql="SELECT empleado.id,empleado.cedula, empleado.nombres, empleado.apellidos, empleado.direccion, empleado.telefono, empleado.fecha_ingreso, empleado.condicion, empleado.fecha_venc, empleado.salario, empleado.ncuenta, cargos.nombre, departamentos.nombre FROM empleado,cargos,departamentos WHERE empleado.id_cargo=cargos.id AND cargos.id_departamento=departamentos.id AND empleado.id=".$id_empleado."";//query
+ $sql="SELECT empleado.cedula, empleado.nombres, empleado.apellidos, empleado.direccion, empleado.telefono, empleado.fecha_ingreso, empleado.condicion, empleado.fecha_venc, empleado.salario, empleado.ncuenta, cargos.nombre, departamentos.nombre FROM empleado,cargos,departamentos WHERE empleado.id_cargo=cargos.id AND cargos.id_departamento=departamentos.id AND empleado.id=".$id_empleado."";//query
 
   //ejecutando query
   if ($res=mysqli_query($conex,$sql)) {

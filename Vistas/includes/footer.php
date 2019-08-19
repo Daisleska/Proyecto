@@ -3,8 +3,10 @@
                 <div class="row">
                     <div class=" col-sm-4">
                         <h4 class="all-tittles">Acerca de</h4>
+
                         <p class="foo" style="">
                            La misión de la empresa SERVIFORM C.A es asegurar la producción y distribución socialista suficiente y oportuna de productos y servicios de calidad que satisfagan las necesidades y expectativas de productores y productoras agrícolas y demás usuarios. </p>
+
                     </div>
                     <div class="col-sm-4">
                         <h4 class="all-tittles">Desarrolladores</h4>
@@ -31,8 +33,13 @@
                         </ul>
 
                     </div>
-                    <div class="col-md-12">
-                    <p style="text-align: center; color: #fff;">(c) copyright 2019  Derechos Reservados: Hector--Daisleska--Genessi</p></div>
+
+
+                    <div class=" col-sm-12">
+                        <h6 style="text-align: center; color: #fff;">Serviform, C.A &copy copyright RIF J-00000</h6>
+                        
+                    </div>
+
                 </div>
             </div>
 

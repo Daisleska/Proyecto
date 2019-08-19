@@ -1,9 +1,8 @@
  <?php
 extract($_REQUEST);
 $data=unserialize($data);
+include_once "../includes/menu.php"; 
 ?>
-
-<?php include_once "../includes/menu.php"; ?>
 
         <div class="breadcrumbs">
             <div class="col-sm-5">
@@ -42,6 +41,7 @@ $data=unserialize($data);
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
+                                            <th>N°</th>
                                             <th>C.I/RIF</th>
                                             <th>Nombre</th>
                                             <th>Correo</th>
@@ -70,15 +70,13 @@ $data=unserialize($data);
 
                                     }  ?>
     
-                                    <td><a href="../../Controladores/ControladorProveedor.php?operacion=modificar&id=<?=$data[$i][0]?>">Modificar</a>
+                                    <td><a  href="../../Controladores/ControladorProveedor.php?operacion=modificar&id_proveedor=<?=$data[$i][0]?>"><i title="Modificar" class="menu-icon fa fa-edit"></a></i>
     
                                     
-                                    
-                                   <a href='javascript:eliminar(".$data[$i][0].")'>Eliminar</a>
+    
 
-                                    
-
-                                    <a href="../../Controladores/ControladorProveedor.php?"></a></td>
+                                    <a href="../../Controladores/ControladorProveedor.php?operacion=eliminar&id_proveedor=<?=$data[$i][0]?>"><i title="Eliminar" class="menu-icon fa fa-trash-o"></a></i>
+                                    </td>
 
                                     <?php   
                                 $num++;

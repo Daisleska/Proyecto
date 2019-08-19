@@ -31,7 +31,7 @@ public function login(){
 			$i++;
 		}
 		
-	    header("Location: ../Vistas/usuarios/lista_usuarios.php?filas=".$filas."&campos=".$campos."&data=".serialize($datos));
+	    header("Location: ../Vistas/usuarios/index.php?filas=".$filas."&campos=".$campos."&data=".serialize($datos));
 	} else {
 		echo "Error en la BASE DE DATOS";
 	}
@@ -44,7 +44,7 @@ public function login(){
 
 public function registrar(){
 
-	header("Location: ../Vistas/usuarios/registrar_usuarios.php");
+	header("Location: ../Vistas/usuarios/registrar.php");
 }//fin registrar
 
 public function guardar(){
@@ -59,7 +59,7 @@ public function guardar(){
 	if ($cuantos>0) {
 		?>
 		<script type="text/javascript">
-			alert("EL USUARIO CON ESTE CORREO YA EXISTE");
+			alert("El usuario con este correo ya existe");
 			window.location="controladorUsuario.php?operacion=registrar";
 		</script>
 			<?php
@@ -83,7 +83,11 @@ public function guardar(){
 			?>
 		<script type="text/javascript">
 			
+<<<<<<< HEAD
+			if (confirm("Registro exitoso, desea registrar otro?")) {
+=======
 			if (confirm("REGISTRO EXITOSO, DESEA REGISTRAR OTRO?")) {
+>>>>>>> 30a5e08d2e9da07455a10325cc1f8669b4bb9764
 				window.location="controladorUsuario.php?operacion=registrar";	
 			}else{
 				window.location="../Vistas/login/login.php";
@@ -96,7 +100,7 @@ public function guardar(){
 			?>
 		<script type="text/javascript">
 			
-			if (confirm("REGISTRO FALLIDO, DESEA VOLVER A INTENTARLO?")) {
+			if (confirm("Registro fallido, desea registrar otro?")) {
 				window.location="controladorUsuario.php?operacion=registrar";	
 			}else{
 				window.location="controladorUsuario.php?operacion=index";
@@ -109,7 +113,7 @@ public function guardar(){
 			?>
 		<script type="text/javascript">
 			
-			if (confirm("REGISTRO FALLIDO, LAS CLAVES NO COINCIDEN?")) {
+			if (confirm("Registro fallido, las claves no coinciden")) {
 				window.location="controladorUsuario.php?operacion=registrar";	
 			}else{
 				window.location="controladorUsuario.php?operacion=index";
@@ -134,7 +138,7 @@ public function modificar(){
 	$res=mysqli_query($conex,$sql);//ejecutando consulta
 	$data=mysqli_fetch_array($res);//extrayendo datos en array
 
-	header("Location: ../Vistas/usuarios/modificar_usuario.php?data=".serialize($data));
+	header("Location: ../Vistas/usuarios/modificar.php?data=".serialize($data));
 }//fin de la funcion modificar
 
 
@@ -153,7 +157,7 @@ public function actualizar()
 		if ($cant>0) {
 			?>
 				<script type="text/javascript">
-					alert("USUARIO YA REGISTRADO");
+					alert("Usuario ya registrado");
 					window.location="controladorUsuario.php?operacion=login";
 				</script>
 			<?php
@@ -173,14 +177,14 @@ public function actualizar()
 							if ($res) {
 								?>
 									<script type="text/javascript">
-										alert("REGISTRO MODIFICADO");
+										alert("Registro modificado");
 										window.location="controladorUsuario.php?operacion=login";
 									</script>
 								<?php
 							} else {
 								?>
 									<script type="text/javascript">
-										alert("ERROR AL MODIFICAR EL REGISTRO");
+										alert("Error al modificar el registro");
 										window.location="controladorUsuario.php?operacion=login";
 									</script>
 								<?php
@@ -188,7 +192,7 @@ public function actualizar()
 					} else {
 						?>
 						<script type="text/javascript">
-							alert("LA CLAVE Y REPETIR CLAVE NO COINCIDEN");
+							alert("La clave y repetir clave no coinciden");
 							window.location="controladorUsuario.php?operacion=login";
 						</script>
 						<?php	
@@ -197,7 +201,7 @@ public function actualizar()
 				} else {
 					?>
 						<script type="text/javascript">
-							alert("LA CLAVE ANTERIOR NO COINCIDE");
+							alert("La clave anterior no coinciden");
 							window.location="controladorUsuario.php?operacion=login";
 						</script>
 					<?php
@@ -211,14 +215,14 @@ public function actualizar()
 				if ($res) {
 					?>
 						<script type="text/javascript">
-							alert("REGISTRO MODIFICADO");
+							alert("Registro modificado");
 							window.location="controladorUsuario.php?operacion=login";
 						</script>
 					<?php
 				} else {
 					?>
 						<script type="text/javascript">
-							alert("ERROR AL MODIFICAR EL REGISTRO");
+							alert("Error al modificar el registro");
 							window.location="controladorUsuario.php?operacion=login";
 						</script>
 					<?php
@@ -241,14 +245,14 @@ public function eliminar()
 		if ($res) {
 			?>
 				<script type="text/javascript">
-					alert("REGISTRO ELIMINADO");
+					alert("Registro eliminado");
 					window.location="controladorUsuario.php?operacion=login";
 				</script>
 			<?php
 		} else {
 			?>
 				<script type="text/javascript">
-					alert("REGISTRO NO ELIMINADO");
+					alert("Registro no eliminado");
 					window.location="controladorUsuario.php?operacion=login";
 				</script>
 			<?php
@@ -326,7 +330,7 @@ public function buscar_privilegios_usuario()
 			} else {
 				?>
 				<script type="text/javascript">
-					alert("NO EXISTEN PRIVILEGIOS REGISTRADOS");
+					alert("No existen privilegios registrados");
 					window.location="controladorUsuario.php?operacion=index";
 				</script>
 				<?php

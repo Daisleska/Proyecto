@@ -32,12 +32,12 @@
 
 
            <div class="card-body card-block">
-           <form action="../../Controladores/ControladorProveedor.php" method="POST"  class="form">
+           <form action="../../Controladores/ControladorProveedor.php?operacion=registrar" method="POST"  class="form">
 
              <div class="row form-group">
                    <div class="col col-md-3"><label class=" form-control-label">* C.I / RIF:</label></div>
 
-                   <div class="col-12 col-md-7"><input type="text" id="" name="cedula" required="required" placeholder="Ej: 189039847689" maxlength="20" class="form-control"></div>
+                   <div class="col-12 col-md-7"><input type="text" id="" name="cedula" required="required" placeholder="Ej: J-5677839" minlength="8" maxlength="20" class="form-control"></div>
           </div>
 
 
@@ -45,7 +45,7 @@
                <div class="row form-group">
                    <div class="col col-md-3"><label for="hf-email" class=" form-control-label">* Nombre:</label></div>
 
-                   <div class="col-12 col-md-7"><input type="text" id="" name="nombre" maxlength="50" placeholder="Ej: Inica" class="form-control"></div>
+                   <div class="col-12 col-md-7"><input type="text" id="" name="nombre" minlength="5" maxlength="40" required="required" placeholder="Ej: Inica" class="form-control"></div>
           </div>
 
                  <div class="row form-group">
@@ -55,7 +55,7 @@
                </div>
 
 
-                 <div class="row form-group">
+          <div class="row form-group">
                    <div class="col col-md-3"><label class=" form-control-label">* Dirección:</label></div>
 
                    <div class="col-12 col-md-7"><input type="text" id="" name="direccion" required="required" maxlength="50" placeholder="Ej: Aragua, Cagua" class="form-control"></div>
@@ -74,6 +74,7 @@
                       <button type="submit" class="btn btn-primary btn-sm">
                           <i class="fa fa-send"></i> Guardar
                       </button>
+ 
                             <button type="reset" class="btn btn-danger btn-sm">
                              <i class="fa fa-recicle"></i> Limpiar
                               </button>

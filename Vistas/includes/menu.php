@@ -199,6 +199,7 @@
                     </div> -->
 
                 <div class="page-tittle" class="col-md-6">
+                    <img src="../../images/servip.pnj">
                     <cite>SERVIFORM C.A
                     <br>
                      La Victoria .Edo. Aragua</cite>

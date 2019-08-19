@@ -34,18 +34,18 @@ $data=unserialize($data);
                      <strong>Registro de Empleados</strong> 
                                                     </div>
 
-                    </div>
+                 
                     <div class="card-body card-block">
                     <form action="../../Controladores/ControladorEmpleado.php" method="post" class="form-horizontal">
                                       
                     <div style="padding-left: 20px; padding-top: 10px;" class="row form-group">
                      <div class="col col-md-3"><label for="hf-ci" class=" form-control-label">* Cédula:</label></div>
-                    <div class="col-12 col-md-4"><input required="required" type="number" id="hf-ci" name="cedula" placeholder="Ej: 12.345.678" class="form-control"></div>
+                    <div class="col-12 col-md-4"><input required="required" type="text" id="hf-ci" name="cedula" placeholder="Ej: 12.345.678" class="form-control"></div>
                     </div>
 
                      <div style="padding-left: 20px;" class="row form-group">
                     <div class="col col-md-3"><label for="hf-nombres" class=" form-control-label">* Nombres:</label></div>
-                    <div class="col-12 col-md-4"><input type="text" id="hf-nombres" name="nombres" placeholder="Ej: juan armando" class="form-control"></div>
+                    <div class="col-12 col-md-4"><input type="text" id="hf-nombres" name="nombres" placeholder="Ej: Juan Armando" class="form-control"></div>
                      </div>
 
                      <div style="padding-left: 20px;" class="row form-group">
@@ -55,12 +55,12 @@ $data=unserialize($data);
 
                      <div style="padding-left: 20px;" class="row form-group">
                     <div class="col col-md-3"><label for="hf-dir" class=" form-control-label">* Dirección:</label></div>
-                    <div class="col-12 col-md-4"><input type="textarea" id="hf-dir" name="direccion" placeholder="Ej: La victoria #00" class="form-control"></div>
+                    <div class="col-12 col-md-4"><input type="textarea" id="hf-dir" name="direccion" placeholder="Ej: La Victoria #00" class="form-control"></div>
                     </div>
 
                     <div style="padding-left: 20px;" class="row form-group">
                      <div class="col col-md-3"><label for="hf-tlf" class=" form-control-label">* Teléfono:</label></div>
-                    <div class="col-12 col-md-4"><input type="number" id="hf-tlf" name="telefono" placeholder="Ej: 0212-0120300" class="form-control"></div>
+                    <div class="col-12 col-md-4"><input type="text" id="hf-tlf" name="telefono" placeholder="Ej: 0212-0120300" class="form-control"></div>
                     </div>
 
                     <div style="padding-left: 20px;" class="row form-group">
@@ -88,7 +88,7 @@ $data=unserialize($data);
 
                      <div style="padding-left: 20px;" class="row form-group">
                     <div class="col col-md-3"><label for="hf-salario" class=" form-control-label">Salario:</label></div>
-                    <div class="col-12 col-md-4"><input type="number" id="hf-salario" name="salario" placeholder="Ej: 1.000.000" class="form-control"></div>
+                    <div class="col-12 col-md-4"><input type="text" id="hf-salario" name="salario" placeholder="Ej: 1.000.000" class="form-control"></div>
                     </div>
 
 
@@ -112,6 +112,7 @@ $data=unserialize($data);
                     </select>
                     </div>
                     </div>
+                    <p>(*) Campos obligatorios</p>
 
 
                     

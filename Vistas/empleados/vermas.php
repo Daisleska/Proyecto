@@ -1,5 +1,8 @@
-<?php
+
+<?php 
+
  include_once "../includes/menu.php";
+
 extract($_REQUEST);
 $data=unserialize($data);
 ?>
@@ -53,7 +56,10 @@ $data=unserialize($data);
                                             <th>N° Cuenta</th>
                                             <th>Cargo</th>
                                             <th>Departamento</th>
-                                            
+                                            <th>Opciones</th>
+
+
+                                                                            
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -63,16 +69,22 @@ $data=unserialize($data);
                                     echo "<tr>";        
                                     ?>  
                                     <td><?=$num?></td>
-                                    <?php for ($j=1; $j <$campos; $j++) { ?>
+                                    <?php for ($j=0; $j < $campos; $j++) { ?>
                                     <td><?=$data[$i][$j]?></td>
 
                                     <?php } ?>
 
-                                    <button class="btn btn-secondary"><a href="../../Controladores/ControladorEmpleado.php?operacion=modificar&id_empleado=<?=$data[$i][0]?>"><i class="fa fa-edit"></i>&nbsp;Modificar</a></button>
+                                  
 
-        
+                                    <td><a  href="../../Controladores/ControladorEmpleado.php?operacion=modificar&id_empleado=<?=$data[$i][0]?>"><i title="Modificar" class="menu-icon fa fa-edit"></a></i>
 
-                                    <button class="btn btn-primary"><a href="../../Controladores/ControladorEmpleado.php?operacion=eliminar&id_empleado=<?=$data[$i][0]?>"><i class="fa fa-trash-o"></i>&nbsp;Eliminar</a></button>
+
+                                    
+
+                                    <a href="../../Controladores/ControladorEmpleado.php?operacion=eliminar&id_empleado=<?=$data[$i][0]?>"><i title="Eliminar" class="menu-icon fa fa-trash-o"></a></i>
+                                    </td>
+
+                                   
 
                                     <?php   
                                     $num++;

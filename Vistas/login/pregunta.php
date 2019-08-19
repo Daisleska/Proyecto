@@ -49,15 +49,16 @@ extract($_REQUEST);
            <p align="center">Recuperar Contraseña</p>
 
 
-                </div>
-                <div class="login-form">
+                
                     <form action="../../Controladores/ControladorLogin.php" method="POST" name="form">
-<input type="hidden" name="operacion" value="respuestas">
-        <input type="hidden" name="id_usuario" value="<?=$id_usuario?>">
+                    <input type="hidden" name="operacion" value="respuestas">
+                    <input type="hidden" name="id_usuario" value="<?=$id_usuario?>">
                         
                         <div class="form-group">
-                            <label>Pregunta de Seguridad:</label><br>
-                            <span><b><?=$pregunta?>?</b></span>
+                        <label>Pregunta de Seguridad:</label><br>
+                        <div class="input-group form-group">
+                           <div class="input-group-addon"><i class="fa  fa-question"></i></div>
+                        <input type="text" name="pregunta" class="form-control" value="<?=$pregunta?>">
                         </div>
                      <label>Respuesta</label>
                         <div class="input-group form-group">
@@ -67,7 +68,7 @@ extract($_REQUEST);
                         </div>
 
                         <div class="register-link m-t-15 text-center">
-                                        <p> desea regresar?
+                                        <p> Desea regresar?
                                          <a href="login.php"> Volver</a>
                                      </p>
                                     </div>
