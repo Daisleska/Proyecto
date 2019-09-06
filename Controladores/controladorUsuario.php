@@ -8,7 +8,7 @@ class ControladorUsuarios
 {
 	
 
-public function login(){
+public function index(){
 	extract($_POST);
 	$db=new clasedb();//instanciando clasedb
 	$conex=$db->conectar();//conectando con la base de datos
@@ -44,7 +44,8 @@ public function login(){
 
 public function registrar(){
 
-	header("Location: ../Vistas/usuarios/registrar.php");
+
+	header("Location: ../Vistas/config/registrar.php");
 }//fin registrar
 
 public function guardar(){
@@ -60,14 +61,14 @@ public function guardar(){
 		?>
 		<script type="text/javascript">
 			alert("El usuario con este correo ya existe");
-			window.location="controladorUsuario.php?operacion=registrar";
+			window.location="ControladorUsuario.php?operacion=registrar";
 		</script>
 			<?php
 	} else {
 		if ($clave == $clave_repetir) {
 			
 		$clave=hash('sha256',$clave); 
-		$sql="INSERT INTO usuarios(nombre,correo,clave,pregunta,respuesta) VALUES('".$nombre."','".$correo."','".$clave."','".$pregunta."','".$respuesta."')";
+		$sql="INSERT INTO usuarios(nombre,correo,clave,tipo_usuario,pregunta,respuesta) VALUES('".$nombre."','".$correo."','".$clave."', '".$tipo_usuario."', '".$pregunta."','".$respuesta."')";
 
 		//echo $sql;
 		$result=mysqli_query($conex,$sql);
@@ -82,15 +83,14 @@ public function guardar(){
 			//--------------------
 			?>
 		<script type="text/javascript">
-			
-<<<<<<< HEAD
+
+
 			if (confirm("Registro exitoso, desea registrar otro?")) {
-=======
-			if (confirm("REGISTRO EXITOSO, DESEA REGISTRAR OTRO?")) {
->>>>>>> 30a5e08d2e9da07455a10325cc1f8669b4bb9764
-				window.location="controladorUsuario.php?operacion=registrar";	
+
+
+				window.location="ControladorUsuario.php?operacion=registrar";	
 			}else{
-				window.location="../Vistas/login/login.php";
+				window.location="../Vistas/home/home.php";
 			}
 			
 		</script>
@@ -100,10 +100,10 @@ public function guardar(){
 			?>
 		<script type="text/javascript">
 			
-			if (confirm("Registro fallido, desea registrar otro?")) {
-				window.location="controladorUsuario.php?operacion=registrar";	
+			if (confirm("Registro fallido, desea volver a intentar?")) {
+				window.location="ControladorUsuario.php?operacion=registrar";	
 			}else{
-				window.location="controladorUsuario.php?operacion=index";
+				window.location="ControladorUsuario.php?operacion=index";
 			}
 			
 		</script>
@@ -114,9 +114,9 @@ public function guardar(){
 		<script type="text/javascript">
 			
 			if (confirm("Registro fallido, las claves no coinciden")) {
-				window.location="controladorUsuario.php?operacion=registrar";	
+				window.location="ControladorUsuario.php?operacion=registrar";	
 			}else{
-				window.location="controladorUsuario.php?operacion=index";
+				window.location="ControladorUsuario.php?operacion=index";
 			}
 			
 		</script>
@@ -145,92 +145,91 @@ public function modificar(){
 
 public function actualizar()
 {
-	extract($_POST);//EXTRAYENDO VARIABLES DEL FORMULARIO
-	$db=new clasedb();
-	$conex=$db->conectar();//conectando con la base de datos
-	
-	$sql="SELECT * FROM usuarios WHERE correo='".$correo."' AND id<>".$id_usuario;
+  extract($_POST);//EXTRAYENDO VARIABLES DEL FORMULARIO
+  $db=new clasedb();
+  $conex=$db->conectar();//conectando con la base de datos
+  
+  $sql="SELECT * FROM usuarios WHERE correo='".$correo."' AND id<>".$id_usuarios;
 //echo $sql;
-	$res=mysqli_query($conex,$sql);
+  $res=mysqli_query($conex,$sql);
 
-	$cant=mysqli_num_rows($res);//trae cuantos registros tiene la consulta
-		if ($cant>0) {
-			?>
-				<script type="text/javascript">
-					alert("Usuario ya registrado");
-					window.location="controladorUsuario.php?operacion=login";
-				</script>
-			<?php
-		}else{
-			//modificando en caso de que quiera cambiar la clave
-			if (isset($cambiar)) {
-				$sql="SELECT clave FROM usuarios WHERE id=".$id_usuario;
-				$res=mysqli_query($conex,$sql);
-				$row=mysqli_fetch_object($res);
-				$clave_anterior=hash('sha256',$clave_anterior); 
-				if ($row->clave==$clave_anterior) {
-					if ($clave_repetir==$clave) {
-						$clave=hash('sha256',$clave);
-						$sql="UPDATE usuarios SET nombre='".$nombre."',correo='".$correo."',clave='".$clave."',pregunta='".$pregunta."',respuesta='".$respuesta."' WHERE id=".$id_usuario;
+  $cant=mysqli_num_rows($res);//trae cuantos registros tiene la consulta
+    if ($cant>0) {
+      ?>
+        <script type="text/javascript">
+          alert("Usuario ya registrado");
+          window.location="ControladorUsuario.php?operacion=index";
+        </script>
+      <?php
+    }else{
+      //modificando en caso de que quiera cambiar la clave
+      if (isset($cambiar)) {
+        $sql="SELECT clave FROM usuarios WHERE id=".$id_usuarios;
+        $res=mysqli_query($conex,$sql);
+        $row=mysqli_fetch_object($res);
+        $clave_anterior=hash('sha256',$clave_anterior); 
+        if ($row->clave==$clave_anterior) {
+          if ($clave_repetir==$clave) {
+            $clave=hash('sha256',$clave);
+            $sql="UPDATE usuarios SET nombre='".$nombre."',correo='".$correo."',clave='".$clave."',tipo_usuario='".$tipo_usuario."', pregunta='".$pregunta."',respuesta='".$respuesta."' WHERE id=".$id_usuarios;
 
-							$res=mysqli_query($conex,$sql);
-							if ($res) {
-								?>
-									<script type="text/javascript">
-										alert("Registro modificado");
-										window.location="controladorUsuario.php?operacion=login";
-									</script>
-								<?php
-							} else {
-								?>
-									<script type="text/javascript">
-										alert("Error al modificar el registro");
-										window.location="controladorUsuario.php?operacion=login";
-									</script>
-								<?php
-							}			
-					} else {
-						?>
-						<script type="text/javascript">
-							alert("La clave y repetir clave no coinciden");
-							window.location="controladorUsuario.php?operacion=login";
-						</script>
-						<?php	
-					}//fin del condicional de la clave y repetir no coinciden
-					
-				} else {
-					?>
-						<script type="text/javascript">
-							alert("La clave anterior no coinciden");
-							window.location="controladorUsuario.php?operacion=login";
-						</script>
-					<?php
-				}//fin del condicional de comparacion con clave anterior
-				
-			} else {
-			
-			$sql="UPDATE usuarios SET nombre='".$nombre."',correo='".$correo."',pregunta='".$pregunta."',respuesta='".$respuesta."' WHERE id=".$id_usuarios;
+              $res=mysqli_query($conex,$sql);
+              if ($res) {
+                ?>
+                  <script type="text/javascript">
+                    alert("Registro modificado");
+                    window.location="ControladorUsuario.php?operacion=index";
+                  </script>
+                <?php
+              } else {
+                ?>
+                  <script type="text/javascript">
+                    alert("Error al modificar el registro");
+                    window.location="ControladorUsuario.php?operacion=index";
+                  </script>
+                <?php
+              }     
+          } else {
+            ?>
+            <script type="text/javascript">
+              alert("La clave y repetir la clave no coinciden");
+              window.location="ControladorUsuario.php?operacion=index";
+            </script>
+            <?php 
+          }//fin del condicional de la clave y repetir no coinciden
+          
+        } else {
+          ?>
+            <script type="text/javascript">
+              alert("La clave anterior no coinciden");
+              window.location="ControladorUsuario.php?operacion=index";
+            </script>
+          <?php
+        }//fin del condicional de comparacion con clave anterior
+        
+      } else {
+      
+      $sql="UPDATE usuarios SET nombre='".$nombre."',correo='".$correo."',tipo_usuario='".$tipo_usuario."',pregunta='".$pregunta."',respuesta='".$respuesta."' WHERE id=".$id_usuarios;
 
-			$res=mysqli_query($conex,$sql);
-				if ($res) {
-					?>
-						<script type="text/javascript">
-							alert("Registro modificado");
-							window.location="controladorUsuario.php?operacion=login";
-						</script>
-					<?php
-				} else {
-					?>
-						<script type="text/javascript">
-							alert("Error al modificar el registro");
-							window.location="controladorUsuario.php?operacion=login";
-						</script>
-					<?php
-				}
-			}//fin del condicional de cambiar
-		}//fin del condicional de correo registrado
+      $res=mysqli_query($conex,$sql);
+        if ($res) {
+          ?>
+            <script type="text/javascript">
+              alert("Registro modificado");
+              window.location="ControladorUsuario.php?operacion=index";
+            </script>
+          <?php
+        } else {
+          ?>
+            <script type="text/javascript">
+              alert("Error al modificar el registro");
+              window.location="ControladorUsuario.php?operacion=index";
+            </script>
+          <?php
+        }
+      }//fin del condicional de cambiar
+    }//fin del condicional de correo registrado
 }//fin de la función actualizar
-
 
 public function eliminar()
 {
@@ -246,14 +245,14 @@ public function eliminar()
 			?>
 				<script type="text/javascript">
 					alert("Registro eliminado");
-					window.location="controladorUsuario.php?operacion=login";
+					window.location="controladorUsuario.php?operacion=index";
 				</script>
 			<?php
 		} else {
 			?>
 				<script type="text/javascript">
 					alert("Registro no eliminado");
-					window.location="controladorUsuario.php?operacion=login";
+					window.location="controladorUsuario.php?operacion=index";
 				</script>
 			<?php
 		}
@@ -301,6 +300,44 @@ public function asignar_registrar()
 
 
 
+public function guardar_privilegios(){
+	extract($_POST);//EXTRAYENDO VARIABLES DEL FORMULARIO
+	$db=new clasedb();
+	$conex=$db->conectar();//conectando con la base de datos
+    
+	$id_usuarios=mysqli_insert_id($conex);//obteniendo el último id generado
+
+    for ($i=1; $i <= 32; $i++) { 
+	$sql="INSERT INTO usuarios_has_privilegios VALUES(".$id_usuarios.",".$i.",'Si')";
+	//echo $sql;
+	$result=mysqli_query($conex,$sql);
+	
+	}
+    
+    if ($result>0) {
+		?>
+		<script type="text/javascript">
+			alert ("Registro exitoso");
+			window.location="ControladorUsuario.php?operacion=index"
+		</script>
+
+		<?php
+
+	}else
+	{
+	    ?>
+		<script type="text/javascript">
+			alert ("Registro fallido");
+			window.location="ControladorUsuario.php?operacion=index"
+		</script>
+
+		<?php
+	}
+
+
+}//fin de la funcion guardar privilegios
+
+
 public function buscar_privilegios_usuario()
 {
 	extract($_POST);
@@ -339,12 +376,16 @@ public function buscar_privilegios_usuario()
 }//cierre de la funcion
 
 
+
+
+
+
 static function controlador($operacion){
 		$nombre=new ControladorUsuarios();
 	switch ($operacion) {
-		case 'login':
+		case 'index':
 
-			$nombre->login();
+			$nombre->index();
 			break;
 		case 'registrar':
 			$nombre->registrar();
@@ -364,15 +405,20 @@ static function controlador($operacion){
 		case 'asignar_registrar':
 			$nombre->asignar_registrar();
 
+		case 'guardar_privilegios':
+			$nombre->guardar_privilegios();
+			break;
+
 			break;
 		case 'buscar_privilegios_usuario':
 			$nombre->buscar_privilegios_usuario();
 			break;
+
 		default:
 			?>
 				<script type="text/javascript">
 					alert("No existe la ruta");
-					window.location="controladorUsuario.php?operacion=login";
+					window.location="controladorUsuario.php?operacion=index";
 				</script>
 			<?php
 			break;

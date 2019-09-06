@@ -1,11 +1,11 @@
 <?php
 session_start();
-include ('modelo/clasedb.php');
+include("../Modelos/clasedb.php");
 extract($_REQUEST);
 
 
 
-class controladorprivilegios 
+class ControladorPrivilegios 
 {
 	
 

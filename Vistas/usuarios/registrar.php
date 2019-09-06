@@ -45,14 +45,14 @@
                 <div class="login-form">
                      </div>
 
-                    <form action="../../Controladores/controladorUsuario.php?operacion=guardar" method="POST" name="form">
+                    <form action="../../Controladores/ControladorUsuario.php?operacion=guardar" method="POST" name="form">
                      <label>* Nombres</label>
            
                         <div  class="input-group form-group">
 
                             <div class="input-group-addon"><i class="fa 
                                 fa-male"></i></div>
-                            <input name="nombre" pattern="[A-Za-z]{1,31}" maxlength="30" type="text" class="form-control" placeholder="Juan Perez">
+                            <input name="nombre" pattern="[A-Za-z]" maxlength="30" type="text" class="form-control" placeholder="Juan Perez">
                         </div>
 
 
