@@ -1,8 +1,15 @@
-<?php include_once "../includes/menu.php"; ?>
+<?php include_once "../includes/menu.php"; 
+
+$query_perfil=mysqli_query($con,"select * from perfil where id=1");
+  $rw=mysqli_fetch_assoc($query_perfil);
+  $sql=mysqli_query($con, "select LAST_INSERT_ID(id) as last from facturas order by id desc limit 0,1 ");
+  $rws=mysqli_fetch_array($sql);
+  $numero=$rws['last']+1;
+  ?>
 
 
         <section style="padding-left: 20px;" class="content-header">
-      <h1>Tablero <small>/  Asistencia</small></h1>
+      <h3>Tablero <small>/  Asistencia</small></h3>
       <ol class="breadcrumb">
         <!-- <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li> -->
         <li class="active"><i class="fa fa-users"></i> Asistencia</li>
@@ -12,9 +19,9 @@
      <section style="padding-left: 20px;"  class="invoice">
       <div class="row">
         <div class="col-md-12">
-          <h2 class="page-header">
+          <h3 class="page-header">
             <i class="fa fa-edit"></i> Control de Asistencia
-          </h2>
+          </h3>
         </div>
         <!-- /.col -->
       </div>

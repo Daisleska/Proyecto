@@ -78,8 +78,8 @@
                      <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-archive"></i>Inventario</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-edit"></i><a href="../inventario/registrar_inventario.php">Registrar</a></li>
-                            <li><i class="fa fa-list"></i><a href="../inventario/listado_inventario.php">Listado</a></li>
+                            <li><i class="fa fa-edit"></i><a href="../menu/ControladorMenu.php?operacion=registrar_inventario">Registrar</a></li>
+                            <li><i class="fa fa-list"></i><a href="../menu/ControladorMenu.php?operacion=inventario">Listado</a></li>
                         </ul>
                     </li>
                     
@@ -152,10 +152,10 @@
                 <div class="col-md-7">
                     <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa-hand-o-left"></i></a>
                     <div class="header-left">
-                        <button class="search-trigger"><i class="fa fa-search"></i></button>
+                        <button class="search-trigger"><i class="fa fa-search"></i></button> 
                         <div class="form-inline">
                             <form class="search-form">
-                                <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
+                                <input class="form-control mr-sm-2" type="text" placeholder="buscar ..." aria-label="Search">
                                 <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
                             </form>
                         </div>
@@ -204,7 +204,7 @@
                     </div> -->
 
                 <div class="page-tittle" class="col-md-6">
-                    <img src="../../images/servi.png" width="150">
+                    <img src="../../images/servi.png" width="100">
                     <br>
                     <cite>SERVIFORM C.A
                     <br>

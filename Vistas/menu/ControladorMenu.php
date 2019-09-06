@@ -27,8 +27,9 @@
 		case'index':include"Vistas/inventario/index.php";break;
         
         //Empleados
-		case'registar':include"Vistas/empleado/registar.php";break;
-		case'index':include"Vistas/empleado/index.php";break;
+		case'registar_inventario':include"../inventario/registrar_inventario.php";break;
+		case'hindex':include"Vistas/empleado/index.php";break;
+		case'inventario':include"../inventario/inventario.php";break;
 
 		//Asistencia
 		case'asistencia':include"../asistencias/asistencia.php";break;
