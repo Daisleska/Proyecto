@@ -38,35 +38,84 @@ public function index(){
     //enviando datos
 }//fin de la funcion index
 public function registrar(){
-
   $db=new clasedb();
   $conex=$db->conectar();
   $cont=0; //para contar si no se ejecutaron consultas
   //consulta de categorias
-    $sql="SELECT * FROM cargos ";
+    $sql="SELECT * FROM cargos";
     if ($res=mysqli_query($conex,$sql)) {
       # se ejecutó la consulta
-      $campos=mysqli_num_fields($res);
-      $filas=mysqli_num_rows($res);
-       $i=0; 
-       $cargos[]=array();
-    
+      $campos_cat=mysqli_num_fields($res);
+      $filas_cat=mysqli_num_rows($res);
+      $cargos[]=array();
+      $i=0;
       while ($data=mysqli_fetch_array($res)) {
-        for ($j=0; $j < $campos; $j++) { 
+        for ($j=0; $j < $campos_cat; $j++) { 
           $cargos[$i][$j]=$data[$j];
         }
         $i++;
       }
+    } else {
+      # no se ejecutó la consulta
+      $cont++;
+    }
+    
+  //-------
+  // consulta de tipos
+    $sql2="SELECT * FROM departamentos";
+    if ($res2=mysqli_query($conex,$sql2)) {
+      # se ejecutó la consulta
+      $campos_tip=mysqli_num_fields($res2);
+      $filas_tip=mysqli_num_rows($res2);
+      $departamentos[]=array();
+      $i=0;
+      while ($data2=mysqli_fetch_array($res2)) {
+        for ($j=0; $j < $campos_tip; $j++) { 
+          $departamentos[$i][$j]=$data2[$j];
+        }
+        $i++;
+      }
 
-  header("Location: ../Vistas/empleados/registrar.php?filas=".$filas."&campos=".$campos."&data=".serialize($cargos));
-  } else {
-    echo "Error en la BASE DE DATOS";
-  }
+    } else {
+      # no se ejecutó la consulta
+      $cont++;
+    }
+    
+  //-------
+
+/*$sql3="SELECT * FROM dia_lab";
+    if ($res3=mysqli_query($conex,$sql3)) {
+      # se ejecutó la consulta
+      $campos_lab=mysqli_num_fields($res3);
+      $filas_lab=mysqli_num_rows($res3);
+      $laboral[]=array();
+      $i=0;
+      while ($data3=mysqli_fetch_array($res3)) {
+        for ($j=0; $j < $campos_lab; $j++) { 
+          $laboral[$i][$j]=$data3[$j];
+        }
+        $i      }
+
+    } else {
+      # no se ejecutó la consulta
+      $cont++;
+    }*/
+
+    if ($cont==0) {
+      # se ejecutó
+      header("Location: ../Vistas/empleados/registrar.php?campos_cat=".$campos_cat."&filas_cat=".$filas_cat."&cargos=".serialize($cargos)."&campos_tip=".$campos_tip."&filas_tip=".$filas_tip."&departamentos=".serialize($departamentos));
+    } else {
+      # hubo un error
+      header("Location: ../index.php");
+    }
+    
 }//fin registrar
 
 public function guardar(){
     extract($_POST);
+    $cedula=$_POST['cedula'];
 
+    $connect=mysqli_connect("localhost", "root", "" , "servidata");
     $db=new clasedb();
     $conex=$db->conectar();
 
@@ -81,34 +130,47 @@ if ($cuantos>0){
         window.location="ControladorEmpleado.php?operacion=registrar";
       </script>
         <?php
-      }   
-      else {
+      }  else {
 
-     $sql="INSERT INTO empleado  VALUES (NULL,'".$cedula."','".$nombres."','".$apellidos."','".$direccion."','".$telefono."',".$fecha_ingreso.", '".$condicion."', ".$fecha_venc.", '".$salario."', '".$ncuenta."', ".$id_cargo.")";
+     $sql=mysqli_query($connect  ,"INSERT INTO empleado VALUES (NULL,'".$cedula."','".$nombres."','".$apellidos."','".$direccion."','".$telefono."','".$fecha_ingreso."', '".$condicion."', '".$fecha_venc."', '".$salario."', '".$ncuenta."', '".$id_cargo."', '".$id_departamento."')");
         //echo $sql;
+    }  
+     
+ 
 
-  $resultado=mysqli_query($conex,$sql);
+if ($_POST['checkbox'] !="")
+ {
+  if (is_array($_POST['checkbox']))
+   {
+    //realizamos el ciclo
+    while(list ($key,$value)= each($_POST['checkbox'])) 
+    {
+      $sql2=mysqli_query($connect  ,"INSERT INTO dia_lab (id_empleado, nombre) VALUES ('".$cedula."', ' ".$value."')");
+    }
+  }
+}
   
-  if($resultado) {
+  if($sql and $sql2) {
 
     ?> 
 
       <script type="text/javascript">
         alert("Se registro éxitosamente");
-        window.location="ControladorEmpleado.php?operacion=asignar_horario";
+        window.location="ControladorEmpleado.php?operacion=index";      
       </script>
       <?php 
   
-  } else { 
+  }else { 
     ?> 
 
       <script type="text/javascript">
         alert("Registro fallido");
+         window.location="ControladorEmpleado.php?operacion=registrar";
       </script>
     <?php 
       }
-        } 
-      }
+ } //fin de guardar
+      
       
   
 
@@ -117,7 +179,7 @@ public function modificar(){
   $db=new clasedb();
   $conex=$db->conectar();//conectando con la base de datos
   
-  $sql="SELECT empleado.id,empleado.cedula, empleado.nombres, empleado.apellidos, empleado.direccion, empleado.telefono, empleado.fecha_ingreso, empleado.condicion, empleado.fecha_venc, empleado.salario, empleado.ncuenta, cargos.nombre, departamentos.nombre FROM empleado,cargos,departamentos WHERE empleado.id_cargo=cargos.id AND cargos.id_departamento=departamentos.id AND empleado.id=".$id_empleado."";
+  $sql="SELECT empleado.id,empleado.cedula, empleado.nombres, empleado.apellidos, empleado.direccion, empleado.telefono, empleado.fecha_ingreso, empleado.condicion, empleado.fecha_venc, empleado.salario, empleado.ncuenta FROM empleado WHERE empleado.id=".$id_empleado."";
   $res=mysqli_query($conex,$sql);//ejecutando consulta
   $data=mysqli_fetch_array($res);//extrayendo datos en array
 
@@ -131,7 +193,7 @@ public function actualizar()
   
 
 
- $sql="UPDATE empleado SET cedula='".$cedula."',nombres='".$nombres."',apellidos='".$apellidos."',direccion='".$direccion."',telefono='".$telefono."' ,fecha_ingreso=".$fecha_ingreso." ,condicion='".$condicion."',fecha_venc=".$fecha_venc." ,salario='".$salario."' ,ncuenta='".$ncuenta."', id_cargo=".$id_cargo." WHERE id=".$id;
+ $sql="UPDATE empleado SET cedula='".$cedula."',nombres='".$nombres."',apellidos='".$apellidos."',direccion='".$direccion."',telefono='".$telefono."' ,fecha_ingreso=".$fecha_ingreso." ,condicion='".$condicion."',fecha_venc=".$fecha_venc." ,salario='".$salario."' ,ncuenta='".$ncuenta."' WHERE id=".$id;
 
       $res=mysqli_query($conex,$sql);
         if ($res) {
@@ -182,8 +244,8 @@ public function asignar_horario()
 {
   $db=new clasedb();
   $conex=$db->conectar();
-
-  $sql="SELECT * FROM empleados_has_dias_lab"; 
+ extract($_REQUEST);
+  $sql="SELECT empleados_has_dias_lab.dia, empleados_has_dias_lab.id, empleado.cedula FROM empleados_has_dias_lab, empleado WHERE empleado.id=".$id_empleado." "; 
 
     
     if ($result=mysqli_query($conex,$sql)) {
@@ -192,7 +254,7 @@ public function asignar_horario()
     
     $i=0;
     while ($data=mysqli_fetch_array($result)) {
-      for ($j=0; $j < 3; $j++) { 
+      for ($j=0; $j <=3; $j++) { 
         $dia[$i][$j]=$data[$j];
       }
       $i++;   
@@ -210,10 +272,7 @@ public function horario (){
 
     $db=new clasedb();
     $conex=$db->conectar();
-
-     //---------asignando privilegios --------
-      for ($i=1; $i <= 7; $i++) { 
-        $sql="INSERT INTO empleados_has_dias_lab  VALUES( ".$id_empleado.", ".$id_dia.",".$i.",'No')";
+    $sql="INSERT INTO empleados_has_dias_lab (id_empleado, dia, id)  VALUES( ".$id_empleado.", ".$id_dia.",'No')";
        $res=mysqli_query($conex,$sql);
       $resultado=mysqli_num_rows($res);
       
@@ -233,12 +292,42 @@ public function horario (){
 
       <script type="text/javascript">
         alert("Error al conectar con la BD");
-        window.location="ControladorEmpleado.php?operacion=asignar_horario";
+        window.location="ControladorEmpleado.php?operacion=index";
       </script>
     <?php 
       }
+    }// fin de la funcion horario
+
+
+    public function verhorario(){
+   extract($_REQUEST);
+  $db=new clasedb();
+  $conex=$db->conectar();
+
+  $sql="SELECT DISTINCT empleado.cedula,empleado.nombres, empleado.apellidos, dia_lab.nombre FROM empleado,dia_lab WHERE empleado.cedula=".$cedula."";
+  
+  if ($res=mysqli_query($conex,$sql)) {
+    
+    $campos=mysqli_num_fields($res);
+    $filas=mysqli_num_rows($res);
+    
+    $datos[]=array();
+    $i=0;
+    while ($data=mysqli_fetch_array($res)) {
+      for ($j=0; $j < $campos; $j++) { 
+        $datos[$i][$j]=$data[$j];
+      }
+      $i++;
     }
-        } 
+
+    header("Location: ../Vistas/diaslab/index.php?campos=".$campos."&filas=".$filas."&data=".serialize($datos));
+
+  } else {
+    //en caso de no pasar la consulta
+    header("error en la BD");
+  }
+  
+}//fin de verhorario
 
 public function vermas (){
   extract($_REQUEST);
@@ -304,6 +393,11 @@ static function controlador($operacion){
       $empleado->horario();
       break;
 
+      case 'verhorario':
+      $empleado->verhorario();
+      break;
+
+
     case 'vermas':
       $empleado->vermas();
       break;
@@ -322,6 +416,5 @@ static function controlador($operacion){
 
 
 ControladorEmpleado::controlador($operacion);
-
 
 ?>

@@ -1,5 +1,13 @@
-
-<?php include_once "includes/menu.php"; ?>
+<?php
+	error_reporting(0);
+	date_default_timezone_set('America/Caracas');
+	session_start();
+/*Código para ataque por la URL*/
+	if (!$_SESSION) {
+		header("Location: ../login/login.php");
+	}
+/*Fin*/
+ include_once "../includes/menu.php"; ?>
 
 
 <?php
@@ -23,8 +31,11 @@
 		case'index':include"Vistas/empleado/index.php";break;
 
 		//Asistencia
-		case'registar':include"Vistas/asistencia/registar.php";break;
-		case'index':include"Vistas/asistencia/index.php";break;
+		case'asistencia':include"../asistencias/asistencia.php";break;
+		case'consulta':include"../asistencias/consulta.php";break;
+		case'lista_consulta':include"../asistencias/lista_consulta.php";break;
+		case'marcar_asistencia':include"../asistencias/marcar_asistencia.php";break;
+		case'guardar':include"../../Controladores/controladorAsistencia.php";break;
 
 		//Asig/ Deducc
 		case'registar':include"Vistas/asigdeducc/registar.php";break;
@@ -37,7 +48,8 @@
 
 		//Mantenimiento
 		case'usuario':include"Vistas/mantenimiento/usuario.php";break;
-		case'bitacora':include"Vistas/mantenimiento/bitacora.php";break;
+		case'auditoria':include"../config/auditoria.php";break;
+		case'bitacora':include"../config/bitacora.php";break;
 		case'respaldarbd':include"Vistas/mantenimiento/respaldarbd.php";break;
 		case'restaurarbd':include"Vistas/mantenimiento/restaurarbd.php";break;
 
@@ -46,3 +58,4 @@
 
 		}
 ?>
+<?php include_once "../includes/footer.php"; ?>

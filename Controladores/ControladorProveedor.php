@@ -34,12 +34,8 @@ public function index(){
 	    header("Location: ../Vistas/proveedores/index.php?filas=".$filas."&campos=".$campos."&data=".serialize($datos));
 	} else {
 		echo "Error en la BASE DE DATOS";
-	}
 
-	
-	
-	
-		//enviando datos
+	}//enviando datos
 }//fin de la funcion login
 
 public function registrar(){
@@ -52,7 +48,7 @@ public function guardar(){
 	$db=new clasedb();
 	$conex=$db->conectar();//conectando con la base de datos
 
-	$sql="SELECT  * FROM proveedor  WHERE cedula='".$cedula."'";
+	$sql="SELECT * FROM proveedor WHERE cedula='".$cedula."'";
 
 	$res=mysqli_query($conex,$sql);
 	$cuantos=mysqli_num_rows($res);
@@ -60,14 +56,14 @@ public function guardar(){
 	if ($cuantos>0) {
 		?>
 		<script type="text/javascript">
-			alert("El proveedor con esta C.I/Rif ya existe");
+			alert("El proveedor con esta Cedula / Rif ya existe");
 			window.location="ControladorProveedor.php?operacion=registrar";
 		</script>
 			<?php
 	} else {
 		
 			
-		$sql="INSERT INTO proveedor (cedula, nombre, email, direccion, telefono) VALUES('$cedula','$nombre','$email','direccion','$telefono')";
+		$sql="INSERT INTO proveedor VALUES (NULL,'".$cedula."','".$nombre."','".$email."','".$direccion."','".$telefono."')";
 
 		$resultado=mysqli_query($conex,$sql);
 	
@@ -175,25 +171,25 @@ public function eliminar()
 }//fin de la función eliminar
 
 static function controlador($operacion){
-		$nombre=new ControladorProveedor();
+		$proveedor=new ControladorProveedor();
 	switch ($operacion) {
 		case 'index':
-			$nombre->index();
+			$proveedor->index();
 			break;
 		case 'registrar':
-			$nombre->registrar();
+			$proveedor->registrar();
 			break;
 		case 'guardar':
-			$nombre->guardar();
+			$proveedor->guardar();
 			break;
 		case 'modificar':
-			$nombre->modificar();
+			$proveedor->modificar();
 			break;
 		case 'actualizar':
-			$nombre->actualizar();
+			$proveedor->actualizar();
 			break;
 		case 'eliminar':
-			$nombre->eliminar();
+			$proveedor->eliminar();
 			break;
 		default:
 			?>
@@ -209,6 +205,4 @@ static function controlador($operacion){
 
 
 ControladorProveedor::controlador($operacion);
-
-
 ?>

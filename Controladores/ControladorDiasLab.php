@@ -8,10 +8,11 @@ class ControladorDiasLab
 
 public function index()
 {
+	 extract($_REQUEST);
 	$db=new clasedb();
 	$conex=$db->conectar();
 
-	$sql="SELECT empleado.cedula,empleado.nombres, empleado.apellidos, empleados_has_dias_lab.dia FROM empleado, empleados_has_dias_lab WHERE empleado.id_empleados_has_dias_lab=empleados_has_dias_lab.id";
+	$sql="SELECT empleado.cedula,empleado.nombres, empleado.apellidos, empleados_has_dias_lab.dia FROM empleado, empleados_has_dias_lab WHERE empleado.id_empleados_has_dias_lab=empleados_has_dias_lab.id AND empleado.id=".$id_empleado."";
 	
 	if ($res=mysqli_query($conex,$sql)) {
 		
@@ -31,7 +32,7 @@ public function index()
 
 	} else {
 		//en caso de no pasar la consulta
-		header("Location: ../home.php");
+		header("Location: ControladorEmpleado.php?index");
 	}
 	
 }//fin de index

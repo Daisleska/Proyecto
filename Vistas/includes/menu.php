@@ -25,7 +25,10 @@
 
     <link rel="stylesheet" href="../../assets/css/style.css">
 
-      <link rel="stylesheet" href="../../vendors/plugins/sweetalert2.min.css">
+  <link rel="stylesheet" href="../../vendors/plugins/datepicker/bootstrap-datepicker.css">
+   <link rel="stylesheet" href="../../vendors/plugins/daterangepicker/daterangepicker.css">
+
+    <link rel="stylesheet" href="../../vendors/plugins/sweetalert2.min.css">
     <link rel="stylesheet" href="../../vendors/animate.css/animate.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -93,9 +96,8 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user"></i>Asistencia</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-edit"></i><a href="../../Controladores/ControladorDiasLab.php?operacion=registrar">Registro</a></li>
-                            <li><i class="menu-icon fa fa-table"></i><a href="../../Controladores/ControladorDiasLab.php?operacion=index">Listado</a></li>
-                            <li><i class="menu-icon fa fa-check-circle"></i><a href="../diaslab/marcar.php">Marcar Asistencia</a></li>
+                            <li><i class="menu-icon fa fa-table"></i><a href="../menu/ControladorMenu.php?operacion=consulta">Listado</a></li>
+                            <li><i class="menu-icon fa fa-check-circle"></i><a href="../menu/ControladorMenu.php?operacion=asistencia">Marcar Asistencia</a></li>
                         </ul>
                     </li>
 
@@ -124,7 +126,7 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Mantenimiento</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-desktop"></i><a href="../config/bitacora.php">Bitacora</a></li>
+                            <li><i class="menu-icon fa fa-desktop"></i><a href="../menu/ControladorMenu.php?operacion=bitacora">Bitacora</a></li>
                             <li><i class="menu-icon fa fa-cloud"></i><a href="../config/respaldar.php">Respaldar BD</a></li>
                             <li><i class="menu-icon fa fa-cloud-upload"></i><a href="../config/restaurar.php">Restaurar BD</a></li>
                              <li><i class="menu-icon fa fa-cloud-upload"></i><a href="../../Controladores/controladorUsuario.php?operacion=login">Listado de usuarios</a></li>
@@ -142,11 +144,11 @@
     <div id="right-panel" class="right-panel">
 
         <!-- Header-->
-        <header id="header" class="header">
+        <header id="header" class="header  col-md-12">
 
-            <div class="header-menu">
+            <div class="header-menu ">
 
-                <div class="col-sm-7">
+                <div class="col-md-7">
                     <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa-hand-o-left"></i></a>
                     <div class="header-left">
                         <button class="search-trigger"><i class="fa fa-search"></i></button>
@@ -163,7 +165,7 @@
                 </div>
 
 
-                <div class="col-sm-5">
+                <div class="col-md-5">
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="user-avatar rounded-circle" src="../../images/admin.jpg" alt="User Avatar">

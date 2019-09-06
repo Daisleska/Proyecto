@@ -1,7 +1,8 @@
 <?php 
 include_once "../includes/menu.php"; 
 extract($_REQUEST);
-$data=unserialize($data);
+$cargos=unserialize($cargos);
+$departamentos=unserialize($departamentos);
 ?>
  
 
@@ -20,7 +21,7 @@ $data=unserialize($data);
             </div>
         </div>
 
-        <div class="content mt-3">
+        <div class="content mt-3 container">
             <div class="animated fadeIn">
 
 
@@ -36,7 +37,7 @@ $data=unserialize($data);
 
                  
                     <div class="card-body card-block">
-                    <form action="../../Controladores/ControladorEmpleado.php" method="post" class="form-horizontal">
+                    <form action="../../Controladores/ControladorEmpleado.php" method="post" class="form-horizontal justify-content-center">
                                       
                     <div style="padding-left: 20px; padding-top: 10px;" class="row form-group">
                      <div class="col col-md-3"><label for="hf-ci" class=" form-control-label">* Cédula:</label></div>
@@ -72,6 +73,7 @@ $data=unserialize($data);
                     <div class="col col-md-3"><label for="hf-condicion" class=" form-control-label">* Condición</label></div>
                     <div class="col-12 col-md-4">
                     <select id="hf-condicion" name="condicion" class="form-control">
+                    <option selected="selected">Seleccione</option>
                      <option>Fijo</option>
                     <option>Contratado</option>
                                                                         
@@ -99,24 +101,79 @@ $data=unserialize($data);
 
                     <div style="padding-left: 20px;" class="row form-group">
                     <div class="col col-md-3"><label for="hf-cargo" class=" form-control-label">* Cargo</label></div>
-                    <div class="col-12 col-md-4">
+                    <div class="col-12 col-md-6">
                     <select name="id_cargo" title="Seleccione el cargo"class="form-control">
                     <option disabled="disabled" selected="selected" value="">Seleccione el cargo</option>
                     <?php 
-                    for ($i=0;$i<$filas;$i++){
+                    for ($i=0; $i<$filas_cat; $i++){
                     ?>
-                    <option value="<?=$data[$i][0]?>"><?=$data[$i][1]?></option>
+                    <option value="<?=$cargos[$i][0]?>"><?=$cargos[$i][1]?></option>
                     <?php
                     }
                     ?>
                     </select>
                     </div>
                     </div>
-                    <p>(*) Campos obligatorios</p>
+
+                     <div style="padding-left: 20px;" class="row form-group">
+                    <div class="col col-md-3"><label for="hf-departameno" class=" form-control-label">* Departamento</label></div>
+                    <div class="col-12 col-md-6">
+                    <select name="id_departamento" title="Seleccione el Departamento"class="form-control">
+                    <option disabled="disabled" selected="selected" value="">Seleccione el Departamento</option>
+                    <?php 
+                    for ($i=0; $i<$filas_tip; $i++){
+                    ?>
+                    <option value="<?=$departamentos[$i][0]?>"> <?=$departamentos[$i][1]?></option>
+                    <?php
+                    }
+                    ?>
+                    </select>
+                    </div>
+                    </div>
+                                        <p>(*) Campos obligatorios</p>
 
 
                     
                     </div>
+
+                                    <div class="col-lg-9">
+                    <div class="card">
+                      <div class="card-header">
+                        <strong>Asignar dias Laborables al Empleado:</strong>
+                       
+                       <div>
+                        <th> Lunes</th>
+                           <input type="checkbox" name="checkbox[]" id="checkbox" value="Lunes"> 
+                           <br>
+
+                            <th> Martes</th>
+                           <input type="checkbox" name="checkbox[]" id="checkbox" value="Martes">
+                           <br>
+
+                            <th> Miércoles</th>
+                           <input type="checkbox" name="checkbox[]" id="checkbox" value="Miercoles">
+                           <br>
+
+                            <th> Jueves</th>
+                           <input type="checkbox" name="checkbox[]" id="checkbox" value="Jueves">
+                           <br>
+
+                            <th> Viernes</th>
+                           <input type="checkbox" name="checkbox[]" id="checkbox" value="Viernes">
+                           <br>
+
+                            <th> Sábado</th>
+                           <input type="checkbox" name="checkbox[]" id="checkbox" value="Sabado">
+                           <br>
+
+                            <th> Domingo</th>
+                           <input type="checkbox" name="checkbox[]" id="checkbox" value="Domingo">
+                           <br>
+                       </div>
+             </div>
+         </div>
+               
+                <div class="card-footer">
                     <div class="card-footer">
                     <input type="hidden" name="operacion" value="guardar">
                     <button type="submit" class="btn btn-primary btn-sm">

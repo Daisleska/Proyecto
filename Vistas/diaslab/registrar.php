@@ -1,13 +1,16 @@
+<?php include_once "../includes/menu.php";
+extract($_REQUEST);
+$empleado=unserialize($empleado);
+?>
 
-<?php include_once "../includes/menu.php"; ?>
         <div class="breadcrumbs">
-            <div class="col-sm-4">
+            <!-- <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
                        
                     </div>
                 </div>
-            </div>
+            </div> -->
            <!--  <div class="col-sm-8">
                 <div class="page-header float-right">
                     <div class="page-title">

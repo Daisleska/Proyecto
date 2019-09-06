@@ -63,6 +63,10 @@
     <script src="../../vendors/datatables.net-buttons/js/buttons.colVis.min.js"></script>
     <script src="../../assets/js/init-scripts/data-table/datatables-init.js"></script>
 
+<script src="../../assets/js/jquery.min.js" ></script>
+  <script src="../../vendors/plugins/datepicker/bootstrap-datepicker.js"></script>
+ <script src="../../vendors/plugins/daterangepicker/daterangepicker.js"></script>
+ 
       <!--  plugins sweet alert 2 -->
    <script src="../../vendors/plugins/sweetalert2.all.min.js"></script>
    <script src="../../vendors/popper.js/codigo.js"></script>

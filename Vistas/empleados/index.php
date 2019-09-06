@@ -29,9 +29,20 @@ $data=unserialize($data);
                 <div class="row">
 
                     <div class="col-md-12">
-                        <div class="card">
+                          <strong class="card-title"><i class="fa fa-list"></i> Listados de Empleados</strong>
+                        <div class="card"> 
                             <div class="card-header">
-                                <strong class="card-title"><i class="fa fa-list"></i> Listados de Empleados</strong>
+                               
+                 <div class="form-1-2 col-md-10">
+      <label for="caja_busqueda"><i class="fa fa-search"></i> Buscar:</label>
+      <input type="text" name="caja_busqueda" id="caja_busqueda">
+    </div> 
+
+     <div class="col-md-2">
+                          <a href="../../reportes/reporte_empleados.php" target="blank" class="btn btn-block btn-danger btn-sm"><i class="fa fa-file-pdf-o"></i> Reporte PDF</a>
+                        </div>   
+</div>
+
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
@@ -44,9 +55,7 @@ $data=unserialize($data);
                                             <th>Dirección</th>
                                             <th>Teléfono</th>
                                             <th>Fecha de Ingreso</th>
-                                            <th>Opción</th>
-
-                                                                                   
+                                            <th>Opción</th>                                     
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -65,7 +74,7 @@ $data=unserialize($data);
 
                                     <a href="../../Controladores/ControladorEmpleado.php?operacion=vermas&id_empleado=<?=$data[$i][0]?>"><i title="Ver más" class="menu-icon fa fa-search-plus "></a></i>
 
-                                    <a href="../../Controladores/ControladorDiasLab.php?operacion=horario&id_empleado=<?=$data[$i][0]?>"><i title="Horario" class="menu-icon fa fa-list"></a></i>
+                                    <a href="../../Controladores/ControladorEmpleado.php?operacion=verhorario&cedula=<?=$data[$i][1]?>"><i title="Horario" class="menu-icon fa fa-list"></a></i>
 
                                     <a href="../../Controladores/ControladorEmpleado.php?operacion=eliminar&id_empleado=<?=$data[$i][0]?>"><i title="Eliminar" class="menu-icon fa fa-trash-o"></a></i>
                                     </td>

@@ -42,6 +42,7 @@
                                     <div class="col col-md-3"><label for="hf-tipo_ad" class=" form-control-label">Tipo</label></div>
                                     <div class="col-12 col-md-6">
                                     <select id="hf-tipo_ad" name="tipo" class="form-control"><span class="help-block"></span>>
+                                        <option value="" selected="selected">Selecciona Tipo</option>
                                         <option value="Asignacion">Asignación</option>
                                         <option value="Deduccion">Deducción</option>
                                     </select>
@@ -62,7 +63,7 @@
                            
                         </div>
                 <div class="card-footer">
-                <input type="hidden" name="operacion" value="guardar">
+                <input type="hidden" name="operacion" value="guardar" onclick="swal('Hola Soy la alerta gafo!');">
                 <button type="submit" class="btn btn-primary btn-sm">
                 <i class="fa fa-send"></i> Guardar
                 </button>

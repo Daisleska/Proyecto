@@ -23,7 +23,7 @@
         </div>
 
         <!-- contenido -->
-
+ <form action="../../Controladores/ControladorProveedor.php?operacion=guardar" method="POST"  class="form">
        <div style="padding-left: 150px;" class="col-lg-10">
               <div class="card">
               <div class="card-header">
@@ -32,7 +32,7 @@
 
 
            <div class="card-body card-block">
-           <form action="../../Controladores/ControladorProveedor.php?operacion=registrar" method="POST"  class="form">
+          
 
              <div class="row form-group">
                    <div class="col col-md-3"><label class=" form-control-label">* C.I / RIF:</label></div>
@@ -68,23 +68,23 @@
           </div>
           <p>(*) Campos obligatorios</p>
        
-                <input type="hidden" name="operacion" value="guardar">
                      </div>
                      <div class="card-footer">
+                <input type="hidden" name="operacion" value="guardar">
                       <button type="submit" class="btn btn-primary btn-sm">
-                          <i class="fa fa-send"></i> Guardar
+                          <i class="fa fa-check"></i>&nbsp; Guardar
                       </button>
  
                             <button type="reset" class="btn btn-danger btn-sm">
                              <i class="fa fa-recicle"></i> Limpiar
                               </button>
+                            </form>
                                </div>
                          </div>
 
-                </form>
+                
             </div><!-- /#right-panel -->
-          </div>
-        </div>
+         </div>
 
             <!-- Right Panel -->
 

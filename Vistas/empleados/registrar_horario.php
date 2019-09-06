@@ -2,7 +2,7 @@
 extract($_REQUEST);
 $dia=unserialize($dia);
 ?>
-
+ <form action="../../Controladores/ControladorEmpleado.php" method="post" class="form-horizontal">
  <div style="padding-left: 200px;" class="content mt-3">
             <div class="animated fadeIn">
 
@@ -10,15 +10,24 @@ $dia=unserialize($dia);
                 <div class="col-lg-9">
                     <div class="card">
                       <div class="card-header">
-                           <strong>Asignar dias laborables al empleado:<?=$id_empleado[$i][0]?></strong> 
-                                </div>
-      <form action="../../Controladores/ControladorEmpleado.php" method="post" class="form-horizontal">
- 
-<?php 
-    for ($i=0; $i < $row_dia; $i++) { 
+                           <strong>Asignar dias laborables al empleado: <?php 
+    for ($i=6; $i<$row_dia; $i++) { 
        
             ?>
-           <div  style="padding-bottom:10px;  padding-left: 20px;"> <tr><td> <br><i class="fa fa-calendar"> <?=$dia[$i][2]?></i></td><td>
+            <tr><i class="fa fa-user"> <?=$dia[$i][2]?> </i>
+           </tr>
+            <?php
+        
+    }
+?> </strong> 
+                                </div>
+     
+ 
+<?php 
+    for ($i=0; $i <$row_dia; $i++) { 
+       
+            ?>
+           <div  style="padding-bottom:10px;  padding-left: 20px;"> <tr><td> <br><i class="fa fa-calendar"> <?=$dia[$i][0]?></i></td><td>
             <input type="checkbox" name="id_dia[]" value="<?=$dia[$i][0]?>"
                 <?php if ($dia[$i][1]=="Si") {
                 ?> checked="checked  "  <?php
@@ -31,9 +40,10 @@ $dia=unserialize($dia);
                  
                
                 <div class="card-footer">
+                <input type="hidden" name="id_empleado" value="<?=$dia[$i][$id_empleado]?>">
                 <input type="hidden" name="operacion" value="horario">
                 <button type="submit" class="btn btn-primary btn-sm">
-                <i class="fa fa-send"></i> Guardar
+                <i class="fa fa-check"></i> Guardar
                 </button>
                 <button type="reset" class="btn btn-danger btn-sm">
                 <i class="fa fa-ban"></i> Limpiar

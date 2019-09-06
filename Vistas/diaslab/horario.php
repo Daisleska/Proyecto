@@ -1,15 +1,16 @@
 <?php include_once "../includes/menu.php"; 
 extract($_REQUEST);
+$data=unserialize($data);
 ?>
 
         <div class="breadcrumbs">
-            <div class="col-sm-4">
+           <!--  <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
                         <h1>Listado</h1>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- <div class="col-sm-8">
                 <div class="page-header float-right">
                     <div class="page-title">
@@ -28,7 +29,14 @@ extract($_REQUEST);
                 <div class="row">
 
                     <div class="col-md-12">
-                        <div class="card">
+                         <div style=" padding-left: 18px;">
+                    <a href="../../Controladores/ControladorEmpleado.php?operacion=asignar_horario&id_empleado=<?=$data[$i][0]?>"><i title="registrar" class="menu-icon fa fa-edit"></a></i></div>
+
+                 <div style="text-align: right;">
+                    <button  class="btn btn-primary"><a href="../../Controladores/ControladorEmpleado.php?operacion=index"><i class="fa fa-mail-reply"></i>&nbsp; Modificar</a></button></div>
+
+                             <div class="card">
+                     
                             <div class="card-header">
                                 <strong class="card-title">Horario</strong>
                             </div>

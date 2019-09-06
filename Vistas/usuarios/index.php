@@ -46,14 +46,16 @@ $data=unserialize($data);
         <div class="content mt-3">
             <div class="animated fadeIn">
                 <div class="row">
-                	<h2 style="padding-left: 20px;">Administrador</h2>
+                	<h2 style="padding-left: 20px;">Listado De Usuarios Registrados</h2>
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
                                 <a title="Descargar PDF" style="float: right; padding-right: 40px;" href="../../reportes/reporte_usuarios.php"><i style="font-size: 30px;" class="fa fa-cloud-download"></i>&nbsp;</a>
 
-                                <strong class="card-title"><i class="fa fa-list">
-                                    </i> Listado de Usuarios Registrados</strong>
+                                <div class="form-1-2">
+      <label for="caja_busqueda">Buscar:</label>
+      <input type="text" name="caja_busqueda" id="caja_busqueda">
+    </div>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">

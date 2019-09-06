@@ -13,10 +13,7 @@ public function login(){
 	$db=new clasedb();//instanciando clasedb
 	$conex=$db->conectar();//conectando con la base de datos
 
-	$sql="SELECT id,nombre,correo,pregunta,respuesta, borrado FROM usuarios";//query
-
-
-	//ejecutando query
+	$sql="SELECT id,nombre,correo,pregunta,respuesta, borrado FROM usuarios";//query	//ejecutando query
 	if ($res=mysqli_query($conex,$sql)) {
 		//echo "entro";
 		$campos=mysqli_num_fields($res);//cuantos campos trae la consulta	
@@ -35,10 +32,6 @@ public function login(){
 	} else {
 		echo "Error en la BASE DE DATOS";
 	}
-
-	
-	
-	
 		//enviando datos
 }//fin de la funcion login
 
@@ -83,11 +76,10 @@ public function guardar(){
 			?>
 		<script type="text/javascript">
 			
-<<<<<<< HEAD
 			if (confirm("Registro exitoso, desea registrar otro?")) {
-=======
+
 			if (confirm("REGISTRO EXITOSO, DESEA REGISTRAR OTRO?")) {
->>>>>>> 30a5e08d2e9da07455a10325cc1f8669b4bb9764
+
 				window.location="controladorUsuario.php?operacion=registrar";	
 			}else{
 				window.location="../Vistas/login/login.php";

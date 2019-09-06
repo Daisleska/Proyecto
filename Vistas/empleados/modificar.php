@@ -22,13 +22,15 @@ $data=unserialize($data);
 
         <div class="content mt-3">
             <div class="animated fadeIn">
+                <div style=" padding-left: 18px;">
+                    <button  class="btn btn-primary"><a href="../../Controladores/ControladorEmpleado.php?operacion=index"><i class="fa fa-mail-reply"></i>&nbsp; Volver</a></button></div>
 <div class="col-lg-12">
                     <div class="card">
                       <div class="card-header">
                            <strong>Modificar Empleado</strong> 
                                 </div>
                                    <div class="card-body card-block">
-                                    <form action="Controladores/ControladorEmlepado?operacion=actualizar" method="post" class="form-horizontal">
+                                    <form action="../../Controladores/ControladorEmpleado.php?operacion=actualizar" method="POST" class="form-horizontal">
                                     
                                     <div class="row form-group">
                                     <div class="col col-md-3"><label for="hf-ci" class=" form-control-label">C.I:</label></div>
@@ -66,7 +68,7 @@ $data=unserialize($data);
                                     <div class="col-12 col-md-6">
                                     <select id="hf-condicion" name="condicion" required="required" class="form-control" value="<?php echo $data['condicion']; ?>">
                                     <option value="Fijo">Fijo</option>
-                                    <option value="Contratado<">Contratado</option>             
+                                    <option value="Contratado">Contratado</option>             
                                     </select></div>
                                     </div>
 
@@ -87,24 +89,18 @@ $data=unserialize($data);
                                     <div class="col-12 col-md-6"><input type="text" id="hf-ncuenta" name="ncuenta" placeholder="Ingrese el número de cuenta" required="required" class="form-control" value="<?php echo $data['ncuenta']; ?>"></div>
                                     </div>
 
-                                    <div class="row form-group">
-                                    <div class="col col-md-3"><label for="hf-cargo" class=" form-control-label">Cargo:</label></div>
-                                    <div class="col-12 col-md-6">
-                                    <select id="hf-cargo" name="nombre" required="required" class="form-control">
-                                    <option value="<?php echo $data['cargos.nombre']; ?>"></option>            
-                                    </select></div>
-                                    </div>
                 <dir>
                 <input type="hidden" name="operacion" value="actualizar">
                 <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
                 </dir>
                 <div class="card-footer">
                 <button type="submit" class="btn btn-primary btn-sm">
-                <i class="fa fa-send"></i> Guardar
+                <i class="fa fa-check"></i> Guardar
                 </button>
                 <button type="reset" class="btn btn-danger btn-sm">
                 <i class="fa fa-ban"></i> Limpiar
                 </button>
+                            </form>
                                                     </div>
                                                 </div>
                                                 
