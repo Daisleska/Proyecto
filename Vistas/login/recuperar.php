@@ -45,7 +45,7 @@
 
              
               
-                    <form action="../../Controladores/controladorLogin.php" method="POST" name="form">
+                    <form action="../../Controladores/ControladorLogin.php" method="POST" name="form">
                         <input type="hidden" name="operacion" value="validar_correo">
                         <label>Correo</label>
                         <div class="input-group form-group">

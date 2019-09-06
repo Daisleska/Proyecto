@@ -1,3 +1,4 @@
+
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="es"> <![endif]-->
@@ -46,7 +47,7 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="#"><img src="../../images/serviform.jpg" width="100" height="70" alt="Logo"></a>
+                <a class="navbar-brand" href="#"><img src="../../images/ser.png" width="150" height="80" alt="Logo"></a>
                <!--  <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a> -->
             </div>
 
@@ -129,7 +130,7 @@
                             <li><i class="menu-icon fa fa-desktop"></i><a href="../menu/ControladorMenu.php?operacion=bitacora">Bitacora</a></li>
                             <li><i class="menu-icon fa fa-cloud"></i><a href="../config/respaldar.php">Respaldar BD</a></li>
                             <li><i class="menu-icon fa fa-cloud-upload"></i><a href="../config/restaurar.php">Restaurar BD</a></li>
-                             <li><i class="menu-icon fa fa-cloud-upload"></i><a href="../../Controladores/controladorUsuario.php?operacion=login">Listado de usuarios</a></li>
+                             <li><i class="menu-icon fa fa-cloud-upload"></i><a href="../../Controladores/controladorUsuario.php?operacion=index">Listado de usuarios</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -172,9 +173,9 @@
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="../config/perfil.php"><i class="fa fa-user"></i> Mi perfil</a>
+                            <a class="nav-link" href="../../Controladores/ControladorPerfil.php?operacion=verperfil"><i class="fa fa-user"></i> Mi perfil</a>
 
-                            <a class="nav-link" onclick="return confirm('Seguro desea ir a registrar un nuevo usuario? debe salir del sistema')" href="../../Controladores/controladorUsuario.php?operacion=registrar"><i class="fa fa-user"></i>Registrar usuario</a>
+                            <a class="nav-link" href="../../Controladores/controladorUsuario.php?operacion=registrar"><i class="fa fa-user"></i>Registrar usuario</a>
 
                            
                         </div>
@@ -182,6 +183,8 @@
                      <div>
                     <a id="btn9"  class="nav-link" style="float: right;" href="../../Controladores/controladorLogin.php?operacion=logout"><i class="fa fa-power-off" ></i> Salir</a>
                 </div>
+
+               
 
                     <!-- cambio -->
                 </div>
@@ -201,7 +204,8 @@
                     </div> -->
 
                 <div class="page-tittle" class="col-md-6">
-                    <img src="../../images/servip.pnj">
+                    <img src="../../images/servi.png" width="150">
+                    <br>
                     <cite>SERVIFORM C.A
                     <br>
                      La Victoria .Edo. Aragua</cite>
@@ -217,6 +221,7 @@
             <div class="col-sm-3">
                 <!--   <header style="text-align: right; margin-right: 20px;">
                     <p style="margin-bottom: 1px;">Fecha Y Hora:</p> -->
+
 
 <script type="text/javascript">
 //<![CDATA[

@@ -48,7 +48,7 @@
         </p>
            <p align="center">Iniciar Sesión</p>
 
-                    <form action="../../Controladores/controladorLogin.php?operacion=login" name="form" method="POST">
+                    <form action="../../Controladores/ControladorLogin.php?operacion=login" name="form" method="POST">
                         <input type="hidden" name="operacion" value="login">
                         <div class="form-group">
                             <div class="input-group ">
@@ -71,11 +71,7 @@
 
                                 <button id="btn1" type="submit" value="Iniciar" class="btn btn-primary  btn-flat m-b-30 m-t-30"><i class="fa fa-check"></i>&nbsp;Entrar</button>
                                 
-                                <div>
-                                    <button id="btn" class="btn btn secondary">
-                                    <a href="../../Controladores/controladorUsuario.php?operacion=registrar"><i class="fa fa-pencil-square-o"></i>&nbsp; Registrarte</a>
-                                    </button>
-                                </div>
+                                
                     </form>
                 </div>
             </div>

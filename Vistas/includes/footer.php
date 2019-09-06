@@ -36,7 +36,7 @@
 
 
                     <div class=" col-sm-12">
-                        <h6 style="text-align: center; color: #fff;">Serviform, C.A &copy copyright RIF J-00000</h6>
+                        <h6 style="text-align: center; color: #fff;">Serviform, C.A &copy RIF J-00000</h6>
                         
                     </div>
 

@@ -46,7 +46,11 @@ $data=unserialize($data);
         <div class="content mt-3">
             <div class="animated fadeIn">
                 <div class="row">
+<<<<<<< HEAD
                 	<h2 style="padding-left: 20px;">Listado De Usuarios Registrados</h2>
+=======
+                	
+>>>>>>> 500026595d8104af62dccab5bbf5025d6b263b4d
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
@@ -61,7 +65,7 @@ $data=unserialize($data);
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
                                        <tr>
-                                       	<th>Nro</th>
+                                       	<th>N°</th>
                                        	<th>Nombre</th>
                                        	<th>Correo</th>
                                        	<th>Pregunta</th>
@@ -83,11 +87,11 @@ $data=unserialize($data);
 
 							<?php } ?>
 
-							<td><a href="../../Controladores/controladorUsuario.php?operacion=modificar&id_usuarios=<?=$data[$i][0]?>"><i title="Modificar" class="menu-icon fa fa-edit"></i></a>
+							<td><a href="../../Controladores/ControladorUsuario.php?operacion=modificar&id_usuarios=<?=$data[$i][0]?>"><i title="Modificar" class="menu-icon fa fa-edit"></i></a>
 
-							<a href="../../Controladores/controladorUsuario.php?operacion=eliminar&id_usuarios=<?=$data[$i][0]?>"><i title="Eliminar" class="menu-icon fa fa-trash-o"></a></i>
+							<a href="../../Controladores/ControladorUsuario.php?operacion=eliminar&id_usuarios=<?=$data[$i][0]?>"><i title="Eliminar" class="menu-icon fa fa-trash-o"></a></i>
 
-                <a href="../../Controladores/controladorUsuario.php?operacion=asignar_registrar"><i title="Asignar privilegios" class="menu-icon fa fa-edit"></a></i>
+                <a href="../../Controladores/ControladorUsuario.php?operacion=asignar_registrar&id_usuarios=<?=$data[$i][0]?>"><i title="Asignar privilegios" class="menu-icon fa fa-edit"></a></i>
                                 
 							</td>
 								<?php	

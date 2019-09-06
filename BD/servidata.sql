@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-08-2019 a las 20:53:20
+-- Tiempo de generación: 06-09-2019 a las 15:00:20
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.2.12
 
@@ -42,7 +42,22 @@ CREATE TABLE `asignacion_deduccion` (
 INSERT INTO `asignacion_deduccion` (`id`, `descripcion`, `tipo`, `monto`) VALUES
 (1, 'Seguro Social', 'Deduccion', '1000'),
 (2, 'Bono de ProducciÃ³n', 'Asignacion', '1000'),
-(3, 'Prima de ProducciÃ³n ', 'Asignacion', '1000');
+(3, 'Prima de ProducciÃ³n ', 'Asignacion', '1000'),
+(4, 'Memoriales La Victoria C.A', 'Asignacion', '2000');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `auditoria`
+--
+
+CREATE TABLE `auditoria` (
+  `id` int(11) NOT NULL,
+  `id_usuarios` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `hora` time NOT NULL,
+  `actividad` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -102,12 +117,12 @@ CREATE TABLE `empleado` (
   `nombres` varchar(90) NOT NULL,
   `apellidos` varchar(90) NOT NULL,
   `direccion` varchar(90) NOT NULL,
-  `telefono` int(90) NOT NULL,
+  `telefono` varchar(90) NOT NULL,
   `fecha_ingreso` date NOT NULL,
   `condicion` enum('Fijo','Contratado') NOT NULL,
   `fecha_venc` date NOT NULL,
-  `salario` int(90) NOT NULL,
-  `ncuenta` int(90) NOT NULL,
+  `salario` varchar(90) NOT NULL,
+  `ncuenta` varchar(90) NOT NULL,
   `id_cargo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -116,8 +131,9 @@ CREATE TABLE `empleado` (
 --
 
 INSERT INTO `empleado` (`id`, `cedula`, `nombres`, `apellidos`, `direccion`, `telefono`, `fecha_ingreso`, `condicion`, `fecha_venc`, `salario`, `ncuenta`, `id_cargo`) VALUES
-(1, '28147989', 'Hector Argenis', 'Hernandez Ceballos', 'San Mateo', 3590130, '2019-08-03', 'Contratado', '2019-08-11', 93049788, 98467890, 1),
-(2, '28496463', 'Daisleska Victoria', 'Vilera Vasquez', 'La Victoria', 8436551, '2019-08-12', 'Contratado', '2019-08-21', 40000, 874763, 2);
+(1, '28147989', 'Hector Argenis', 'Hernandez Ceballos', 'San Mateo', '3590130', '2019-08-03', 'Contratado', '2019-08-11', '93049788', '98467890', 1),
+(2, '28496463', 'Daisleska Victoria', 'Vilera Vasquez', 'La Victoria', '8436551', '2019-08-12', 'Contratado', '2019-08-21', '40000', '874763', 2),
+(3, '25873122', 'Juan Carlos', 'Figueredo EspaÃ±a', 'La Victoria', '3163502', '2019-08-13', 'Fijo', '2023-08-13', '250000', '0134567894657675', 3);
 
 -- --------------------------------------------------------
 
@@ -351,6 +367,13 @@ CREATE TABLE `proveedor` (
   `telefono` int(90) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `proveedor`
+--
+
+INSERT INTO `proveedor` (`id`, `cedula`, `nombre`, `email`, `direccion`, `telefono`) VALUES
+(1, 'J4536722', 'Inica Cagua C.A', 'inicacca@gmail.com', 'Cagua', 6548965);
+
 -- --------------------------------------------------------
 
 --
@@ -373,10 +396,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `correo`, `clave`, `tipo_usuario`, `pregunta`, `respuesta`, `borrado`) VALUES
-(1, 'dailes', 'dvilera610@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Usuario 1', 'color', 'azul', 'S'),
-(2, 'hector hernandez', 'hectorher149@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '', 'nombre de mascota', 'body', 'N'),
-(3, 'alejandro', 'darvisalfonso@gmail.com', '67d9f1c944a4ee6ef3634298c97639c81927a228d6aa490b343abf594e45aecf', 'Usuario 1', 'nombre de mascota', 'pelusa', 'S'),
-(4, 'Genessi', 'genessie@gmail.com', '8491502322172e09ec7222d33941d33afbfcc22ab0c4dd1033dd72232308675a', 'Admin', 'mes de nacimiento', 'noviembre', 'S');
+(1, 'Dailes', 'dvilera610@gmail.com', '044598473886535a33126083e3d2e1170e4a67befe897a83ad95a33209a64b3a', 'Usuario 1', 'Mascota', 'Sandy', 'N'),
+(2, 'Hector Hernandez', 'hectorher149@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Admin', 'nombre de mascota', 'body', 'N'),
+(3, 'Alejandro', 'darvisalfonso@gmail.com', '67d9f1c944a4ee6ef3634298c97639c81927a228d6aa490b343abf594e45aecf', 'Usuario 1', 'nombre de mascota', 'pelusa', 'S');
 
 -- --------------------------------------------------------
 
@@ -449,25 +471,7 @@ INSERT INTO `usuarios_has_privilegios` (`id`, `id_usuario`, `id_privilegio`, `st
 (51, 3, 15, 'No'),
 (52, 3, 16, 'No'),
 (53, 3, 17, 'No'),
-(54, 3, 18, 'No'),
-(55, 4, 1, 'No'),
-(56, 4, 2, 'No'),
-(57, 4, 3, 'No'),
-(58, 4, 4, 'No'),
-(59, 4, 5, 'No'),
-(60, 4, 6, 'No'),
-(61, 4, 7, 'No'),
-(62, 4, 8, 'No'),
-(63, 4, 9, 'No'),
-(64, 4, 10, 'No'),
-(65, 4, 11, 'No'),
-(66, 4, 12, 'No'),
-(67, 4, 13, 'No'),
-(68, 4, 14, 'No'),
-(69, 4, 15, 'No'),
-(70, 4, 16, 'No'),
-(71, 4, 17, 'No'),
-(72, 4, 18, 'No');
+(54, 3, 18, 'No');
 
 --
 -- Índices para tablas volcadas
@@ -479,6 +483,13 @@ INSERT INTO `usuarios_has_privilegios` (`id`, `id_usuario`, `id_privilegio`, `st
 ALTER TABLE `asignacion_deduccion`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_tipo` (`tipo`);
+
+--
+-- Indices de la tabla `auditoria`
+--
+ALTER TABLE `auditoria`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `nombre` (`id_usuarios`);
 
 --
 -- Indices de la tabla `cargos`
@@ -607,7 +618,13 @@ ALTER TABLE `usuarios_has_privilegios`
 -- AUTO_INCREMENT de la tabla `asignacion_deduccion`
 --
 ALTER TABLE `asignacion_deduccion`
-  MODIFY `id` int(90) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(90) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `auditoria`
+--
+ALTER TABLE `auditoria`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `cargos`
@@ -625,13 +642,13 @@ ALTER TABLE `departamentos`
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `empleados_has_dias_lab`
 --
 ALTER TABLE `empleados_has_dias_lab`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `horario`
@@ -667,23 +684,29 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios_has_privilegios`
 --
 ALTER TABLE `usuarios_has_privilegios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `auditoria`
+--
+ALTER TABLE `auditoria`
+  ADD CONSTRAINT `usuario_auditoria` FOREIGN KEY (`id_usuarios`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `cargos`
@@ -753,12 +776,6 @@ ALTER TABLE `producto`
 --
 ALTER TABLE `producto_proveedor`
   ADD CONSTRAINT `producto_proveedor_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `proveedor`
---
-ALTER TABLE `proveedor`
-  ADD CONSTRAINT `proveedor_ibfk_1` FOREIGN KEY (`id`) REFERENCES `producto_proveedor` (`id_proveedor`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuarios_has_privilegios`

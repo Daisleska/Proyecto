@@ -1,67 +1,113 @@
-<?php include_once "../includes/menu.php"; ?>
+<?php include_once "../includes/menu.php"; 
+extract($_REQUEST);
 
-       <section style="padding-left: 10px;"  class="content-header" class="col-md-12">
-      <h1>Tablero<small> / Bitacora</small></h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Tablero</a></li>
-        <li class="active">Bitacora</li>
-      </ol>
-    </section>
-    <!-- Main content -->
-    <section style="padding-left: 10px;"  class="invoice">
-      <div class="row">
-        <div class="col-md-12">
-        <div class="box box-danger">
-          <div class="box-header">
-            <div class="col-xs-2"><br>
-              <h3 class="box-title"><i class="fa fa-table"></i> Auditoria</h3>  
-            </div>
-            <div class="box-body">
-              <div class="table-responsive"  style="overflow-x: hidden;">
+
+?>
+
+  <div class="breadcrumbs">
+           
+
+
+                    
+        </div>
+        
+        <div class="content mt-3">
+            <div class="animated fadeIn">
                 <div class="row">
-                  <div class="input-daterange">
-                    <div class="col-md-6">
-                      <div data-date-format="yyyy/mm/dd" data-date="yyyy/mm/dd" class="input-group input-large">
-                        <input type="text" name="start_date" id="start_date" class="form-control dpd1" placeholder="Desde"/>
-                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                        <input type="text" name="end_date" id="end_date" class="form-control dpd2" placeholder="Hasta"/>
-                      </div>
+                    
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                              <h3></small><i class="fa fa-table"></i> Bit&aacute;cora de Acciones</h3>  
+                               
+                            </div>
+                            <div class="card-body">
+                            
+                            <div class="row form-group col-md-offset-3">
+                            <table width="100%" border="0" align="center" style="margin: 2cm;">
+                          <tr>
+                               <td colspan="2" width="40%">Buscar por fecha:</label></td>
+                               <td colspan="2" width="40%"><label>Buscar por Usuario:</label></td>
+                          </tr>
+                          <tr>
+                          <form action="../../Controladores/ControladorBitacora.php?operacion=bitacora_fecha" method="POST">
+                            <td><input type="date" class="form-control" name="fecha" title="Seleccione una fecha"/></td>
+                            <td><button class="btn btn-success" type="submit" name="operacion" value="bitacora_fecha">Buscar <i class="fa fa-search"><span class="glyphicon glyphicon-search"></span></button></td>
+                         </form>
+
+
+
+                          <form action="../../Controladores/ControladorBitacora.php?operacion=bitacora_usuario" method="POST">
+                           <td><select  name="id_usuario" class="form-control">
+                           <option>Seleccione</option>
+
+                            <?php 
+                              for ($i=0;$i<$filas;$i++){
+                            ?>
+                            <option value="<?=$data[$i][0]?>"><?=$data[$i][1]?></option>
+                            <?php
+                            }
+                            ?>
+
+                           </select></td>
+
+                            <td><button class="btn btn-success" type="submit" name="operacion" value="bitacora_usuario">Buscar <i class="fa fa-search"><span class="glyphicon glyphicon-search"></span></button></td>
+                          </form>
+                          </tr>
+
+
+                          <tr>
+                             <td colspan="2" width="40%"><label>Buscar por Hora:</label></td>
+                             <td colspan="2" width="40%"><label>Buscar por Actividad:</label></td>
+                          </tr>
+                          <tr>
+                          <form action="../../Controladores/ControladorBitacora.php?operacion=bitacora_hora" method="POST">
+                          <td><select name="hora" class="form-control">
+                          <option>Seleccione</option>
+        
+                          
+
+                         </select></td>
+                         <td><button class="btn btn-success" type="submit" name="operacion" value="bitacora_hora">Buscar <i class="fa fa-search"><span class="glyphicon glyphicon-search"></span></button></td>
+                         </form>
+
+       
+                        <form action="../../Controladores/ControladorBitacora.php?operacion=bitacora_actividad" method="POST">
+                          <td><select  name="accion" class="form-control">
+                           <option>Seleccione</option>
+                         
+                         
+                       </select></td>
+                         <td><button class="btn btn-success" type="submit" name="operacion" value="bitacora_actividad"><span class="glyphicon glyphicon-search">Buscar <i class="fa fa-search"></span></button></td>
+                       </form>
+                       </tr>
+                      
+                       </table>
+                       </div>
+
+                      <p align="center"><a href="../../Controladores/ControladorBitacora.php?operacion=bitacora_todo" class="btn btn-success">Ver Todos <i class="#"></i></a></p><br>
+
+                          
+
+
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="col-md-2">
-                    <button type="button" name="search" id="search" class="btn btn-primary active" ><i class="fa fa-search"></i> Buscar</button>
-                  </div>
-                </div><br>
-              </div>
-              <table id="order_data" class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Usuario</th>
-                  <th>Actividad</th>
-                  <th>Fecha</th>
-                  <th>Hora</th>
-                </tr>
-                </thead>
-                <tbody>
-                </tbody>
-              </table>
-            </div>
-          </div>
-            <!-- /.box-body -->
-        </div>
-        </div>
-      </div>
-    </section>
 
 
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    
 
+
+                </div>
+            </div><!-- .animated -->
+        </div><!-- .content -->
+
+
+    </div><!-- /#right-panel -->
+                
 
 
     
 
-    <!-- Right Panel -->
+
 
 <?php include_once "../includes/footer.php"; ?>

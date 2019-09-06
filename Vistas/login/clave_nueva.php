@@ -50,7 +50,7 @@ extract($_REQUEST);
 
 
                 
-                    <form action="../../Controladores/controladorLogin.php" method="POST" name="form">
+                    <form action="../../Controladores/ControladorLogin.php" method="POST" name="form">
                         <input type="hidden" name="operacion" value="cambiar_clave">
                         <input type="hidden" name="id_usuario" value="<?=$id_usuario?>">
 
@@ -74,11 +74,11 @@ extract($_REQUEST);
                         <div class="register-link m-t-15 text-center">
                                         <p> Desea regresar? <a href="login.php"> Volver</a></p>
                                     </div>
-<<<<<<< HEAD
+
                             <button type="submit" value="enviar" name="enviar" class="btn btn-primary btn-flat m-b-15"><i class="fa fa-check"></i>&nbsp;Enviar</button>
-=======
-                            <button id="btn3" type="submit" value="enviar" name="enviar" class="btn btn-primary btn-flat m-b-15"><i class="fa fa-check"></i>&nbsp;Enviar</button>
->>>>>>> 30a5e08d2e9da07455a10325cc1f8669b4bb9764
+
+                            
+
 
                     </form>
                 </div>

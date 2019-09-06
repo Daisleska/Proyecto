@@ -8,16 +8,21 @@ $privilegios=unserialize($privilegios);
 
 
 <?php include_once "../includes/menu.php"; ?>
+<div class="content mt-3">
+            <div class="animated fadeIn">
+              <div style=" padding-left: 18px;">
+                    <button  class="btn btn-primary"><a href="../../Controladores/ControladorUsuario.php?operacion=index"><i class="fa fa-mail-reply"></i>&nbsp; Volver</a></button></div>
 
            <div class="col-lg-12">
-           	<p>Administrador</p>
+           	
                     <div class="card">
                       <div class="card-header">
-                           <strong>Asignacion de Privilegios a usuarios registrados</strong> 
+                           <strong class="card-title"><i class="menu-icon fa fa-edit">
+                                    </i> Asignacion de Privilegios a Usuarios Registrados</strong>
                                 </div>
                                 <div class="card-body card-block">
 
-<form action="" name="" method="POST">
+<form action="../../Controladores/ControladorUsuario.php?operacion=guardar_privilegios" name="form" method="POST">
 	<table>
         <?php
         for ($i=0; $i < $row_use; $i++) { 
@@ -45,9 +50,20 @@ $privilegios=unserialize($privilegios);
 ?>
 		
 
-
+                            
 	</table>
+	
+
+          <div class="card-footer">
+                    <input type="hidden" name="operacion" value="guardar_privilegios">
+                    <button type="submit" class="btn btn-primary btn-sm">
+                    <i class="fa fa-check"></i> Guardar
+                    </button>
+                </div>
 </form>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>

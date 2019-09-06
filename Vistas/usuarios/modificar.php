@@ -8,7 +8,7 @@ $data=unserialize($data);
 <html>
 
 <head>
-<script type="text/javascript" src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../assets/js/jquery.min.js"></script>
 <script type="text/javascript">
             window.onload = function() {
                 document.getElementById('cambiar').onclick = function () {
@@ -30,6 +30,8 @@ $data=unserialize($data);
 
         <div class="content mt-3">
             <div class="animated fadeIn">
+              <div style=" padding-left: 18px;">
+                    <button  class="btn btn-primary"><a href="../../Controladores/ControladorUsuario.php?operacion=index"><i class="fa fa-mail-reply"></i>&nbsp; Volver</a></button></div>
 
 
                 <div class="col-lg-12">
@@ -72,6 +74,19 @@ $data=unserialize($data);
                                     <label>Repetir Contraseña</label>
                                     <input   name="clave_repetir" id="clave_repetir" required="required" minlength="6" maxlength="20" type="password" class="form-control" placeholder="Contraseña" disabled="disabled">
                         </div>
+
+                        <div class="form-group">Tipo de Usuario
+                               <select name="tipo_usuario" title="Seleccione el tipo de Usuario" class="form-control">
+                              <?php if ($data[4]=="Admin") {
+                              ?>
+                              <option value="Admin" <?php if($data[4]=="Admin"){ ?> selected="selected" <?php } ?> >Admin</option>
+                              <?php 
+                              }
+                              ?>
+                              <option value="Usuario 1" <?php if($data[4]=="Usuario 1"){ ?> selected="selected" <?php } ?> >Usuario 1</option>
+                              <option value="Usuario 2" <?php if($data[4]=="Usuario 2"){ ?> selected="selected" <?php } ?> >Usuario 2</option>
+                              </select>
+                       </div>
 
                         <div class="form-group">
                                     <label>Pregunta de Seguridad</label>
