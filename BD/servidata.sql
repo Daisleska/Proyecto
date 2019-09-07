@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-09-2019 a las 15:00:20
+-- Tiempo de generación: 07-09-2019 a las 02:53:07
 -- Versión del servidor: 10.1.37-MariaDB
--- Versión de PHP: 7.2.12
+-- Versión de PHP: 7.1.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -43,7 +43,29 @@ INSERT INTO `asignacion_deduccion` (`id`, `descripcion`, `tipo`, `monto`) VALUES
 (1, 'Seguro Social', 'Deduccion', '1000'),
 (2, 'Bono de ProducciÃ³n', 'Asignacion', '1000'),
 (3, 'Prima de ProducciÃ³n ', 'Asignacion', '1000'),
-(4, 'Memoriales La Victoria C.A', 'Asignacion', '2000');
+(4, '', 'Asignacion', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `asistencias`
+--
+
+CREATE TABLE `asistencias` (
+  `id` int(11) NOT NULL,
+  `id_empleado` int(11) NOT NULL,
+  `fecha_hora` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'fecha de asistencia'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `asistencias`
+--
+
+INSERT INTO `asistencias` (`id`, `id_empleado`, `fecha_hora`) VALUES
+(1, 28147989, '2019-09-03 18:57:19'),
+(2, 4400947, '2019-09-04 19:45:51'),
+(4, 28147989, '2019-09-05 18:49:14'),
+(5, 28147989, '2019-09-06 18:15:50');
 
 -- --------------------------------------------------------
 
@@ -53,10 +75,11 @@ INSERT INTO `asignacion_deduccion` (`id`, `descripcion`, `tipo`, `monto`) VALUES
 
 CREATE TABLE `auditoria` (
   `id` int(11) NOT NULL,
-  `id_usuarios` int(11) NOT NULL,
+  `usuario` varchar(50) NOT NULL,
+  `actividad` varchar(100) NOT NULL,
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
-  `actividad` text NOT NULL
+  `status` enum('0','1') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -76,11 +99,11 @@ CREATE TABLE `cargos` (
 --
 
 INSERT INTO `cargos` (`id`, `nombre`, `id_departamento`) VALUES
-(1, 'Secretaria', 1),
-(2, 'Secretaria', 2),
-(3, 'Asistente', 2),
-(4, 'Obrero', 4),
-(5, 'Jefe', 2);
+(1, 'Jefe', 1),
+(2, 'Asistente', 2),
+(3, 'Secretaria', 3),
+(4, 'Gerente', 4),
+(5, 'Obrero', 5);
 
 -- --------------------------------------------------------
 
@@ -98,12 +121,38 @@ CREATE TABLE `departamentos` (
 --
 
 INSERT INTO `departamentos` (`id`, `nombre`) VALUES
-(1, 'Recursos humanos'),
-(2, 'Administrativo'),
-(3, 'Informatica'),
-(4, 'Almacen'),
-(5, 'Administracion'),
-(6, 'Produccion');
+(1, 'Almacen'),
+(2, 'Recursos Humanos'),
+(3, 'Administración'),
+(4, 'Informática'),
+(5, 'Producción');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `dia_lab`
+--
+
+CREATE TABLE `dia_lab` (
+  `id` int(11) NOT NULL,
+  `id_empleado` int(11) NOT NULL,
+  `nombre` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `dia_lab`
+--
+
+INSERT INTO `dia_lab` (`id`, `id_empleado`, `nombre`) VALUES
+(1, 28147989, ' Lunes'),
+(2, 28147989, ' Martes'),
+(3, 28147989, ' Miercoles'),
+(4, 28147989, ' Jueves'),
+(5, 28147989, ' Viernes'),
+(6, 4400947, ' Miercoles'),
+(7, 4400947, ' Jueves'),
+(8, 4400947, ' Viernes'),
+(9, 4400947, ' Sabado');
 
 -- --------------------------------------------------------
 
@@ -117,52 +166,23 @@ CREATE TABLE `empleado` (
   `nombres` varchar(90) NOT NULL,
   `apellidos` varchar(90) NOT NULL,
   `direccion` varchar(90) NOT NULL,
-  `telefono` varchar(90) NOT NULL,
+  `telefono` int(90) NOT NULL,
   `fecha_ingreso` date NOT NULL,
   `condicion` enum('Fijo','Contratado') NOT NULL,
   `fecha_venc` date NOT NULL,
-  `salario` varchar(90) NOT NULL,
-  `ncuenta` varchar(90) NOT NULL,
-  `id_cargo` int(11) NOT NULL
+  `salario` int(90) NOT NULL,
+  `ncuenta` int(90) NOT NULL,
+  `id_cargo` int(11) NOT NULL,
+  `id_departamento` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `empleado`
 --
 
-INSERT INTO `empleado` (`id`, `cedula`, `nombres`, `apellidos`, `direccion`, `telefono`, `fecha_ingreso`, `condicion`, `fecha_venc`, `salario`, `ncuenta`, `id_cargo`) VALUES
-(1, '28147989', 'Hector Argenis', 'Hernandez Ceballos', 'San Mateo', '3590130', '2019-08-03', 'Contratado', '2019-08-11', '93049788', '98467890', 1),
-(2, '28496463', 'Daisleska Victoria', 'Vilera Vasquez', 'La Victoria', '8436551', '2019-08-12', 'Contratado', '2019-08-21', '40000', '874763', 2),
-(3, '25873122', 'Juan Carlos', 'Figueredo EspaÃ±a', 'La Victoria', '3163502', '2019-08-13', 'Fijo', '2023-08-13', '250000', '0134567894657675', 3);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `empleados_has_dias_lab`
---
-
-CREATE TABLE `empleados_has_dias_lab` (
-  `id` int(11) NOT NULL,
-  `id_empleado` int(11) NOT NULL,
-  `dia` enum('Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `empleados_has_dias_lab`
---
-
-INSERT INTO `empleados_has_dias_lab` (`id`, `id_empleado`, `dia`) VALUES
-(1, 1, 'Lunes'),
-(2, 1, 'Martes'),
-(3, 1, 'Miércoles'),
-(4, 1, 'Jueves'),
-(5, 1, 'Viernes'),
-(6, 1, 'Sábado'),
-(7, 1, 'Domingo'),
-(8, 2, 'Lunes'),
-(9, 2, 'Martes'),
-(10, 2, 'Miércoles'),
-(11, 2, 'Jueves');
+INSERT INTO `empleado` (`id`, `cedula`, `nombres`, `apellidos`, `direccion`, `telefono`, `fecha_ingreso`, `condicion`, `fecha_venc`, `salario`, `ncuenta`, `id_cargo`, `id_departamento`) VALUES
+(1, '28147989', 'hector Argenis', 'Hernandez Ceballos', 'cagua', 3590130, '2019-08-08', 'Fijo', '2019-08-31', 1234567, 2147483647, 1, 4),
+(2, '4400947', 'nuevoo nuevbo', 'nuevbo', 'cagua', 65432367, '2019-09-05', 'Fijo', '2019-09-28', 5432123, 2147483647, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -192,16 +212,25 @@ CREATE TABLE `empleado_producto` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `horario`
+-- Estructura de tabla para la tabla `inventario`
 --
 
-CREATE TABLE `horario` (
-  `id` int(90) NOT NULL,
-  `horas_pa` varchar(90) NOT NULL,
-  `horas_t` varchar(90) NOT NULL,
-  `fecha` date NOT NULL,
-  `dia` enum('Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo') NOT NULL
+CREATE TABLE `inventario` (
+  `id` int(11) NOT NULL,
+  `id_producto` int(11) NOT NULL,
+  `estado` enum('aceptado','rechazado') NOT NULL,
+  `observaciones` varchar(500) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `fecha_entrega` date NOT NULL,
+  `fecha_vencimiento` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `inventario`
+--
+
+INSERT INTO `inventario` (`id`, `id_producto`, `estado`, `observaciones`, `cantidad`, `fecha_entrega`, `fecha_vencimiento`) VALUES
+(1, 1, 'aceptado', 'ninguna', 1000, '2019-09-06', '2019-09-30');
 
 -- --------------------------------------------------------
 
@@ -330,7 +359,8 @@ INSERT INTO `privilegios` (`id`, `modulo`, `privilegio`) VALUES
 
 CREATE TABLE `producto` (
   `id` int(11) NOT NULL,
-  `codigo` varchar(11) NOT NULL,
+  `id_proveedor` int(11) NOT NULL,
+  `codigo` varchar(100) NOT NULL,
   `nombre` varchar(90) NOT NULL,
   `fecha` date NOT NULL,
   `presentacion` varchar(90) NOT NULL,
@@ -339,6 +369,13 @@ CREATE TABLE `producto` (
   `observacion` varchar(90) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`id`, `id_proveedor`, `codigo`, `nombre`, `fecha`, `presentacion`, `stock_min`, `stock_max`, `observacion`) VALUES
+(1, 2, 'servi-31', 'hierro', '2019-09-06', 'paletas', 10, 100, 'todo correcto');
+
 -- --------------------------------------------------------
 
 --
@@ -346,6 +383,7 @@ CREATE TABLE `producto` (
 --
 
 CREATE TABLE `producto_proveedor` (
+  `id` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL,
   `id_proveedor` int(11) NOT NULL,
   `cantidad_d_p` int(90) NOT NULL,
@@ -360,19 +398,22 @@ CREATE TABLE `producto_proveedor` (
 
 CREATE TABLE `proveedor` (
   `id` int(11) NOT NULL,
-  `cedula` varchar(11) NOT NULL,
+  `tipo_rif` varchar(2) NOT NULL,
+  `rif` varchar(11) NOT NULL,
   `nombre` varchar(90) NOT NULL,
   `email` varchar(90) NOT NULL,
   `direccion` varchar(90) NOT NULL,
-  `telefono` int(90) NOT NULL
+  `telefono` int(90) NOT NULL,
+  `tipo_producto` varchar(50) NOT NULL,
+  `fecha_registro` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `proveedor`
 --
 
-INSERT INTO `proveedor` (`id`, `cedula`, `nombre`, `email`, `direccion`, `telefono`) VALUES
-(1, 'J4536722', 'Inica Cagua C.A', 'inicacca@gmail.com', 'Cagua', 6548965);
+INSERT INTO `proveedor` (`id`, `tipo_rif`, `rif`, `nombre`, `email`, `direccion`, `telefono`, `tipo_producto`, `fecha_registro`) VALUES
+(2, 'j', '9398383923', 'inica', 'inica@gmail.com', 'cagua', 1402232, 'materia', '2019-09-06');
 
 -- --------------------------------------------------------
 
@@ -396,9 +437,16 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `correo`, `clave`, `tipo_usuario`, `pregunta`, `respuesta`, `borrado`) VALUES
-(1, 'Dailes', 'dvilera610@gmail.com', '044598473886535a33126083e3d2e1170e4a67befe897a83ad95a33209a64b3a', 'Usuario 1', 'Mascota', 'Sandy', 'N'),
-(2, 'Hector Hernandez', 'hectorher149@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Admin', 'nombre de mascota', 'body', 'N'),
-(3, 'Alejandro', 'darvisalfonso@gmail.com', '67d9f1c944a4ee6ef3634298c97639c81927a228d6aa490b343abf594e45aecf', 'Usuario 1', 'nombre de mascota', 'pelusa', 'S');
+(1, 'daileska vilera', 'dvilera610@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Usuario 1', 'color', 'azul', 'S'),
+(2, 'hector hernandez', 'hectorher149@gmail.com', '9010e72389a80487d473017425c6ec7951068abed82a4df32459c91f0e45d2ea', 'Usuario 1', 'nombre de mascota', 'body', 'N'),
+(3, 'alejandro', 'darvisalfonso@gmail.com', '67d9f1c944a4ee6ef3634298c97639c81927a228d6aa490b343abf594e45aecf', 'Usuario 1', 'nombre de mascota', 'pelusa', 'S'),
+(4, 'Genessi', 'genessie@gmail.com', '8491502322172e09ec7222d33941d33afbfcc22ab0c4dd1033dd72232308675a', 'Admin', 'mes de nacimiento', 'noviembre', 'S'),
+(5, 'carmen figueroa h', 'carmen123@gmail.com', '12e36c5523ceb66a61fb00c56d8258fd4ceaeeece6561b77d713a59b964f01cc', 'Admin', 'nieto mayor', 'hector', 'N'),
+(6, 'ana ', 'ana149@gmail.com', '246b7556cc1e9da32673b5c1ca930f53b6cc1393681f2608bafc39308d66f876', 'Admin', 'color', 'rojo', 'N'),
+(7, 'derek hernandez', 'derek149@gmail.com', '08bd27edcf2e98432d2e84b107f8b735d81d425de08a4063b57bbb7e0bb2cf84', 'Admin', 'color', 'verde', 'N'),
+(8, 'ismael', 'ismael149@gmail.com', '91b4d142823f7d20c5f08df69122de43f35f057a988d9619f6d3138485c9a203', 'Admin', 'color', 'morado', 'N'),
+(9, '', '', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'Admin', '', '', 'S'),
+(10, 'yose', 'yose@gmail.com', 'e0bc60c82713f64ef8a57c0c40d02ce24fd0141d5cc3086259c19b1e62a62bea', 'Admin', 'color', 'rojo', 'N');
 
 -- --------------------------------------------------------
 
@@ -471,7 +519,133 @@ INSERT INTO `usuarios_has_privilegios` (`id`, `id_usuario`, `id_privilegio`, `st
 (51, 3, 15, 'No'),
 (52, 3, 16, 'No'),
 (53, 3, 17, 'No'),
-(54, 3, 18, 'No');
+(54, 3, 18, 'No'),
+(55, 4, 1, 'No'),
+(56, 4, 2, 'No'),
+(57, 4, 3, 'No'),
+(58, 4, 4, 'No'),
+(59, 4, 5, 'No'),
+(60, 4, 6, 'No'),
+(61, 4, 7, 'No'),
+(62, 4, 8, 'No'),
+(63, 4, 9, 'No'),
+(64, 4, 10, 'No'),
+(65, 4, 11, 'No'),
+(66, 4, 12, 'No'),
+(67, 4, 13, 'No'),
+(68, 4, 14, 'No'),
+(69, 4, 15, 'No'),
+(70, 4, 16, 'No'),
+(71, 4, 17, 'No'),
+(72, 4, 18, 'No'),
+(73, 5, 1, 'No'),
+(74, 5, 2, 'No'),
+(75, 5, 3, 'No'),
+(76, 5, 4, 'No'),
+(77, 5, 5, 'No'),
+(78, 5, 6, 'No'),
+(79, 5, 7, 'No'),
+(80, 5, 8, 'No'),
+(81, 5, 9, 'No'),
+(82, 5, 10, 'No'),
+(83, 5, 11, 'No'),
+(84, 5, 12, 'No'),
+(85, 5, 13, 'No'),
+(86, 5, 14, 'No'),
+(87, 5, 15, 'No'),
+(88, 5, 16, 'No'),
+(89, 5, 17, 'No'),
+(90, 5, 18, 'No'),
+(91, 6, 1, 'No'),
+(92, 6, 2, 'No'),
+(93, 6, 3, 'No'),
+(94, 6, 4, 'No'),
+(95, 6, 5, 'No'),
+(96, 6, 6, 'No'),
+(97, 6, 7, 'No'),
+(98, 6, 8, 'No'),
+(99, 6, 9, 'No'),
+(100, 6, 10, 'No'),
+(101, 6, 11, 'No'),
+(102, 6, 12, 'No'),
+(103, 6, 13, 'No'),
+(104, 6, 14, 'No'),
+(105, 6, 15, 'No'),
+(106, 6, 16, 'No'),
+(107, 6, 17, 'No'),
+(108, 6, 18, 'No'),
+(109, 7, 1, 'No'),
+(110, 7, 2, 'No'),
+(111, 7, 3, 'No'),
+(112, 7, 4, 'No'),
+(113, 7, 5, 'No'),
+(114, 7, 6, 'No'),
+(115, 7, 7, 'No'),
+(116, 7, 8, 'No'),
+(117, 7, 9, 'No'),
+(118, 7, 10, 'No'),
+(119, 7, 11, 'No'),
+(120, 7, 12, 'No'),
+(121, 7, 13, 'No'),
+(122, 7, 14, 'No'),
+(123, 7, 15, 'No'),
+(124, 7, 16, 'No'),
+(125, 7, 17, 'No'),
+(126, 7, 18, 'No'),
+(127, 8, 1, 'No'),
+(128, 8, 2, 'No'),
+(129, 8, 3, 'No'),
+(130, 8, 4, 'No'),
+(131, 8, 5, 'No'),
+(132, 8, 6, 'No'),
+(133, 8, 7, 'No'),
+(134, 8, 8, 'No'),
+(135, 8, 9, 'No'),
+(136, 8, 10, 'No'),
+(137, 8, 11, 'No'),
+(138, 8, 12, 'No'),
+(139, 8, 13, 'No'),
+(140, 8, 14, 'No'),
+(141, 8, 15, 'No'),
+(142, 8, 16, 'No'),
+(143, 8, 17, 'No'),
+(144, 8, 18, 'No'),
+(145, 9, 1, 'No'),
+(146, 9, 2, 'No'),
+(147, 9, 3, 'No'),
+(148, 9, 4, 'No'),
+(149, 9, 5, 'No'),
+(150, 9, 6, 'No'),
+(151, 9, 7, 'No'),
+(152, 9, 8, 'No'),
+(153, 9, 9, 'No'),
+(154, 9, 10, 'No'),
+(155, 9, 11, 'No'),
+(156, 9, 12, 'No'),
+(157, 9, 13, 'No'),
+(158, 9, 14, 'No'),
+(159, 9, 15, 'No'),
+(160, 9, 16, 'No'),
+(161, 9, 17, 'No'),
+(162, 9, 18, 'No'),
+(163, 10, 1, 'No'),
+(164, 10, 2, 'No'),
+(165, 10, 3, 'No'),
+(166, 10, 4, 'No'),
+(167, 10, 5, 'No'),
+(168, 10, 6, 'No'),
+(169, 10, 7, 'No'),
+(170, 10, 8, 'No'),
+(171, 10, 9, 'No'),
+(172, 10, 10, 'No'),
+(173, 10, 11, 'No'),
+(174, 10, 12, 'No'),
+(175, 10, 13, 'No'),
+(176, 10, 14, 'No'),
+(177, 10, 15, 'No'),
+(178, 10, 16, 'No'),
+(179, 10, 17, 'No'),
+(180, 10, 18, 'No');
 
 --
 -- Índices para tablas volcadas
@@ -485,11 +659,16 @@ ALTER TABLE `asignacion_deduccion`
   ADD KEY `id_tipo` (`tipo`);
 
 --
+-- Indices de la tabla `asistencias`
+--
+ALTER TABLE `asistencias`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `auditoria`
 --
 ALTER TABLE `auditoria`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `nombre` (`id_usuarios`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `cargos`
@@ -505,18 +684,17 @@ ALTER TABLE `departamentos`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `dia_lab`
+--
+ALTER TABLE `dia_lab`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `empleado`
 --
 ALTER TABLE `empleado`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_cargo` (`id_cargo`);
-
---
--- Indices de la tabla `empleados_has_dias_lab`
---
-ALTER TABLE `empleados_has_dias_lab`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_empleado` (`id_empleado`);
 
 --
 -- Indices de la tabla `empleado_pago`
@@ -533,10 +711,11 @@ ALTER TABLE `empleado_producto`
   ADD KEY `cod_p` (`id_producto`);
 
 --
--- Indices de la tabla `horario`
+-- Indices de la tabla `inventario`
 --
-ALTER TABLE `horario`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `inventario`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `inventario_producto` (`id_producto`);
 
 --
 -- Indices de la tabla `materiaprima_producto`
@@ -581,7 +760,8 @@ ALTER TABLE `privilegios`
 -- Indices de la tabla `producto`
 --
 ALTER TABLE `producto`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `producto_proveedor` (`id_proveedor`);
 
 --
 -- Indices de la tabla `producto_proveedor`
@@ -621,6 +801,12 @@ ALTER TABLE `asignacion_deduccion`
   MODIFY `id` int(90) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT de la tabla `asistencias`
+--
+ALTER TABLE `asistencias`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT de la tabla `auditoria`
 --
 ALTER TABLE `auditoria`
@@ -636,25 +822,25 @@ ALTER TABLE `cargos`
 -- AUTO_INCREMENT de la tabla `departamentos`
 --
 ALTER TABLE `departamentos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `dia_lab`
+--
+ALTER TABLE `dia_lab`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `empleados_has_dias_lab`
+-- AUTO_INCREMENT de la tabla `inventario`
 --
-ALTER TABLE `empleados_has_dias_lab`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT de la tabla `horario`
---
-ALTER TABLE `horario`
-  MODIFY `id` int(90) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `inventario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `materia_prima`
@@ -678,53 +864,41 @@ ALTER TABLE `privilegios`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios_has_privilegios`
 --
 ALTER TABLE `usuarios_has_privilegios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=181;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `auditoria`
---
-ALTER TABLE `auditoria`
-  ADD CONSTRAINT `usuario_auditoria` FOREIGN KEY (`id_usuarios`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Filtros para la tabla `cargos`
 --
 ALTER TABLE `cargos`
-  ADD CONSTRAINT `rest_dep` FOREIGN KEY (`id_departamento`) REFERENCES `departamentos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `rest_departamento` FOREIGN KEY (`id_departamento`) REFERENCES `departamentos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `empleado`
 --
 ALTER TABLE `empleado`
   ADD CONSTRAINT `rest_cargo` FOREIGN KEY (`id_cargo`) REFERENCES `cargos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `empleados_has_dias_lab`
---
-ALTER TABLE `empleados_has_dias_lab`
-  ADD CONSTRAINT `rest_empleado` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `empleado_pago`
@@ -739,6 +913,12 @@ ALTER TABLE `empleado_pago`
 ALTER TABLE `empleado_producto`
   ADD CONSTRAINT `empleado_producto_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `rest_emp` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `inventario`
+--
+ALTER TABLE `inventario`
+  ADD CONSTRAINT `inventario_producto` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `materiaprima_proveedor`
@@ -769,7 +949,7 @@ ALTER TABLE `pago_asignaciondeduccion`
 -- Filtros para la tabla `producto`
 --
 ALTER TABLE `producto`
-  ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`id`) REFERENCES `materiaprima_producto` (`id_producto`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `producto_proveedor` FOREIGN KEY (`id_proveedor`) REFERENCES `proveedor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `producto_proveedor`
