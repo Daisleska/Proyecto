@@ -41,28 +41,28 @@ $data=unserialize($data);
 
                      <div style="padding-left: 20px;" class="row form-group">
                     <div class="col col-md-4"><label for="hf-nombres" class=" form-control-label">* Nombres:</label></div>
-                    <div class="col-12 col-md-6"><input type="text" required="required" id="hf-nombres" name="nombre" placeholder="Ej: Victor Alvarez" class="form-control"></div>
+                    <div class="col-12 col-md-5"><input type="text" required="required" id="hf-nombres" name="nombre" placeholder="Ej: Victor Alvarez" class="form-control"></div>
                      </div>
 
                     <div style="padding-left: 20px;" class="row form-group">
                     <div class="col col-md-4"><label for="hf-correo" class=" form-control-label">* Correo:</label></div>
-                    <div class="col-12 col-md-6"><input type="email" maxlength="30" required="required" id="hf-correo" name="correo" placeholder="Ej: victor-12@gmail.com" class="form-control"></div>
+                    <div class="col-12 col-md-5"><input type="email" maxlength="30" required="required" id="hf-correo" name="correo" placeholder="Ej: victor-12@gmail.com" class="form-control"></div>
                      </div>
 
 
                     <div style="padding-left: 20px;" class="row form-group">
                     <div class="col col-md-4"><label for="hf-clave" class=" form-control-label">* Contraseña:</label></div>
-                    <div class="col-12 col-md-6"><input type="password" required="required" minlength="6" maxlength="20" id="hf-clave" name="clave" class="form-control"></div>
+                    <div class="col-12 col-md-5"><input type="password" required="required" minlength="6" maxlength="20" id="hf-clave" name="clave" class="form-control"></div>
                      </div>
 
                     <div style="padding-left: 20px;" class="row form-group">
                     <div class="col col-md-4"><label for="hf-clave" class=" form-control-label">* Repetir Contraseña:</label></div>
-                    <div class="col-12 col-md-6"><input type="password" required="required" minlength="6" maxlength="20" id="hf-clave" name="clave_repetir" class="form-control"></div>
+                    <div class="col-12 col-md-5"><input type="password" required="required" minlength="6" maxlength="20" id="hf-clave" name="clave_repetir" class="form-control"></div>
                      </div>
                     
                      <div style="padding-left: 20px;" class="row form-group">
                     <div class="col col-md-4"><label for="hf-tipo_usuario" class=" form-control-label">* Tipo de Usuario:</label></div>
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-md-5">
                     
                                <select name="tipo_usuario" required="required" title="Seleccione el tipo de Usuario" class="form-control">
                               <?php if ($data[4]=="Admin") {
@@ -81,24 +81,26 @@ $data=unserialize($data);
 
                     <div style="padding-left: 20px;" class="row form-group">
                     <div class="col col-md-4"><label for="hf-pregunta" class=" form-control-label">* Pregunta de Seguridad:</label></div>
-                    <div class="col-12 col-md-6"><input type="text" required="required" id="hf-pregunta" name="pregunta" class="form-control"></div>
+                    <div class="col-12 col-md-5"><input type="text" required="required" id="hf-pregunta" name="pregunta" class="form-control"></div>
                      </div>
 
                     <div style="padding-left: 20px;" class="row form-group">
                     <div class="col col-md-4"><label for="hf-respuesta" class=" form-control-label">* Respuesta de Seguridad:</label></div>
-                    <div class="col-12 col-md-6"><input type="text" required="required" id="hf-respuesta" name="respuesta" class="form-control"></div>
+                    <div class="col-12 col-md-5"><input type="text" required="required" id="hf-respuesta" name="respuesta" class="form-control"></div>
                      </div>
  
                     <p>(*) Campos obligatorios</p>
+                    </div>
 
 
                     
-                    </div>
+                    
                     <div class="card-footer">
                     <input type="hidden" name="operacion" value="guardar">
                     <button type="submit" class="btn btn-success">
                     <i class="fa fa-check"></i> Registrar
                     </button>
+                  
                     
                                       </form>   
                                           </div>

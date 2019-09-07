@@ -5,7 +5,7 @@
 <div class="content mt-3">
       <div class="animated fadeIn">
       
-           <div class="col-lg-12">
+           <div class="col-lg-11">
               <div class="card">
                  <div class="card-header">
                       
@@ -25,7 +25,7 @@
 
                   <div class="form-group">
                     <div class="col col-md-4"><label>Contraseña Actual</label></div>
-                    <div class="col col-md-6">
+                    <div class="col col-md-5">
                       <input type="password" name="clave_actual" id="clave_actual" class="form-control" minlength="6" maxlength="20" required="required" placeholder="Contraseña Actual">
                       <span class="help-block"></span>
                     </div>
@@ -34,7 +34,7 @@
                   <br>
                   <div class="form-group">
                     <div class="col col-md-4"><label>Nueva Contraseña</label></div>
-                    <div class="col col-md-6">
+                    <div class="col col-md-5">
                       <input type="password" class="form-control" name="clave" id="clave" minlength="6" maxlength="20" required="required" placeholder="Nueva Contraseña">
                       <span class="help-block"></span>
                     </div>
@@ -43,21 +43,19 @@
                   <br>
                   <div class="form-group">
                     <div class="col col-md-4"><label>Confirmar Contraseña</label></div>
-                    <div class="col col-md-6">
+                    <div class="col col-md-5">
                       <input type="password" name="clave_nueva_confirm" id="clave_nueva_confirm" class="form-control" minlength="6" maxlength="20" required="required" placeholder="Confirmar Contraseña ">
                       <span class="help-block"></span>
                     </div>
                   </div>
-                  <br>
-                  <br>
-
+                  </div>
 
                  <div class="card-footer">
                 <input type="hidden" name="operacion" value="actualizar_clave"><input type="hidden" name="id_usuario" value=".$_SESSION['id_usuario'];">
                 <button type="submit" class="btn btn-success">
                 <i class="fa fa-check"></i> Guardar
                 </button>
-                </div>
+               
          
                 </form>
               </div>

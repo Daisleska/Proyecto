@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-09-2019 a las 02:53:07
+-- Tiempo de generación: 07-09-2019 a las 06:55:00
 -- Versión del servidor: 10.1.37-MariaDB
--- Versión de PHP: 7.1.26
+-- Versión de PHP: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -65,7 +65,8 @@ INSERT INTO `asistencias` (`id`, `id_empleado`, `fecha_hora`) VALUES
 (1, 28147989, '2019-09-03 18:57:19'),
 (2, 4400947, '2019-09-04 19:45:51'),
 (4, 28147989, '2019-09-05 18:49:14'),
-(5, 28147989, '2019-09-06 18:15:50');
+(5, 28147989, '2019-09-06 18:15:50'),
+(6, 25873122, '2019-09-07 00:52:29');
 
 -- --------------------------------------------------------
 
@@ -75,7 +76,7 @@ INSERT INTO `asistencias` (`id`, `id_empleado`, `fecha_hora`) VALUES
 
 CREATE TABLE `auditoria` (
   `id` int(11) NOT NULL,
-  `usuario` varchar(50) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
   `actividad` varchar(100) NOT NULL,
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
@@ -152,7 +153,12 @@ INSERT INTO `dia_lab` (`id`, `id_empleado`, `nombre`) VALUES
 (6, 4400947, ' Miercoles'),
 (7, 4400947, ' Jueves'),
 (8, 4400947, ' Viernes'),
-(9, 4400947, ' Sabado');
+(9, 4400947, ' Sabado'),
+(10, 25873122, ' Lunes'),
+(11, 25873122, ' Martes'),
+(12, 25873122, ' Miercoles'),
+(13, 25873122, ' Jueves'),
+(14, 25873122, ' Viernes');
 
 -- --------------------------------------------------------
 
@@ -181,8 +187,8 @@ CREATE TABLE `empleado` (
 --
 
 INSERT INTO `empleado` (`id`, `cedula`, `nombres`, `apellidos`, `direccion`, `telefono`, `fecha_ingreso`, `condicion`, `fecha_venc`, `salario`, `ncuenta`, `id_cargo`, `id_departamento`) VALUES
-(1, '28147989', 'hector Argenis', 'Hernandez Ceballos', 'cagua', 3590130, '2019-08-08', 'Fijo', '2019-08-31', 1234567, 2147483647, 1, 4),
-(2, '4400947', 'nuevoo nuevbo', 'nuevbo', 'cagua', 65432367, '2019-09-05', 'Fijo', '2019-09-28', 5432123, 2147483647, 1, 2);
+(1, '28147989', 'Hector Argenis', 'Hernandez Ceballos', 'cagua', 3590130, '2019-08-08', 'Fijo', '2019-08-31', 1234567, 2147483647, 1, 4),
+(2, '25946044', 'Jose Leonardo', 'Alvarez Fuentes', 'Maracay', 65432367, '0000-00-00', 'Fijo', '0000-00-00', 5432123, 2147483647, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -437,16 +443,10 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `correo`, `clave`, `tipo_usuario`, `pregunta`, `respuesta`, `borrado`) VALUES
-(1, 'daileska vilera', 'dvilera610@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Usuario 1', 'color', 'azul', 'S'),
+(1, 'Daileska Vilera', 'dvilera610@gmail.com', '044598473886535a33126083e3d2e1170e4a67befe897a83ad95a33209a64b3a', 'Usuario 1', 'Mascota', 'Sandy', 'S'),
 (2, 'hector hernandez', 'hectorher149@gmail.com', '9010e72389a80487d473017425c6ec7951068abed82a4df32459c91f0e45d2ea', 'Usuario 1', 'nombre de mascota', 'body', 'N'),
-(3, 'alejandro', 'darvisalfonso@gmail.com', '67d9f1c944a4ee6ef3634298c97639c81927a228d6aa490b343abf594e45aecf', 'Usuario 1', 'nombre de mascota', 'pelusa', 'S'),
-(4, 'Genessi', 'genessie@gmail.com', '8491502322172e09ec7222d33941d33afbfcc22ab0c4dd1033dd72232308675a', 'Admin', 'mes de nacimiento', 'noviembre', 'S'),
-(5, 'carmen figueroa h', 'carmen123@gmail.com', '12e36c5523ceb66a61fb00c56d8258fd4ceaeeece6561b77d713a59b964f01cc', 'Admin', 'nieto mayor', 'hector', 'N'),
-(6, 'ana ', 'ana149@gmail.com', '246b7556cc1e9da32673b5c1ca930f53b6cc1393681f2608bafc39308d66f876', 'Admin', 'color', 'rojo', 'N'),
-(7, 'derek hernandez', 'derek149@gmail.com', '08bd27edcf2e98432d2e84b107f8b735d81d425de08a4063b57bbb7e0bb2cf84', 'Admin', 'color', 'verde', 'N'),
-(8, 'ismael', 'ismael149@gmail.com', '91b4d142823f7d20c5f08df69122de43f35f057a988d9619f6d3138485c9a203', 'Admin', 'color', 'morado', 'N'),
-(9, '', '', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'Admin', '', '', 'S'),
-(10, 'yose', 'yose@gmail.com', 'e0bc60c82713f64ef8a57c0c40d02ce24fd0141d5cc3086259c19b1e62a62bea', 'Admin', 'color', 'rojo', 'N');
+(3, 'Alejandro', 'darvisalfonso@gmail.com', '67d9f1c944a4ee6ef3634298c97639c81927a228d6aa490b343abf594e45aecf', 'Usuario 1', 'nombre de mascota', 'pelusa', 'S'),
+(4, 'Genessi', 'genessie@gmail.com', '8491502322172e09ec7222d33941d33afbfcc22ab0c4dd1033dd72232308675a', 'Admin', 'mes de nacimiento', 'noviembre', 'S');
 
 -- --------------------------------------------------------
 
@@ -537,115 +537,7 @@ INSERT INTO `usuarios_has_privilegios` (`id`, `id_usuario`, `id_privilegio`, `st
 (69, 4, 15, 'No'),
 (70, 4, 16, 'No'),
 (71, 4, 17, 'No'),
-(72, 4, 18, 'No'),
-(73, 5, 1, 'No'),
-(74, 5, 2, 'No'),
-(75, 5, 3, 'No'),
-(76, 5, 4, 'No'),
-(77, 5, 5, 'No'),
-(78, 5, 6, 'No'),
-(79, 5, 7, 'No'),
-(80, 5, 8, 'No'),
-(81, 5, 9, 'No'),
-(82, 5, 10, 'No'),
-(83, 5, 11, 'No'),
-(84, 5, 12, 'No'),
-(85, 5, 13, 'No'),
-(86, 5, 14, 'No'),
-(87, 5, 15, 'No'),
-(88, 5, 16, 'No'),
-(89, 5, 17, 'No'),
-(90, 5, 18, 'No'),
-(91, 6, 1, 'No'),
-(92, 6, 2, 'No'),
-(93, 6, 3, 'No'),
-(94, 6, 4, 'No'),
-(95, 6, 5, 'No'),
-(96, 6, 6, 'No'),
-(97, 6, 7, 'No'),
-(98, 6, 8, 'No'),
-(99, 6, 9, 'No'),
-(100, 6, 10, 'No'),
-(101, 6, 11, 'No'),
-(102, 6, 12, 'No'),
-(103, 6, 13, 'No'),
-(104, 6, 14, 'No'),
-(105, 6, 15, 'No'),
-(106, 6, 16, 'No'),
-(107, 6, 17, 'No'),
-(108, 6, 18, 'No'),
-(109, 7, 1, 'No'),
-(110, 7, 2, 'No'),
-(111, 7, 3, 'No'),
-(112, 7, 4, 'No'),
-(113, 7, 5, 'No'),
-(114, 7, 6, 'No'),
-(115, 7, 7, 'No'),
-(116, 7, 8, 'No'),
-(117, 7, 9, 'No'),
-(118, 7, 10, 'No'),
-(119, 7, 11, 'No'),
-(120, 7, 12, 'No'),
-(121, 7, 13, 'No'),
-(122, 7, 14, 'No'),
-(123, 7, 15, 'No'),
-(124, 7, 16, 'No'),
-(125, 7, 17, 'No'),
-(126, 7, 18, 'No'),
-(127, 8, 1, 'No'),
-(128, 8, 2, 'No'),
-(129, 8, 3, 'No'),
-(130, 8, 4, 'No'),
-(131, 8, 5, 'No'),
-(132, 8, 6, 'No'),
-(133, 8, 7, 'No'),
-(134, 8, 8, 'No'),
-(135, 8, 9, 'No'),
-(136, 8, 10, 'No'),
-(137, 8, 11, 'No'),
-(138, 8, 12, 'No'),
-(139, 8, 13, 'No'),
-(140, 8, 14, 'No'),
-(141, 8, 15, 'No'),
-(142, 8, 16, 'No'),
-(143, 8, 17, 'No'),
-(144, 8, 18, 'No'),
-(145, 9, 1, 'No'),
-(146, 9, 2, 'No'),
-(147, 9, 3, 'No'),
-(148, 9, 4, 'No'),
-(149, 9, 5, 'No'),
-(150, 9, 6, 'No'),
-(151, 9, 7, 'No'),
-(152, 9, 8, 'No'),
-(153, 9, 9, 'No'),
-(154, 9, 10, 'No'),
-(155, 9, 11, 'No'),
-(156, 9, 12, 'No'),
-(157, 9, 13, 'No'),
-(158, 9, 14, 'No'),
-(159, 9, 15, 'No'),
-(160, 9, 16, 'No'),
-(161, 9, 17, 'No'),
-(162, 9, 18, 'No'),
-(163, 10, 1, 'No'),
-(164, 10, 2, 'No'),
-(165, 10, 3, 'No'),
-(166, 10, 4, 'No'),
-(167, 10, 5, 'No'),
-(168, 10, 6, 'No'),
-(169, 10, 7, 'No'),
-(170, 10, 8, 'No'),
-(171, 10, 9, 'No'),
-(172, 10, 10, 'No'),
-(173, 10, 11, 'No'),
-(174, 10, 12, 'No'),
-(175, 10, 13, 'No'),
-(176, 10, 14, 'No'),
-(177, 10, 15, 'No'),
-(178, 10, 16, 'No'),
-(179, 10, 17, 'No'),
-(180, 10, 18, 'No');
+(72, 4, 18, 'No');
 
 --
 -- Índices para tablas volcadas
@@ -668,7 +560,8 @@ ALTER TABLE `asistencias`
 -- Indices de la tabla `auditoria`
 --
 ALTER TABLE `auditoria`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_usuario` (`id_usuario`);
 
 --
 -- Indices de la tabla `cargos`
@@ -804,7 +697,7 @@ ALTER TABLE `asignacion_deduccion`
 -- AUTO_INCREMENT de la tabla `asistencias`
 --
 ALTER TABLE `asistencias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `auditoria`
@@ -828,13 +721,13 @@ ALTER TABLE `departamentos`
 -- AUTO_INCREMENT de la tabla `dia_lab`
 --
 ALTER TABLE `dia_lab`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `inventario`
@@ -876,13 +769,13 @@ ALTER TABLE `proveedor`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios_has_privilegios`
 --
 ALTER TABLE `usuarios_has_privilegios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=181;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=235;
 
 --
 -- Restricciones para tablas volcadas

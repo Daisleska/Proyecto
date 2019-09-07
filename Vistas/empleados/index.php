@@ -4,24 +4,7 @@ $data=unserialize($data);
 ?>
 
         <div class="breadcrumbs">
-       <!--      <div class="col-sm-4">
-                <div class="page-header float-left">
-                    <div class="page-title">
-                        <h1>Listado</h1>
-                    </div>
-                </div>
-            </div> -->
-            <!-- <div class="col-sm-8">
-                <div class="page-header float-right">
-                    <div class="page-title">
-                        <ol class="breadcrumb text-right">
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Table</a></li>
-                            <li class="active">Data table</li>
-                        </ol>
-                    </div>
-                </div>
-            </div> -->
+       
         </div>
 
         <div class="content mt-3">
@@ -38,7 +21,7 @@ $data=unserialize($data);
       <input type="text" name="caja_busqueda" id="caja_busqueda">
     </div> 
 
-     <div class="col-md-2">
+     <div class="col-md-2,5">
                           <a href="../../reportes/reporte_empleados.php" target="blank" class="btn btn-block btn-danger btn-sm"><i class="fa fa-file-pdf-o"></i> Reporte PDF</a>
                         </div>   
 </div>

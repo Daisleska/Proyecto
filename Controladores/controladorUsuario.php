@@ -76,21 +76,13 @@ public function guardar(){
 			//--------------------
 			?>
 		<script type="text/javascript">
-<<<<<<< HEAD
+
 			
 			if (confirm("Registro exitoso, desea registrar otro?")) {
 
-			if (confirm("REGISTRO EXITOSO, DESEA REGISTRAR OTRO?")) {
 
-				window.location="controladorUsuario.php?operacion=registrar";	
-=======
+				window.location="ControladorUsuario.php?operacion=registrar";		
 
-
-			if (confirm("Registro exitoso, desea registrar otro?")) {
-
-
-				window.location="ControladorUsuario.php?operacion=registrar";	
->>>>>>> 500026595d8104af62dccab5bbf5025d6b263b4d
 			}else{
 				window.location="../Vistas/home/home.php";
 			}

@@ -8,14 +8,16 @@ $query_perfil=mysqli_query($con,"select * from perfil where id=1");
   ?>
 
 
-        <section style="padding-left: 20px;" class="content-header">
-      <h3>Tablero <small>/  Asistencia</small></h3>
+<section style="padding-left: 20px;" class="content-header">
+        <h3>Asistencia</h3>
       <ol class="breadcrumb">
-        <!-- <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li> -->
-        <li class="active"><i class="fa fa-users"></i> Asistencia</li>
-        <li style="float: right; padding-left: 640px;"><a href="../asistencias/ControlA.php?operacion=index"><i class="fa fa-table"></i> Consulta de asistencias</a></li>
+        <li><i class="fa fa-users"><a href="../menu/ControladorMenu.php?operacion=asistencia"></i> Asistencia /</a></li>
+
+        <li><i class="fa fa-table"><a href="../asistencias/ControlA.php?operacion=index"></i>Consulta de asistencias</a></li>
+    
+        
       </ol>
-    </section>
+</section >
      <section style="padding-left: 20px;"  class="invoice">
       <div class="row">
         <div class="col-md-12">
@@ -44,6 +46,7 @@ $query_perfil=mysqli_query($con,"select * from perfil where id=1");
         </form>
       </div>
       </div>
+    </div>
       <!-- /.row -->
     </section> <!-- Fin de Main content Section-->
 

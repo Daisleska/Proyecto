@@ -21,24 +21,7 @@ $data=unserialize($data);
 
         <div class="breadcrumbs">
            
-          <!--   <div class="col-sm-5">
-                <div class="page-header float-left">
-                    <div class="page-title">
-                        <div>
-                            LISTADO
-                        </div>
-                  </div>
-                </div>
-            </div>
-
-                        <div class="col-sm-7">
-                <div class="page-header float-right">
-                   <ol class="breadcrumb text-right">
-
-                            <li class="active"></li>
-                        </ol>
-                </div>
-            </div> -->
+         
 
                     
         </div>
@@ -46,11 +29,11 @@ $data=unserialize($data);
         <div class="content mt-3">
             <div class="animated fadeIn">
                 <div class="row">
-<<<<<<< HEAD
+
                 	<h2 style="padding-left: 20px;">Listado De Usuarios Registrados</h2>
-=======
+
                 	
->>>>>>> 500026595d8104af62dccab5bbf5025d6b263b4d
+
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">

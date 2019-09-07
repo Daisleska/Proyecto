@@ -52,6 +52,7 @@ $privilegios=unserialize($privilegios);
 
                             
 	</table>
+  </div>
 	
 
           <div class="card-footer">
@@ -59,7 +60,7 @@ $privilegios=unserialize($privilegios);
                     <button type="submit" class="btn btn-primary btn-sm">
                     <i class="fa fa-check"></i> Guardar
                     </button>
-                </div>
+               
 </form>
 </div>
 </div>

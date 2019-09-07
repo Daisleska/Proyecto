@@ -1,5 +1,7 @@
 <?php include_once "../includes/menu.php"; 
 extract($_REQUEST);
+$usuarios=unserialize($usuarios);
+
 
 
 ?>
@@ -42,9 +44,9 @@ extract($_REQUEST);
                            <option>Seleccione</option>
 
                             <?php 
-                              for ($i=0;$i<$filas;$i++){
+                              for ($i=0;$i<$filas; $i++){
                             ?>
-                            <option value="<?=$data[$i][0]?>"><?=$data[$i][1]?></option>
+                            <option value="<?=$usuarios[$i][0]?>"><?=$usuarios[$i][1]?></option>
                             <?php
                             }
                             ?>

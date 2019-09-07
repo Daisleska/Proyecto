@@ -15,7 +15,7 @@ public function bitacora_fecha(){
 	$db=new clasedb();//instanciando clasedb
 	$conex=$db->conectar();//conectando con la base de datos
 
-	$sql="SELECT * FROM auditoria WHERE fecha=".$fecha." ORDER BY id_usuarios DESC";
+	$sql="SELECT * FROM auditoria WHERE fecha=".$fecha." ORDER BY id_usuario DESC";
 
 	if ($res=mysqli_query($conex,$sql)) {
 		//echo "entro";
@@ -49,7 +49,7 @@ public function bitacora_usuario(){
 	$db=new clasedb();//instanciando clasedb
 	$conex=$db->conectar();//conectando con la base de datos
 
-	$sql="SELECT * FROM auditoria WHERE id_usuarios=".$id_usuarios." ORDER BY id_usuarios DESC";
+	$sql="SELECT * FROM auditoria WHERE id_usuario=".$id_usuario." ORDER BY id_usuario DESC";
 
 	if ($res=mysqli_query($conex,$sql)) {
 		//echo "entro";
@@ -77,7 +77,7 @@ public function bitacora_hora(){
 	$db=new clasedb();//instanciando clasedb
 	$conex=$db->conectar();//conectando con la base de datos
 
-	$sql="SELECT * FROM auditoria WHERE hora=".$hora." ORDER BY id_usuarios DESC";
+	$sql="SELECT * FROM auditoria WHERE hora=".$hora." ORDER BY id_usuario DESC";
 
 	if ($res=mysqli_query($conex,$sql)) {
 		//echo "entro";
@@ -107,7 +107,7 @@ public function bitacora_actividad(){
 	$db=new clasedb();//instanciando clasedb
 	$conex=$db->conectar();//conectando con la base de datos
 
-	$sql="SELECT * FROM auditoria WHERE actividad=".$actividad." ORDER BY id_usuarios DESC";
+	$sql="SELECT * FROM auditoria WHERE actividad=".$actividad." ORDER BY id_usuario DESC";
 
 	if ($res=mysqli_query($conex,$sql)) {
 		//echo "entro";
@@ -138,7 +138,7 @@ public function bitacora_todo(){
 	$db=new clasedb();//instanciando clasedb
 	$conex=$db->conectar();//conectando con la base de datos
 
-	$sql="SELECT * FROM auditoria ORDER BY id_usuarios DESC";
+	$sql="SELECT * FROM auditoria ORDER BY id_usuario DESC";
 
 	if ($res=mysqli_query($conex,$sql)) {
 		//echo "entro";

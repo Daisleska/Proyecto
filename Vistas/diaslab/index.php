@@ -4,24 +4,7 @@ $data=unserialize($data);
 ?>
 
         <div class="breadcrumbs">
-           <!--  <div class="col-sm-4">
-                <div class="page-header float-left">
-                    <div class="page-title">
-                        <h1>Dias Laborables</h1>
-                    </div>
-                </div>
-            </div>  -->
-            <!-- <div class="col-sm-8">
-                <div class="page-header float-right">
-                    <div class="page-title">
-                        <ol class="breadcrumb text-right">
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Table</a></li>
-                            <li class="active">Data table</li>
-                        </ol>
-                    </div>
-                </div>
-            </div> -->
+           
         </div>
 
         <div class="content mt-3">
@@ -67,11 +50,11 @@ $data=unserialize($data);
                                     </tbody>
                                  
                                 </table>
-                                    <td><button><a href="../../Controladores/ControladorDiasLab.php?operacion=modificar&id_empleado=<?=$data[$i][0]?>">Modificar</a></button>
+                                    <td><button class="btn btn-primary btn-sm"><a href="../../Controladores/ControladorDiasLab.php?operacion=modificar&id_empleado=<?=$data[$i][0]?>">Modificar</a></button>
 
                                   
 
-                                    <button><a href="javascript:eliminar(<?=$data[$i][0]?>)">Eliminar</a></button>
+                                    <button class="btn btn-danger btn-sm"><a href="javascript:eliminar(<?=$data[$i][0]?>)">Eliminar</a></button>
                                     </td>
                             </div>
                         </div>

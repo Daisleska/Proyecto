@@ -5,13 +5,16 @@ $data=unserialize($data);
   <?php include_once "../includes/menu.php"; ?>
 
    <section style="padding-left: 20px;" class="content-header">
-      <h1>Consulta <small>/ Asistencias de Empleados</small></h1>
       <ol class="breadcrumb">
-        <!-- <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li> -->
-        <li><i class="fa fa-users"><a href="../menu/ControladorMenu.php?operacion=asistencia"></i> Asistencia</a></li>
-        <li class="active" style="float: right; padding-left: 640px;"><i class="fa fa-table"></i> Consulta de asistencias</li>
+        <li><i class="fa fa-users"><a href="../menu/ControladorMenu.php?operacion=asistencia"></i> Asistencia /</a></li>
+
+        <li><i class="fa fa-table"><a href="../asistencias/ControlA.php?operacion=index"></i>Consulta de asistencias</a></li>
+    
+        <li class="col-md-2,5" style=" padding-left: 290px;">
+        <a href="../../reportes/reporte_asistencia.php" target="blank" class="btn btn-block btn-danger btn-sm"><i class="fa fa-file-pdf-o"></i> Reporte PDF</a>
+        </li>
       </ol>
-    </section>
+</section >
      <section style="padding-left: 20px;"  class="invoice">
       <!-- <div class="row">
         <div class="col-md-12">
@@ -35,14 +38,13 @@ $data=unserialize($data);
                         <div  class="col-sm-2">
                           <button type="button" name="search1" id="search1" class="btn btn-primary active" ><i class="fa fa-search"></i> Buscar</button>
                         </div>
-                        <div class="col-md-2">
-                          <a href="../../reportes/reporte_asistencia.php" target="blank" class="btn btn-block btn-danger btn-sm"><i class="fa fa-file-pdf-o"></i> Reporte PDF</a>
-                        </div>  
+                        
                       </div><br>
                     </div>
                     <table id="order_data_censo" class="table table-bordered table-hover">
                       <thead>
                         <tr>
+                          <th>N°</th>
                           <th>Cédula</th>
                           <th>Nombre</th>
                           <th>Apellido</th>
@@ -53,7 +55,7 @@ $data=unserialize($data);
                       </thead>
                       <tbody>
 
-                                <?php $num=1;
+              <?php $num=1;
               for ($i=0; $i < $filas; $i++) { 
                                 
               echo "<tr>";    
@@ -75,6 +77,8 @@ $data=unserialize($data);
                 }   ?>
                       </tbody>
                     </table>
+                  </div>
+                   
                   </div>
 
       <!-- info row -->

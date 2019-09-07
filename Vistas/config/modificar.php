@@ -10,7 +10,7 @@ $data=unserialize($data);
 
 <div class="content mt-3">
             <div class="animated fadeIn">
-                <div class="col-lg-12">
+                <div class="col-lg-11">
                     <div class="card">
                       <div class="card-header">
                       <section class="content-header">
@@ -25,8 +25,8 @@ $data=unserialize($data);
             
 
                         <div class="form-group">
-                            <div class="col col-md-2"><label>Nombre</label></div>
-                            <div class="col col-md-6"><input name="nombre" maxlength="30" type="text" class="form-control" required="required" placeholder="Nombre" value="<?=$data[0]?>"></div>
+                            <div class="col col-md-4"><label>Nombre</label></div>
+                            <div class="col col-md-5"><input name="nombre" maxlength="30" type="text" class="form-control" required="required" placeholder="Nombre" value="<?=$data[0]?>"></div>
 
 
                         </div>
@@ -35,22 +35,22 @@ $data=unserialize($data);
 
 
                         <div class="form-group">
-                                <div class="col col-md-2"><label>Correo</label></div>
-                                <div class="col col-md-6"><input name="correo" required="required" maxlength="30" type="email" class="form-control" placeholder="Correo" value="<?=$data[1]?>"></div>
+                                <div class="col col-md-4"><label>Correo</label></div>
+                                <div class="col col-md-5"><input name="correo" required="required" maxlength="30" type="email" class="form-control" placeholder="Correo" value="<?=$data[1]?>"></div>
                         </div>
                         <br>
                         <br>
 
                         <div class="form-group">
-                                    <div class="col col-md-2"><label>Pregunta</label></div>
-                                    <div class="col col-md-6"><input name="pregunta" required="required" minlength="2" maxlength="90" type="text" class="form-control" placeholder="Color favorito?" value="<?=$data[2]?>"></div>
+                                    <div class="col col-md-4"><label>Pregunta de Seguridad</label></div>
+                                    <div class="col col-md-5"><input name="pregunta" required="required" minlength="2" maxlength="90" type="text" class="form-control" placeholder="Color favorito?" value="<?=$data[2]?>"></div>
                         </div>
                         <br>
                         <br>
 
                         <div class="form-group">
-                                    <div class="col col-md-2"><label>Respuesta</label></div>
-                                    <div class="col col-md-6"><input name="respuesta" required="required" minlength="2" maxlength="90" type="text" class="form-control" placeholder="Azul" value="<?=$data[3]?>"></div>
+                                    <div class="col col-md-4"><label>Respuesta de Seguridad</label></div>
+                                    <div class="col col-md-5"><input name="respuesta" required="required" minlength="2" maxlength="90" type="text" class="form-control" placeholder="Azul" value="<?=$data[3]?>"></div>
                         </div>
                         <br>
                         <br>
@@ -64,6 +64,8 @@ $data=unserialize($data);
                                      <input name="avatar" type="file"  placeholder="Imagen"></div>
                         </div>
                     </div>
+               
+                  
                         
                         
 
