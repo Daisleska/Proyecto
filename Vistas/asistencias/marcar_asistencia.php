@@ -2,7 +2,7 @@
 	require("../../Modelos/conexion.php");
 	extract($_REQUEST);
 
-	$sql="INSERT INTO `asistencias` (`id`, `id_empleado`, `fecha_hora`) VALUES (NULL, '$cedula', CURRENT_TIMESTAMP) ";
+	$sql="INSERT INTO `asistencias` (`id`, `id_empleado`, `fecha_hora`) VALUES (NULL, '$id_empleado', CURRENT_TIMESTAMP) ";
 
 	$consulta=mysqli_query($conectar,$sql);
 
