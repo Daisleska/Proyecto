@@ -72,7 +72,7 @@ extract($_REQUEST);
 
 
                         <div class="register-link m-t-15 text-center">
-                                        <p> Desea regresar? <a href="login.php"> Volver</a></p>
+                                        <p> ¿Desea regresar? <a href="login.php"> Volver</a></p>
                                     </div>
 
                             <button type="submit" value="enviar" name="enviar" class="btn btn-primary btn-flat m-b-15"><i class="fa fa-check"></i>&nbsp;Enviar</button>

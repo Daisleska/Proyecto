@@ -1,4 +1,7 @@
-<?php include_once "../includes/menu.php"; ?>
+<?php include_once "../includes/menu.php";
+extract($_REQUEST);
+$materia_prima=unserialize($materia_prima);
+?>
 <script type="text/javascript">
     function solonumeros(e){
         key=e.keyCode || e.which;
@@ -18,7 +21,6 @@
         }
     }
 </script>
-
 
        <div class="breadcrumbs">
            <div class="col-sm-5">
@@ -42,37 +44,54 @@
         </div>
 
         <!-- contenido -->
- <form action="../../Controladores/ControladorAsigDeducc.php?operacion=guardar" method="POST"  class="form">
+ <form action="../../Controladores/ControladorRecibidos.php?operacion=guardar" method="POST"  class="form">
        <div style="padding-left: 150px;" class="col-lg-10">
               <div class="card">
               <div class="card-header">
-              <strong><i class="fa fa-edit"></i> REGISTRAR ASIGNACIONES Y DEDUCCIONES</strong> 
+              <strong class="card-title"><i class="fa fa-list"></i>  REGISTRAR RECIBIDOS</strong> 
               </div>
 
 
            <div class="card-body card-block">
           
+          <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
+                <div class="col col-md-4"><label for="hf-materia" class=" form-control-label">* Materia Prima</label></div>
+                    <div class="col-12 col-md-6">
+                    <select name="id_materia_prima" title="Seleccione"class="form-control">
+                    <option disabled="disabled" selected="selected" value="">Seleccione la Materia Prima</option>
+                    <?php 
+                    for ($i=0; $i<$filas; $i++){
+                    ?>
+                    <option value="<?=$materia_prima[$i][0]?>"><?=$materia_prima[$i][2]?></option>
+                    <?php
+                    }
+                    ?>
+                    </select>
+                    </div>
+                    </div>
 
           <div style="padding-left: 50px;" class="row form-group">
-                   <div class="col col-md-4"><label class=" form-control-label">* Descripción:</label></div>
+                   <div class="col col-md-4"><label class=" form-control-label">* Cantidad:</label></div>
 
-                   <div class="col-12 col-md-7"><input type="text" id="" name="descripcion" required="required"  minlength="6" maxlength="30" class="form-control"></div>
+                   <div class="col-12 col-md-6"><input type="text" id="" name="cantidad" required="required" onkeypress="return solonumeros(event)" minlength="4" maxlength="15" class="form-control"></div>
           </div>
 
           <div style="padding-left: 50px;" class="row form-group">
-                   <div class="col col-md-4"><label class=" form-control-label">* Tipo:</label></div>
+                   <div class="col col-md-4"><label class=" form-control-label">* Fecha:</label></div>
 
-                   <div class="col-12 col-md-7"><select id="hf-tipo_ad" name="tipo" class="form-control" required="required"><span class="help-block"></span>
-                      <option value="" selected="selected">Selecciona Tipo</option>
-                      <option value="Asignacion">Asignación</option>
-                      <option value="Deduccion">Deducción</option>
-                  </select></div>
+                   <div class="col-12 col-md-6"><input type="date" id="" name="fecha" required="required" class="form-control"></div>
           </div>
 
           <div style="padding-left: 50px;" class="row form-group">
-                   <div class="col col-md-4"><label class=" form-control-label">* Monto:</label></div>
+                   <div class="col col-md-4"><label class=" form-control-label">* Observación:</label></div>
 
-                   <div class="col-12 col-md-7"><input type="text" id="" name="monto" required="required" onkeypress="return solonumeros(event)" minlength="6" maxlength="20" class="form-control"></div>
+                   <div class="col-12 col-md-6"><input type="text" id="" name="observacion" required="required" minlength="4" maxlength="40" class="form-control"></div>
+          </div>
+
+          <div style="padding-left: 50px;" class="row form-group">
+                   <div class="col col-md-4"><label class=" form-control-label">* CE:</label></div>
+
+                   <div class="col-12 col-md-6"><input type="text" id="" name="ce" required="required" minlength="4" maxlength="10" class="form-control"></div>
           </div>
 
           <p style="padding-left: 50px; padding-top: 10px;">(*) Campos obligatorios</p>

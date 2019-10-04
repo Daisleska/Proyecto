@@ -2,7 +2,7 @@
 include("../Modelos/clasedb.php");
 extract($_REQUEST);
 
-class ControladorProveedor
+class ControladorProductos
 {
 	
 
@@ -11,7 +11,7 @@ public function index(){
 	$db=new clasedb();//instanciando clasedb
 	$conex=$db->conectar();//conectando con la base de datos
 
-	$sql="SELECT * FROM proveedor";//query
+	$sql="SELECT * FROM productos";//query
 
 
 	//ejecutando query
@@ -29,7 +29,7 @@ public function index(){
 			$i++;
 		}
 		
-	    header("Location: ../Vistas/proveedores/index.php?filas=".$filas."&campos=".$campos."&data=".serialize($datos));
+	    header("Location: ../Vistas/productos/index.php?filas=".$filas."&campos=".$campos."&data=".serialize($datos));
 	} else {
 		echo "Error en la BASE DE DATOS";
 
@@ -38,7 +38,7 @@ public function index(){
 
 public function registrar(){
 
-	header("Location: ../Vistas/proveedores/registrar.php");
+	header("Location: ../Vistas/productos/registrar.php");
 }//fin registrar
 
 public function guardar(){
@@ -46,7 +46,7 @@ public function guardar(){
 	$db=new clasedb();
 	$conex=$db->conectar();//conectando con la base de datos
 
-	$sql="SELECT * FROM proveedor WHERE cedula='".$cedula."'";
+	$sql="SELECT * FROM productos WHERE nombre='".$nombre."'";
 
 	$res=mysqli_query($conex,$sql);
 	$cuantos=mysqli_num_rows($res);
@@ -54,14 +54,14 @@ public function guardar(){
 	if ($cuantos>0) {
 		?>
 		<script type="text/javascript">
-			alert("El proveedor con esta Cedula / Rif ya existe");
-			window.location="ControladorProveedor.php?operacion=registrar";
+			alert("El producto ya existe");
+			window.location="ControladorProductos.php?operacion=registrar";
 		</script>
 			<?php
 	} else {
 		
 			
-		$sql="INSERT INTO proveedor VALUES (NULL,'".$cedula."','".$nombre."','".$email."','".$direccion."','".$telefono."')";
+		$sql="INSERT INTO productos VALUES (NULL,'".$nombre."','".$presentacion."','".$unidad."')";
 
 		$resultado=mysqli_query($conex,$sql);
 	
@@ -70,9 +70,9 @@ public function guardar(){
 		<script type="text/javascript">
 			
 			if (confirm("Registro exitoso, desea registrar otro?")) {
-				window.location="ControladorProveedor.php?operacion=registrar";	
+				window.location="ControladorProductos.php?operacion=registrar";	
 			}else{
-				window.location="ControladorProveedor.php?operacion=index";
+				window.location="ControladorProductos.php?operacion=index";
 			}
 			
 		</script>
@@ -90,11 +90,11 @@ public function modificar(){
 	$db=new clasedb();
 	$conex=$db->conectar();//conectando con la base de datos
 	
-	$sql="SELECT * FROM proveedor WHERE id=".$id_proveedor."";
+	$sql="SELECT * FROM productos WHERE id=".$id_productos."";
 	$res=mysqli_query($conex,$sql);//ejecutando consulta
 	$data=mysqli_fetch_array($res);//extrayendo datos en array
 
-	header("Location: ../Vistas/proveedores/modificar.php?data=".serialize($data));
+	header("Location: ../Vistas/productos/modificar.php?data=".serialize($data));
 }//fin de la funcion modificar
 
 
@@ -105,7 +105,7 @@ public function actualizar()
 	$db=new clasedb();
 	$conex=$db->conectar();//conectando con la base de datos
 	
-	$sql="SELECT * FROM proveedor WHERE correo='".$correo."' AND id<>".$id;
+	$sql="SELECT * FROM productos WHERE nombre='".$nombre."' AND id<>".$id;
 //echo $sql;
 	$res=mysqli_query($conex,$sql);
 
@@ -113,27 +113,27 @@ public function actualizar()
 		if ($cant>0) {
 			?>
 				<script type="text/javascript">
-					alert("Ya existe un proveedor con este correo");
-					window.location="ControladorProveedor.php?operacion=index";
+					alert("Ya existe el producto");
+					window.location="ControladorProductos.php?operacion=index";
 				</script>
 			<?php
 		}else{
 		
-						$sql="UPDATE proveedor SET cedula='".$cedula."',nombre='".$nombre."',email='".$email."',direccion='".$direccion."',telefono='".$telefono."' WHERE id=".$id;
+						$sql="UPDATE productos SET nombre='".$nombre."',presentacion='".$presentacion."',unidad='".$unidad."' WHERE id=".$id;
 
 							$res=mysqli_query($conex,$sql);
 							if ($res) {
 								?>
 									<script type="text/javascript">
 										alert("Registro modificado");
-										window.location="ControladorProveedor.php?operacion=index";
+										window.location="ControladorProductos.php?operacion=index";
 									</script>
 								<?php
 							} else {
 								?>
 									<script type="text/javascript">
 										alert("Error al modificar el registro");
-										window.location="ControladorProveedor.php?operacion=index";
+										window.location="ControladorProductos.php?operacion=index";
 									</script>
 								<?php
 							}			
@@ -148,52 +148,52 @@ public function eliminar()
 	$db=new clasedb();
 	$conex=$db->conectar();//conectando con la base de datos
 
-	$sql="DELETE FROM proveedor WHERE id=".$id_proveedor;
+	$sql="DELETE FROM productos WHERE id=".$id_productos;
 
 		$res=mysqli_query($conex,$sql);
 		if ($res) {
 			?>
 				<script type="text/javascript">
 					alert("Registro eliminado");
-					window.location="ControladorProveedor.php?operacion=index";
+					window.location="ControladorProductos.php?operacion=index";
 				</script>
 			<?php
 		} else {
 			?>
 				<script type="text/javascript">
 					alert("Registro no eliminado");
-					window.location="ControladorProveedor.php?operacion=index";
+					window.location="ControladorProductos.php?operacion=index";
 				</script>
 			<?php
 		}
 }//fin de la función eliminar
 
 static function controlador($operacion){
-		$proveedor=new ControladorProveedor();
+		$producto=new ControladorProductos();
 	switch ($operacion) {
 		case 'index':
-			$proveedor->index();
+			$producto->index();
 			break;
 		case 'registrar':
-			$proveedor->registrar();
+			$producto->registrar();
 			break;
 		case 'guardar':
-			$proveedor->guardar();
+			$producto->guardar();
 			break;
 		case 'modificar':
-			$proveedor->modificar();
+			$producto->modificar();
 			break;
 		case 'actualizar':
-			$proveedor->actualizar();
+			$producto->actualizar();
 			break;
 		case 'eliminar':
-			$proveedor->eliminar();
+			$producto->eliminar();
 			break;
 		default:
 			?>
 				<script type="text/javascript">
 					alert("No existe la ruta");
-					window.location="ControladorProveedor.php?operacion=index";
+					window.location="ControladorProductos.php?operacion=index";
 				</script>
 			<?php
 			break;
@@ -202,5 +202,5 @@ static function controlador($operacion){
 }//cierre de la clase
 
 
-ControladorProveedor::controlador($operacion);
+ControladorProductos::controlador($operacion);
 ?>

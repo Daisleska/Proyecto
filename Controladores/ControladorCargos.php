@@ -2,7 +2,7 @@
 include("../Modelos/clasedb.php");
 extract($_REQUEST);
 
-class ControladorProveedor
+class ControladorCargos
 {
 	
 
@@ -11,7 +11,7 @@ public function index(){
 	$db=new clasedb();//instanciando clasedb
 	$conex=$db->conectar();//conectando con la base de datos
 
-	$sql="SELECT * FROM proveedor";//query
+	$sql="SELECT id, nombre, salario FROM cargos";//query
 
 
 	//ejecutando query
@@ -29,7 +29,7 @@ public function index(){
 			$i++;
 		}
 		
-	    header("Location: ../Vistas/proveedores/index.php?filas=".$filas."&campos=".$campos."&data=".serialize($datos));
+	    header("Location: ../Vistas/cargos/index.php?filas=".$filas."&campos=".$campos."&data=".serialize($datos));
 	} else {
 		echo "Error en la BASE DE DATOS";
 
@@ -38,7 +38,7 @@ public function index(){
 
 public function registrar(){
 
-	header("Location: ../Vistas/proveedores/registrar.php");
+	header("Location: ../Vistas/cargos/registrar.php");
 }//fin registrar
 
 public function guardar(){
@@ -46,7 +46,7 @@ public function guardar(){
 	$db=new clasedb();
 	$conex=$db->conectar();//conectando con la base de datos
 
-	$sql="SELECT * FROM proveedor WHERE cedula='".$cedula."'";
+	$sql="SELECT nombre, salario FROM cargos WHERE nombre='".$nombre."'";
 
 	$res=mysqli_query($conex,$sql);
 	$cuantos=mysqli_num_rows($res);
@@ -54,14 +54,14 @@ public function guardar(){
 	if ($cuantos>0) {
 		?>
 		<script type="text/javascript">
-			alert("El proveedor con esta Cedula / Rif ya existe");
-			window.location="ControladorProveedor.php?operacion=registrar";
+			alert("El Cargo ya existe");
+			window.location="ControladorCargos.php?operacion=registrar";
 		</script>
 			<?php
 	} else {
 		
 			
-		$sql="INSERT INTO proveedor VALUES (NULL,'".$cedula."','".$nombre."','".$email."','".$direccion."','".$telefono."')";
+		$sql="INSERT INTO cargos VALUES (NULL,'".$nombre."','".$salario."')";
 
 		$resultado=mysqli_query($conex,$sql);
 	
@@ -70,9 +70,9 @@ public function guardar(){
 		<script type="text/javascript">
 			
 			if (confirm("Registro exitoso, desea registrar otro?")) {
-				window.location="ControladorProveedor.php?operacion=registrar";	
+				window.location="ControladorCargos.php?operacion=registrar";	
 			}else{
-				window.location="ControladorProveedor.php?operacion=index";
+				window.location="ControladorCargos.php?operacion=index";
 			}
 			
 		</script>
@@ -90,11 +90,11 @@ public function modificar(){
 	$db=new clasedb();
 	$conex=$db->conectar();//conectando con la base de datos
 	
-	$sql="SELECT * FROM proveedor WHERE id=".$id_proveedor."";
+	$sql="SELECT nombre, salario FROM cargos WHERE id=".$id_cargos."";
 	$res=mysqli_query($conex,$sql);//ejecutando consulta
 	$data=mysqli_fetch_array($res);//extrayendo datos en array
 
-	header("Location: ../Vistas/proveedores/modificar.php?data=".serialize($data));
+	header("Location: ../Vistas/cargos/modificar.php?data=".serialize($data));
 }//fin de la funcion modificar
 
 
@@ -105,7 +105,7 @@ public function actualizar()
 	$db=new clasedb();
 	$conex=$db->conectar();//conectando con la base de datos
 	
-	$sql="SELECT * FROM proveedor WHERE correo='".$correo."' AND id<>".$id;
+	$sql="SELECT nombre, salario FROM cargos WHERE nombre='".$nombre."' AND id<>".$id;
 //echo $sql;
 	$res=mysqli_query($conex,$sql);
 
@@ -113,27 +113,27 @@ public function actualizar()
 		if ($cant>0) {
 			?>
 				<script type="text/javascript">
-					alert("Ya existe un proveedor con este correo");
-					window.location="ControladorProveedor.php?operacion=index";
+					alert("Cargo ya registrado");
+					window.location="ControladorCargos.php?operacion=index";
 				</script>
 			<?php
 		}else{
 		
-						$sql="UPDATE proveedor SET cedula='".$cedula."',nombre='".$nombre."',email='".$email."',direccion='".$direccion."',telefono='".$telefono."' WHERE id=".$id;
+						$sql="UPDATE cargos SET nombre='".$nombre."',salario='".$salario."' WHERE id=".$id;
 
 							$res=mysqli_query($conex,$sql);
 							if ($res) {
 								?>
 									<script type="text/javascript">
 										alert("Registro modificado");
-										window.location="ControladorProveedor.php?operacion=index";
+										window.location="ControladorCargos.php?operacion=index";
 									</script>
 								<?php
 							} else {
 								?>
 									<script type="text/javascript">
 										alert("Error al modificar el registro");
-										window.location="ControladorProveedor.php?operacion=index";
+										window.location="ControladorCargos.php?operacion=index";
 									</script>
 								<?php
 							}			
@@ -148,52 +148,52 @@ public function eliminar()
 	$db=new clasedb();
 	$conex=$db->conectar();//conectando con la base de datos
 
-	$sql="DELETE FROM proveedor WHERE id=".$id_proveedor;
+	$sql="DELETE FROM cargos WHERE id=".$id_cargos;
 
 		$res=mysqli_query($conex,$sql);
 		if ($res) {
 			?>
 				<script type="text/javascript">
 					alert("Registro eliminado");
-					window.location="ControladorProveedor.php?operacion=index";
+					window.location="ControladorCargos.php?operacion=index";
 				</script>
 			<?php
 		} else {
 			?>
 				<script type="text/javascript">
 					alert("Registro no eliminado");
-					window.location="ControladorProveedor.php?operacion=index";
+					window.location="ControladorCargos.php?operacion=index";
 				</script>
 			<?php
 		}
 }//fin de la función eliminar
 
 static function controlador($operacion){
-		$proveedor=new ControladorProveedor();
+		$cargo=new ControladorCargos();
 	switch ($operacion) {
 		case 'index':
-			$proveedor->index();
+			$cargo->index();
 			break;
 		case 'registrar':
-			$proveedor->registrar();
+			$cargo->registrar();
 			break;
 		case 'guardar':
-			$proveedor->guardar();
+			$cargo->guardar();
 			break;
 		case 'modificar':
-			$proveedor->modificar();
+			$cargo->modificar();
 			break;
 		case 'actualizar':
-			$proveedor->actualizar();
+			$cargo->actualizar();
 			break;
 		case 'eliminar':
-			$proveedor->eliminar();
+			$cargo->eliminar();
 			break;
 		default:
 			?>
 				<script type="text/javascript">
 					alert("No existe la ruta");
-					window.location="ControladorProveedor.php?operacion=index";
+					window.location="ControladorCargos.php?operacion=index";
 				</script>
 			<?php
 			break;
@@ -202,5 +202,5 @@ static function controlador($operacion){
 }//cierre de la clase
 
 
-ControladorProveedor::controlador($operacion);
+ControladorCargos::controlador($operacion);
 ?>

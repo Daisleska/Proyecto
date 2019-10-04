@@ -11,7 +11,7 @@ $data=unserialize($data);
             <div class="animated fadeIn" >
                 <div class="row">
 
-                    <div class="col-md-9">
+                    <div class="col-md-9" style="margin-left: 2.5cm;">
                         <div class="card" >
                             <div class="card-header">
                                 <strong class="card-title"><i style="color: #006699;" class="fa fa-user"></i> Empleado: <?php
@@ -26,7 +26,7 @@ $data=unserialize($data);
                                     <thead>
                                         <tr>
                                             <th>id</th>
-                                            <th>Dias Laborables</th>
+                                            <th>Días Laborables</th>
                                                                                        
                                         </tr>
                                     </thead>
@@ -50,12 +50,14 @@ $data=unserialize($data);
                                     </tbody>
                                  
                                 </table>
-                                    <td><button class="btn btn-primary btn-sm"><a href="../../Controladores/ControladorDiasLab.php?operacion=modificar&id_empleado=<?=$data[$i][0]?>">Modificar</a></button>
+                                    <td><button class="btn btn-primary btn-sm"><i class="fa fa-edit"></i><a href="../../Controladores/ControladorDiasLab.php?operacion=modificar&id_empleado=<?=$data[$i][0]?>"></a></button>
 
                                   
 
-                                    <button class="btn btn-danger btn-sm"><a href="javascript:eliminar(<?=$data[$i][0]?>)">Eliminar</a></button>
+                                    <button class="btn btn-danger btn-sm"><a href="javascript:eliminar(<?=$data[$i][0]?>)"><i class="menu-icon fa fa-trash-o"></i></a></button>
                                     </td>
+
+                                    <button class="btn btn-primary btn-sm"><a href="../../Controladores/ControladorEmpleado.php?operacion=index"><i class="fa fa-mail-reply"></i>&nbsp;</a></button>
                             </div>
                         </div>
                     </div>

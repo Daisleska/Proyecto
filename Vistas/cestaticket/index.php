@@ -1,4 +1,4 @@
- <?php
+<?php
 extract($_REQUEST);
 $data=unserialize($data);
 include_once "../includes/menu.php"; 
@@ -28,18 +28,14 @@ include_once "../includes/menu.php";
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title"><i class="fa fa-list"></i> LISTADO DE PROVEEDORES</i></strong>
+                                <strong class="card-title"><i class="fa fa-list"></i>  LISTADO DE CESTATICKET</strong>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th>N°</th>
-                                            <th>C.I/RIF</th>
-                                            <th>Nombre</th>
-                                            <th>Correo</th>
-                                            <th>Dirección</th>
-                                            <th>Teléfono</th>
+                                            <th>Monto</th>
                                             <th>Opciones</th>
                                         </tr>
                                     </thead>
@@ -63,12 +59,12 @@ include_once "../includes/menu.php";
 
                                     }  ?>
     
-                                    <td><a  href="../../Controladores/ControladorProveedor.php?operacion=modificar&id_proveedor=<?=$data[$i][0]?>"><i title="Modificar" class="menu-icon fa fa-edit"></a></i>
+                                    <td><a  href="../../Controladores/ControladorCestaticket.php?operacion=modificar&id_cestaticket=<?=$data[$i][0]?>"><i title="Modificar" class="menu-icon fa fa-edit"></a></i>
     
                                     
     
 
-                                    <a href="../../Controladores/ControladorProveedor.php?operacion=eliminar&id_proveedor=<?=$data[$i][0]?>"><i title="Eliminar" class="menu-icon fa fa-trash-o"></a></i>
+                                    <a href="../../Controladores/ControladorCestaticket.php?operacion=eliminar&id_cestaticket=<?=$data[$i][0]?>"><i title="Eliminar" class="menu-icon fa fa-trash-o"></a></i>
                                     </td>
 
                                     <?php   
@@ -84,7 +80,8 @@ include_once "../includes/menu.php";
                 </div>
             </div><!-- .animated -->
         </div><!-- .content -->
-</div>
+    </div>
+
 
 
     </div><!-- /#right-panel -->

@@ -94,8 +94,9 @@ $data=unserialize($data);
 
                             <form action="../../Controladores/ControladorPerfil.php?operacion=modificar" method="POST">
                                 
-                                <button type="submit" class="btn btn-success" id="submit_btn">
-                                Modificar</button>
+                                <button type="submit" class="btn btn-success" id="submit_btn"><i class="fa fa-edit"></i>
+                                
+                                </button>
                             </form>
 
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-10-2019 a las 23:32:45
+-- Tiempo de generación: 05-10-2019 a las 01:34:42
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.2.12
 
@@ -54,10 +54,9 @@ CREATE TABLE `asignacion_deduccion` (
 --
 
 INSERT INTO `asignacion_deduccion` (`id`, `descripcion`, `tipo`, `monto`) VALUES
-(1, 'Seguro Social', 'Deduccion', '1000'),
-(2, 'Bono de ProducciÃ³n', 'Asignacion', '1000'),
-(3, 'Prima de ProducciÃ³n ', 'Asignacion', '1000'),
-(4, '', 'Asignacion', '');
+(1, 'Memoriales La Victoria C.A', 'Deduccion', '10000'),
+(2, 'Prima por Hijo', 'Asignacion', '50000'),
+(8, 'Memoriales La Victor', 'Deduccion', '50000');
 
 -- --------------------------------------------------------
 
@@ -85,7 +84,8 @@ INSERT INTO `asistencias` (`id`, `id_empleado`, `fecha_hora`, `estado`) VALUES
 (7, 28147989, '2019-09-15 16:56:33', ''),
 (8, 25946044, '2019-09-15 17:00:02', ''),
 (9, 25873122, '2019-09-15 17:03:22', ''),
-(10, 0, '2019-10-01 17:18:11', '');
+(10, 0, '2019-10-01 17:18:11', ''),
+(11, 1, '2019-10-03 16:38:24', '');
 
 -- --------------------------------------------------------
 
@@ -111,6 +111,7 @@ CREATE TABLE `auditoria` (
 CREATE TABLE `cargos` (
   `id` int(11) NOT NULL,
   `nombre` varchar(90) NOT NULL,
+  `salario` varchar(90) NOT NULL,
   `id_departamento` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -118,12 +119,28 @@ CREATE TABLE `cargos` (
 -- Volcado de datos para la tabla `cargos`
 --
 
-INSERT INTO `cargos` (`id`, `nombre`, `id_departamento`) VALUES
-(1, 'Jefe', 1),
-(2, 'Asistente', 2),
-(3, 'Secretaria', 3),
-(4, 'Gerente', 4),
-(5, 'Obrero', 5);
+INSERT INTO `cargos` (`id`, `nombre`, `salario`, `id_departamento`) VALUES
+(1, 'Jefe', '1000000', 1),
+(2, 'Asistente', '400000', 2),
+(3, 'Secretaria', '250000', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cestaticket`
+--
+
+CREATE TABLE `cestaticket` (
+  `id` int(11) NOT NULL,
+  `monto` varchar(90) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `cestaticket`
+--
+
+INSERT INTO `cestaticket` (`id`, `monto`) VALUES
+(1, '50000');
 
 -- --------------------------------------------------------
 
@@ -227,9 +244,7 @@ CREATE TABLE `empleado` (
 --
 
 INSERT INTO `empleado` (`id`, `cedula`, `nombres`, `apellidos`, `direccion`, `telefono`, `fecha_ingreso`, `condicion`, `fecha_venc`, `salario`, `ncuenta`, `id_cargo`, `id_departamento`) VALUES
-(1, '28147989', 'Hector Argenis', 'Hernandez Ceballos', 'cagua', 3590130, '2019-08-08', 'Fijo', '2019-08-31', 1234567, 2147483647, 1, 4),
-(2, '25946044', 'Jose Leonardo', 'Alvarez Fuentes', 'Maracay', 65432367, '0000-00-00', 'Fijo', '0000-00-00', 5432123, 2147483647, 1, 2),
-(3, '25873122', 'Juan Carlos', 'Figueredo EspaÃ±a', 'La Victoria', 3163502, '2019-09-11', 'Contratado', '2020-01-11', 250000, 2147483647, 4, 2);
+(1, '28147989', 'Hector Argenis', 'Hernandez Ceballos', 'cagua', 3590130, '0000-00-00', 'Fijo', '0000-00-00', 1234567, 2147483647, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -331,8 +346,15 @@ CREATE TABLE `materia_prima` (
   `nombre` varchar(90) NOT NULL,
   `presentacion` varchar(90) NOT NULL,
   `unidad` enum('Kgs','Lts') NOT NULL,
-  `stock_max` int(90) NOT NULL
+  `stock_max` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `materia_prima`
+--
+
+INSERT INTO `materia_prima` (`id`, `codigo`, `nombre`, `presentacion`, `unidad`, `stock_max`) VALUES
+(1, 'C1903', 'XILENO ', 'BARITANQUE DE 1000 LTS ', 'Lts', '100000');
 
 -- --------------------------------------------------------
 
@@ -357,6 +379,20 @@ CREATE TABLE `pago` (
 CREATE TABLE `pago_asignaciondeduccion` (
   `id_pago` int(90) NOT NULL,
   `id_ad` int(90) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pre_nomina`
+--
+
+CREATE TABLE `pre_nomina` (
+  `id` int(11) NOT NULL,
+  `id_empleado` int(11) NOT NULL,
+  `total` varchar(90) NOT NULL,
+  `quincena` varchar(90) NOT NULL,
+  `status` enum('1','2','3') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -467,22 +503,20 @@ CREATE TABLE `producto_proveedor` (
 
 CREATE TABLE `proveedor` (
   `id` int(11) NOT NULL,
-  `tipo_rif` varchar(2) NOT NULL,
-  `rif` varchar(11) NOT NULL,
+  `cedula` varchar(90) NOT NULL,
   `nombre` varchar(90) NOT NULL,
   `email` varchar(90) NOT NULL,
   `direccion` varchar(90) NOT NULL,
-  `telefono` int(90) NOT NULL,
-  `tipo_producto` varchar(50) NOT NULL,
-  `fecha_registro` date NOT NULL
+  `telefono` varchar(90) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `proveedor`
 --
 
-INSERT INTO `proveedor` (`id`, `tipo_rif`, `rif`, `nombre`, `email`, `direccion`, `telefono`, `tipo_producto`, `fecha_registro`) VALUES
-(2, 'j', '9398383923', 'inica', 'inica@gmail.com', 'cagua', 1402232, 'materia', '2019-09-06');
+INSERT INTO `proveedor` (`id`, `cedula`, `nombre`, `email`, `direccion`, `telefono`) VALUES
+(2, '25873122', 'Juan Carlos Figueredo', 'juan2912@gmail.com', 'La Victoria', '3163502'),
+(4, 'J-1345678', 'Inica Cagua C.A', 'inicacca@gmail.com', 'Cagua ', '9876556');
 
 -- --------------------------------------------------------
 
@@ -655,6 +689,12 @@ ALTER TABLE `cargos`
   ADD KEY `id_departamentos` (`id_departamento`);
 
 --
+-- Indices de la tabla `cestaticket`
+--
+ALTER TABLE `cestaticket`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `departamentos`
 --
 ALTER TABLE `departamentos`
@@ -740,6 +780,13 @@ ALTER TABLE `pago_asignaciondeduccion`
   ADD KEY `id_ad` (`id_ad`);
 
 --
+-- Indices de la tabla `pre_nomina`
+--
+ALTER TABLE `pre_nomina`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_empleado` (`id_empleado`);
+
+--
 -- Indices de la tabla `privilegios`
 --
 ALTER TABLE `privilegios`
@@ -804,13 +851,13 @@ ALTER TABLE `almacen`
 -- AUTO_INCREMENT de la tabla `asignacion_deduccion`
 --
 ALTER TABLE `asignacion_deduccion`
-  MODIFY `id` int(90) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(90) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `asistencias`
 --
 ALTER TABLE `asistencias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `auditoria`
@@ -822,7 +869,13 @@ ALTER TABLE `auditoria`
 -- AUTO_INCREMENT de la tabla `cargos`
 --
 ALTER TABLE `cargos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `cestaticket`
+--
+ALTER TABLE `cestaticket`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `departamentos`
@@ -864,12 +917,18 @@ ALTER TABLE `inventario`
 -- AUTO_INCREMENT de la tabla `materia_prima`
 --
 ALTER TABLE `materia_prima`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `pago`
 --
 ALTER TABLE `pago`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `pre_nomina`
+--
+ALTER TABLE `pre_nomina`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -894,7 +953,7 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `recibidos`
@@ -954,14 +1013,7 @@ ALTER TABLE `inventario`
 -- Filtros para la tabla `materiaprima_proveedor`
 --
 ALTER TABLE `materiaprima_proveedor`
-  ADD CONSTRAINT `materiaprima_proveedor_ibfk_1` FOREIGN KEY (`id_materiaprima`) REFERENCES `materia_prima` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `materiaprima_proveedor_ibfk_2` FOREIGN KEY (`id_proveedor`) REFERENCES `proveedor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `materia_prima`
---
-ALTER TABLE `materia_prima`
-  ADD CONSTRAINT `materia_prima_ibfk_1` FOREIGN KEY (`id`) REFERENCES `materiaprima_producto` (`id_materiaprima`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `pago`

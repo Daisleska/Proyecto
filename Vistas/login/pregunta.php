@@ -60,15 +60,15 @@ extract($_REQUEST);
                            <div class="input-group-addon"><i class="fa  fa-question"></i></div>
                         <input type="text" name="pregunta" class="form-control" value="<?=$pregunta?>">
                         </div>
-                     <label>Respuesta</label>
+                     <label>Respuesta:</label>
                         <div class="input-group form-group">
                            <div class="input-group-addon"><i class="fa  fa-shield"></i></div>
-                            <input required="required" maxlength="90" minlength="2" type="password" name="respuesta" class="form-control"  title="Ingrese la respuesta a la pregunta de seguridad">
+                            <input required="required" maxlength="20" minlength="4" type="password" name="respuesta" class="form-control"  title="Ingrese la respuesta a la pregunta de seguridad">
                            
                         </div>
 
                         <div class="register-link m-t-15 text-center">
-                                        <p> Desea regresar?
+                                        <p> ¿Desea regresar?
                                          <a href="login.php"> Volver</a>
                                      </p>
                                     </div>

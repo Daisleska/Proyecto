@@ -50,11 +50,11 @@
                         <label>Correo</label>
                         <div class="input-group form-group">
                             <div class="input-group-addon"><i class="fa  fa-envelope"></i></div>
-                            <input name="correo" required="required" maxlength="30" type="email" class="form-control" placeholder="juan1234@gmail.com" title="correo ingresado al registrarte">
+                            <input name="correo" required="required" minlength="15" maxlength="25" type="email" class="form-control" placeholder="Juan1234@gmail.com" title="Correo ingresado al registrarte">
                         </div>
 
                         <div class="register-link m-t-15 text-center">
-                                        <p> Desea regresar? <a href="login.php"> Volver</a></p>
+                                        <p> ¿Desea regresar? <a href="login.php"> Volver</a></p>
                                     </div>
                             <button type="submit" name="enviar" value="enviar" class="btn btn-primary btn-flat m-b-15"><i class="fa fa-check"></i>&nbsp;Recuperar</button>
 

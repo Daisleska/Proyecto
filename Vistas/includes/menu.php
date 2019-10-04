@@ -58,30 +58,39 @@
                     </li>
                     <h3 class="menu-title">ALMACEN</h3><!-- /.menu-title -->
                    
-
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-truck"></i>Proveedores</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-archive"></i>Materia Prima</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-edit"></i><a href="../../Controladores/ControladorProveedor.php?operacion=registrar">Registrar</a></li>
-                            <li><i class="menu-icon fa fa-book"></i><a href="../../Controladores/ControladorProveedor.php?operacion=index">Listado</a></li>
+                            <li><i class="fa fa-list"></i><a href="../../Controladores/ControladorMP.php?operacion=index">Listado</a></li>
+
                         </ul>
                     </li>
-
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-barcode"></i>Materia Prima</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-edit"></i><a href="../materia_prima/registrar_materiaprima.php">Registrar</a></li>
-                            <li><i class="fa fa-table"></i><a href="../materia_prima/listado_mp.php">Listado</a></li>
-                        </ul>
-                    </li>
+                    
 
                      <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-archive"></i>Inventario</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-archive"></i>Recibidos</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-edit"></i><a href="../menu/ControladorMenu.php?operacion=registrar_inventario">Registrar</a></li>
-                            <li><i class="fa fa-list"></i><a href="../menu/ControladorMenu.php?operacion=inventario">Listado</a></li>
+                            <li><i class="fa fa-list"></i><a href="../../Controladores/ControladorRecibidos.php?operacion=registrar">Registrar</a></li>
+                            <li><i class="fa fa-list"></i><a href="../../Controladores/ControladorRecibidos.php?operacion=index">Listado</a></li>
                         </ul>
                     </li>
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-archive"></i>Producto</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-list"></i><a href="../../Controladores/ControladorProductos.php?operacion=registrar">Registro</a></li>
+                            <li><i class="fa fa-list"></i><a href="../../Controladores/ControladorProductos.php?operacion=index">Listado</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-archive"></i>Inventario</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-list"></i><a href="#">...</a></li>
+                        </ul>
+                    </li>
+
+                   
                     
 
                     <h3 class="menu-title">RECURSOS HUMANOS</h3><!-- /.menu-title -->
@@ -105,18 +114,34 @@
                     
 
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Asig / deducc</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Asig / Deducc</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-users"></i><a href="../../Controladores/ControladorAsigDeducc.php?operacion=registrar">Registrar</a></li>
                             <li><i class="menu-icon fa fa-list"></i><a href="../../Controladores/ControladorAsigDeducc.php?operacion=index">Listado</a></li>
                         </ul>
                     </li>
 
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Cargos</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-users"></i><a href="../../Controladores/ControladorCargos.php?operacion=registrar">Registrar</a></li>
+                            <li><i class="menu-icon fa fa-list"></i><a href="../../Controladores/ControladorCargos.php?operacion=index">Listado</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Cestaticket</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-users"></i><a href="../../Controladores/ControladorCestaticket.php?operacion=registrar">Registrar</a></li>
+                            <li><i class="menu-icon fa fa-list"></i><a href="../../Controladores/ControladorCestaticket.php?operacion=index">Listado</a></li>
+                        </ul>
+                    </li>
+
                      <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-money"></i>Nomina</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-users"></i><a href="../nomina/registro_pago.php">Registrar</a></li>
-                            <li><i class="menu-icon fa fa-list"></i><a href="../nomina/listado_pago.php">Listado</a></li>
+                            <li><i class="menu-icon fa fa-users"></i><a href="#">...</a></li>
+                            <li><i class="menu-icon fa fa-list"></i><a href="#">Movimientos</a></li>
                         </ul>
                     </li>
 
@@ -145,24 +170,24 @@
     <div id="right-panel" class="right-panel">
 
         <!-- Header-->
-        <header id="header" class="header  col-md-12">
-
-            <div class="header-menu ">
-
-                <div class="col-md-7">
+        <header id="header" class="header  col-md-12"><div class="header-menu "><div class="col-md-7">
                     <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa-hand-o-left"></i></a>
                     <div class="header-left">
-                        <button class="search-trigger"><i class="fa fa-search"></i></button> 
+                        <img src="../../images/servi.png" width="120">
+                        <p style="text-align: center; margin-left: 6cm; margin-top: 0cm;">SERVIFORM C.A La Victoria Edo. Aragua</p>
+                    </div>
+        
+
                         <div class="form-inline">
-                            <form class="search-form">
-                                <input class="form-control mr-sm-2" type="text" placeholder="buscar ..." aria-label="Search">
-                                <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
-                            </form>
+
+                        
                         </div>
 
+                        
 
-                        <!--  -->
+                    
                     </div>
+                    
                 </div>
 
 
@@ -170,60 +195,8 @@
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="user-avatar rounded-circle" src="../../images/admin.jpg" alt="User Avatar">
-                        </a>
 
-                        <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="../../Controladores/ControladorPerfil.php?operacion=verperfil"><i class="fa fa-user"></i> Mi perfil</a>
-
-                            <a class="nav-link" href="../../Controladores/controladorUsuario.php?operacion=registrar"><i class="fa fa-user"></i>Registrar usuario</a>
-
-                           
-                        </div>
-                    </div>
-                     <div>
-                    <a id="btn9"  class="nav-link" style="float: right;" href="../../Controladores/controladorLogin.php?operacion=logout"><i class="fa fa-power-off" ></i> Salir</a>
-                </div>
-
-               
-
-                    <!-- cambio -->
-                </div>
-            </div>
-
-        </header><!-- /header -->
-        <!-- Header-->
-
-        <div class="breadcrumbs">
-
-         <!--    membrete------------------------------------------------- -->
-
-            <div class="col-md-9">
-
-               <!--  <div class="col-md-3" >
-                    <a class="navbar-brand" href="#"><img style="float: left;" width="70" src="../../images/upta.png" width="100" height="70" alt="Logo"></a>
-                    </div> -->
-
-                <div class="page-tittle" class="col-md-6">
-                    <img src="../../images/servi.png" width="100">
-                    <br>
-                    <cite>SERVIFORM C.A
-                    <br>
-                     La Victoria .Edo. Aragua</cite>
-                    
-                </div>
-            </div>
-
-            <!-- fin del membrete-------------------------------------------- -->
-
-
-       <!--  Hora y fecha------------------------------------------------- -->
-            
-            <div class="col-sm-3">
-                <!--   <header style="text-align: right; margin-right: 20px;">
-                    <p style="margin-bottom: 1px;">Fecha Y Hora:</p> -->
-
-
-<script type="text/javascript">
+                            <script type="text/javascript">
 //<![CDATA[
 
 function makeArray() {
@@ -255,9 +228,58 @@ function checkTime(i)
 {if (i<10) {i="0" + i;}return i;}
 window.onload=function(){startTime();}
 </script>
-<div id="reloj" style="font-size:20px;"></div>
+<div id="reloj" style="font-size:15px;" ></div>
+                        </a>
+
+                        <div class="user-menu dropdown-menu">
+                            <a class="nav-link" href="../../Controladores/ControladorPerfil.php?operacion=verperfil"><i class="fa fa-user"></i> Mi perfil</a>
+
+                            <a class="nav-link" href="../../Controladores/controladorUsuario.php?operacion=registrar"><i class="fa fa-user"></i>Registrar usuario</a>
+
+                            <a class="nav-link" href="../../Controladores/controladorLogin.php?operacion=logout"><i class="fa fa-power-off" ></i> Salir</a>
+
+                           
+                        </div>
+                      
+                  
+                     
+                    
+                
+                
+               
+               
  
-</header> 
+                </div>
+            </div>
+
+        </header><!-- /header -->
+        <!-- Header-->
+
+        <div class="breadcrumbs">
+
+         <!--    membrete------------------------------------------------- -->
+
+            <div class="col-md-9">
+
+               <!--  <div class="col-md-3" >
+                    <a class="navbar-brand" href="#"><img style="float: left;" width="70" src="../../images/upta.png" width="100" height="70" alt="Logo"></a>
+                    </div> -->
+
+                
+            </div>
+
+            <!-- fin del membrete-------------------------------------------- -->
+
+
+       <!--  Hora y fecha------------------------------------------------- -->
+            
+            <div class="col-sm-3">
+                <!--   <header style="text-align: right; margin-right: 20px;">
+                    <p style="margin-bottom: 1px;">Fecha Y Hora:</p> -->
+
+
+
+
             </div>
         </div>
 

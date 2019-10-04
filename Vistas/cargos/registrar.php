@@ -1,3 +1,4 @@
+
 <?php include_once "../includes/menu.php"; ?>
 <script type="text/javascript">
     function solonumeros(e){
@@ -42,11 +43,11 @@
         </div>
 
         <!-- contenido -->
- <form action="../../Controladores/ControladorAsigDeducc.php?operacion=guardar" method="POST"  class="form">
+ <form action="../../Controladores/ControladorCargos.php?operacion=guardar" method="POST"  class="form">
        <div style="padding-left: 150px;" class="col-lg-10">
               <div class="card">
               <div class="card-header">
-              <strong><i class="fa fa-edit"></i> REGISTRAR ASIGNACIONES Y DEDUCCIONES</strong> 
+              <strong><i class="fa fa-edit"></i> REGISTRAR CARGOS</strong> 
               </div>
 
 
@@ -54,29 +55,19 @@
           
 
           <div style="padding-left: 50px;" class="row form-group">
-                   <div class="col col-md-4"><label class=" form-control-label">* Descripción:</label></div>
+                   <div class="col col-md-4"><label class=" form-control-label">* Cargo:</label></div>
 
-                   <div class="col-12 col-md-7"><input type="text" id="" name="descripcion" required="required"  minlength="6" maxlength="30" class="form-control"></div>
+                   <div class="col-12 col-md-6"><input type="text" id="" name="nombre" required="required"  minlength="4" maxlength="20" class="form-control"></div>
           </div>
 
-          <div style="padding-left: 50px;" class="row form-group">
-                   <div class="col col-md-4"><label class=" form-control-label">* Tipo:</label></div>
+            
+            <div style="padding-left: 50px;" class="row form-group">
+                   <div class="col col-md-4"><label class=" form-control-label">* Salario:</label></div>
 
-                   <div class="col-12 col-md-7"><select id="hf-tipo_ad" name="tipo" class="form-control" required="required"><span class="help-block"></span>
-                      <option value="" selected="selected">Selecciona Tipo</option>
-                      <option value="Asignacion">Asignación</option>
-                      <option value="Deduccion">Deducción</option>
-                  </select></div>
-          </div>
-
-          <div style="padding-left: 50px;" class="row form-group">
-                   <div class="col col-md-4"><label class=" form-control-label">* Monto:</label></div>
-
-                   <div class="col-12 col-md-7"><input type="text" id="" name="monto" required="required" onkeypress="return solonumeros(event)" minlength="6" maxlength="20" class="form-control"></div>
+                   <div class="col-12 col-md-6"><input type="text" id="" name="salario" required="required"  minlength="6" maxlength="20" class="form-control" onkeypress="return solonumeros(event)"></div>
           </div>
 
           <p style="padding-left: 50px; padding-top: 10px;">(*) Campos obligatorios</p>
-
 
 
                      </div>

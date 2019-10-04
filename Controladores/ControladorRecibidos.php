@@ -2,7 +2,7 @@
 include("../Modelos/clasedb.php");
 extract($_REQUEST);
 
-class ControladorProveedor
+class ControladorRecibidos
 {
 	
 
@@ -11,7 +11,7 @@ public function index(){
 	$db=new clasedb();//instanciando clasedb
 	$conex=$db->conectar();//conectando con la base de datos
 
-	$sql="SELECT * FROM proveedor";//query
+	$sql="SELECT * FROM recibidos";//query
 
 
 	//ejecutando query
@@ -29,7 +29,7 @@ public function index(){
 			$i++;
 		}
 		
-	    header("Location: ../Vistas/proveedores/index.php?filas=".$filas."&campos=".$campos."&data=".serialize($datos));
+	    header("Location: ../Vistas/recibidos/index.php?filas=".$filas."&campos=".$campos."&data=".serialize($datos));
 	} else {
 		echo "Error en la BASE DE DATOS";
 
@@ -38,30 +38,15 @@ public function index(){
 
 public function registrar(){
 
-	header("Location: ../Vistas/proveedores/registrar.php");
+	header("Location: ../Vistas/recibidos/registrar.php");
 }//fin registrar
 
 public function guardar(){
 	extract($_POST);//EXTRAYENDO VARIABLES DEL FORMULARIO
 	$db=new clasedb();
 	$conex=$db->conectar();//conectando con la base de datos
-
-	$sql="SELECT * FROM proveedor WHERE cedula='".$cedula."'";
-
-	$res=mysqli_query($conex,$sql);
-	$cuantos=mysqli_num_rows($res);
-	//echo $cuantos;
-	if ($cuantos>0) {
-		?>
-		<script type="text/javascript">
-			alert("El proveedor con esta Cedula / Rif ya existe");
-			window.location="ControladorProveedor.php?operacion=registrar";
-		</script>
-			<?php
-	} else {
 		
-			
-		$sql="INSERT INTO proveedor VALUES (NULL,'".$cedula."','".$nombre."','".$email."','".$direccion."','".$telefono."')";
+		$sql="INSERT INTO recibidos VALUES (NULL,".$id_pmp.",'".$cantidad."','".$fecha."','".$observacion."','".$ce."')";
 
 		$resultado=mysqli_query($conex,$sql);
 	
@@ -70,16 +55,16 @@ public function guardar(){
 		<script type="text/javascript">
 			
 			if (confirm("Registro exitoso, desea registrar otro?")) {
-				window.location="ControladorProveedor.php?operacion=registrar";	
+				window.location="ControladorRecibidos.php?operacion=registrar";	
 			}else{
-				window.location="ControladorProveedor.php?operacion=index";
+				window.location="ControladorRecibidos.php?operacion=index";
 			}
 			
 		</script>
 			<?php
 
 		} 
-		}
+		
 }//fin de la funcion guardar
 
 
@@ -90,11 +75,11 @@ public function modificar(){
 	$db=new clasedb();
 	$conex=$db->conectar();//conectando con la base de datos
 	
-	$sql="SELECT * FROM proveedor WHERE id=".$id_proveedor."";
+	$sql="SELECT * FROM recibidos WHERE id=".$id_recibidos."";
 	$res=mysqli_query($conex,$sql);//ejecutando consulta
 	$data=mysqli_fetch_array($res);//extrayendo datos en array
 
-	header("Location: ../Vistas/proveedores/modificar.php?data=".serialize($data));
+	header("Location: ../Vistas/recibidos/modificar.php?data=".serialize($data));
 }//fin de la funcion modificar
 
 
@@ -105,40 +90,28 @@ public function actualizar()
 	$db=new clasedb();
 	$conex=$db->conectar();//conectando con la base de datos
 	
-	$sql="SELECT * FROM proveedor WHERE correo='".$correo."' AND id<>".$id;
-//echo $sql;
-	$res=mysqli_query($conex,$sql);
-
-	$cant=mysqli_num_rows($res);//trae cuantos registros tiene la consulta
-		if ($cant>0) {
-			?>
-				<script type="text/javascript">
-					alert("Ya existe un proveedor con este correo");
-					window.location="ControladorProveedor.php?operacion=index";
-				</script>
-			<?php
-		}else{
+	
 		
-						$sql="UPDATE proveedor SET cedula='".$cedula."',nombre='".$nombre."',email='".$email."',direccion='".$direccion."',telefono='".$telefono."' WHERE id=".$id;
+    $sql="UPDATE recibidos SET id_pmp='".$id_pmp."',cantidad='".$cantidad."',fecha='".$fecha."',observacion='".$observacion."',ce='".$ce."' WHERE id=".$id;
 
 							$res=mysqli_query($conex,$sql);
 							if ($res) {
 								?>
 									<script type="text/javascript">
 										alert("Registro modificado");
-										window.location="ControladorProveedor.php?operacion=index";
+										window.location="ControladorRecibidos.php?operacion=index";
 									</script>
 								<?php
 							} else {
 								?>
 									<script type="text/javascript">
 										alert("Error al modificar el registro");
-										window.location="ControladorProveedor.php?operacion=index";
+										window.location="ControladorRecibidos.php?operacion=index";
 									</script>
 								<?php
 							}			
 			
-		}//fin del condicional de correo registrado
+		
 }//fin de la función actualizar
 
 
@@ -148,52 +121,52 @@ public function eliminar()
 	$db=new clasedb();
 	$conex=$db->conectar();//conectando con la base de datos
 
-	$sql="DELETE FROM proveedor WHERE id=".$id_proveedor;
+	$sql="DELETE FROM recibidos WHERE id=".$id_recibidos;
 
 		$res=mysqli_query($conex,$sql);
 		if ($res) {
 			?>
 				<script type="text/javascript">
 					alert("Registro eliminado");
-					window.location="ControladorProveedor.php?operacion=index";
+					window.location="ControladorRecibidos.php?operacion=index";
 				</script>
 			<?php
 		} else {
 			?>
 				<script type="text/javascript">
 					alert("Registro no eliminado");
-					window.location="ControladorProveedor.php?operacion=index";
+					window.location="ControladorRecibidos.php?operacion=index";
 				</script>
 			<?php
 		}
 }//fin de la función eliminar
 
 static function controlador($operacion){
-		$proveedor=new ControladorProveedor();
+		$recibido=new ControladorRecibidos();
 	switch ($operacion) {
 		case 'index':
-			$proveedor->index();
+			$recibido->index();
 			break;
 		case 'registrar':
-			$proveedor->registrar();
+			$recibido->registrar();
 			break;
 		case 'guardar':
-			$proveedor->guardar();
+			$recibido->guardar();
 			break;
 		case 'modificar':
-			$proveedor->modificar();
+			$recibido->modificar();
 			break;
 		case 'actualizar':
-			$proveedor->actualizar();
+			$recibido->actualizar();
 			break;
 		case 'eliminar':
-			$proveedor->eliminar();
+			$recibido->eliminar();
 			break;
 		default:
 			?>
 				<script type="text/javascript">
 					alert("No existe la ruta");
-					window.location="ControladorProveedor.php?operacion=index";
+					window.location="ControladorRecibidos.php?operacion=index";
 				</script>
 			<?php
 			break;
@@ -202,5 +175,5 @@ static function controlador($operacion){
 }//cierre de la clase
 
 
-ControladorProveedor::controlador($operacion);
+ControladorRecibidos::controlador($operacion);
 ?>

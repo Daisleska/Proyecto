@@ -1,29 +1,24 @@
 <?php
 extract($_REQUEST);
 $data=unserialize($data);
+include_once "../includes/menu.php"; 
 ?>
 
-<?php include_once "../includes/menu.php"; ?>
-
         <div class="breadcrumbs">
-            <div class="col-sm-4">
+            <div class="col-sm-5">
                 <div class="page-header float-left">
+
+                
+    
+            </div>
+            <div class="col-sm-7">
+                <div class="page-header float-right">
                     <div class="page-title">
-                   
+
+                     
                     </div>
                 </div>
             </div>
-           <!--  <div class="col-sm-8">
-                <div class="page-header float-right">
-                    <div class="page-title">
-                        <ol class="breadcrumb text-right">
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Table</a></li>
-                            <li class="active">Data table</li>
-                        </ol>
-                    </div>
-                </div>
-            </div> -->
         </div>
 
         <div class="content mt-3">
@@ -33,7 +28,7 @@ $data=unserialize($data);
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Listado de Asignaciones y Deducciones</strong>
+                                <strong class="card-title"><i class="fa fa-list"></i> LISTADO DE ASIGNACIONES Y DEDUCCIONES</strong>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
@@ -44,8 +39,6 @@ $data=unserialize($data);
                                             <th>Tipo</th>
                                             <th>Monto</th>
                                             <th>opciones</th>
-                                            
-                                        
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -68,20 +61,17 @@ $data=unserialize($data);
 
                                     }  ?>
     
-                                    <td><a href="../../Controladores/ControladorAsigDeducc.php?operacion=modificar&id=<?=$data[$i][0]?>"><i title="Modificar" class="menu-icon fa fa-edit"></i>
+                                    <td><a  href="../../Controladores/ControladorAsigDeducc.php?operacion=modificar&id=<?=$data[$i][0]?>"><i title="Modificar" class="menu-icon fa fa-edit"></a></i>
     
                                     
-                                    
-                                   <a href='../../Controladores/ControladorAsigDeducc.php?operacion=eliminar&id(<?=$data[$i][0]?>)'><i title="Eliminar" class="menu-icon fa fa-trash-o"></i>
-                                    
+    
 
-                                   
-                                </td>
+                                    <a href="../../Controladores/ControladorAsigDeducc.php?operacion=eliminar&id=<?=$data[$i][0]?>"><i title="Eliminar" class="menu-icon fa fa-trash-o"></a></i>
+                                    </td>
 
                                     <?php   
                                 $num++;
                                 }   ?>
-
                                     </tbody>
                                 </table>
                             </div>
@@ -92,8 +82,9 @@ $data=unserialize($data);
                 </div>
             </div><!-- .animated -->
         </div><!-- .content -->
+    </div>
+
 
 
     </div><!-- /#right-panel -->
-
  <?php include_once "../includes/footer.php"; ?>

@@ -3,6 +3,7 @@ include ('../../Modelos/clasedb.php');
 include_once "../includes/menu.php";
 extract ($_REQUEST);
 $data=unserialize($data);
+$materia_prima=unserialize($materia_prima);
 ?>
 <script type="text/javascript">
     function solonumeros(e){
@@ -45,42 +46,54 @@ $data=unserialize($data);
         </div>
 
         <!-- contenido -->
- <form action="../../Controladores/ControladorProveedor.php?operacion=actualizar" method="POST"  class="form">
+ <form action="../../Controladores/ControladorRecibidos.php?operacion=actualizar" method="POST"  class="form">
        <div style="padding-left: 150px;" class="col-lg-10">
               <div class="card">
               <div class="card-header">
-              <strong><i class="fa fa-edit"></i> MODIFICAR PROVEEDOR</strong> 
+              <strong><i class="fa fa-edit"></i> MODIFICAR RECIBIDOS</strong> 
               </div>
 
 
            <div class="card-body card-block">
+
+          <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
+                <div class="col col-md-5"><label for="hf-materia" class=" form-control-label">* Materia Prima</label></div>
+                    <div class="col-12 col-md-6">
+                    <select name="id_materia_prima" title="Seleccione"class="form-control">
+                    <option disabled="disabled" selected="selected" value="">Seleccione la Materia Prima</option>
+                    <?php 
+                    for ($i=0; $i<$filas; $i++){
+                    ?>
+                    <option value="<?=$materia_prima[$i][0]?>"><?=$materia_prima[$i][2]?></option>
+                    <?php
+                    }
+                    ?>
+                    </select>
+                    </div>
+                    </div>
           
-            <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
-                <div class="col col-md-4"><label for="hf-ci" class=" form-control-label">C.I / RIF:</label></div>
-                <div class="col-12 col-md-6"><input type="text" id="hf-ci" name="cedula" placeholder="Ej: J-5677839"  minlength="8" maxlength="20" readonly="readonly" class="form-control" value="<?php echo $data['cedula']; ?>"></div>
+
+          <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
+                <div class="col col-md-4"><label for="hf-cantidad" class=" form-control-label">Cantidad:</label></div>
+                <div class="col-12 col-md-6"><input type="text" id="hf-cantidad" name="cantidad"  required="required" onkeypress="return solonumeros(event)" minlength="4" maxlength="15" class="form-control" value="<?php echo $data['cantidad']; ?>"></div>
             </div>
 
             <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
-                <div class="col col-md-4"><label for="hf-nombres" class=" form-control-label">Nombre:</label></div>
-                <div class="col-12 col-md-6"><input type="text" id="hf-nombre" name="nombre" placeholder="Ej: Inica"  minlength="5" maxlength="30" required="required" class="form-control" value="<?php echo $data['nombre']; ?>"></div>
-            </div>
-
-                                    
-            <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
-                <div class="col col-md-4"><label for="hf-correo" class=" form-control-label">Correo:</label></div>
-                <div class="col-12 col-md-6"><input type="email" id="hf-correo" name="email" placeholder="Ej: proveedor@gmail.com" required="required" minlength="15" maxlength="40" class="form-control" value="<?php echo $data['email']; ?>"></div>
+                <div class="col col-md-4"><label for="hf-fecha" class=" form-control-label">Fecha:</label></div>
+                <div class="col-12 col-md-6"><input type="text" id="hf-fecha" name="fecha"  required="required" class="form-control" value="<?php echo $data['fecha']; ?>"></div>
             </div>
 
             <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
-                <div class="col col-md-4"><label for="hf-dir" class=" form-control-label">Dirección:</label></div>
-                <div class="col-12 col-md-6"><input type="text" id="hf-dir" name="direccion" placeholder="Ej: Aragua, Cagua" required="required" minlength="5" maxlength="40" class="form-control" value="<?php echo $data['direccion']; ?>"></div>
+                <div class="col col-md-4"><label for="hf-observacion" class=" form-control-label">Observación:</label></div>
+                <div class="col-12 col-md-6"><input type="text" id="hf-observacion" name="observacion" minlength="4" maxlength="40" required="required" class="form-control" value="<?php echo $data['observacion']; ?>"></div>
             </div>
 
             <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
-                <div class="col col-md-4"><label for="hf-tlf" class=" form-control-label">Teléfono:</label></div>
-                <div class="col-12 col-md-6"><input type="text" id="hf-tlf" name="telefono" placeholder="Ej: 02120010010" onkeypress="return solonumeros(event)" minlength="7" maxlength="11" required="required" class="form-control" value="<?php echo $data['telefono']; ?>"></div>
+                <div class="col col-md-4"><label for="hf-ce" class=" form-control-label">CE:</label></div>
+                <div class="col-12 col-md-6"><input type="text" id="hf-ce" name="ce" minlength="4" maxlength="10" required="required" class="form-control" value="<?php echo $data['ce']; ?>"></div>
             </div>
-          
+
+
                      </div>
                      <div class="card-footer">
                 <input type="hidden" name="operacion" value="actualizar">

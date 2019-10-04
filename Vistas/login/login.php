@@ -53,7 +53,7 @@
                         <div class="form-group">
                             <div class="input-group ">
                           <div class="input-group-addon"><i class="fa  fa-envelope"></i></div>
-                            <input required="required" name="correo" maxlength="30" type="email" class="form-control" placeholder="Correo">
+                            <input required="required" name="correo" maxlength="25" minlength="15" type="email" class="form-control" placeholder="Correo">
                         </div>
                         </div>
                             <div class=" input-group form-group">
@@ -64,7 +64,7 @@
                                 <div class="checkbox">
                                     
                                     <label class="pull-right">
-                                <a style="color: blue;" href="../../Controladores/controladorLogin.php?operacion=olvido">Olvidó su contraseña?</a>
+                                <a style="color: blue;" href="../../Controladores/controladorLogin.php?operacion=olvido">¿Olvidó su contraseña?</a>
                             </label>
 
                                 </div>

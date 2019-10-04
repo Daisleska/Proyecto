@@ -124,6 +124,7 @@ if ($nombresbd>0){
 
 			<script type="text/javascript">
 				alert("No se pudo modificar el registro");
+				window.location="ControladorAsigDeducc.php?operacion=index";
 			</script>
 
 
@@ -138,7 +139,7 @@ if ($nombresbd>0){
 		extract($_REQUEST);
 		$db=new clasedb;
 		$conex=$db->conectar();
-		$sql="DELETE FROM asignacion_deduccion WHERE id=".$id;
+		$sql="DELETE * FROM asignacion_deduccion WHERE id=".$id_asignacion_deduccion;
 		
 	$res=mysqli_query($conex,$sql);
 		if ($res) {
@@ -151,7 +152,7 @@ if ($nombresbd>0){
 		} else {
 			?>
 				<script type="text/javascript">
-					alert("RRegistro no eliminado");
+					alert("Registro no eliminado");
 					window.location="ControladorAsigDeducc.php?operacion=index";
 				</script>
 			<?php

@@ -6,9 +6,9 @@ $data=unserialize($data);
 
    <section style="padding-left: 20px;" class="content-header">
       <ol class="breadcrumb">
-        <li><i class="fa fa-users"><a href="../menu/ControladorMenu.php?operacion=asistencia"></i> Asistencia /</a></li>
+        <li><i class="fa fa-users"><a href="../menu/ControladorMenu.php?operacion=asistencia"></i> Asistencia/ </a></li>
 
-        <li><i class="fa fa-table"><a href="../asistencias/ControlA.php?operacion=index"></i>Consulta de asistencias</a></li>
+        <li><i class="fa fa-table"><a href="../asistencias/ControlA.php?operacion=index"></i> Consulta de asistencias</a></li>
     
         <li class="col-md-2,5" style=" padding-left: 290px;">
         <a href="../../reportes/reporte_asistencia.php" target="blank" class="btn btn-block btn-danger btn-sm"><i class="fa fa-file-pdf-o"></i> Reporte PDF</a>

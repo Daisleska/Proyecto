@@ -30,7 +30,7 @@ $data=unserialize($data);
             <div class="animated fadeIn">
                 <div class="row">
 
-                	<h2 style="padding-left: 20px;">Listado De Usuarios Registrados</h2>
+               
 
                 	
 
@@ -38,6 +38,10 @@ $data=unserialize($data);
                         <div class="card">
                             <div class="card-header">
                                 <a title="Descargar PDF" style="float: right; padding-right: 40px;" href="../../reportes/reporte_usuarios.php"><i style="font-size: 30px;" class="fa fa-cloud-download"></i>&nbsp;</a>
+
+                                <div>
+                                  <strong style="margin-right: 4cm;" class="card-title"><i class="fa fa-list"></i> LISTADO DE USUARIOS</strong>
+                                </div>
 
                                 <div class="form-1-2">
       <label for="caja_busqueda">Buscar:</label>

@@ -30,39 +30,37 @@ $data=unserialize($data);
 
         <div class="content mt-3">
             <div class="animated fadeIn">
-              <div style=" padding-left: 18px;">
-                    <button  class="btn btn-primary"><a href="../../Controladores/ControladorUsuario.php?operacion=index"><i class="fa fa-mail-reply"></i>&nbsp; Volver</a></button></div>
+            
 
-
-                <div class="col-lg-11">
+                <div class="col-lg-10" style="margin-left: 2cm;">
                     <div class="card">
                       <div class="card-header">
-                           <strong>Modificar Usuarios</strong> 
+                           <strong><i class="fa fa-edit"></i> MODIFICAR USUARIO</strong> 
                                 </div>
                                    <div class="card-body card-block">
                                     <form action="../../Controladores/controladorUsuario.php?operacion=actualizar" method="post" class="form-horizontal">
             
                         
-                        <div class="row form-group">
-                            <div class="col col-md-4">
+                        <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
+                            <div class="col col-md-5">
                             <label>Nombre</label></div>
-                            <div class="col-12 col-md-5"><input name="nombre" maxlength="30" type="text" class="form-control" required="required" placeholder="nombre" value="<?=$data[1]?>"></div>
+                            <div class="col-12 col-md-5"><input name="nombre" minlength="4" maxlength="20" type="text" class="form-control" required="required" placeholder="nombre" value="<?=$data[1]?>"></div>
                         </div>
 
 
-                        <div class="row form-group">
-                              <div class="col col-md-4">
+                        <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
+                              <div class="col col-md-5">
                               <label>Correo</label></div>
-                              <div class="col-12 col-md-5"><input name="correo" required="required" maxlength="30" type="email" class="form-control" placeholder="Correo" value="<?=$data[2]?>"></div>
+                              <div class="col-12 col-md-5"><input name="correo" required="required" minlength="15"maxlength="25" type="email" class="form-control" placeholder="Correo" value="<?=$data[2]?>"></div>
                         </div>
 
-                        <div>¿Desea cambiar la clave? 
+                        <div style="padding-left: 50px; padding-top: 10px;">¿Desea cambiar la clave? 
                         <input type="checkbox" name="cambiar" id="cambiar" value="1"></div>
                         <br>
                         
 
-                        <div class="row form-group">
-                              <div class="col col-md-4">
+                        <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
+                              <div class="col col-md-5">
                                     <label>Contraseña Anterior</label></div>
                                     <div class="col-12 col-md-5"><input name="clave_anterior" id="clave_anterior" required="required" minlength="6" maxlength="20" type="password" class="form-control" placeholder="Contraseña" disabled="disabled"></div>
                         </div>
@@ -70,21 +68,21 @@ $data=unserialize($data);
 
                          
                         
-                        <div class="row form-group">
-                              <div class="col col-md-4">
+                        <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
+                              <div class="col col-md-5">
                                     <label>Contraseña</label></div>
                                     <div class="col-12 col-md-5"><input   name="clave" id="clave" required="required" minlength="6" maxlength="20" type="password" class="form-control" placeholder="Contraseña" disabled="disabled" ></div>
                         </div>
 
                       
-                        <div class="row form-group">
-                              <div class="col col-md-4">
+                        <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
+                              <div class="col col-md-5">
                                     <label>Repetir Contraseña</label></div>
                                     <div class="col-12 col-md-5"><input   name="clave_repetir" id="clave_repetir" required="required" minlength="6" maxlength="20" type="password" class="form-control" placeholder="Contraseña" disabled="disabled"></div>
                         </div>
 
-                        <div class="row form-group">
-                              <div class="col col-md-4"><label>Tipo de Usuario</label></div>
+                        <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
+                              <div class="col col-md-5"><label>Tipo de Usuario</label></div>
                                <div class="col-12 col-md-5"><select name="tipo_usuario" title="Seleccione el tipo de Usuario" class="form-control">
                               <?php if ($data[4]=="Admin") {
                               ?>
@@ -97,16 +95,16 @@ $data=unserialize($data);
                               </select></div>
                        </div>
 
-                        <div class="row form-group">
-                              <div class="col col-md-4">
+                        <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
+                              <div class="col col-md-5">
                                     <label>Pregunta de Seguridad</label></div>
-                                    <div class="col-12 col-md-5"><input name="pregunta" required="required" minlength="2" maxlength="90" type="text" class="form-control" placeholder="color favorito?" value="<?=$data[5]?>"></div>
+                                    <div class="col-12 col-md-5"><input name="pregunta" required="required" minlength="5" maxlength="20" type="text" class="form-control" placeholder="color favorito?" value="<?=$data[5]?>"></div>
                         </div>
 
-                        <div class="row form-group">
-                              <div class="col col-md-4">
+                        <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
+                              <div class="col col-md-5">
                                     <label>Respuesta de Seguridad</label></div>
-                                    <div class="col-12 col-md-5"><input name="respuesta" required="required" minlength="2" maxlength="90" type="text" class="form-control" placeholder="Azul"value="<?=$data[6]?>"></div>
+                                    <div class="col-12 col-md-5"><input name="respuesta" required="required" minlength="4" maxlength="20" type="text" class="form-control" placeholder="Azul"value="<?=$data[6]?>"></div>
                         </div>
                       </div>
 
@@ -118,11 +116,12 @@ $data=unserialize($data);
                 </div>
                 <div class="card-footer">
                 <button type="submit" class="btn btn-primary btn-sm">
-                <i class="fa fa-send"></i> Guardar
-                </button>
+                          <i class="fa fa-check"></i>&nbsp; 
+                      </button>
                 <button type="reset" class="btn btn-danger btn-sm">
-                <i class="fa fa-ban"></i> Limpiar
+                <i class="fa fa-ban"></i> 
                 </button>
+                <button  class="btn btn-primary btn-sm"><a href="../../Controladores/ControladorUsuario.php?operacion=index"><i class="fa fa-mail-reply"></i>&nbsp;</a></button>
             
                            </form>       
                                               </div>

@@ -15,7 +15,7 @@
 		switch($_REQUEST['operacion']){
 
 	    //Proveedor
-		case'registar':include"Vistas/proveedor/registar.php";break;
+		case'registrar_pro':include"Vistas/proveedor/registrar.php";break;
 		case'index':include"Vistas/proveedor/index.php";break;
 
 		//Materia Prima

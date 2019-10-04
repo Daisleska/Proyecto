@@ -12,9 +12,13 @@ $data=unserialize($data);
                 <div class="row">
 
                     <div class="col-md-12">
-                          <strong class="card-title"><i class="fa fa-list"></i> Listados de Empleados</strong>
+                          
                         <div class="card"> 
                             <div class="card-header">
+                                <div>
+         <strong style="margin-right: 4cm;" class="card-title"><i class="fa fa-list"></i> LISTADO DE EMPLEADOS</strong>
+                        
+     </div>
                                
                  <div class="form-1-2 col-md-10">
       <label for="caja_busqueda"><i class="fa fa-search"></i> Buscar:</label>
@@ -23,10 +27,12 @@ $data=unserialize($data);
 
      <div class="col-md-2,5">
                           <a href="../../reportes/reporte_empleados.php" target="blank" class="btn btn-block btn-danger btn-sm"><i class="fa fa-file-pdf-o"></i> Reporte PDF</a>
-                        </div>   
-</div>
 
-                            </div>
+     </div>
+     
+ </div>
+
+
                             <div class="card-body">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
@@ -69,6 +75,9 @@ $data=unserialize($data);
                                         
                                     </tbody>
                                 </table>
+                            </div>
+                            </div>
+
                             </div>
                         </div>
                     </div>
