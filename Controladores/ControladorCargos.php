@@ -105,21 +105,7 @@ public function actualizar()
 	$db=new clasedb();
 	$conex=$db->conectar();//conectando con la base de datos
 	
-	$sql="SELECT nombre, salario FROM cargos WHERE nombre='".$nombre."' AND id<>".$id;
-//echo $sql;
-	$res=mysqli_query($conex,$sql);
-
-	$cant=mysqli_num_rows($res);//trae cuantos registros tiene la consulta
-		if ($cant>0) {
-			?>
-				<script type="text/javascript">
-					alert("Cargo ya registrado");
-					window.location="ControladorCargos.php?operacion=index";
-				</script>
-			<?php
-		}else{
-		
-						$sql="UPDATE cargos SET nombre='".$nombre."',salario='".$salario."' WHERE id=".$id;
+						$sql="UPDATE cargos SET nombre='".$nombre."',salario='".$salario."' WHERE id=".$id_cargos;
 
 							$res=mysqli_query($conex,$sql);
 							if ($res) {
@@ -138,7 +124,6 @@ public function actualizar()
 								<?php
 							}			
 			
-		}//fin del condicional de correo registrado
 }//fin de la función actualizar
 
 

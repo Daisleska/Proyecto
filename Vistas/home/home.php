@@ -128,6 +128,15 @@
                 </div>
             </div>
 
+            <div class="col-md-6">
+                        <div class="card">
+                            <img class="card-img-top" src="../../images/servi.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-title mb-3">has que funcione esa mierda daisleska... Juan 02 XD XD XD</p>
+                            </div>
+                        </div>
+                    </div>
+
 
         </div> <!-- .content -->
     </div><!-- /#right-panel -->

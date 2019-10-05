@@ -52,7 +52,6 @@ $data=unserialize($data);
                                             <th>Fecha de Ingreso</th>
                                             <th>Condición</th>
                                             <th>Fecha de Vencimiento</th>
-                                            <th>Salario</th>
                                             <th>N° Cuenta</th>
                                             <th>Cargo</th>
                                             <th>Departamento</th>

@@ -70,7 +70,6 @@ $data=unserialize($data);
                   <select id="hf-tipo_ad" name="tipo" class="form-control" required="required">
                     
                     <option value="<?php echo $data['tipo']; ?>">Selecciona Tipo</option>
-                    <option></option>
                     <option value="Asignacion">Asignación</option>
                     <option value="Deduccion">Deducción</option>
                   </select>

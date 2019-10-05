@@ -41,14 +41,51 @@ $query_perfil=mysqli_query($con,"select * from perfil where id=1");
             <div class="col-sm-offset-4 col-sm-4">
                 <input type="hidden" name="operacion" value="guardar">
               <button type="submit" class="btn btn-success" id="submit_btn" data-loading-text="Buscando Empleado....">Registrar Asistencia <i class="ion-ios-undo"></i></button>
+
+
+   <!--  justificacion -->
+                
+      <button type="button" class="btn btn-secondary mb-1" data-toggle="modal" data-target="#mediumModal">
+                            Inasistencia
+                        </button>
+
+
+    <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="mediumModalLabel">Inasistencia Justificada?</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                              <label>No Justificado:
+                               <input type="checkbox" name="no_justificado"></label>
+
+                               <label>Justificacion:
+                               <input type="text" maxlength="500" name="justificado"></label>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-primary">Confirmar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- justificacion -->
             </div>
           </div>
         </form>
       </div>
       </div>
     </div>
+
+
       <!-- /.row -->
     </section> <!-- Fin de Main content Section-->
+
+ 
 
 
 

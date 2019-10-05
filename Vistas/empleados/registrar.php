@@ -3,6 +3,8 @@ include_once "../includes/menu.php";
 extract($_REQUEST);
 $cargos=unserialize($cargos);
 $departamentos=unserialize($departamentos);
+$asignaciones=unserialize($asignaciones);
+
 ?>
 <script type="text/javascript">
     function solonumeros(e){
@@ -108,13 +110,6 @@ $departamentos=unserialize($departamentos);
                     <div class="col-12 col-md-5"><input type="date" id="hf-fechav" name="fecha_venc" placeholder="Ej: 12-00-2000" class="form-control"></div>
                                                             </div>
 
-
-                     <div style="padding-left: 50px;" class="row form-group">
-                    <div class="col col-md-5"><label for="hf-salario" class=" form-control-label">Salario:</label></div>
-                    <div class="col-12 col-md-5"><input type="text" onkeypress="return solonumeros(event)" id="hf-salario" name="salario" minlength="6" maxlength="15" placeholder="Ej: 1.000.000" class="form-control"></div>
-                    </div>
-
-
                     <div style="padding-left: 50px;" class="row form-group">
                      <div class="col col-md-5"><label for="hf-ncuenta" class=" form-control-label">* Número de Cuenta:</label></div>
                     <div class="col-12 col-md-5"><input type="text" onkeypress="return solonumeros(event)" id="hf-ncuenta" name="ncuenta" minlength="20" maxlength="20" placeholder="Ej: 017503002028919920" class="form-control"></div>
@@ -194,6 +189,29 @@ $departamentos=unserialize($departamentos);
              </div>
          </div>
                </div>
+
+
+          <!-- asignaciones y deducciones -->
+               <div class="card">
+                            <div class="card-header">
+                                <strong class="card-title">Asignaciones / Deducciones</strong>
+                            </div>
+                            <div class="card-body">
+
+                                <select name="asignaciones[]" data-placeholder="..." multiple class="standardSelect">
+                                    <option value="" selected="selected" disabled="disabled"></option>
+                                    <?php 
+                    for ($i=0; $i<$filas_asi; $i++){
+                    ?>
+                    <option value="<?=$asignaciones[$i][0]?>"><?=$asignaciones[$i][1]?></option>
+                    <?php
+                    }
+                    ?>
+                                   
+                                </select>
+
+                            </div>
+                        </div>
             
                     <div class="card-footer">
                     <input type="hidden" name="operacion" value="guardar">
@@ -217,5 +235,5 @@ $departamentos=unserialize($departamentos);
                                 </div><!-- /#right-panel -->
                                 <!-- Right Panel -->
 
-
    <?php include_once "../includes/footer.php"; ?>
+

@@ -95,7 +95,7 @@ if ($nombresbd>0){
 	$res=mysqli_query($conex,$sql);//ejecutando consulta
 	$data=mysqli_fetch_array($res);//extrayendo datos en array
 
-		header("Location: ../Vistas/asigdeducc/modificar.php?id=".$id);
+		header("Location: ../Vistas/asigdeducc/modificar.php?data=".serialize($data));
 	}
 
 	public function actualizar(){

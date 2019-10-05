@@ -90,7 +90,7 @@ public function actualizar()
 	$conex=$db->conectar();//conectando con la base de datos
 	
 	
-	$sql="UPDATE cestaticket SET monto='".$monto."' WHERE id=".$id;
+	$sql="UPDATE cestaticket SET monto='".$monto."' WHERE id=".$id_cestaticket."";
 
 		$res=mysqli_query($conex,$sql);
 			if ($res) {

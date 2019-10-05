@@ -65,6 +65,10 @@ $data=unserialize($data);
                      </div>
                      <div class="card-footer">
                 <input type="hidden" name="operacion" value="actualizar">
+
+                <div><input type="hidden" name="operacion" value="actualizar"><input type="hidden" name="id_cestaticket" value="<?=$data[0]?>"><br>
+                </div>
+
                       <button type="submit" class="btn btn-primary btn-sm">
                           <i class="fa fa-check"></i>&nbsp; 
                       </button>

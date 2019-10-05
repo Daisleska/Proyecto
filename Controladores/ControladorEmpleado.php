@@ -81,32 +81,34 @@ public function registrar(){
       $cont++;
     }
     
-  //-------
+  //----consulta 3---
 
-/*$sql3="SELECT * FROM dia_lab";
+$sql3="SELECT * FROM asignacion_deduccion";
     if ($res3=mysqli_query($conex,$sql3)) {
       # se ejecutó la consulta
-      $campos_lab=mysqli_num_fields($res3);
-      $filas_lab=mysqli_num_rows($res3);
-      $laboral[]=array();
+      $campos_asi=mysqli_num_fields($res3);
+      $filas_asi=mysqli_num_rows($res3);
+      $asignaciones[]=array();
       $i=0;
       while ($data3=mysqli_fetch_array($res3)) {
-        for ($j=0; $j < $campos_lab; $j++) { 
-          $laboral[$i][$j]=$data3[$j];
+        for ($j=0; $j < $campos_asi; $j++) { 
+          $asignaciones[$i][$j]=$data3[$j];
         }
-        $i      }
+        $i++;
+      }
 
     } else {
       # no se ejecutó la consulta
       $cont++;
-    }*/
+    }
 
     if ($cont==0) {
       # se ejecutó
-      header("Location: ../Vistas/empleados/registrar.php?campos_cat=".$campos_cat."&filas_cat=".$filas_cat."&cargos=".serialize($cargos)."&campos_tip=".$campos_tip."&filas_tip=".$filas_tip."&departamentos=".serialize($departamentos));
+      header("Location: ../Vistas/empleados/registrar.php?campos_cat=".$campos_cat."&filas_cat=".$filas_cat."&cargos=".serialize($cargos)."&campos_tip=".$campos_tip."&filas_tip=".$filas_tip."&departamentos=".serialize($departamentos)."&campos_asi=".$campos_asi."&filas_asi=".$filas_asi."&asignaciones=".serialize($asignaciones));
     } else {
       # hubo un error
-      header("Location: ../index.php");
+      echo "error hector";
+     /* header("Location: ../index.php"*/
     }
     
 }//fin registrar
@@ -132,7 +134,7 @@ if ($cuantos>0){
         <?php
       }  else {
 
-     $sql=mysqli_query($connect  ,"INSERT INTO empleado VALUES (NULL,'".$cedula."','".$nombres."','".$apellidos."','".$direccion."','".$telefono."','".$fecha_ingreso."', '".$condicion."', '".$fecha_venc."', '".$salario."', '".$ncuenta."', '".$id_cargo."', '".$id_departamento."')");
+     $sql=mysqli_query($connect  ,"INSERT INTO empleado VALUES (NULL,'".$cedula."','".$nombres."','".$apellidos."','".$direccion."','".$telefono."','".$fecha_ingreso."', '".$condicion."', '".$fecha_venc."', '".$ncuenta."', '".$id_cargo."', '".$id_departamento."')");
         //echo $sql;
     }  
      
@@ -149,8 +151,21 @@ if ($_POST['checkbox'] !="")
     }
   }
 }
+
+
+if ($_POST['asignaciones'] !="")
+ {
+  if (is_array($_POST['asignaciones']))
+   {
+    //realizamos el ciclo
+    while(list ($key,$valor)= each($_POST['asignaciones'])) 
+    {
+      $sql3=mysqli_query($connect  ,"INSERT INTO empleado_asig (id_empleado, id_asignaciones) VALUES ('".$cedula."', ' ".$valor."')");
+    }
+  }
+}
   
-  if($sql and $sql2) {
+  if($sql and $sql2 and $sql3 ) {
 
     ?> 
 
@@ -179,7 +194,7 @@ public function modificar(){
   $db=new clasedb();
   $conex=$db->conectar();//conectando con la base de datos
   
-  $sql="SELECT empleado.id,empleado.cedula, empleado.nombres, empleado.apellidos, empleado.direccion, empleado.telefono, empleado.fecha_ingreso, empleado.condicion, empleado.fecha_venc, empleado.salario, empleado.ncuenta FROM empleado WHERE empleado.id=".$id_empleado."";
+  $sql="SELECT empleado.id,empleado.cedula, empleado.nombres, empleado.apellidos, empleado.direccion, empleado.telefono, empleado.fecha_ingreso, empleado.condicion, empleado.fecha_venc, empleado.ncuenta FROM empleado WHERE empleado.id=".$id_empleado."";
   $res=mysqli_query($conex,$sql);//ejecutando consulta
   $data=mysqli_fetch_array($res);//extrayendo datos en array
 
@@ -193,7 +208,7 @@ public function actualizar()
   
 
 
- $sql="UPDATE empleado SET cedula='".$cedula."',nombres='".$nombres."',apellidos='".$apellidos."',direccion='".$direccion."',telefono='".$telefono."' ,fecha_ingreso=".$fecha_ingreso." ,condicion='".$condicion."',fecha_venc=".$fecha_venc." ,salario='".$salario."' ,ncuenta='".$ncuenta."' WHERE id=".$id;
+ $sql="UPDATE empleado SET cedula='".$cedula."',nombres='".$nombres."',apellidos='".$apellidos."',direccion='".$direccion."',telefono='".$telefono."' ,fecha_ingreso=".$fecha_ingreso." ,condicion='".$condicion."',fecha_venc=".$fecha_venc." ,ncuenta='".$ncuenta."' WHERE id=".$id;
 
       $res=mysqli_query($conex,$sql);
         if ($res) {

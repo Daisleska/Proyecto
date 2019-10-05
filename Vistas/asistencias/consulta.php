@@ -46,10 +46,7 @@ $data=unserialize($data);
                         <tr>
                           <th>N°</th>
                           <th>Cédula</th>
-                          <th>Nombre</th>
-                          <th>Apellido</th>
                           <th>Fecha de Registro</th>
-                          <th>Departamento</th>
                           <th>Opciones</th>
                         </tr>
                       </thead>

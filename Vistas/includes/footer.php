@@ -66,6 +66,16 @@
 <script src="../../assets/js/jquery.min.js" ></script>
   <script src="../../vendors/plugins/datepicker/bootstrap-datepicker.js"></script>
  <script src="../../vendors/plugins/daterangepicker/daterangepicker.js"></script>
+ <script src="../../vendors/chosen/chosen.jquery.min.js"></script>
+<script>
+    jQuery(document).ready(function() {
+        jQuery(".standardSelect").chosen({
+            disable_search_threshold: 10,
+            no_results_text: "Oops, nothing found!",
+            width: "100%"
+        });
+    });
+</script>
  
       <!--  plugins sweet alert 2 -->
    <script src="../../vendors/plugins/sweetalert2.all.min.js"></script>
