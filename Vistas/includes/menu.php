@@ -109,7 +109,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user"></i>Asistencia</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-table"></i><a href="../menu/ControladorMenu.php?operacion=consulta">Listado</a></li>
-                            <li><i class="menu-icon fa fa-check-circle"></i><a href="../menu/ControladorMenu.php?operacion=asistencia">Marcar Asistencia</a></li>
+                            <li><i class="menu-icon fa fa-check-circle"></i><a href="../asistencias/ControlA.php?operacion=index">Marcar Asistencia</a></li>
                         </ul>
                     </li>
 
@@ -176,7 +176,7 @@
                     <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa-hand-o-left"></i></a>
                     <div class="header-left">
                         <img src="../../images/servi.png" width="100">
-                        <!-- <p style="text-align: center; margin-left: 6cm; margin-top: 0cm;">SERVIFORM C.A La Victoria Edo. Aragua</p> -->
+                        <p style="text-align: center; margin-left: 6cm; margin-top: 0cm;">SERVIFORM C.A La Victoria Edo. Aragua</p>
                     </div>
         
 

@@ -36,17 +36,51 @@ public function index(){
 	}//enviando datos
 }//fin de la funcion login
 
-public function registrar(){
+public function registrar()
 
-	header("Location: ../Vistas/recibidos/registrar.php");
+	{
+	$db=new clasedb();
+	$conex=$db->conectar();
+	$cont=0; //para contar si no se ejecutaron consultas
+	//
+	
+		$sql="SELECT * FROM materia_prima";
+		if ($res=mysqli_query($conex,$sql)) {
+			# se ejecutó la consulta
+			$campos=mysqli_num_fields($res);
+			$filas=mysqli_num_rows($res);
+			$datos[]=array();
+			$i=0;
+			while ($data=mysqli_fetch_array($res)) {
+				for ($j=0; $j < $campos; $j++) { 
+					$datos[$i][$j]=$data[$j];
+				}
+				$i++;
+			}
+
+		} else {
+			# no se ejecutó la consulta
+			$cont++;
+		}
+		
+	//-------
+		if ($cont==0) {
+			# se ejecutó
+			header("Location: ../Vistas/recibidos/registrar.php?campos=".$campos."&filas=".$filas."&datos=".serialize($datos));
+		} else {
+			# hubo un error
+			header("Location: ../home.php");
+		}
+		
 }//fin registrar
+
 
 public function guardar(){
 	extract($_POST);//EXTRAYENDO VARIABLES DEL FORMULARIO
 	$db=new clasedb();
 	$conex=$db->conectar();//conectando con la base de datos
 		
-		$sql="INSERT INTO recibidos VALUES (NULL,".$id_pmp.",'".$cantidad."','".$fecha."','".$observacion."','".$ce."')";
+		$sql="INSERT INTO recibidos VALUES (NULL,".$id_pmp.",'".$cantidad."','".$fecha."','".$ce."','".$observacion."')";
 
 		$resultado=mysqli_query($conex,$sql);
 	

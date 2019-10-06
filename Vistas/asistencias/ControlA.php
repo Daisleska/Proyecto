@@ -6,10 +6,39 @@ class ControlA
 {
 
 public function index() {
+
+$dia = date("l");
+switch ($dia) {
+    case "Sunday":
+           echo "Hoy es domingo";
+    break;
+    case "Monday":
+           echo "Hoy es lunes ";
+    break;
+    case "Tuesday":
+           echo "Hoy es martes";
+    break;
+    case "Wednesday":
+           echo "Hoy es miércoles";
+    break;
+    case "Thursday":
+           echo "Hoy es jueves";
+    break;
+    case "Friday":
+           echo "Hoy es viernes";
+    break;
+    case "Saturday":
+           echo "Hoy es sábado";
+    break;
+}
+ var_dump($dia);
+ die();
 	extract($_POST);
 	$db=new clasedb();
 	$conex=$db->conectar();
-	$sql="SELECT * FROM asistencias";
+	$sql="SELECT * FROM dia_lab
+		WHERE 
+		LIKE '%$date%'";
 
 	if ($res=mysqli_query($conex,$sql)) {
 	
@@ -27,7 +56,7 @@ public function index() {
 			$i++;
 		}
 		//enviando datos
-		header("Location: consulta.php?filas=".$filas."&campos=".$campos."&data=".serialize($datos));
+		header("Location: asistencia.php?filas=".$filas."&campos=".$campos."&data=".serialize($datos));
 	}else{
 		echo "Error en la Base de Datos";
 	}

@@ -85,9 +85,9 @@
     <script src="../../assets/js/main.js"></script>
 
      <!--  plugins sweet alert 2 -->
-   <script src="../../vendors/plugins/sweetalert2.all.min.js"></script>
+<!--    <script src="../../vendors/plugins/sweetalert2.all.min.js"></script>
    <script src="../../vendors/popper.js/codigo.js"></script>
-
+ -->
 
 </body>
 
