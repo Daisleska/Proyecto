@@ -56,7 +56,7 @@
           <div style="padding-left: 50px;" class="row form-group">
                    <div class="col col-md-4"><label class=" form-control-label">* Descripción:</label></div>
 
-                   <div class="col-12 col-md-7"><input type="text" id="" name="descripcion" required="required"  minlength="6" maxlength="30" class="form-control"></div>
+                   <div class="col-12 col-md-7"><input type="text" id="" name="descripcion" required="required"  minlength="4" maxlength="30" class="form-control"></div>
           </div>
 
           <div style="padding-left: 50px;" class="row form-group">
@@ -73,6 +73,16 @@
                    <div class="col col-md-4"><label class=" form-control-label">* Monto:</label></div>
 
                    <div class="col-12 col-md-7"><input type="text" id="" name="monto" required="required" onkeypress="return solonumeros(event)" minlength="6" maxlength="20" class="form-control"></div>
+          </div>
+
+          <div style="padding-left: 50px;" class="row form-group">
+                   <div class="col col-md-4"><label class=" form-control-label">* ¿Obligarorio?</label></div>
+
+                   <div class="col-12 col-md-7"><select id="hf-obli" name="obligatorio" class="form-control" required="required"><span class="help-block"></span>
+                      <option value="" selected="selected">Selecciona</option>
+                      <option value="Si">Sí</option>
+                      <option value="No">No</option>
+                  </select></div>
           </div>
 
           <p style="padding-left: 50px; padding-top: 10px;">(*) Campos obligatorios</p>

@@ -193,12 +193,12 @@ $asignaciones=unserialize($asignaciones);
 
           <!-- asignaciones y deducciones -->
                <div class="card">
-                            <div class="card-header">
+                            <div class="card-header" >
                                 <strong class="card-title">Asignaciones / Deducciones</strong>
                             </div>
                             <div class="card-body">
 
-                                <select name="asignaciones[]" data-placeholder="..." multiple class="standardSelect">
+                                <select name="asignaciones[]" data-placeholder="..." multiple class="standardSelect" >
                                     <option value="" selected="selected" disabled="disabled"></option>
                                     <?php 
                     for ($i=0; $i<$filas_asi; $i++){

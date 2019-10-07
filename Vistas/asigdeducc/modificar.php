@@ -48,7 +48,7 @@ $data=unserialize($data);
 
         <!-- contenido -->
 
-       <div class="col-lg-10">
+       <div class="col-lg-10" style="padding-left: 150px;">
               <div class="card">
               <div class="card-header">
               <strong><i class="fa fa-edit"></i> MODIFICAR ASIGNACIONES Y DEDUCCIONES</strong> 
@@ -58,14 +58,14 @@ $data=unserialize($data);
            <div class="card-body card-block">
            <form action="../../Controladores/ControladorAsigDeducc.php?operacion=actualizar" method="POST"  class="form">
 
-            <div class="row form-group">
-                <div class="col col-md-3"><label for="hf-descri" class=" form-control-label">Descripción:</label></div>
-                <div class="col-12 col-md-6"><input type="text" id="hf-descri" name="descripcion"  required="required" minlength="6" maxlength="30" class="form-control" value="<?php echo $data['descripcion']; ?>"></div>
+            <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
+                <div class="col col-md-4"><label for="hf-descri" class=" form-control-label">Descripción:</label></div>
+                <div class="col-12 col-md-7"><input type="text" id="hf-descri" name="descripcion"  required="required" minlength="4" maxlength="30" class="form-control" value="<?php echo $data['descripcion']; ?>"></div>
             </div>
 
-            <div class="row form-group">
-                <div class="col col-md-3"><label for="hf-tipo_ad" class=" form-control-label">Tipo:</label></div>
-                <div class="col-12 col-md-6">
+            <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
+                <div class="col col-md-4"><label for="hf-tipo_ad" class=" form-control-label">Tipo:</label></div>
+                <div class="col-12 col-md-7">
 
                   <select id="hf-tipo_ad" name="tipo" class="form-control" required="required">
                     
@@ -76,9 +76,22 @@ $data=unserialize($data);
                 </div>
             </div>
  
-            <div class="row form-group">
-                <div class="col col-md-3"><label for="hf-monto" class=" form-control-label">Monto:</label></div>
-                <div class="col-12 col-md-6"><input type="text" id="hf-monto" name="monto" onkeypress="return solonumeros(event)" required="required" minlength="6" maxlength="20" class="form-control" value="<?php echo $data['monto']; ?>"></div>
+            <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
+                <div class="col col-md-4"><label for="hf-monto" class=" form-control-label">Monto:</label></div>
+                <div class="col-12 col-md-7"><input type="text" id="hf-monto" name="monto" onkeypress="return solonumeros(event)" required="required" minlength="6" maxlength="20" class="form-control" value="<?php echo $data['monto']; ?>"></div>
+            </div>
+
+            <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
+                <div class="col col-md-4"><label for="hf-obli" class=" form-control-label">Tipo:</label></div>
+                <div class="col-12 col-md-7">
+
+                  <select id="hf-obli" name="obligatorio" class="form-control" required="required">
+                    
+                    <option value="<?php echo $data['obligatorio']; ?>">Selecciona</option>
+                    <option value="Si">Sí</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
             </div>
  
  
@@ -86,7 +99,7 @@ $data=unserialize($data);
                 <input type="hidden" name="operacion" value="actualizar">
                 <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
                 <button type="submit" class="btn btn-primary btn-sm">
-                <i class="fa fa-send"></i>
+                <i class="fa fa-check"></i>
                 </button>
                 <button type="reset" class="btn btn-danger btn-sm">
                     <i class="fa fa-ban"></i> 
