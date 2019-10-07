@@ -167,7 +167,7 @@ $asignaciones=unserialize($asignaciones);
                            <br>
 
                             <th> Miércoles</th>
-                           <input type="checkbox" name="checkbox[]" id="checkbox" value="Miercoles">
+                           <input type="checkbox" name="checkbox[]" id="checkbox" value="Miércoles">
                            <br>
 
                             <th> Jueves</th>
@@ -179,7 +179,7 @@ $asignaciones=unserialize($asignaciones);
                            <br>
 
                             <th> Sábado</th>
-                           <input type="checkbox" name="checkbox[]" id="checkbox" value="Sabado">
+                           <input type="checkbox" name="checkbox[]" id="checkbox" value="Sábado">
                            <br>
 
                             <th> Domingo</th>

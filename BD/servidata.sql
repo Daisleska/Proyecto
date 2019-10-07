@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-10-2019 a las 20:57:46
+-- Tiempo de generación: 07-10-2019 a las 03:31:47
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.1.26
 
@@ -71,23 +71,6 @@ CREATE TABLE `asistencias` (
   `status` enum('Si','No') NOT NULL,
   `justificacion` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `asistencias`
---
-
-INSERT INTO `asistencias` (`id`, `id_empleado`, `fecha_hora`, `status`, `justificacion`) VALUES
-(1, 28147989, '2019-09-03 18:57:19', '', NULL),
-(2, 4400947, '2019-09-04 19:45:51', '', NULL),
-(4, 28147989, '2019-09-05 18:49:14', '', NULL),
-(5, 28147989, '2019-09-06 18:15:50', '', NULL),
-(6, 25873122, '2019-09-07 00:52:29', '', NULL),
-(7, 28147989, '2019-09-15 16:56:33', '', NULL),
-(8, 25946044, '2019-09-15 17:00:02', '', NULL),
-(9, 25873122, '2019-09-15 17:03:22', '', NULL),
-(10, 0, '2019-10-01 17:18:11', '', NULL),
-(11, 1, '2019-10-03 16:38:24', '', NULL),
-(12, 1, '2019-10-05 14:25:12', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -193,49 +176,6 @@ CREATE TABLE `dia_lab` (
   `nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `dia_lab`
---
-
-INSERT INTO `dia_lab` (`id`, `id_empleado`, `nombre`) VALUES
-(1, 28147989, ' Lunes'),
-(2, 28147989, ' Martes'),
-(3, 28147989, ' Miercoles'),
-(4, 28147989, ' Jueves'),
-(5, 28147989, ' Viernes'),
-(6, 4400947, ' Miercoles'),
-(7, 4400947, ' Jueves'),
-(8, 4400947, ' Viernes'),
-(9, 4400947, ' Sabado'),
-(10, 25873122, ' Lunes'),
-(11, 25873122, ' Martes'),
-(12, 25873122, ' Miercoles'),
-(13, 25873122, ' Jueves'),
-(14, 25873122, ' Viernes'),
-(15, 25873122, ' Lunes'),
-(16, 25873122, ' Martes'),
-(17, 25873122, ' Miercoles'),
-(18, 25873122, ' Jueves'),
-(19, 25873122, ' Viernes'),
-(20, 3940399, ' Lunes'),
-(21, 3940399, ' Martes'),
-(22, 3940399, ' Miercoles'),
-(23, 3940399, ' Lunes'),
-(24, 3940399, ' Martes'),
-(25, 3940399, ' Miercoles'),
-(26, 78888888, ' Lunes'),
-(27, 78888888, ' Martes'),
-(28, 78888888, ' Miercoles'),
-(29, 78888888, ' Jueves'),
-(30, 12334448, ' Lunes'),
-(31, 12334448, ' Martes'),
-(32, 12334448, ' Miercoles'),
-(33, 12334448, ' Jueves'),
-(34, 637383838, ' Lunes'),
-(35, 637383838, ' Martes'),
-(36, 637383838, ' Miercoles'),
-(37, 637383838, ' Jueves');
-
 -- --------------------------------------------------------
 
 --
@@ -262,11 +202,9 @@ CREATE TABLE `empleado` (
 --
 
 INSERT INTO `empleado` (`id`, `cedula`, `nombres`, `apellidos`, `direccion`, `telefono`, `fecha_ingreso`, `condicion`, `fecha_venc`, `ncuenta`, `id_cargo`, `id_departamento`) VALUES
-(1, '28147989', 'Hector Argenis', 'Hernandez Ceballos', 'cagua', 3590130, '0000-00-00', 'Fijo', '0000-00-00', 2147483647, 1, 4),
-(4, '03940399', 'jjjjjjjjjjjjjjjjjjj', 'iksandfnja', 'kinkndiwqi', 989839983, '2019-10-05', 'Fijo', '2019-10-24', 2147483647, 1, 4),
-(5, '78888888', 'Hector Hernandez Hernandez Ceb', 'Hernandez Ceballos', 'cagua', 3590130, '2019-10-24', 'Contratado', '2019-10-07', 2147483647, 1, 3),
-(6, '12334448', 'Hector Hernandez Hernandez Ceb', 'Hernandez Ceballos', 'San Mateooo', 3590130, '2019-10-08', 'Fijo', '2019-10-25', 2147483647, 1, 4),
-(7, '637383838', 'Hector Hernandez Hernandez Ceb', 'Hernandez Ceballos', 'maracay', 3590130, '2019-10-09', 'Fijo', '2019-10-21', 2147483647, 1, 3);
+(8, '4400947', 'carmen', 'figueroaa', 'la victoria', 3423132, '2019-10-02', 'Fijo', '2019-11-01', 2147483647, 1, 1),
+(9, '28147989', 'Hector Hernandez Hernandez Ceb', 'Hernandez Ceballos', 'cagua', 3590130, '2019-10-06', 'Contratado', '2019-10-18', 2147483647, 1, 4),
+(11, '29554496', 'Hector Hernandez Hernandez Ceb', 'Hernandez Ceballos', 'cagua', 3590130, '2019-10-03', 'Fijo', '2019-11-06', 2147483647, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -287,7 +225,28 @@ CREATE TABLE `empleado_asig` (
 INSERT INTO `empleado_asig` (`id`, `id_empleado`, `id_asignaciones`) VALUES
 (1, 637383838, 1),
 (2, 637383838, 2),
-(3, 637383838, 8);
+(3, 637383838, 8),
+(4, 28147989, 1),
+(5, 28147989, 2),
+(6, 121222122, 2),
+(7, 121222122, 8),
+(8, 4400947, 1),
+(9, 4400947, 8),
+(10, 4400947, 1),
+(11, 4400947, 2),
+(12, 4400947, 8),
+(13, 28147989, 1),
+(14, 28147989, 2),
+(15, 28147989, 8),
+(16, 0, 1),
+(17, 0, 2),
+(18, 0, 8),
+(19, 0, 1),
+(20, 0, 2),
+(21, 0, 8),
+(22, 0, 1),
+(23, 0, 2),
+(24, 0, 8);
 
 -- --------------------------------------------------------
 
@@ -559,7 +518,8 @@ CREATE TABLE `proveedor` (
 
 INSERT INTO `proveedor` (`id`, `cedula`, `nombre`, `email`, `direccion`, `telefono`) VALUES
 (2, '25873122', 'Juan Carlos Figueredo', 'juan2912@gmail.com', 'La Victoria', '3163502'),
-(4, 'J-1345678', 'Inica Cagua C.A', 'inicacca@gmail.com', 'Cagua ', '9876556');
+(4, 'J-1345678', 'Inica Cagua C.A', 'inicacca@gmail.com', 'Cagua ', '9876556'),
+(5, '29554496', 'holahhh', 'holgggggga@gmail.com', 'aahha', '23456787654');
 
 -- --------------------------------------------------------
 
@@ -572,7 +532,7 @@ CREATE TABLE `recibidos` (
   `id_pmp` int(11) NOT NULL,
   `cantidad` varchar(90) NOT NULL,
   `fecha` date NOT NULL,
-  `observacion` varchar(90) NOT NULL,
+  `observacion` varchar(90) DEFAULT NULL,
   `ce` varchar(90) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -599,7 +559,7 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `nombre`, `correo`, `clave`, `tipo_usuario`, `pregunta`, `respuesta`, `borrado`) VALUES
 (1, 'Daileska Vilera', 'dvilera610@gmail.com', '044598473886535a33126083e3d2e1170e4a67befe897a83ad95a33209a64b3a', 'Usuario 1', 'Mascota', 'Sandy', 'S'),
-(2, 'hector hernandez', 'hectorher149@gmail.com', '9010e72389a80487d473017425c6ec7951068abed82a4df32459c91f0e45d2ea', 'Usuario 1', 'nombre de mascota', 'body', 'N'),
+(2, 'hector hernandez', 'hectorher149@gmail.com', '53c6dd220f272d3e88bb3b404d32ff65af6f749ee94c90405fd7a15819bbcf40', 'Usuario 1', 'nombre de mascota', 'body', 'N'),
 (3, 'Alejandro', 'darvisalfonso@gmail.com', '67d9f1c944a4ee6ef3634298c97639c81927a228d6aa490b343abf594e45aecf', 'Usuario 1', 'nombre de mascota', 'pelusa', 'S'),
 (4, 'Genessi', 'genessie@gmail.com', '8491502322172e09ec7222d33941d33afbfcc22ab0c4dd1033dd72232308675a', 'Admin', 'mes de nacimiento', 'noviembre', 'S');
 
@@ -715,7 +675,8 @@ ALTER TABLE `asignacion_deduccion`
 -- Indices de la tabla `asistencias`
 --
 ALTER TABLE `asistencias`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `rest_asis` (`id_empleado`);
 
 --
 -- Indices de la tabla `auditoria`
@@ -753,7 +714,8 @@ ALTER TABLE `despachos`
 -- Indices de la tabla `dia_lab`
 --
 ALTER TABLE `dia_lab`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `rest_dia` (`id_empleado`);
 
 --
 -- Indices de la tabla `empleado`
@@ -906,7 +868,7 @@ ALTER TABLE `asignacion_deduccion`
 -- AUTO_INCREMENT de la tabla `asistencias`
 --
 ALTER TABLE `asistencias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `auditoria`
@@ -918,13 +880,13 @@ ALTER TABLE `auditoria`
 -- AUTO_INCREMENT de la tabla `cargos`
 --
 ALTER TABLE `cargos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `cestaticket`
 --
 ALTER TABLE `cestaticket`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `departamentos`
@@ -942,19 +904,19 @@ ALTER TABLE `despachos`
 -- AUTO_INCREMENT de la tabla `dia_lab`
 --
 ALTER TABLE `dia_lab`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado_asig`
 --
 ALTER TABLE `empleado_asig`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `enviados`
@@ -1008,7 +970,7 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `recibidos`
@@ -1033,10 +995,22 @@ ALTER TABLE `usuarios_has_privilegios`
 --
 
 --
+-- Filtros para la tabla `asistencias`
+--
+ALTER TABLE `asistencias`
+  ADD CONSTRAINT `rest_asis` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `cargos`
 --
 ALTER TABLE `cargos`
   ADD CONSTRAINT `rest_departamento` FOREIGN KEY (`id_departamento`) REFERENCES `departamentos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `dia_lab`
+--
+ALTER TABLE `dia_lab`
+  ADD CONSTRAINT `rest_dia` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `empleado`

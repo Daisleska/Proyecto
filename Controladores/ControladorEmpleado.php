@@ -114,6 +114,8 @@ $sql3="SELECT * FROM asignacion_deduccion";
 }//fin registrar
 
 public function guardar(){
+
+  
     extract($_POST);
     $cedula=$_POST['cedula'];
 
@@ -147,7 +149,7 @@ if ($_POST['checkbox'] !="")
     //realizamos el ciclo
     while(list ($key,$value)= each($_POST['checkbox'])) 
     {
-      $sql2=mysqli_query($connect  ,"INSERT INTO dia_lab (id_empleado, nombre) VALUES ('".$cedula."', ' ".$value."')");
+      $sql2=mysqli_query($connect  ,"INSERT INTO dia_lab (id_empleado, nombre) VALUES ('".$id_empleado."', ' ".$value."')");
     }
   }
 }
@@ -160,7 +162,7 @@ if ($_POST['asignaciones'] !="")
     //realizamos el ciclo
     while(list ($key,$valor)= each($_POST['asignaciones'])) 
     {
-      $sql3=mysqli_query($connect  ,"INSERT INTO empleado_asig (id_empleado, id_asignaciones) VALUES ('".$cedula."', ' ".$valor."')");
+      $sql3=mysqli_query($connect  ,"INSERT INTO empleado_asig (id_empleado, id_asignaciones) VALUES ('".$id_empleado."', ' ".$valor."')");
     }
   }
 }
