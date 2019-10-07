@@ -35,7 +35,7 @@ switch ($dia) {
     $db=new clasedb();
     $conex=$db->conectar();
     
-    $sql="SELECT * FROM empleado, dia_lab WHERE dia_lab.id_empleado=empleado.id && dia_lab.nombre LIKE '%".$dia_es."%'";
+    $sql="SELECT empleado.id,empleado.nombres,empleado.apellidos,empleado.cedula,dia_lab.id AS id_dia_lab FROM empleado, dia_lab WHERE dia_lab.id_empleado=empleado.id && dia_lab.nombre LIKE '%".$dia_es."%'";
     //echo $sql;
     $result=mysqli_query($conex,$sql);
     $filas=mysqli_num_rows($result);
@@ -49,41 +49,40 @@ switch ($dia) {
     	}
     	$i++;	
     }
-
-    /*for ($i=0; $i < $filas; $i++) { 
-    	for ($j=0; $j < $campos; $j++) { 
-    		echo $empleados[$i][$j];
+    //buscando empleados en la tabla asistencia
+    $hoy=date('Y-m-d');
+    for ($i=0; $i < $filas; $i++) { 
+    	
+    	$sql2="SELECT * FROM asistencias WHERE id_empleado=".$empleados[$i][0]." && fecha_hora LIKE '%".$hoy."%'";
+    	//echo $sql2;
+    	$buscar=mysqli_query($conex,$sql2);
+    	if (mysqli_num_rows($buscar)==0) {
+    		$sql3="INSERT INTO asistencias VALUES(NULL,".$empleados[$i][0].",'".$hoy."','No','No se ha marcado asistencia')";
+    		$registro=mysqli_query($conex,$sql3);
     	}
-    	echo "<br>";
-    }*/
-    
+    }
+    //buscando los registros en asistencias
+    $sql4="SELECT asistencias.id,empleado.nombres,empleado.apellidos,empleado.cedula,asistencias.status,asistencias.justificacion FROM empleado, asistencias WHERE asistencias.id_empleado=empleado.id && asistencias.fecha_hora LIKE '%".$hoy."%'";
+    echo $sql4;
+    $result=mysqli_query($conex,$sql4);
+    $filas=mysqli_num_rows($result);
+    $campos=mysqli_num_fields($result);
+    $asistencia[]=array();
+    $i=0;
+    if ($res=mysqli_query($conex,$sql)) {
+    while ($data=mysqli_fetch_array($result)) {
+    	for ($j=0; $j < $campos ; $j++) { 
+    		$asistencia[$i][$j]=$data[$j];
+    	}
+    	$i++;	
+    }
+	}else{
+		echo "error en bdd";
+	}
 
- //var_dump($dia);
- //die();
-	/*extract($_POST);
-	$db=new clasedb();
-	$conex=$db->conectar();
-	$sql="SELECT * FROM dia_lab
-		WHERE 
-		LIKE '%$date%'";
-*/
-	
-	
-	//$campos=mysqli_num_fields($res);//cuantos campos trae la consulta
-	//$filas=mysqli_num_rows($res);//cuantas filas trae la consulta
-
-		//$i=0;
-	
-	//$datos[]=array();
-
-	/*while($data=mysqli_fetch_array($res)){
-			for ($j=0; $j < $campos; $j++) { 
-				$datos[$i][$j]=$data[$j];
-			} 
-			$i++;
-		}*/
+ 
 		//enviando datos
-		header("Location: asistencia.php?filas=".$filas."&campos=".$campos."&data=".serialize($empleados));
+		header("Location: asistencia.php?filas=".$filas."&campos=".$campos."&data=".serialize($asistencia));
 	}else{
 		echo "Error en la Base de Datos";
 	}

@@ -117,6 +117,10 @@ $data=unserialize($data);
                         <tr>
                           <th>N°</th>
                           <th>Cédula</th>
+                          <th>Nombres</th>
+                          <th>Apellidos</th>
+                          <th>Status</th>
+                          <th>Justificación</th>
                           <th>Opciones</th>
                         </tr>
                       </thead>
