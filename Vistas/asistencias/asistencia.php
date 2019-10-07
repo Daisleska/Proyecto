@@ -122,7 +122,7 @@ $data=unserialize($data);
                       </thead>
                       <tbody>
 
-              <?php $num=1;
+              <?php $num=1; echo $filas;
               for ($i=0; $i < $filas; $i++) { 
                                 
               echo "<tr>";    

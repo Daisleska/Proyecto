@@ -6,57 +6,84 @@ class ControlA
 {
 
 public function index() {
-
+extract($_REQUEST);
 $dia = date("l");
+$dia_es="";
 switch ($dia) {
     case "Sunday":
-           echo "Hoy es domingo";
+           $dia_es="Domingo";
     break;
     case "Monday":
-           echo "Hoy es lunes ";
+           $dia_es="Lunes";
     break;
     case "Tuesday":
-           echo "Hoy es martes";
+           $dia_es="Martes";
     break;
     case "Wednesday":
-           echo "Hoy es miércoles";
+           $dia_es="Miércoles";
     break;
     case "Thursday":
-           echo "Hoy es jueves";
+           $dia_es="Jueves";
     break;
     case "Friday":
-           echo "Hoy es viernes";
+           $dia_es="Viernes";
     break;
     case "Saturday":
-           echo "Hoy es sábado";
+           $dia_es="Sábado";
     break;
-}
- var_dump($dia);
- die();
-	extract($_POST);
+	}
+    $db=new clasedb();
+    $conex=$db->conectar();
+    
+    $sql="SELECT * FROM empleado, dia_lab WHERE dia_lab.id_empleado=empleado.id && dia_lab.nombre LIKE '%".$dia_es."%'";
+    //echo $sql;
+    $result=mysqli_query($conex,$sql);
+    $filas=mysqli_num_rows($result);
+    $campos=mysqli_num_fields($result);
+    $empleados[]=array();
+    $i=0;
+    if ($res=mysqli_query($conex,$sql)) {
+    while ($data=mysqli_fetch_array($result)) {
+    	for ($j=0; $j < $campos ; $j++) { 
+    		$empleados[$i][$j]=$data[$j];
+    	}
+    	$i++;	
+    }
+
+    /*for ($i=0; $i < $filas; $i++) { 
+    	for ($j=0; $j < $campos; $j++) { 
+    		echo $empleados[$i][$j];
+    	}
+    	echo "<br>";
+    }*/
+    
+
+ //var_dump($dia);
+ //die();
+	/*extract($_POST);
 	$db=new clasedb();
 	$conex=$db->conectar();
 	$sql="SELECT * FROM dia_lab
 		WHERE 
 		LIKE '%$date%'";
-
-	if ($res=mysqli_query($conex,$sql)) {
+*/
 	
-	$campos=mysqli_num_fields($res);//cuantos campos trae la consulta
-	$filas=mysqli_num_rows($res);//cuantas filas trae la consulta
-
-		$i=0;
 	
-	$datos[]=array();
+	//$campos=mysqli_num_fields($res);//cuantos campos trae la consulta
+	//$filas=mysqli_num_rows($res);//cuantas filas trae la consulta
 
-	while($data=mysqli_fetch_array($res)){
+		//$i=0;
+	
+	//$datos[]=array();
+
+	/*while($data=mysqli_fetch_array($res)){
 			for ($j=0; $j < $campos; $j++) { 
 				$datos[$i][$j]=$data[$j];
 			} 
 			$i++;
-		}
+		}*/
 		//enviando datos
-		header("Location: asistencia.php?filas=".$filas."&campos=".$campos."&data=".serialize($datos));
+		header("Location: asistencia.php?filas=".$filas."&campos=".$campos."&data=".serialize($empleados));
 	}else{
 		echo "Error en la Base de Datos";
 	}

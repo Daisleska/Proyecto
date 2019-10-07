@@ -135,9 +135,10 @@ if ($cuantos>0){
       </script>
         <?php
       }  else {
-
-     $sql=mysqli_query($connect  ,"INSERT INTO empleado VALUES (NULL,'".$cedula."','".$nombres."','".$apellidos."','".$direccion."','".$telefono."','".$fecha_ingreso."', '".$condicion."', '".$fecha_venc."', '".$ncuenta."', '".$id_cargo."', '".$id_departamento."')");
-        //echo $sql;
+        $xx="INSERT INTO empleado VALUES (NULL,".$cedula.",'".$nombres."','".$apellidos."','".$direccion."','".$telefono."','".$fecha_ingreso."', '".$condicion."', '".$fecha_venc."', '".$ncuenta."', ".$id_cargo.", ".$id_departamento.")";
+        //echo $xx;
+     $sql=mysqli_query($connect  ,$xx);
+     $id_empleado=mysqli_insert_id($connect);
     }  
      
  
@@ -147,7 +148,7 @@ if ($_POST['checkbox'] !="")
   if (is_array($_POST['checkbox']))
    {
     //realizamos el ciclo
-    while(list ($key,$value)= each($_POST['checkbox'])) 
+    while(list ($key,$value)= @each($_POST['checkbox'])) 
     {
       $sql2=mysqli_query($connect  ,"INSERT INTO dia_lab (id_empleado, nombre) VALUES ('".$id_empleado."', ' ".$value."')");
     }
@@ -171,10 +172,10 @@ if ($_POST['asignaciones'] !="")
 
     ?> 
 
-      <script type="text/javascript">
+      <!-- <script type="text/javascript">
         alert("Se registro éxitosamente");
         window.location="ControladorEmpleado.php?operacion=index";      
-      </script>
+      </script> -->
       <?php 
   
   }else { 
