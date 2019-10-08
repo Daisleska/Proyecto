@@ -52,43 +52,26 @@ public function generar(){
     $rs=mysqli_query($conex,$consulta);
     $id_prenomina=mysqli_insert_id($conex);//obteniendo el último id generado
 	/*/echo $id_prenomina;/*/
-	$cuantos=mysqli_num_rows($rs);
-	
-	if ($cuantos>0) {
 
     $sql2="SELECT * FROM empleado";
 
-    if ($res=mysqli_query($conex,$sql2)) {
-	
-	$campos=mysqli_num_fields($res);//cuantos campos trae la consulta
-	$filas=mysqli_num_rows($res);//cuantas filas trae la consulta
+    $res=mysqli_query($conex,$sql2);
 
-	$i=0;
-	
-	$prenomina[]=array();
+	$i=1;
 
 	while($data=mysqli_fetch_array($res)){
-			for ($j=0; $j < $campos; $j++) { 
-				$prenomina[$i][$j]=$data[$j];
-         }
 
-         $sql3="INSERT INTO prenomina_empleado (id, id_prenomina, id_empleado)  VALUES (NULL,".$id_prenomina.", ".$id_empleado.")";
+   
+         $sql3="INSERT INTO `prenomina_empleado` (`id`, `id_prenomina`, `id_empleado`) VALUES (NULL,  ".$id_prenomina.", ".$i.")";
+
+         $resultado=mysqli_query($conex,$sql3);
 
          //echo $sql3;
 
-        $resultado=mysqli_query($conex,$sql3);
-
       $i++;
-    }
-       
+     }
      
-  } else {
-    echo "Error en la BD";
-  }
-  
-}else{
-	echo "Error en la consulta cuantos>0";
-}
+
   
 }//fin de la funcion generar
 
