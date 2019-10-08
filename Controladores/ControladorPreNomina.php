@@ -47,11 +47,8 @@ public function generar(){
 
     $result=mysqli_query($conex,$sql);//esto funciona
 
-
-    $consulta="SELECT * FROM pre_nomina";
-    $rs=mysqli_query($conex,$consulta);
     $id_prenomina=mysqli_insert_id($conex);//obteniendo el último id generado
-	/*/echo $id_prenomina;/*/
+	//echo $id_prenomina;
     
     $sql2="SELECT * FROM empleado";
 
@@ -59,16 +56,10 @@ public function generar(){
 
 	$i=0;
 
-	while($data=mysqli_fetch_array($res)){
-
-   
-         $sql3="INSERT INTO `prenomina_empleado` (`id`, `id_prenomina`, `id_empleado`) VALUES (NULL,  ".$id_prenomina.", ".$i.")";
-
-         $resultado=mysqli_query($conex,$sql3);
-
-         //echo $sql3;
-
-      $i++;
+	while($data=mysqli_fetch_object($res)){
+	   $sql3="INSERT INTO `prenomina_empleado` (`id`, `id_prenomina`, `id_empleado`) VALUES (NULL,  ".$id_prenomina.", ".$data->id.")";
+		$resultado=mysqli_query($conex,$sql3);
+		$i++;
      }
      
 
