@@ -172,10 +172,10 @@ if ($_POST['asignaciones'] !="")
 
     ?> 
 
-      <!-- <script type="text/javascript">
+    <script type="text/javascript">
         alert("Se registro éxitosamente");
         window.location="ControladorEmpleado.php?operacion=index";      
-      </script> -->
+      </script>
       <?php 
   
   }else { 

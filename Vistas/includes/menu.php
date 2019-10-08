@@ -70,11 +70,8 @@
                     
 
                      <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-archive"></i>Recibidos</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-list"></i><a href="../../Controladores/ControladorRecibidos.php?operacion=registrar">Registrar</a></li>
-                            <li><i class="fa fa-list"></i><a href="../../Controladores/ControladorRecibidos.php?operacion=index">Listado</a></li>
-                        </ul>
+                        <a href="../../Controladores/ControladorRecibidos.php?operacion=registrar"> <i class="menu-icon fa fa-archive"></i>Recibidos</a>
+                        
                     </li>
 
                     <li class="menu-item-has-children dropdown">

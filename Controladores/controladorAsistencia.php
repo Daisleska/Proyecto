@@ -36,7 +36,7 @@
 ?>
 	<script type="text/javascript">
 		alert("este empleado ya marco su asistencia en el dia de hoy")
-		window.location=("../Vistas/menu/ControladorMenu.php?operacion=asistencia");
+		window.location=("../Vistas/asistencias/ControlA.php?operacion=index");
 	</script> 
 <?php
 		}
@@ -48,10 +48,10 @@
 	($fila1=mysqli_num_rows($consulta5) != 0);
 	if ($fila1==0) {
 		echo"<script>alert('¡ERROR! Empleado No Se Encuentra Registrado(a).');
-               window.location.href='../Vistas/menu/ControladorMenu.php?operacion=asistencia'</script>";
+               window.location.href='../Vistas/asistencias/ControlA.php?operacion=index'</script>";
 		
 	} else { 
-		$sql5="SELECT * FROM empleado WHERE estatus='Censado(a)' AND cedula='$cedula' ";
+		$sql5="SELECT * FROM empleado WHERE estatus='si' AND cedula='$cedula' ";
 		$consulta5=mysqli_query($conectar,$sql5);
 		($fila1=mysqli_num_rows($consulta5) != 0);
 		if ($fila1==0) {
