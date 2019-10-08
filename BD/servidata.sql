@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-10-2019 a las 00:35:10
+-- Tiempo de generación: 08-10-2019 a las 02:43:12
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.2.12
 
@@ -457,7 +457,7 @@ CREATE TABLE `pre_nomina` (
 --
 
 INSERT INTO `pre_nomina` (`id`, `quincena`, `status`) VALUES
-(1, '2019-10-07', 'Procesando');
+(77, '2019-10-07', 'Procesando');
 
 -- --------------------------------------------------------
 
@@ -1020,7 +1020,7 @@ ALTER TABLE `prenomina_empleado`
 -- AUTO_INCREMENT de la tabla `pre_nomina`
 --
 ALTER TABLE `pre_nomina`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT de la tabla `privilegios`
