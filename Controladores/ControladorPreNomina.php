@@ -71,7 +71,7 @@ public function generar(){
 			for ($j=0; $j < $campos; $j++) { 
 				$prenomina[$i][$j]=$data[$j];
          }
-		
+
          $sql3="INSERT INTO prenomina_empleado (id, id_prenomina, id_empleado)  VALUES (NULL,".$id_prenomina.", ".$id_empleado.")";
 
          //echo $sql3;
@@ -89,8 +89,7 @@ public function generar(){
 }else{
 	echo "Error en la consulta cuantos>0";
 }
-        
-       
+  
 }//fin de la funcion generar
 
 
