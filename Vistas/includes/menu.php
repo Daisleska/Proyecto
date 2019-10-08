@@ -169,11 +169,11 @@
         <header id="header" class="header  col-md-12"><div class="header-menu "><div class="col-md-7">
                     <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa-hand-o-left"></i></a>
                     <div class="header-left">
-<<<<<<< HEAD
-                        <img src="../../images/servi.png" width="120">
-=======
+
+                        
+
                         <img src="../../images/servi.png" width="100">
->>>>>>> bec1d87c98835fadc1f53cf90d082e99ea0eafad
+
                         <p style="text-align: center; margin-left: 6cm; margin-top: 0cm;">SERVIFORM C.A La Victoria Edo. Aragua</p>
                     </div>
         

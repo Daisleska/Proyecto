@@ -52,12 +52,12 @@ public function generar(){
     $rs=mysqli_query($conex,$consulta);
     $id_prenomina=mysqli_insert_id($conex);//obteniendo el último id generado
 	/*/echo $id_prenomina;/*/
-
+    
     $sql2="SELECT * FROM empleado";
 
     $res=mysqli_query($conex,$sql2);
 
-	$i=1;
+	$i=0;
 
 	while($data=mysqli_fetch_array($res)){
 
