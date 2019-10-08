@@ -38,8 +38,8 @@ include_once "../includes/menu.php";
                                             <th>Materia Prima</th>
                                             <th>Cantidad</th>
                                             <th>Fecha</th>
-                                            <th>Observación</th>
                                             <th>CE</th>
+                                            <th>Observación</th>
                                             <th>Opciones</th>
                                         </tr>
                                     </thead>

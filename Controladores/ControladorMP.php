@@ -105,7 +105,7 @@ public function actualizar()
 	$db=new clasedb();
 	$conex=$db->conectar();//conectando con la base de datos
 	
-	$sql="SELECT * FROM materia_prima WHERE codigo='".$codigo."' AND id<>".$id;
+	$sql="SELECT * FROM materia_prima WHERE codigo='".$codigo."' AND id<>".$id_materia_prima."";
 //echo $sql;
 	$res=mysqli_query($conex,$sql);
 
@@ -119,7 +119,7 @@ public function actualizar()
 			<?php
 		}else{
 		
-						$sql="UPDATE materia_prima SET codigo='".$codigo."',nombre='".$nombre."',presentacion='".$presentacion."',unidad='".$unidad."' WHERE id=".$id;
+						$sql="UPDATE materia_prima SET codigo='".$codigo."',nombre='".$nombre."',presentacion='".$presentacion."',unidad='".$unidad."' WHERE id=".$id_materia_prima."";
 
 							$res=mysqli_query($conex,$sql);
 							if ($res) {

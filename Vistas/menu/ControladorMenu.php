@@ -25,6 +25,8 @@
 		//Inventario
 		case'registar':include"Vistas/inventario/registar.php";break;
 		case'index':include"Vistas/inventario/index.php";break;
+		case'usar':include"../inventario/usar_producto.php";break;
+
         
         //Empleados
 		case'registar_inventario':include"../inventario/registrar_inventario.php";break;

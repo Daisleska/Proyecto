@@ -68,11 +68,8 @@
                     
 
                      <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-archive"></i>Recibidos</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-list"></i><a href="../../Controladores/ControladorRecibidos.php?operacion=registrar">Registrar</a></li>
-                            <li><i class="fa fa-list"></i><a href="../../Controladores/ControladorRecibidos.php?operacion=index">Listado</a></li>
-                        </ul>
+                        <a href="../../Controladores/ControladorRecibidos.php?operacion=registrar"> <i class="menu-icon fa fa-archive"></i>Recibidos</a>
+                        
                     </li>
 
                     <li class="menu-item-has-children dropdown">
@@ -107,7 +104,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user"></i>Asistencia</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-table"></i><a href="../menu/ControladorMenu.php?operacion=consulta">Listado</a></li>
-                            <li><i class="menu-icon fa fa-check-circle"></i><a href="../menu/ControladorMenu.php?operacion=asistencia">Marcar Asistencia</a></li>
+                            <li><i class="menu-icon fa fa-check-circle"></i><a href="../asistencias/ControlA.php?operacion=index">Marcar Asistencia</a></li>
                         </ul>
                     </li>
 
@@ -172,7 +169,11 @@
         <header id="header" class="header  col-md-12"><div class="header-menu "><div class="col-md-7">
                     <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa-hand-o-left"></i></a>
                     <div class="header-left">
+<<<<<<< HEAD
                         <img src="../../images/servi.png" width="120">
+=======
+                        <img src="../../images/servi.png" width="100">
+>>>>>>> bec1d87c98835fadc1f53cf90d082e99ea0eafad
                         <p style="text-align: center; margin-left: 6cm; margin-top: 0cm;">SERVIFORM C.A La Victoria Edo. Aragua</p>
                     </div>
         

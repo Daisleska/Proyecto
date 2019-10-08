@@ -50,7 +50,7 @@ $data=unserialize($data);
                                     
             <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
                 <div class="col col-md-4"><label for="hf-presentacion" class=" form-control-label">Presentación:</label></div>
-                <div class="col-12 col-md-6"><input type="text" id="hf-presentacion" name="Presentacion" required="required" minlength="5" maxlength="50" class="form-control" value="<?php echo $data['presentacion']; ?>"></div>
+                <div class="col-12 col-md-6"><input type="text" id="hf-presentacion" name="presentacion" required="required" minlength="5" maxlength="50" class="form-control" value="<?php echo $data['presentacion']; ?>"></div>
             </div>
 
             <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">

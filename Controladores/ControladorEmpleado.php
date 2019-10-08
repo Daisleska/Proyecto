@@ -114,6 +114,8 @@ $sql3="SELECT * FROM asignacion_deduccion";
 }//fin registrar
 
 public function guardar(){
+
+  
     extract($_POST);
     $cedula=$_POST['cedula'];
 
@@ -133,9 +135,10 @@ if ($cuantos>0){
       </script>
         <?php
       }  else {
-
-     $sql=mysqli_query($connect  ,"INSERT INTO empleado VALUES (NULL,'".$cedula."','".$nombres."','".$apellidos."','".$direccion."','".$telefono."','".$fecha_ingreso."', '".$condicion."', '".$fecha_venc."', '".$ncuenta."', '".$id_cargo."', '".$id_departamento."')");
-        //echo $sql;
+        $xx="INSERT INTO empleado VALUES (NULL,".$cedula.",'".$nombres."','".$apellidos."','".$direccion."','".$telefono."','".$fecha_ingreso."', '".$condicion."', '".$fecha_venc."', '".$ncuenta."', ".$id_cargo.", ".$id_departamento.")";
+        //echo $xx;
+     $sql=mysqli_query($connect  ,$xx);
+     $id_empleado=mysqli_insert_id($connect);
     }  
      
  
@@ -145,9 +148,9 @@ if ($_POST['checkbox'] !="")
   if (is_array($_POST['checkbox']))
    {
     //realizamos el ciclo
-    while(list ($key,$value)= each($_POST['checkbox'])) 
+    while(list ($key,$value)= @each($_POST['checkbox'])) 
     {
-      $sql2=mysqli_query($connect  ,"INSERT INTO dia_lab (id_empleado, nombre) VALUES ('".$cedula."', ' ".$value."')");
+      $sql2=mysqli_query($connect  ,"INSERT INTO dia_lab (id_empleado, nombre) VALUES ('".$id_empleado."', ' ".$value."')");
     }
   }
 }
@@ -160,7 +163,7 @@ if ($_POST['asignaciones'] !="")
     //realizamos el ciclo
     while(list ($key,$valor)= each($_POST['asignaciones'])) 
     {
-      $sql3=mysqli_query($connect  ,"INSERT INTO empleado_asig (id_empleado, id_asignaciones) VALUES ('".$cedula."', ' ".$valor."')");
+      $sql3=mysqli_query($connect  ,"INSERT INTO empleado_asig (id_empleado, id_asignaciones) VALUES ('".$id_empleado."', ' ".$valor."')");
     }
   }
 }
@@ -169,7 +172,7 @@ if ($_POST['asignaciones'] !="")
 
     ?> 
 
-      <script type="text/javascript">
+    <script type="text/javascript">
         alert("Se registro éxitosamente");
         window.location="ControladorEmpleado.php?operacion=index";      
       </script>
@@ -350,7 +353,7 @@ public function vermas (){
   $db=new clasedb();//instanciando clasedb
   $conex=$db->conectar();//conectando con la base de datos
 
- $sql="SELECT empleado.cedula, empleado.nombres, empleado.apellidos, empleado.direccion, empleado.telefono, empleado.fecha_ingreso, empleado.condicion, empleado.fecha_venc, empleado.salario, empleado.ncuenta, cargos.nombre, departamentos.nombre FROM empleado,cargos,departamentos WHERE empleado.id_cargo=cargos.id AND cargos.id_departamento=departamentos.id AND empleado.id=".$id_empleado."";//query
+ $sql="SELECT empleado.cedula, empleado.nombres, empleado.apellidos, empleado.direccion, empleado.telefono, empleado.fecha_ingreso, empleado.condicion, empleado.fecha_venc, empleado.ncuenta, cargos.nombre, departamentos.nombre FROM empleado,cargos,departamentos WHERE empleado.id_cargo=cargos.id AND cargos.id_departamento=departamentos.id AND empleado.id=".$id_empleado."";//query
 
   //ejecutando query
   if ($res=mysqli_query($conex,$sql)) {
