@@ -1,8 +1,8 @@
  <?php include_once "../includes/menu.php";
 
- $query_perfil=mysqli_query($con,"select * from perfil where id=1");
+ $query_perfil=mysqli_query($conectar,"select * from perfil where id=1");
     $rw=mysqli_fetch_assoc($query_perfil);
-    $sql=mysqli_query($con, "select LAST_INSERT_ID(id) as last from facturas order by id desc limit 0,1 ");
+    $sql=mysqli_query($conectar, "select LAST_INSERT_ID(id) as last from facturas order by id desc limit 0,1 ");
     $rws=mysqli_fetch_array($sql);
     $numero=$rws['last']+1;
      ?>

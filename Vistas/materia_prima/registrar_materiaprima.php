@@ -27,7 +27,7 @@ include_once "../includes/menu.php";
             </ul>
             <div class="tab-content">
               <div class="active tab-pane" id="datosPersonales">
-                <form class="form-horizontal" action="../menu/ControladorMenu.php?operacion=guardar_materiaprima" method="POST" id="insumos">
+                <form class="form-horizontal" action="../../Controladores/ControladorMP.php?operacion=guardar" method="POST" id="insumos">
                   <input type="hidden" name="id" value="<?php echo $id; ?>">
                   <div class="form-group">
                     <div class="col-sm-4">

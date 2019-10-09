@@ -57,7 +57,7 @@ switch ($dia) {
     	//echo $sql2;
     	$buscar=mysqli_query($conex,$sql2);
     	if (mysqli_num_rows($buscar)==0) {
-    		$sql3="INSERT INTO asistencias VALUES(NULL,".$empleados[$i][0].",'".$hoy."','No','No se ha marcado asistencia')";
+    		$sql3="INSERT INTO asistencias VALUES(NULL,".$empleados[$i][0].",'".$hoy."','No','No a asistido')";
     		$registro=mysqli_query($conex,$sql3);
     	}
     }
@@ -115,6 +115,38 @@ switch ($dia) {
 		}
 	}
 
+
+
+    public function marcar(){
+
+    extract($_REQUEST);//extrayendo variables del url
+    $db=new clasedb();
+    $conex=$db->conectar();//conectando con la base de datos
+
+    $sql="UPDATE asistencias SET status='Si' WHERE id=".$id_asistencias;
+
+    $res=mysqli_query($conex,$sql);
+        if ($res) {
+            ?>
+                <script type="text/javascript">
+                    alert("Actualizado");
+                    window.location="ControlA.php?operacion=index";
+                </script>
+            <?php
+        } else {
+            ?>
+                <script type="text/javascript">
+                    alert("Registro no pudo ser eliminado, Vuelva a intentarlo!");
+                    window.location="ControlA.php?operacion=index";
+                </script>
+            <?php
+        }
+
+
+    
+
+    }
+
 static function controlador($operacion) {
 		$asis=new ControlA();
 		switch($operacion) {
@@ -127,6 +159,10 @@ static function controlador($operacion) {
 		case 'eliminar':
  			$asis->eliminar();
  			break;
+
+        case 'marcar':
+        $asis->marcar();
+        break;
 		
 		default: 
 		?>

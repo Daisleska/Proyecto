@@ -42,47 +42,14 @@ $data=unserialize($data);
             <span class="help-block"></span>
             </div>
           <!-- /.col -->
-          <div class="form-group">
+          <!-- <div class="form-group">
             <div class="col-sm-offset-4 col-sm-4">
                 <input type="hidden" name="operacion" value="guardar">
-              <button type="submit" class="btn btn-success" id="submit_btn" data-loading-text="Buscando Empleado....">Registrar Asistencia <i class="ion-ios-undo"></i></button>
-
-
-   <!--  justificacion -->
+              <button type="submit" class="btn btn-success" id="submit_btn" data-loading-text="Buscando Empleado...."><i class="fa fa-check"></i></button>
+               
                 
-      <button type="button" class="btn btn-secondary mb-1" data-toggle="modal" data-target="#mediumModal">
-                            Inasistencia
-                        </button>
-
-
-    <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                          <form action="" method="POST">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="mediumModalLabel">Inasistencia Justificada?</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                              <label>No Justificado:</label>
-                               <input type="checkbox" name="no_justificado">
-
-                               <label>Justificacion:</label>
-                               <textarea maxlength="500"  placeholder=" Explique su Motivo de inisistencia" name="justificado"> </textarea>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-primary">Confirmar</button>
-                            </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <!-- justificacion -->
             </div>
-          </div>
+          </div> -->
         </form>
       </div>
       </div>
@@ -95,7 +62,7 @@ $data=unserialize($data);
         </div>
       </div> -->
        <div class="box-body">
-                    <div class="table-responsive"  style="overflow-x: hidden;">
+                    <!-- <div class="table-responsive"  style="overflow-x: hidden;">
                       <div class="row">
                         <div class="input-daterange">
                           <div class="col-sm-offset-3 col-sm-8">
@@ -111,16 +78,14 @@ $data=unserialize($data);
                         </div>
                         
                       </div><br>
-                    </div>
+                    </div> -->
                     <table id="order_data_censo" class="table table-bordered table-hover">
                       <thead>
                         <tr>
                           <th>N°</th>
-                          <th>Cédula</th>
                           <th>Nombres</th>
                           <th>Apellidos</th>
-                          <th>Status</th>
-                          <th>Justificación</th>
+                          <th>Cédula</th>
                           <th>Opciones</th>
                         </tr>
                       </thead>
@@ -133,14 +98,20 @@ $data=unserialize($data);
               ?>  
               
               <td><?=$num?></td>
-            <?php for ($j=1; $j < $campos; $j++) { ?>
+            <?php for ($j=1; $j <4; $j++) { ?>
             <td><?=$data[$i][$j]?></td>
 
               <?php } ?>
 
               <td>
 
-              <a href="ControlA.php?operacion=eliminar&id_asistencias=<?=$data[$i][0]?>"><i style="font-size: 20px;" title="Eliminar" class="menu-icon fa fa-trash-o"></a></i>
+                <a href="ControlA.php?operacion=marcar&id_asistencias=<?=$data[$i][0]?>"><i style="font-size: 20px;" title="Marcar Asistencia" class="menu-icon fa fa-check"></a></i>
+
+              <a href="ControlA.php?operacion=eliminar&id_asistencias=<?=$data[$i][0]?>"><i style="font-size: 20px;" title="Eliminar" class="menu-icon fa fa-times"></a></i>
+
+               <button type="button" class="btn btn-secondary mb-1" data-toggle="modal" data-target="#mediumModal">
+                            Inas
+                        </button>
                                 
               </td>
                 <?php 
@@ -156,6 +127,37 @@ $data=unserialize($data);
      
       <!-- /.row -->
     </section> <!-- Fin de Main content Section-->
+
+
+<form action="justificacion.php&id_asistencias=<?=$data[$i][0]?>" method="POST">
+
+    <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                          <form action="" method="POST">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="mediumModalLabel">Inasistencia Justificada?</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                              <label>No Justificado:</label>
+                               <input type="checkbox" name="no_justificado">
+
+                               <label>Justificación:</label>
+                               <textarea maxlength="500"  placeholder=" Explique su Motivo de inisistencia" name="justificacion"> </textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-primary">Confirmar</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                </form>
+                <!-- justificacion -->
     </div>
 
 

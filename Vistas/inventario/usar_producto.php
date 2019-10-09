@@ -3,26 +3,17 @@
   include_once "../includes/menu.php";
   extract($_REQUEST);
 
-  $sql5= "SELECT * FROM inventario inv
-  INNER JOIN producto pro ON inv.id_producto = pro.id_producto 
-  INNER JOIN proveedores prov ON pro.id_proveedores=prov.id_proveedores";
+  $sql5= "SELECT * FROM inventario inv INNER JOIN productos pro ON inv.id = pro.id ";
   $query5 = mysqli_query($conectar, $sql5);
   if ($row=mysqli_fetch_array($query5)) {
     $estado =['estado'];
     $fecha1 = str_replace('-', '/', date("d-m-Y", strtotime($row['fecha_registro'])));
     $fecha_registro = str_replace('-', '/', date("d-m-Y", strtotime($row['fecha_registro'])));
 ?>
-  <section class="content-header">
-      <h1>Consultas<small>Modificar Producto</small></h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li>Inventario</li>
-        <li class="active">Proveedores</li>
-      </ol>
-    </section>
+
     <section class="invoice">
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col-md-12">
           <h2 class="page-header">
             <i class="fa fa-truck"></i> <span> Modificar Producto</span>
             <small class="pull-right"><b>Fecha de Registro</b>: <?php echo $fecha1; ?></small>
@@ -32,12 +23,12 @@
       </div>
       <!-- info row -->
       <div class="row invoice-info">
-      <form action="index.php?llave=modificado_producto" method="POST" id="usar_producto">
-        <input type="hidden" name="id_inventario" value="<?php echo $row['id_inventario']; ?>">
+      <form action="../menu/ControladorMenu.php?operacion=existencia_pro" method="POST" id="usar_producto">
+       <input type="hidden" name="id_inventario" value="<?php echo $row['id']; ?>">
         <div class="col-sm-12 invoice-col">
           <div class="col-sm-4">
-            <label>Insumo:</label>
-            <input type="text" class="form-control" name="nombre" id="nombre" value="<?php echo $row['nombre']; ?> - <?php echo $row['marca']; ?>" readonly="">     
+            <label>Producto:</label>
+            <input type="text" class="form-control" name="id_productos" id="nombre" value="<?php echo $row['nombre']; ?> - <?php echo $row['id']; ?>" readonly="">     
           </div>
           <div class="col-sm-4">
             <label>Estado:</label>
@@ -47,7 +38,7 @@
             </select>
           </div>
           <div class="col-sm-4">
-            <label>Cantidad:</label>
+            <label>Cantidad actual en almacen:</label>
             <input type="text" name="cantidad" id="cantidad" class="form-control" value="<?php echo $row['cantidad']; ?>"required placeholder="Cantidad" readonly>
             <span class="help-block"></span>
           </div>

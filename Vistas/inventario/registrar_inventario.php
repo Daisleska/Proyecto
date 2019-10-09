@@ -1,19 +1,12 @@
   <?php
   require "../../Modelos/conexion.php";
-  $programa="SELECT * FROM producto INNER JOIN proveedor ON producto.id_proveedor=proveedor.id_proveedor ORDER BY nombre";
+  $programa="SELECT * FROM productos INNER JOIN proveedor ON productos.id=proveedor.id ";
   $resultado=mysqli_query($conectar,$programa);
   $fecha = date("Y-m-d");
   $fecha_registro = str_replace('-', '/', date("d-m-Y", strtotime($fecha)));
   include_once "../includes/menu.php";
 ?>
-    <section class="content-header">
-      <h1>Inventario<small>Registrar Inventario</small></h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li><a href="#"></a>Inventario</li>
-        <li class="active">Registrar Inventario</li>
-      </ol>
-    </section>
+  
 
     <!-- Main content -->
     <section class="content">
@@ -25,16 +18,16 @@
             </ul><br>
             <div class="tab-content">
               <div class="active tab-pane" id="datosPersonales">
-                <form class="form-horizontal" action="index.php?llave=guardar_inventario" method="POST" id="inventario">
-                  <input type="hidden" name="id_inventario" value="<?php echo $id_inventario; ?>">
+                <form class="form-horizontal" action="../../Controladores/ControladorMP.php?operacion=guardar" method="POST" id="inventario">
+                 <!--  <input type="hidden" name="id_inventario" value="<?php echo $id_inventario; ?>"> -->
                   <div class="form-group">
                     <div class="col-sm-4">
                       <label for="" class="control-label">Producto</label>
                         <?php
-                          echo "<select  name='producto' id='insumo' required class='form-control' onchange='cargarAjax()'>
+                          echo "<select  name='id_productos' id='insumo' required class='form-control' onchange='cargarAjax()'>
                           <option value=''>Seleccione</option>";
                           while($row=mysqli_fetch_assoc($resultado)){
-                          echo "<option value='".$row['id_producto']."'>".$row['nombre']." - ".$row['presentacion']."</option>";
+                          echo "<option value='".$row['id']."'>".$row['nombre']." - ".$row['presentacion']."</option>";
                           }
                           echo "</select>";
                         ?>
@@ -107,11 +100,12 @@
         </div>
       </div>
     </section>
+  </div>
 
 <script type="text/javascript">
   function cargaAjax() {
-    if( $('[name=insumo]').val()!='') {
-      $('#padres').load('cargar.php',{nombre_proveedor:$('[name=insumo]').val(),is_insumos: <?php echo $row['is_insumos']; ?>});
+    if( $('[name=producto]').val()!='') {
+      $('#padres').load('cargar.php',{nombre_proveedor:$('[name=producto]').val(),is_insumos: <?php echo $row['is_insumos']; ?>});
     }
   }
 </script>

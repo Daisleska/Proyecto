@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 07-10-2019 a las 15:40:18
--- Versión del servidor: 5.7.21
--- Versión de PHP: 7.2.4
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 09-10-2019 a las 18:08:21
+-- Versión del servidor: 10.1.37-MariaDB
+-- Versión de PHP: 7.1.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -28,14 +28,12 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `almacen`
 --
 
-DROP TABLE IF EXISTS `almacen`;
-CREATE TABLE IF NOT EXISTS `almacen` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `almacen` (
+  `id` int(11) NOT NULL,
   `id_produccion` int(11) NOT NULL,
   `existencia` varchar(90) NOT NULL,
   `ce` varchar(90) NOT NULL,
-  `paletas` varchar(90) NOT NULL,
-  PRIMARY KEY (`id`)
+  `paletas` varchar(90) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -44,15 +42,12 @@ CREATE TABLE IF NOT EXISTS `almacen` (
 -- Estructura de tabla para la tabla `asignacion_deduccion`
 --
 
-DROP TABLE IF EXISTS `asignacion_deduccion`;
-CREATE TABLE IF NOT EXISTS `asignacion_deduccion` (
-  `id` int(90) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `asignacion_deduccion` (
+  `id` int(90) NOT NULL,
   `descripcion` varchar(90) NOT NULL,
   `tipo` enum('Asignacion','Deduccion') NOT NULL,
-  `monto` varchar(90) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_tipo` (`tipo`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  `monto` varchar(90) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `asignacion_deduccion`
@@ -69,16 +64,13 @@ INSERT INTO `asignacion_deduccion` (`id`, `descripcion`, `tipo`, `monto`) VALUES
 -- Estructura de tabla para la tabla `asistencias`
 --
 
-DROP TABLE IF EXISTS `asistencias`;
-CREATE TABLE IF NOT EXISTS `asistencias` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `asistencias` (
+  `id` int(11) NOT NULL,
   `id_empleado` int(11) NOT NULL,
   `fecha_hora` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'fecha de asistencia',
   `status` enum('Si','No') NOT NULL,
-  `justificacion` text,
-  PRIMARY KEY (`id`),
-  KEY `rest_asis` (`id_empleado`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `justificacion` text
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -86,16 +78,13 @@ CREATE TABLE IF NOT EXISTS `asistencias` (
 -- Estructura de tabla para la tabla `auditoria`
 --
 
-DROP TABLE IF EXISTS `auditoria`;
-CREATE TABLE IF NOT EXISTS `auditoria` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `auditoria` (
+  `id` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `actividad` varchar(100) NOT NULL,
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
-  `status` enum('0','1') NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_usuario` (`id_usuario`)
+  `status` enum('0','1') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -104,15 +93,12 @@ CREATE TABLE IF NOT EXISTS `auditoria` (
 -- Estructura de tabla para la tabla `cargos`
 --
 
-DROP TABLE IF EXISTS `cargos`;
-CREATE TABLE IF NOT EXISTS `cargos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `cargos` (
+  `id` int(11) NOT NULL,
   `nombre` varchar(90) NOT NULL,
   `salario` varchar(90) NOT NULL,
-  `id_departamento` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_departamentos` (`id_departamento`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `id_departamento` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `cargos`
@@ -128,12 +114,10 @@ INSERT INTO `cargos` (`id`, `nombre`, `salario`, `id_departamento`) VALUES
 -- Estructura de tabla para la tabla `cestaticket`
 --
 
-DROP TABLE IF EXISTS `cestaticket`;
-CREATE TABLE IF NOT EXISTS `cestaticket` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `monto` varchar(90) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+CREATE TABLE `cestaticket` (
+  `id` int(11) NOT NULL,
+  `monto` varchar(90) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `cestaticket`
@@ -148,12 +132,10 @@ INSERT INTO `cestaticket` (`id`, `monto`) VALUES
 -- Estructura de tabla para la tabla `departamentos`
 --
 
-DROP TABLE IF EXISTS `departamentos`;
-CREATE TABLE IF NOT EXISTS `departamentos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(90) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+CREATE TABLE `departamentos` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(90) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `departamentos`
@@ -172,16 +154,14 @@ INSERT INTO `departamentos` (`id`, `nombre`) VALUES
 -- Estructura de tabla para la tabla `despachos`
 --
 
-DROP TABLE IF EXISTS `despachos`;
-CREATE TABLE IF NOT EXISTS `despachos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `despachos` (
+  `id` int(11) NOT NULL,
   `id_almacen` int(11) NOT NULL,
   `cantidad` varchar(90) NOT NULL,
   `paletas` varchar(90) NOT NULL,
   `observacion` varchar(90) NOT NULL,
   `fecha` date NOT NULL,
-  `destino` varchar(90) NOT NULL,
-  PRIMARY KEY (`id`)
+  `destino` varchar(90) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -190,14 +170,11 @@ CREATE TABLE IF NOT EXISTS `despachos` (
 -- Estructura de tabla para la tabla `dia_lab`
 --
 
-DROP TABLE IF EXISTS `dia_lab`;
-CREATE TABLE IF NOT EXISTS `dia_lab` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `dia_lab` (
+  `id` int(11) NOT NULL,
   `id_empleado` int(11) NOT NULL,
-  `nombre` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `rest_dia` (`id_empleado`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
+  `nombre` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `dia_lab`
@@ -217,7 +194,13 @@ INSERT INTO `dia_lab` (`id`, `id_empleado`, `nombre`) VALUES
 (34, 15, ' Jueves'),
 (35, 15, ' Viernes'),
 (36, 15, ' SÃ¡bado'),
-(37, 15, ' Domingo');
+(37, 15, ' Domingo'),
+(41, 16, ' Lunes'),
+(42, 16, ' Martes'),
+(43, 16, ' MiÃ©rcoles'),
+(44, 17, ' Martes'),
+(45, 17, ' MiÃ©rcoles'),
+(46, 17, ' Jueves');
 
 -- --------------------------------------------------------
 
@@ -225,9 +208,8 @@ INSERT INTO `dia_lab` (`id`, `id_empleado`, `nombre`) VALUES
 -- Estructura de tabla para la tabla `empleado`
 --
 
-DROP TABLE IF EXISTS `empleado`;
-CREATE TABLE IF NOT EXISTS `empleado` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `empleado` (
+  `id` int(11) NOT NULL,
   `cedula` varchar(11) NOT NULL,
   `nombres` varchar(90) NOT NULL,
   `apellidos` varchar(90) NOT NULL,
@@ -238,10 +220,8 @@ CREATE TABLE IF NOT EXISTS `empleado` (
   `fecha_venc` date NOT NULL,
   `ncuenta` text NOT NULL,
   `id_cargo` int(11) NOT NULL,
-  `id_departamento` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_cargo` (`id_cargo`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+  `id_departamento` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `empleado`
@@ -252,7 +232,9 @@ INSERT INTO `empleado` (`id`, `cedula`, `nombres`, `apellidos`, `direccion`, `te
 (9, '28147989', 'Hector Hernandez Hernandez Ceb', 'Hernandez Ceballos', 'cagua', '3590130', '2019-10-06', 'Contratado', '2019-10-18', '2147483647', 1, 4),
 (11, '29554496', 'Hector Hernandez Hernandez Ceb', 'Hernandez Ceballos', 'cagua', '3590130', '2019-10-03', 'Fijo', '2019-11-06', '2147483647', 1, 2),
 (14, '28147983', 'Darwis', 'Rojas', 'moomoo', '02120000098', '2019-10-07', 'Fijo', '2019-10-16', '23456789876543234567', 2, 2),
-(15, '999999999', 'nnninini', 'nininii', 'niiini', '02120000098', '2019-10-07', 'Contratado', '2019-10-31', '23456789876543234567', 1, 2);
+(15, '999999999', 'nnninini', 'nininii', 'niiini', '02120000098', '2019-10-07', 'Contratado', '2019-10-31', '23456789876543234567', 1, 2),
+(16, '12345678', 'agro', 'empleado', 'maracay', '494894', '2019-10-09', 'Contratado', '2019-11-06', '12345678890998787654', 1, 2),
+(17, '28123456', 'daisleska', 'vilera', 'consejo', '020202020', '2019-10-08', 'Fijo', '0000-00-00', '10120202022222222222', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -260,15 +242,11 @@ INSERT INTO `empleado` (`id`, `cedula`, `nombres`, `apellidos`, `direccion`, `te
 -- Estructura de tabla para la tabla `empleado_asig`
 --
 
-DROP TABLE IF EXISTS `empleado_asig`;
-CREATE TABLE IF NOT EXISTS `empleado_asig` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `empleado_asig` (
+  `id` int(11) NOT NULL,
   `id_empleado` int(11) NOT NULL,
-  `id_asignaciones` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `empl` (`id_empleado`),
-  KEY `asig` (`id_asignaciones`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `id_asignaciones` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `empleado_asig`
@@ -277,7 +255,13 @@ CREATE TABLE IF NOT EXISTS `empleado_asig` (
 INSERT INTO `empleado_asig` (`id`, `id_empleado`, `id_asignaciones`) VALUES
 (1, 14, 2),
 (2, 15, 2),
-(3, 15, 8);
+(3, 15, 8),
+(7, 16, 1),
+(8, 16, 2),
+(9, 16, 8),
+(10, 17, 1),
+(11, 17, 2),
+(12, 17, 8);
 
 -- --------------------------------------------------------
 
@@ -285,14 +269,11 @@ INSERT INTO `empleado_asig` (`id`, `id_empleado`, `id_asignaciones`) VALUES
 -- Estructura de tabla para la tabla `empleado_pago`
 --
 
-DROP TABLE IF EXISTS `empleado_pago`;
-CREATE TABLE IF NOT EXISTS `empleado_pago` (
+CREATE TABLE `empleado_pago` (
   `id_empleado` int(11) NOT NULL,
   `id_pago` int(11) NOT NULL,
   `horas_justificadas` varchar(90) NOT NULL,
-  `horas_sobre_t` varchar(90) NOT NULL,
-  KEY `ci_e` (`id_empleado`),
-  KEY `id_pago` (`id_pago`)
+  `horas_sobre_t` varchar(90) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -301,13 +282,10 @@ CREATE TABLE IF NOT EXISTS `empleado_pago` (
 -- Estructura de tabla para la tabla `empleado_producto`
 --
 
-DROP TABLE IF EXISTS `empleado_producto`;
-CREATE TABLE IF NOT EXISTS `empleado_producto` (
+CREATE TABLE `empleado_producto` (
   `id_empleado` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL,
-  `linea_produccion` varchar(90) NOT NULL,
-  KEY `ci_e` (`id_empleado`),
-  KEY `cod_p` (`id_producto`)
+  `linea_produccion` varchar(90) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -316,14 +294,12 @@ CREATE TABLE IF NOT EXISTS `empleado_producto` (
 -- Estructura de tabla para la tabla `enviados`
 --
 
-DROP TABLE IF EXISTS `enviados`;
-CREATE TABLE IF NOT EXISTS `enviados` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `enviados` (
+  `id` int(11) NOT NULL,
   `id_materia` int(11) NOT NULL,
   `cantidad` varchar(90) NOT NULL,
   `filial` enum('Produccion') NOT NULL,
-  `observacion` varchar(90) NOT NULL,
-  PRIMARY KEY (`id`)
+  `observacion` varchar(90) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -332,25 +308,23 @@ CREATE TABLE IF NOT EXISTS `enviados` (
 -- Estructura de tabla para la tabla `inventario`
 --
 
-DROP TABLE IF EXISTS `inventario`;
-CREATE TABLE IF NOT EXISTS `inventario` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_producto` int(11) NOT NULL,
+CREATE TABLE `inventario` (
+  `id` int(11) NOT NULL,
+  `id_productos` int(11) NOT NULL,
   `estado` enum('aceptado','rechazado') NOT NULL,
   `observaciones` varchar(500) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `fecha_entrega` date NOT NULL,
-  `fecha_vencimiento` date NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `inventario_producto` (`id_producto`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `fecha_vencimiento` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `inventario`
 --
 
-INSERT INTO `inventario` (`id`, `id_producto`, `estado`, `observaciones`, `cantidad`, `fecha_entrega`, `fecha_vencimiento`) VALUES
-(1, 1, 'aceptado', 'ninguna', 1000, '2019-09-06', '2019-09-30');
+INSERT INTO `inventario` (`id`, `id_productos`, `estado`, `observaciones`, `cantidad`, `fecha_entrega`, `fecha_vencimiento`) VALUES
+(1, 1, 'aceptado', 'ninguna', 160, '2019-09-06', '2019-09-30'),
+(6, 2, 'aceptado', 'ninguno', 440, '2019-10-08', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -358,14 +332,11 @@ INSERT INTO `inventario` (`id`, `id_producto`, `estado`, `observaciones`, `canti
 -- Estructura de tabla para la tabla `materiaprima_producto`
 --
 
-DROP TABLE IF EXISTS `materiaprima_producto`;
-CREATE TABLE IF NOT EXISTS `materiaprima_producto` (
+CREATE TABLE `materiaprima_producto` (
   `id_materiaprima` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL,
   `cantidad_u_mp` int(90) NOT NULL,
-  `cantidad_exist_mp` int(90) NOT NULL,
-  KEY `cod_mp` (`id_materiaprima`),
-  KEY `cod_p` (`id_producto`)
+  `cantidad_exist_mp` int(90) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -374,14 +345,11 @@ CREATE TABLE IF NOT EXISTS `materiaprima_producto` (
 -- Estructura de tabla para la tabla `materiaprima_proveedor`
 --
 
-DROP TABLE IF EXISTS `materiaprima_proveedor`;
-CREATE TABLE IF NOT EXISTS `materiaprima_proveedor` (
+CREATE TABLE `materiaprima_proveedor` (
   `id_materiaprima` int(11) NOT NULL,
   `id_proveedor` int(11) NOT NULL,
   `cantidad_c_mp` int(90) NOT NULL,
-  `cantidad_exist_mp` int(90) NOT NULL,
-  KEY `cod_mp` (`id_materiaprima`),
-  KEY `ci_pro` (`id_proveedor`)
+  `cantidad_exist_mp` int(90) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -390,16 +358,14 @@ CREATE TABLE IF NOT EXISTS `materiaprima_proveedor` (
 -- Estructura de tabla para la tabla `materia_prima`
 --
 
-DROP TABLE IF EXISTS `materia_prima`;
-CREATE TABLE IF NOT EXISTS `materia_prima` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `materia_prima` (
+  `id` int(11) NOT NULL,
   `codigo` varchar(11) NOT NULL,
   `nombre` varchar(90) NOT NULL,
   `presentacion` varchar(90) NOT NULL,
   `unidad` enum('Kgs','Lts') NOT NULL,
-  `stock_max` varchar(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `stock_max` varchar(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `materia_prima`
@@ -414,14 +380,12 @@ INSERT INTO `materia_prima` (`id`, `codigo`, `nombre`, `presentacion`, `unidad`,
 -- Estructura de tabla para la tabla `pago`
 --
 
-DROP TABLE IF EXISTS `pago`;
-CREATE TABLE IF NOT EXISTS `pago` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pago` (
+  `id` int(11) NOT NULL,
   `sueldo` varchar(90) NOT NULL,
   `monto` varchar(90) NOT NULL,
   `fecha` date NOT NULL,
-  `periodo` varchar(90) NOT NULL,
-  PRIMARY KEY (`id`)
+  `periodo` varchar(90) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -430,12 +394,9 @@ CREATE TABLE IF NOT EXISTS `pago` (
 -- Estructura de tabla para la tabla `pago_asignaciondeduccion`
 --
 
-DROP TABLE IF EXISTS `pago_asignaciondeduccion`;
-CREATE TABLE IF NOT EXISTS `pago_asignaciondeduccion` (
+CREATE TABLE `pago_asignaciondeduccion` (
   `id_pago` int(90) NOT NULL,
-  `id_ad` int(90) NOT NULL,
-  KEY `id_pago` (`id_pago`),
-  KEY `id_ad` (`id_ad`)
+  `id_ad` int(90) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -444,15 +405,12 @@ CREATE TABLE IF NOT EXISTS `pago_asignaciondeduccion` (
 -- Estructura de tabla para la tabla `pre_nomina`
 --
 
-DROP TABLE IF EXISTS `pre_nomina`;
-CREATE TABLE IF NOT EXISTS `pre_nomina` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pre_nomina` (
+  `id` int(11) NOT NULL,
   `id_empleado` int(11) NOT NULL,
   `total` varchar(90) NOT NULL,
   `quincena` varchar(90) NOT NULL,
-  `status` enum('1','2','3') NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_empleado` (`id_empleado`)
+  `status` enum('1','2','3') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -461,13 +419,11 @@ CREATE TABLE IF NOT EXISTS `pre_nomina` (
 -- Estructura de tabla para la tabla `privilegios`
 --
 
-DROP TABLE IF EXISTS `privilegios`;
-CREATE TABLE IF NOT EXISTS `privilegios` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `privilegios` (
+  `id` int(11) NOT NULL,
   `modulo` varchar(90) NOT NULL,
-  `privilegio` varchar(90) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+  `privilegio` varchar(90) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `privilegios`
@@ -513,16 +469,14 @@ INSERT INTO `privilegios` (`id`, `modulo`, `privilegio`) VALUES
 -- Estructura de tabla para la tabla `produccion`
 --
 
-DROP TABLE IF EXISTS `produccion`;
-CREATE TABLE IF NOT EXISTS `produccion` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `produccion` (
+  `id` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL,
   `cantidad` varchar(90) NOT NULL,
   `paletas` varchar(90) NOT NULL,
   `observacion` varchar(90) NOT NULL,
   `fecha` date NOT NULL,
-  `status` enum('Sin Almacenar','Almacenando','Completo') NOT NULL,
-  PRIMARY KEY (`id`)
+  `status` enum('Sin Almacenar','Almacenando','Completo') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -531,21 +485,20 @@ CREATE TABLE IF NOT EXISTS `produccion` (
 -- Estructura de tabla para la tabla `productos`
 --
 
-DROP TABLE IF EXISTS `productos`;
-CREATE TABLE IF NOT EXISTS `productos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `productos` (
+  `id` int(11) NOT NULL,
   `nombre` varchar(90) NOT NULL,
   `presentacion` varchar(90) NOT NULL,
-  `unidad` enum('Kgs','Lts') NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `unidad` enum('Kgs','Lts') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `productos`
 --
 
 INSERT INTO `productos` (`id`, `nombre`, `presentacion`, `unidad`) VALUES
-(1, 'hierro', 'paletas', 'Kgs');
+(1, 'hierro', 'paletas', 'Kgs'),
+(2, 'metal', 'paletas', 'Lts');
 
 -- --------------------------------------------------------
 
@@ -553,15 +506,12 @@ INSERT INTO `productos` (`id`, `nombre`, `presentacion`, `unidad`) VALUES
 -- Estructura de tabla para la tabla `producto_proveedor`
 --
 
-DROP TABLE IF EXISTS `producto_proveedor`;
-CREATE TABLE IF NOT EXISTS `producto_proveedor` (
+CREATE TABLE `producto_proveedor` (
   `id` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL,
   `id_proveedor` int(11) NOT NULL,
   `cantidad_d_p` int(90) NOT NULL,
-  `cantidad_exist_p` int(90) NOT NULL,
-  KEY `cod_p` (`id_producto`),
-  KEY `ci_pro` (`id_proveedor`)
+  `cantidad_exist_p` int(90) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -570,16 +520,14 @@ CREATE TABLE IF NOT EXISTS `producto_proveedor` (
 -- Estructura de tabla para la tabla `proveedor`
 --
 
-DROP TABLE IF EXISTS `proveedor`;
-CREATE TABLE IF NOT EXISTS `proveedor` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `proveedor` (
+  `id` int(11) NOT NULL,
   `cedula` varchar(90) NOT NULL,
   `nombre` varchar(90) NOT NULL,
   `email` varchar(90) NOT NULL,
   `direccion` varchar(90) NOT NULL,
-  `telefono` varchar(90) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+  `telefono` varchar(90) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `proveedor`
@@ -596,16 +544,21 @@ INSERT INTO `proveedor` (`id`, `cedula`, `nombre`, `email`, `direccion`, `telefo
 -- Estructura de tabla para la tabla `recibidos`
 --
 
-DROP TABLE IF EXISTS `recibidos`;
-CREATE TABLE IF NOT EXISTS `recibidos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `recibidos` (
+  `id` int(11) NOT NULL,
   `id_pmp` int(11) NOT NULL,
   `cantidad` varchar(90) NOT NULL,
   `fecha` date NOT NULL,
   `observacion` varchar(90) DEFAULT NULL,
-  `ce` varchar(90) NOT NULL,
-  PRIMARY KEY (`id`)
+  `ce` varchar(90) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `recibidos`
+--
+
+INSERT INTO `recibidos` (`id`, `id_pmp`, `cantidad`, `fecha`, `observacion`, `ce`) VALUES
+(2, 1, '102002', '2019-10-07', '8jjkk', '');
 
 -- --------------------------------------------------------
 
@@ -613,18 +566,16 @@ CREATE TABLE IF NOT EXISTS `recibidos` (
 -- Estructura de tabla para la tabla `usuarios`
 --
 
-DROP TABLE IF EXISTS `usuarios`;
-CREATE TABLE IF NOT EXISTS `usuarios` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL,
   `nombre` varchar(90) NOT NULL,
   `correo` varchar(90) NOT NULL,
   `clave` varchar(90) NOT NULL,
   `tipo_usuario` enum('Admin','Usuario 1','Usuario 2') NOT NULL,
   `pregunta` text NOT NULL,
   `respuesta` text NOT NULL,
-  `borrado` enum('S','N') DEFAULT 'N',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `borrado` enum('S','N') DEFAULT 'N'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -642,16 +593,12 @@ INSERT INTO `usuarios` (`id`, `nombre`, `correo`, `clave`, `tipo_usuario`, `preg
 -- Estructura de tabla para la tabla `usuarios_has_privilegios`
 --
 
-DROP TABLE IF EXISTS `usuarios_has_privilegios`;
-CREATE TABLE IF NOT EXISTS `usuarios_has_privilegios` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `usuarios_has_privilegios` (
+  `id` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `id_privilegio` int(11) NOT NULL,
-  `status` enum('Si','No') NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_usuario` (`id_usuario`),
-  KEY `id_privilegio` (`id_privilegio`)
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=latin1;
+  `status` enum('Si','No') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuarios_has_privilegios`
@@ -732,6 +679,344 @@ INSERT INTO `usuarios_has_privilegios` (`id`, `id_usuario`, `id_privilegio`, `st
 (72, 4, 18, 'No');
 
 --
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `almacen`
+--
+ALTER TABLE `almacen`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `asignacion_deduccion`
+--
+ALTER TABLE `asignacion_deduccion`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_tipo` (`tipo`);
+
+--
+-- Indices de la tabla `asistencias`
+--
+ALTER TABLE `asistencias`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `rest_asis` (`id_empleado`);
+
+--
+-- Indices de la tabla `auditoria`
+--
+ALTER TABLE `auditoria`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_usuario` (`id_usuario`);
+
+--
+-- Indices de la tabla `cargos`
+--
+ALTER TABLE `cargos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_departamentos` (`id_departamento`);
+
+--
+-- Indices de la tabla `cestaticket`
+--
+ALTER TABLE `cestaticket`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `departamentos`
+--
+ALTER TABLE `departamentos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `despachos`
+--
+ALTER TABLE `despachos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `dia_lab`
+--
+ALTER TABLE `dia_lab`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `rest_dia` (`id_empleado`);
+
+--
+-- Indices de la tabla `empleado`
+--
+ALTER TABLE `empleado`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_cargo` (`id_cargo`);
+
+--
+-- Indices de la tabla `empleado_asig`
+--
+ALTER TABLE `empleado_asig`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `empl` (`id_empleado`),
+  ADD KEY `asig` (`id_asignaciones`);
+
+--
+-- Indices de la tabla `empleado_pago`
+--
+ALTER TABLE `empleado_pago`
+  ADD KEY `ci_e` (`id_empleado`),
+  ADD KEY `id_pago` (`id_pago`);
+
+--
+-- Indices de la tabla `empleado_producto`
+--
+ALTER TABLE `empleado_producto`
+  ADD KEY `ci_e` (`id_empleado`),
+  ADD KEY `cod_p` (`id_producto`);
+
+--
+-- Indices de la tabla `enviados`
+--
+ALTER TABLE `enviados`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `inventario`
+--
+ALTER TABLE `inventario`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `inventario_producto` (`id_productos`);
+
+--
+-- Indices de la tabla `materiaprima_producto`
+--
+ALTER TABLE `materiaprima_producto`
+  ADD KEY `cod_mp` (`id_materiaprima`),
+  ADD KEY `cod_p` (`id_producto`);
+
+--
+-- Indices de la tabla `materiaprima_proveedor`
+--
+ALTER TABLE `materiaprima_proveedor`
+  ADD KEY `cod_mp` (`id_materiaprima`),
+  ADD KEY `ci_pro` (`id_proveedor`);
+
+--
+-- Indices de la tabla `materia_prima`
+--
+ALTER TABLE `materia_prima`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `pago`
+--
+ALTER TABLE `pago`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `pago_asignaciondeduccion`
+--
+ALTER TABLE `pago_asignaciondeduccion`
+  ADD KEY `id_pago` (`id_pago`),
+  ADD KEY `id_ad` (`id_ad`);
+
+--
+-- Indices de la tabla `pre_nomina`
+--
+ALTER TABLE `pre_nomina`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_empleado` (`id_empleado`);
+
+--
+-- Indices de la tabla `privilegios`
+--
+ALTER TABLE `privilegios`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `produccion`
+--
+ALTER TABLE `produccion`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `productos`
+--
+ALTER TABLE `productos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `producto_proveedor`
+--
+ALTER TABLE `producto_proveedor`
+  ADD KEY `cod_p` (`id_producto`),
+  ADD KEY `ci_pro` (`id_proveedor`);
+
+--
+-- Indices de la tabla `proveedor`
+--
+ALTER TABLE `proveedor`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `recibidos`
+--
+ALTER TABLE `recibidos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `usuarios_has_privilegios`
+--
+ALTER TABLE `usuarios_has_privilegios`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_usuario` (`id_usuario`),
+  ADD KEY `id_privilegio` (`id_privilegio`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `almacen`
+--
+ALTER TABLE `almacen`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `asignacion_deduccion`
+--
+ALTER TABLE `asignacion_deduccion`
+  MODIFY `id` int(90) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `asistencias`
+--
+ALTER TABLE `asistencias`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `auditoria`
+--
+ALTER TABLE `auditoria`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `cargos`
+--
+ALTER TABLE `cargos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `cestaticket`
+--
+ALTER TABLE `cestaticket`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `departamentos`
+--
+ALTER TABLE `departamentos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `despachos`
+--
+ALTER TABLE `despachos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `dia_lab`
+--
+ALTER TABLE `dia_lab`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+
+--
+-- AUTO_INCREMENT de la tabla `empleado`
+--
+ALTER TABLE `empleado`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT de la tabla `empleado_asig`
+--
+ALTER TABLE `empleado_asig`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT de la tabla `enviados`
+--
+ALTER TABLE `enviados`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `inventario`
+--
+ALTER TABLE `inventario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `materia_prima`
+--
+ALTER TABLE `materia_prima`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `pago`
+--
+ALTER TABLE `pago`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `pre_nomina`
+--
+ALTER TABLE `pre_nomina`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `privilegios`
+--
+ALTER TABLE `privilegios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT de la tabla `produccion`
+--
+ALTER TABLE `produccion`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `productos`
+--
+ALTER TABLE `productos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `proveedor`
+--
+ALTER TABLE `proveedor`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `recibidos`
+--
+ALTER TABLE `recibidos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios_has_privilegios`
+--
+ALTER TABLE `usuarios_has_privilegios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+
+--
 -- Restricciones para tablas volcadas
 --
 
@@ -784,7 +1069,7 @@ ALTER TABLE `empleado_producto`
 -- Filtros para la tabla `inventario`
 --
 ALTER TABLE `inventario`
-  ADD CONSTRAINT `inventario_producto` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `inventario_producto` FOREIGN KEY (`id_productos`) REFERENCES `productos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `materiaprima_proveedor`

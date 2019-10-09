@@ -21,11 +21,18 @@
 		//Materia Prima
         case'registar':include"Vistas/materia_prima/registar.php";break;
 		case'index':include"Vistas/materia_prima/index.php";break;
+		case'guardar_MP':include"../materia_prima/guardar_materiaprima.php";break;
 
 		//Inventario
 		case'registar':include"Vistas/inventario/registar.php";break;
 		case'index':include"Vistas/inventario/index.php";break;
 		case'usar':include"../inventario/usar_producto.php";break;
+		case'existencia_pro':include"../inventario/actualizado_producto.php";break;
+		case'inventario':include"../inventario/inventario.php";break;
+		case'registro_inv':include"../inventario/registrar_inventario.php";break;
+		case'guardar_inventario':include"../inventario/guardar_inventario.php";break;
+		case'ver_inventario':include"../inventario/ver_inventario.php";break;
+
 
         
         //Empleados

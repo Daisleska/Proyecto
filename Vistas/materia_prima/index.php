@@ -42,8 +42,8 @@ $data=unserialize($data);
             </ul>
             <div class="tab-content">
               <div class="active tab-pane" id="datosPersonales">
-                <form class="form-horizontal" action="../menu/ControladorMenu.php?operacion=guardar_materiaprima" method="POST" id="insumos">
-                  <input type="hidden" name="id" value="<?php echo $id; ?>">
+                <form class="form-horizontal" action="../../Controladores/ControladorMP.php?operacion=guardar" method="POST" id="insumos">
+                  <!-- <input type="hidden" name="id" value="<?php echo $id; ?>"> -->
                   <div class="form-group">
                     <div class="col-sm-4">
                       <label for="" class="control-label">Proveedor</label>
@@ -59,7 +59,7 @@ $data=unserialize($data);
                     </div>
                     <div class="col-sm-4">
                       <label for="" class="control-label">Codigo</label>
-                      <input type="text" class="form-control" name="codigo" id="codigo" placeholder="Código" value="<?php echo 'SERVI-'; echo $rows + 1;?>" readonly>
+                      <input type="text" class="form-control" name="codigo" id="codigo" placeholder="Código" value="<?php echo 'SERVI-'; echo $row + 2;?>" readonly>
                       <span class="help-block"></span>
                     </div>
 
@@ -84,11 +84,20 @@ $data=unserialize($data);
                       <span class="help-block"></span>
                     </div>
 
-                    <div class="col-sm-7">
+                    <div class="col col-md-4"><label class=" form-control-label">* Unidad:</label></div>
+
+                   <div class="col-md-6"><select name="unidad" class="form-control" required="required">
+                    <option selected="selected">Seleccione</option>
+                    <option value="Kgs">Kgs</option>
+                    <option value="Lts">Lts</option>
+                                                                        
+                    </select></div>
+
+                    <!-- <div class="col-sm-7">
                       <label for="" class="control-label">Observaciones</label>
                       <input type="text" maxlength="120" class="form-control" name="observacion" id="observacion" placeholder="Observaciones" value="">
                       <span class="help-block"></span>
-                    </div>
+                    </div> -->
                   </div>
                   </div>
                   <div class="col-sm-12">

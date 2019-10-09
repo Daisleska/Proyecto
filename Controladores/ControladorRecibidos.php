@@ -40,7 +40,7 @@ public function registrar()
 
 	{
 	$db=new clasedb();
-	$conex=$db->conectar();
+	$conex=$db->conectar();  
 	$cont=0; //para contar si no se ejecutaron consultas
 	//
 	

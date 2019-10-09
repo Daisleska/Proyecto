@@ -85,7 +85,8 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-archive"></i>Inventario</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-list"></i><a href="#">...</a></li>
+                            <li><i class="fa fa-list"></i><a href="../menu/ControladorMenu.php?operacion=inventario">General</a></li>
+                            <li><i class="fa fa-list"></i><a href="../menu/ControladorMenu.php?operacion=registro_inv">Registro</a></li>
                         </ul>
                     </li>
 
