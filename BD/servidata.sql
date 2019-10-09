@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-10-2019 a las 22:01:54
+-- Tiempo de generación: 09-10-2019 a las 22:18:04
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.1.26
 
@@ -68,19 +68,9 @@ CREATE TABLE `asistencias` (
   `id` int(11) NOT NULL,
   `id_empleado` int(11) NOT NULL,
   `fecha_hora` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'fecha de asistencia',
-  `status` enum('Asistió','No Asistió (Con Justificativo)','No Asistió (Sin Justificativo)','Sin Marcar') COLLATE utf8_unicode_ci NOT NULL,
+  `status` enum('A','NACJ','NASJ','Sin Marcar') COLLATE utf8_unicode_ci NOT NULL,
   `justificacion` mediumtext COLLATE utf8_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Volcado de datos para la tabla `asistencias`
---
-
-INSERT INTO `asistencias` (`id`, `id_empleado`, `fecha_hora`, `status`, `justificacion`) VALUES
-(1, 14, '2019-10-09 04:30:00', '', ''),
-(2, 15, '2019-10-09 04:30:00', '', ''),
-(3, 16, '2019-10-09 04:30:00', 'Sin Marcar', ''),
-(4, 17, '2019-10-09 04:30:00', 'Sin Marcar', '');
 
 -- --------------------------------------------------------
 
@@ -904,7 +894,7 @@ ALTER TABLE `asignacion_deduccion`
 -- AUTO_INCREMENT de la tabla `asistencias`
 --
 ALTER TABLE `asistencias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `auditoria`
