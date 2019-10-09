@@ -60,7 +60,7 @@ if ($nombresbd>0){
 				<?php
 			}		
 			else {
-	$sql="INSERT INTO asignacion_deduccion (descripcion, tipo,monto) VALUES ( '$descripcion', '$tipo', '$monto')";
+	$sql="INSERT INTO asignacion_deduccion (descripcion, tipo,monto, obligatorio) VALUES ( '$descripcion', '$tipo', '$monto', '$obligatorio')";
 
 	$resultado=mysqli_query($conex,$sql);
 	
@@ -90,7 +90,7 @@ if ($nombresbd>0){
 		$db=new clasedb();
 	$conex=$db->conectar();//conectando con la base de datos
 	
-	$sql="SELECT id, descripcion, tipo, monto FROM asignacion_deduccion WHERE id=".$id."";
+	$sql="SELECT id, descripcion, tipo, monto, obligatorio FROM asignacion_deduccion WHERE id=".$id."";
 
 	$res=mysqli_query($conex,$sql);//ejecutando consulta
 	$data=mysqli_fetch_array($res);//extrayendo datos en array
@@ -104,7 +104,7 @@ if ($nombresbd>0){
 		$db=new clasedb();
 		$conex=$db->conectar();
     
-	$sql="UPDATE asignacion_deduccion SET id='$id',descripcion='$descripcion', tipo='$tipo', monto='$monto' WHERE id='$id'";
+	$sql="UPDATE asignacion_deduccion SET id='$id',descripcion='$descripcion', tipo='$tipo', monto='$monto', obligatorio='$obligatorio' WHERE id='$id'";
 	
 
     $resultado=mysqli_query($conex,$sql);

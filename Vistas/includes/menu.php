@@ -18,9 +18,7 @@
     <link rel="../../shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="../../vendors/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../vendors/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../../vendors/chosen/chosen.min.css">
-    <link rel="stylesheet" href="../../vendors/themify-icons/css/themify-icons.css
-    ">
+    <link rel="stylesheet" href="../../vendors/themify-icons/css/themify-icons.css">
     <link rel="stylesheet" href="../../vendors/flag-icon-css/css/flag-icon.min.css">
     <link rel="stylesheet" href="../../vendors/selectFX/css/cs-skin-elastic.css">
     <link rel="stylesheet" href="../../vendors/jqvmap/dist/jqvmap.min.css">
@@ -140,8 +138,7 @@
                      <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-money"></i>Nomina</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-users"></i><a href="#">...</a></li>
-                            <li><i class="menu-icon fa fa-list"></i><a href="#">Movimientos</a></li>
+                            <li><i class="menu-icon fa fa-list"></i><a href="../../Controladores/ControladorPreNomina.php?operacion=prenomina">Pre-nomina</a></li>
                         </ul>
                     </li>
 
@@ -173,7 +170,11 @@
         <header id="header" class="header  col-md-12"><div class="header-menu "><div class="col-md-7">
                     <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa-hand-o-left"></i></a>
                     <div class="header-left">
+
+                        
+
                         <img src="../../images/servi.png" width="100">
+
                         <p style="text-align: center; margin-left: 6cm; margin-top: 0cm;">SERVIFORM C.A La Victoria Edo. Aragua</p>
                     </div>
         
@@ -199,6 +200,21 @@
                             <script type="text/javascript">
 //<![CDATA[
 
+function makeArray() {
+for (i = 0; i<makeArray.arguments.length; i++)
+this[i + 1] = makeArray.arguments[i];}
+var months = new makeArray('Enero','Febrero','Marzo','Abril','Mayo',
+'Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre');
+var date = new Date();
+var day = date.getDate();
+var month = date.getMonth() + 1;
+var yy = date.getYear();
+var year = (yy < 1000) ? yy + 1900 : yy;
+document.write("" + day + " de " + months[month] + " del " + year);
+//]]>
+
+</script>   
+ <script type="text/javascript">
 
 function startTime(){
 today=new Date();
@@ -214,24 +230,6 @@ function checkTime(i)
 window.onload=function(){startTime();}
 </script>
 <div id="reloj" style="font-size:15px;" ></div>
-
-<script type="text/javascript">
-function makeArray() {
-for (i = 0; i<makeArray.arguments.length; i++)
-this[i + 1] = makeArray.arguments[i];}
-var months = new makeArray('Enero','Febrero','Marzo','Abril','Mayo',
-'Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre');
-var date = new Date();
-var day = date.getDate();
-var month = date.getMonth() + 1;
-var yy = date.getYear();
-var year = (yy < 1000) ? yy + 1900 : yy;
-document.write("" + day + " de " + months[month] + " del " + year);
-//]]>
-
-</script>   
-
-
                         </a>
 
                         <div class="user-menu dropdown-menu">
