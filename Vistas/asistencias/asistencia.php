@@ -86,6 +86,8 @@ $data=unserialize($data);
                           <th>Nombres</th>
                           <th>Apellidos</th>
                           <th>Cédula</th>
+                          <th>Status</th>
+                          <th>Justificacion</th>
                           <th>Opciones</th>
                         </tr>
                       </thead>
@@ -98,20 +100,33 @@ $data=unserialize($data);
               ?>  
               
               <td><?=$num?></td>
-            <?php for ($j=1; $j <4; $j++) { ?>
+            <?php for ($j=1; $j <$campos; $j++) { ?>
             <td><?=$data[$i][$j]?></td>
 
               <?php } ?>
 
               <td>
 
-                <a href="ControlA.php?operacion=marcar&id_asistencias=<?=$data[$i][0]?>"><i style="font-size: 20px;" title="Marcar Asistencia" class="menu-icon fa fa-check"></a></i>
+                    <?php 
+                   if ($data[$i][4]=="Sin Marcar") {
+                    ?>
+               <i data-toggle="modal" onclick="asistio(<?=$data[$i][0]?>)" data-target="#mediumModal" style="font-size: 20px;" title="Marcar Asistencia" class="menu-icon fa fa-check"></i>
 
-              <a href="ControlA.php?operacion=eliminar&id_asistencias=<?=$data[$i][0]?>"><i style="font-size: 20px;" title="Eliminar" class="menu-icon fa fa-times"></a></i>
+               <i data-toggle="modal" onclick="noasistio(<?=$data[$i][0]?>)" data-target="#mediumModal" style="font-size: 20px;" title="No asistió" class="menu-icon fa fa-times"></i>
+                  <?php 
+                  }else{
+                    if($data[$i][4]=="Asistió"){?>
+                    <i data-toggle="modal" onclick="noasistio(<?=$data[$i][0]?>)" data-target="#mediumModal" style="font-size: 20px;" title="No asistió" class="menu-icon fa fa-times"></i>
+                    <?php
 
-               <button type="button" class="btn btn-secondary mb-1" data-toggle="modal" data-target="#mediumModal">
-                            Inas
-                        </button>
+                  }else{
+                    ?>
+                    <i data-toggle="modal" onclick="asistio(<?=$data[$i][0]?>)" data-target="#mediumModal" style="font-size: 20px;" title="Marcar Asistencia" class="menu-icon fa fa-check"></i>
+                    <?php
+                  }
+                }
+                 ?>
+               
                                 
               </td>
                 <?php 
@@ -129,28 +144,47 @@ $data=unserialize($data);
     </section> <!-- Fin de Main content Section-->
 
 
-<form action="justificacion.php&id_asistencias=<?=$data[$i][0]?>" method="POST">
+<form action="ControlA.php?operacion=asistencia" method="POST">
 
     <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                           <form action="" method="POST">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="mediumModalLabel">Inasistencia Justificada?</h5>
+                                <h5 class="modal-title" id="mediumModalLabel">Asistencia</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                              <label>No Justificado:</label>
-                               <input type="checkbox" name="no_justificado">
-
-                               <label>Justificación:</label>
-                               <textarea maxlength="500"  placeholder=" Explique su Motivo de inisistencia" name="justificacion"> </textarea>
+                              <div id="asiste" style="display: none;">
+                              <div class="row" >
+                                <div class="col-md-12">
+                                  <label>Seguro que desea marcar como asistió?</label>
+                                </div>   
+                              </div>
                             </div>
-                            <div class="modal-footer">
+
+                            <div id="noasiste" style="display: none;">
+                              <div class="row" >
+                                <div class="col-md-12">
+                                  <label>Seguro que desea marcar como no asistió?</label>
+                                </div>   
+                              </div>
+                              <div class="row">
+                                <div class="col-md-12">
+                                   <label>Justificación:</label>
+                               <textarea maxlength="500"  placeholder=" Explique su Motivo de inisistencia en caso de estar justificado" name="justificacion"> </textarea>
+                                </div>
+                             </div>
+                            </div>
+                             
+                            </div>
+                            <div class="modal-footer"> 
+                              <input type="hidden" name="id_asistencia" id="id_asistencia">
+                              <input type="hidden" name="opcion" id="opcion">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-primary">Confirmar</button>
+                                <button type="submit" class="btn btn-primary">Confirmar</button>
                             </div>
                             </form>
                         </div>
@@ -164,7 +198,44 @@ $data=unserialize($data);
       <!-- /.row -->
     </section> <!-- Fin de Main content Section-->
 
- 
+    <script type="text/javascript">
+  
+  function asistio(id_asistencia) {
+    
+    /*console.log(id_asistencia);*/
+    $("#opcion").val('asiste');
+    $("#id_asistencia").val(id_asistencia);
+    if($("#noasiste").is(":visible")){
+      $("#asiste").css('display', 'block');
+      $("#noasiste").removeAttr('display');
+
+
+    }else{
+      $("#asiste").css('display', 'block');
+      $("#noasiste").css('display', 'none');
+    }
+  }
+
+  function noasistio(id_asistencia) {
+    
+    /*console.log(id_asistencia);*/
+    $("#opcion").val('noasiste');
+    $("#id_asistencia").val(id_asistencia);
+    if($("#asiste").is(":visible")){
+      $("#noasiste").css('display', 'block');
+      $("#asiste").removeAttr('display');
+
+
+    }else{
+      $("#noasiste").css('display', 'block');
+      $("#asiste").css('display', 'none');
+    }
+  }
+
+</script>
+
+
+
 
 
 

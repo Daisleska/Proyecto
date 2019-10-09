@@ -76,6 +76,9 @@
         });
     });
 </script>
+
+ 
+
  
       <!--  plugins sweet alert 2 -->
    <script src="../../vendors/plugins/sweetalert2.all.min.js"></script>

@@ -57,7 +57,7 @@ switch ($dia) {
     	//echo $sql2;
     	$buscar=mysqli_query($conex,$sql2);
     	if (mysqli_num_rows($buscar)==0) {
-    		$sql3="INSERT INTO asistencias VALUES(NULL,".$empleados[$i][0].",'".$hoy."','No','No a asistido')";
+    		$sql3="INSERT INTO asistencias VALUES(NULL,".$empleados[$i][0].",'".$hoy."','Sin Marcar','')";
     		$registro=mysqli_query($conex,$sql3);
     	}
     }
@@ -136,7 +136,7 @@ switch ($dia) {
         } else {
             ?>
                 <script type="text/javascript">
-                    alert("Registro no pudo ser eliminado, Vuelva a intentarlo!");
+                    alert("Registro no pudo ser realizado, Vuelva a intentarlo!");
                     window.location="ControlA.php?operacion=index";
                 </script>
             <?php
@@ -146,6 +146,48 @@ switch ($dia) {
     
 
     }
+
+
+public function asistencia()
+{
+extract($_POST);
+ $db=new clasedb();
+$conex=$db->conectar();
+
+if ($opcion=="asiste") {
+   $sql="UPDATE asistencias SET status='Asistió' WHERE id=".$id_asistencia;
+} else {
+    if ($justificacion=="") {
+        $sql="UPDATE asistencias SET status='No Asistió (Sin Justificativo)' WHERE id=".$id_asistencia;
+    } else {
+        $sql="UPDATE asistencias SET status='No Asistió (Con Justificativo)', justificacion='".$justificacion."' WHERE id=".$id_asistencia;
+    }
+    
+}
+ 
+ $res=mysqli_query($conex,$sql);
+
+ if ($res) {
+            ?>
+                <script type="text/javascript">
+                    alert("Exitoso!");
+                    window.location="ControlA.php?operacion=index";
+                </script>
+            <?php
+        } else {
+            ?>
+                <script type="text/javascript">
+                    alert("Fallido!");
+                    window.location="ControlA.php?operacion=index";
+                </script>
+            <?php
+        }
+
+
+/*echo $sql;*/
+
+}
+
 
 static function controlador($operacion) {
 		$asis=new ControlA();
@@ -164,6 +206,9 @@ static function controlador($operacion) {
         $asis->marcar();
         break;
 		
+        case 'asistencia':
+        $asis->asistencia();
+        break;
 		default: 
 		?>
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-10-2019 a las 18:08:21
+-- Tiempo de generación: 09-10-2019 a las 21:12:39
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.1.26
 
@@ -31,10 +31,10 @@ SET time_zone = "+00:00";
 CREATE TABLE `almacen` (
   `id` int(11) NOT NULL,
   `id_produccion` int(11) NOT NULL,
-  `existencia` varchar(90) NOT NULL,
-  `ce` varchar(90) NOT NULL,
-  `paletas` varchar(90) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `existencia` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `ce` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `paletas` varchar(90) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -44,10 +44,10 @@ CREATE TABLE `almacen` (
 
 CREATE TABLE `asignacion_deduccion` (
   `id` int(90) NOT NULL,
-  `descripcion` varchar(90) NOT NULL,
-  `tipo` enum('Asignacion','Deduccion') NOT NULL,
-  `monto` varchar(90) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `descripcion` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `tipo` enum('Asignacion','Deduccion') COLLATE utf8_spanish_ci NOT NULL,
+  `monto` varchar(90) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `asignacion_deduccion`
@@ -68,9 +68,9 @@ CREATE TABLE `asistencias` (
   `id` int(11) NOT NULL,
   `id_empleado` int(11) NOT NULL,
   `fecha_hora` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'fecha de asistencia',
-  `status` enum('Si','No') NOT NULL,
-  `justificacion` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` enum('Asistió','No Asistió (Con Justificativo)','No Asistió (Sin Justificativo)','Sin Marcar') COLLATE utf8_spanish_ci NOT NULL,
+  `justificacion` mediumtext COLLATE utf8_spanish_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -81,11 +81,11 @@ CREATE TABLE `asistencias` (
 CREATE TABLE `auditoria` (
   `id` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
-  `actividad` varchar(100) NOT NULL,
+  `actividad` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
-  `status` enum('0','1') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` enum('0','1') COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -95,10 +95,10 @@ CREATE TABLE `auditoria` (
 
 CREATE TABLE `cargos` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(90) NOT NULL,
-  `salario` varchar(90) NOT NULL,
+  `nombre` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `salario` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
   `id_departamento` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `cargos`
@@ -116,8 +116,8 @@ INSERT INTO `cargos` (`id`, `nombre`, `salario`, `id_departamento`) VALUES
 
 CREATE TABLE `cestaticket` (
   `id` int(11) NOT NULL,
-  `monto` varchar(90) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `monto` varchar(90) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `cestaticket`
@@ -134,8 +134,8 @@ INSERT INTO `cestaticket` (`id`, `monto`) VALUES
 
 CREATE TABLE `departamentos` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(90) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `nombre` varchar(90) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `departamentos`
@@ -157,12 +157,12 @@ INSERT INTO `departamentos` (`id`, `nombre`) VALUES
 CREATE TABLE `despachos` (
   `id` int(11) NOT NULL,
   `id_almacen` int(11) NOT NULL,
-  `cantidad` varchar(90) NOT NULL,
-  `paletas` varchar(90) NOT NULL,
-  `observacion` varchar(90) NOT NULL,
+  `cantidad` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `paletas` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `observacion` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
   `fecha` date NOT NULL,
-  `destino` varchar(90) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `destino` varchar(90) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -173,8 +173,8 @@ CREATE TABLE `despachos` (
 CREATE TABLE `dia_lab` (
   `id` int(11) NOT NULL,
   `id_empleado` int(11) NOT NULL,
-  `nombre` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `nombre` varchar(50) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `dia_lab`
@@ -190,16 +190,16 @@ INSERT INTO `dia_lab` (`id`, `id_empleado`, `nombre`) VALUES
 (30, 14, ' Domingo'),
 (31, 15, ' Lunes'),
 (32, 15, ' Martes'),
-(33, 15, ' MiÃ©rcoles'),
+(33, 15, ' Miércoles'),
 (34, 15, ' Jueves'),
 (35, 15, ' Viernes'),
-(36, 15, ' SÃ¡bado'),
+(36, 15, ' Sábado'),
 (37, 15, ' Domingo'),
 (41, 16, ' Lunes'),
 (42, 16, ' Martes'),
-(43, 16, ' MiÃ©rcoles'),
+(43, 16, ' Miércoles'),
 (44, 17, ' Martes'),
-(45, 17, ' MiÃ©rcoles'),
+(45, 17, ' Miércoles'),
 (46, 17, ' Jueves');
 
 -- --------------------------------------------------------
@@ -210,18 +210,18 @@ INSERT INTO `dia_lab` (`id`, `id_empleado`, `nombre`) VALUES
 
 CREATE TABLE `empleado` (
   `id` int(11) NOT NULL,
-  `cedula` varchar(11) NOT NULL,
-  `nombres` varchar(90) NOT NULL,
-  `apellidos` varchar(90) NOT NULL,
-  `direccion` varchar(90) NOT NULL,
-  `telefono` varchar(90) NOT NULL,
+  `cedula` varchar(11) COLLATE utf8_spanish_ci NOT NULL,
+  `nombres` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `apellidos` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `direccion` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `telefono` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
   `fecha_ingreso` date NOT NULL,
-  `condicion` enum('Fijo','Contratado') NOT NULL,
+  `condicion` enum('Fijo','Contratado') COLLATE utf8_spanish_ci NOT NULL,
   `fecha_venc` date NOT NULL,
-  `ncuenta` text NOT NULL,
+  `ncuenta` mediumtext COLLATE utf8_spanish_ci NOT NULL,
   `id_cargo` int(11) NOT NULL,
   `id_departamento` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `empleado`
@@ -246,7 +246,7 @@ CREATE TABLE `empleado_asig` (
   `id` int(11) NOT NULL,
   `id_empleado` int(11) NOT NULL,
   `id_asignaciones` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `empleado_asig`
@@ -272,9 +272,9 @@ INSERT INTO `empleado_asig` (`id`, `id_empleado`, `id_asignaciones`) VALUES
 CREATE TABLE `empleado_pago` (
   `id_empleado` int(11) NOT NULL,
   `id_pago` int(11) NOT NULL,
-  `horas_justificadas` varchar(90) NOT NULL,
-  `horas_sobre_t` varchar(90) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `horas_justificadas` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `horas_sobre_t` varchar(90) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -285,8 +285,8 @@ CREATE TABLE `empleado_pago` (
 CREATE TABLE `empleado_producto` (
   `id_empleado` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL,
-  `linea_produccion` varchar(90) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `linea_produccion` varchar(90) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -297,10 +297,10 @@ CREATE TABLE `empleado_producto` (
 CREATE TABLE `enviados` (
   `id` int(11) NOT NULL,
   `id_materia` int(11) NOT NULL,
-  `cantidad` varchar(90) NOT NULL,
-  `filial` enum('Produccion') NOT NULL,
-  `observacion` varchar(90) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `cantidad` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `filial` enum('Produccion') COLLATE utf8_spanish_ci NOT NULL,
+  `observacion` varchar(90) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -311,12 +311,12 @@ CREATE TABLE `enviados` (
 CREATE TABLE `inventario` (
   `id` int(11) NOT NULL,
   `id_productos` int(11) NOT NULL,
-  `estado` enum('aceptado','rechazado') NOT NULL,
-  `observaciones` varchar(500) NOT NULL,
+  `estado` enum('aceptado','rechazado') COLLATE utf8_spanish_ci NOT NULL,
+  `observaciones` varchar(500) COLLATE utf8_spanish_ci NOT NULL,
   `cantidad` int(11) NOT NULL,
   `fecha_entrega` date NOT NULL,
   `fecha_vencimiento` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `inventario`
@@ -337,7 +337,7 @@ CREATE TABLE `materiaprima_producto` (
   `id_producto` int(11) NOT NULL,
   `cantidad_u_mp` int(90) NOT NULL,
   `cantidad_exist_mp` int(90) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -350,7 +350,7 @@ CREATE TABLE `materiaprima_proveedor` (
   `id_proveedor` int(11) NOT NULL,
   `cantidad_c_mp` int(90) NOT NULL,
   `cantidad_exist_mp` int(90) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -360,12 +360,12 @@ CREATE TABLE `materiaprima_proveedor` (
 
 CREATE TABLE `materia_prima` (
   `id` int(11) NOT NULL,
-  `codigo` varchar(11) NOT NULL,
-  `nombre` varchar(90) NOT NULL,
-  `presentacion` varchar(90) NOT NULL,
-  `unidad` enum('Kgs','Lts') NOT NULL,
-  `stock_max` varchar(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `codigo` varchar(11) COLLATE utf8_spanish_ci NOT NULL,
+  `nombre` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `presentacion` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `unidad` enum('Kgs','Lts') COLLATE utf8_spanish_ci NOT NULL,
+  `stock_max` varchar(11) COLLATE utf8_spanish_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `materia_prima`
@@ -382,11 +382,11 @@ INSERT INTO `materia_prima` (`id`, `codigo`, `nombre`, `presentacion`, `unidad`,
 
 CREATE TABLE `pago` (
   `id` int(11) NOT NULL,
-  `sueldo` varchar(90) NOT NULL,
-  `monto` varchar(90) NOT NULL,
+  `sueldo` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `monto` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
   `fecha` date NOT NULL,
-  `periodo` varchar(90) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `periodo` varchar(90) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -397,7 +397,7 @@ CREATE TABLE `pago` (
 CREATE TABLE `pago_asignaciondeduccion` (
   `id_pago` int(90) NOT NULL,
   `id_ad` int(90) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -408,10 +408,10 @@ CREATE TABLE `pago_asignaciondeduccion` (
 CREATE TABLE `pre_nomina` (
   `id` int(11) NOT NULL,
   `id_empleado` int(11) NOT NULL,
-  `total` varchar(90) NOT NULL,
-  `quincena` varchar(90) NOT NULL,
-  `status` enum('1','2','3') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `total` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `quincena` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `status` enum('1','2','3') COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -421,9 +421,9 @@ CREATE TABLE `pre_nomina` (
 
 CREATE TABLE `privilegios` (
   `id` int(11) NOT NULL,
-  `modulo` varchar(90) NOT NULL,
-  `privilegio` varchar(90) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `modulo` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `privilegio` varchar(90) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `privilegios`
@@ -472,12 +472,12 @@ INSERT INTO `privilegios` (`id`, `modulo`, `privilegio`) VALUES
 CREATE TABLE `produccion` (
   `id` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL,
-  `cantidad` varchar(90) NOT NULL,
-  `paletas` varchar(90) NOT NULL,
-  `observacion` varchar(90) NOT NULL,
+  `cantidad` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `paletas` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `observacion` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
   `fecha` date NOT NULL,
-  `status` enum('Sin Almacenar','Almacenando','Completo') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` enum('Sin Almacenar','Almacenando','Completo') COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -487,10 +487,10 @@ CREATE TABLE `produccion` (
 
 CREATE TABLE `productos` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(90) NOT NULL,
-  `presentacion` varchar(90) NOT NULL,
-  `unidad` enum('Kgs','Lts') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `nombre` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `presentacion` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `unidad` enum('Kgs','Lts') COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `productos`
@@ -512,7 +512,7 @@ CREATE TABLE `producto_proveedor` (
   `id_proveedor` int(11) NOT NULL,
   `cantidad_d_p` int(90) NOT NULL,
   `cantidad_exist_p` int(90) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -522,12 +522,12 @@ CREATE TABLE `producto_proveedor` (
 
 CREATE TABLE `proveedor` (
   `id` int(11) NOT NULL,
-  `cedula` varchar(90) NOT NULL,
-  `nombre` varchar(90) NOT NULL,
-  `email` varchar(90) NOT NULL,
-  `direccion` varchar(90) NOT NULL,
-  `telefono` varchar(90) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `cedula` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `nombre` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `email` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `direccion` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `telefono` varchar(90) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `proveedor`
@@ -547,11 +547,11 @@ INSERT INTO `proveedor` (`id`, `cedula`, `nombre`, `email`, `direccion`, `telefo
 CREATE TABLE `recibidos` (
   `id` int(11) NOT NULL,
   `id_pmp` int(11) NOT NULL,
-  `cantidad` varchar(90) NOT NULL,
+  `cantidad` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
   `fecha` date NOT NULL,
-  `observacion` varchar(90) DEFAULT NULL,
-  `ce` varchar(90) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `observacion` varchar(90) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `ce` varchar(90) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `recibidos`
@@ -568,14 +568,14 @@ INSERT INTO `recibidos` (`id`, `id_pmp`, `cantidad`, `fecha`, `observacion`, `ce
 
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(90) NOT NULL,
-  `correo` varchar(90) NOT NULL,
-  `clave` varchar(90) NOT NULL,
-  `tipo_usuario` enum('Admin','Usuario 1','Usuario 2') NOT NULL,
-  `pregunta` text NOT NULL,
-  `respuesta` text NOT NULL,
-  `borrado` enum('S','N') DEFAULT 'N'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `nombre` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `correo` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `clave` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `tipo_usuario` enum('Admin','Usuario 1','Usuario 2') COLLATE utf8_spanish_ci NOT NULL,
+  `pregunta` mediumtext COLLATE utf8_spanish_ci NOT NULL,
+  `respuesta` mediumtext COLLATE utf8_spanish_ci NOT NULL,
+  `borrado` enum('S','N') COLLATE utf8_spanish_ci DEFAULT 'N'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -597,8 +597,8 @@ CREATE TABLE `usuarios_has_privilegios` (
   `id` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `id_privilegio` int(11) NOT NULL,
-  `status` enum('Si','No') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` enum('Si','No') COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios_has_privilegios`

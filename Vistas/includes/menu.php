@@ -4,11 +4,11 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="es"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js" lang="es">
+<html class="no-js" lang="es" dir="ltr">
 <!--<![endif]-->
 
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Serviform C.A</title>
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
