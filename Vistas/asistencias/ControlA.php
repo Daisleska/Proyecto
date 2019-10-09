@@ -117,37 +117,6 @@ switch ($dia) {
 
 
 
-    public function marcar(){
-
-    extract($_REQUEST);//extrayendo variables del url
-    $db=new clasedb();
-    $conex=$db->conectar();//conectando con la base de datos
-
-    $sql="UPDATE asistencias SET status='Si' WHERE id=".$id_asistencias;
-
-    $res=mysqli_query($conex,$sql);
-        if ($res) {
-            ?>
-                <script type="text/javascript">
-                    alert("Actualizado");
-                    window.location="ControlA.php?operacion=index";
-                </script>
-            <?php
-        } else {
-            ?>
-                <script type="text/javascript">
-                    alert("Registro no pudo ser realizado, Vuelva a intentarlo!");
-                    window.location="ControlA.php?operacion=index";
-                </script>
-            <?php
-        }
-
-
-    
-
-    }
-
-
 public function asistencia()
 {
 extract($_POST);
@@ -155,16 +124,17 @@ extract($_POST);
 $conex=$db->conectar();
 
 if ($opcion=="asiste") {
-   $sql="UPDATE asistencias SET status='Asistió' WHERE id=".$id_asistencia;
+   $sql="UPDATE asistencias SET status='A', justificacion='' WHERE id=".$id_asistencia;
 } else {
-    if ($justificacion=="") {
-        $sql="UPDATE asistencias SET status='No Asistió (Sin Justificativo)' WHERE id=".$id_asistencia;
+
+    if ($justificacion!=="") {
+        $sql="UPDATE asistencias SET status='NACJ', justificacion='".$justificacion."' WHERE id=".$id_asistencia;
     } else {
-        $sql="UPDATE asistencias SET status='No Asistió (Con Justificativo)', justificacion='".$justificacion."' WHERE id=".$id_asistencia;
+        $sql="UPDATE asistencias SET status='NASJ' WHERE id=".$id_asistencia;
     }
     
 }
- 
+//echo $sql;
  $res=mysqli_query($conex,$sql);
 
  if ($res) {
@@ -184,7 +154,7 @@ if ($opcion=="asiste") {
         }
 
 
-/*echo $sql;*/
+
 
 }
 

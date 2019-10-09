@@ -62,23 +62,14 @@ $data=unserialize($data);
         </div>
       </div> -->
        <div class="box-body">
-                    <!-- <div class="table-responsive"  style="overflow-x: hidden;">
+                    <div class="table-responsive"  style="overflow-x: hidden;">
                       <div class="row">
-                        <div class="input-daterange">
-                          <div class="col-sm-offset-3 col-sm-8">
-                            <div data-date-format="yyyy/mm/dd" data-date="yyyy/mm/dd" class="input-group input-large">
-                              <input type="text" name="start_date" id="start_date" class="form-control" placeholder="Desde"/>
-                              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                              <input type="text" name="end_date" id="end_date" class="form-control" placeholder="Hasta"/>
-                            </div>
-                          </div>
-                        </div>
-                        <div  class="col-sm-2">
-                          <button type="button" name="search1" id="search1" class="btn btn-primary active" ><i class="fa fa-search"></i> Buscar</button>
-                        </div>
                         
+                        <div class="col-sm-12">
+                          <label><b>A:</b> Asistió, <b>NACJ:</b> No Asistió (Con Justificativo), <b>NASJ:</b> No Asistió (Sin Justificativo)</label>
+                        </div>
                       </div><br>
-                    </div> -->
+                    </div>
                     <table id="order_data_censo" class="table table-bordered table-hover">
                       <thead>
                         <tr>
@@ -101,21 +92,21 @@ $data=unserialize($data);
               
               <td><?=$num?></td>
             <?php for ($j=1; $j <$campos; $j++) { ?>
-            <td><?=$data[$i][$j]?></td>
+            <td><?=utf8_encode($data[$i][$j])?></td>
 
               <?php } ?>
 
               <td>
 
                     <?php 
-                   if ($data[$i][4]=="Sin Marcar") {
+                   if (utf8_encode($data[$i][4])=="Sin Marcar") {
                     ?>
                <i data-toggle="modal" onclick="asistio(<?=$data[$i][0]?>)" data-target="#mediumModal" style="font-size: 20px;" title="Marcar Asistencia" class="menu-icon fa fa-check"></i>
 
                <i data-toggle="modal" onclick="noasistio(<?=$data[$i][0]?>)" data-target="#mediumModal" style="font-size: 20px;" title="No asistió" class="menu-icon fa fa-times"></i>
                   <?php 
                   }else{
-                    if($data[$i][4]=="Asistió"){?>
+                    if(utf8_encode($data[$i][4])=="A"){?>
                     <i data-toggle="modal" onclick="noasistio(<?=$data[$i][0]?>)" data-target="#mediumModal" style="font-size: 20px;" title="No asistió" class="menu-icon fa fa-times"></i>
                     <?php
 
