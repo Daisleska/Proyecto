@@ -37,12 +37,48 @@ public function prenomina(){
 	}//enviando datos
 }//fin de la funcion 
 
+public function aprobadas(){
+	extract($_POST);
+	$db=new clasedb();//instanciando clasedb
+	$conex=$db->conectar();//conectando con la base de datos
+
+	$sql="SELECT * FROM pre_nomina WHERE status=2";//query
+
+
+	//ejecutando query
+	if ($res=mysqli_query($conex,$sql)) {
+		//echo "entro";
+		$campos=mysqli_num_fields($res);//cuantos campos trae la consulta	
+		$filas=mysqli_num_rows($res);//cuantos registro trae la consulta
+		$i=0;
+		$prenomina[]=array();//inicializando array
+		//extrayendo datos
+		while($data=mysqli_fetch_array($res)){
+			for ($j=0; $j <$campos; $j++) { 
+				$prenomina[$i][$j]=$data[$j];
+			} 
+			$i++;
+		}
+		
+	    header("Location: ../Vistas/pre_nomina/aprobadas.php?filas=".$filas."&campos=".$campos."&prenomina=".serialize($prenomina));
+	} else {
+		echo "Error en la BASE DE DATOS";
+
+	}//enviando datos
+}//fin de la funcion 
 
 public function generar(){
 	
 	$db=new clasedb();
 	$conex=$db->conectar();
-	$i=1;
+
+	$sql="SELECT * FROM pre_nomina";
+
+	echo $sql;
+
+
+
+	/*/$i=1;
     $sql="INSERT INTO `pre_nomina` (`id`, `quincena`, `status`) VALUES (NULL, CURDATE(), ".$i.")";
 
     $result=mysqli_query($conex,$sql);//esto funciona
@@ -60,11 +96,54 @@ public function generar(){
 	   $sql3="INSERT INTO `prenomina_empleado` (`id`, `id_prenomina`, `id_empleado`) VALUES (NULL,  ".$id_prenomina.", ".$data->id.")";
 		$resultado=mysqli_query($conex,$sql3);
 		$i++;
-     }
-     
+     }/*/
 
-  
+
+
+
+
+
 }//fin de la funcion generar
+
+
+
+
+
+public function ver(){
+
+    $db=new clasedb();
+	$conex=$db->conectar();
+    $suma=0;
+    $resta=0;
+    
+    $sql="SELECT empleado.cedula, empleado.nombres, empleado.id_cargo, cargos.salario, asignacion_deduccion.tipo, asignacion_deduccion.monto FROM empleado, cargos, asignacion_deduccion WHERE empleado.id_cargo=cargos.id";
+    
+    $res=mysqli_query($conex,$sql);
+	
+	while($data=mysqli_fetch_object($res)){
+	   if ($data->tipo="Asignacion") {
+	   	   $suma=$suma+$data->monto;
+	   }
+      
+	   else{
+           $resta=$resta+$data->monto;
+	   }
+	    
+	    $sueldo_neto=(($salario/2) +$suma-$resta);
+		$i++;
+     }
+
+
+
+
+
+	
+
+
+
+
+
+}//fin de la funcion ver
 
 
 
@@ -78,6 +157,10 @@ static function controlador($operacion){
 
 		case 'generar':
 			$pago->generar();
+			break;
+
+		case 'aprobadas':
+			$pago->aprobadas();
 			break;
 
 		case 'ver':

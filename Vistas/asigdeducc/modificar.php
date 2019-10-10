@@ -82,7 +82,7 @@ $data=unserialize($data);
             </div>
 
             <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
-                <div class="col col-md-4"><label for="hf-obli" class=" form-control-label">Tipo:</label></div>
+                <div class="col col-md-4"><label for="hf-obli" class=" form-control-label">¿Obligatorio?:</label></div>
                 <div class="col-12 col-md-7">
 
                   <select id="hf-obli" name="obligatorio" class="form-control" required="required">

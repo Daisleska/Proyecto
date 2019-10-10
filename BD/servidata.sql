@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-10-2019 a las 22:18:04
+-- Tiempo de generación: 10-10-2019 a las 01:57:49
 -- Versión del servidor: 10.1.37-MariaDB
--- Versión de PHP: 7.1.26
+-- Versión de PHP: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -71,6 +71,15 @@ CREATE TABLE `asistencias` (
   `status` enum('A','NACJ','NASJ','Sin Marcar') COLLATE utf8_unicode_ci NOT NULL,
   `justificacion` mediumtext COLLATE utf8_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `asistencias`
+--
+
+INSERT INTO `asistencias` (`id`, `id_empleado`, `fecha_hora`, `status`, `justificacion`) VALUES
+(1, 14, '2019-10-10 04:00:00', 'Sin Marcar', ''),
+(2, 15, '2019-10-10 04:00:00', 'Sin Marcar', ''),
+(3, 17, '2019-10-10 04:00:00', 'Sin Marcar', '');
 
 -- --------------------------------------------------------
 
@@ -377,6 +386,22 @@ INSERT INTO `materia_prima` (`id`, `codigo`, `nombre`, `presentacion`, `unidad`,
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `nomina`
+--
+
+CREATE TABLE `nomina` (
+  `id` int(11) NOT NULL,
+  `id_empleado` int(11) NOT NULL,
+  `id_prenomina` int(11) NOT NULL,
+  `sueldo` varchar(90) NOT NULL,
+  `total_asig` varchar(90) NOT NULL,
+  `total_deducc` varchar(90) NOT NULL,
+  `monto` varchar(90) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `pago`
 --
 
@@ -402,16 +427,35 @@ CREATE TABLE `pago_asignaciondeduccion` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `prenomina_empleado`
+--
+
+CREATE TABLE `prenomina_empleado` (
+  `id` int(11) NOT NULL,
+  `id_prenomina` int(11) NOT NULL,
+  `id_empleado` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `pre_nomina`
 --
 
 CREATE TABLE `pre_nomina` (
   `id` int(11) NOT NULL,
-  `id_empleado` int(11) NOT NULL,
-  `total` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
-  `quincena` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
-  `status` enum('1','2','3') COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `quincena` int(90) NOT NULL,
+  `mes` int(90) NOT NULL,
+  `anio` int(90) NOT NULL,
+  `status` enum('Procesando','Aprobado') COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `pre_nomina`
+--
+
+INSERT INTO `pre_nomina` (`id`, `quincena`, `mes`, `anio`, `status`) VALUES
+(1, 1, 10, 2019, 'Aprobado');
 
 -- --------------------------------------------------------
 
@@ -804,6 +848,14 @@ ALTER TABLE `materia_prima`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `nomina`
+--
+ALTER TABLE `nomina`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_empleado` (`id_empleado`),
+  ADD KEY `id_prenomina` (`id_prenomina`);
+
+--
 -- Indices de la tabla `pago`
 --
 ALTER TABLE `pago`
@@ -817,11 +869,18 @@ ALTER TABLE `pago_asignaciondeduccion`
   ADD KEY `id_ad` (`id_ad`);
 
 --
+-- Indices de la tabla `prenomina_empleado`
+--
+ALTER TABLE `prenomina_empleado`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_prenomina` (`id_prenomina`),
+  ADD KEY `id_empleado` (`id_empleado`);
+
+--
 -- Indices de la tabla `pre_nomina`
 --
 ALTER TABLE `pre_nomina`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_empleado` (`id_empleado`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `privilegios`
@@ -894,7 +953,7 @@ ALTER TABLE `asignacion_deduccion`
 -- AUTO_INCREMENT de la tabla `asistencias`
 --
 ALTER TABLE `asistencias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `auditoria`
@@ -963,16 +1022,28 @@ ALTER TABLE `materia_prima`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de la tabla `nomina`
+--
+ALTER TABLE `nomina`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `pago`
 --
 ALTER TABLE `pago`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `prenomina_empleado`
+--
+ALTER TABLE `prenomina_empleado`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `pre_nomina`
 --
 ALTER TABLE `pre_nomina`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `privilegios`
@@ -1078,6 +1149,13 @@ ALTER TABLE `materiaprima_proveedor`
   ADD CONSTRAINT `materiaprima_proveedor_ibfk_2` FOREIGN KEY (`id_proveedor`) REFERENCES `proveedor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Filtros para la tabla `nomina`
+--
+ALTER TABLE `nomina`
+  ADD CONSTRAINT `nomina_ibfk_1` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `nomina_ibfk_2` FOREIGN KEY (`id_prenomina`) REFERENCES `pre_nomina` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `pago`
 --
 ALTER TABLE `pago`
@@ -1088,6 +1166,13 @@ ALTER TABLE `pago`
 --
 ALTER TABLE `pago_asignaciondeduccion`
   ADD CONSTRAINT `pago_asignaciondeduccion_ibfk_1` FOREIGN KEY (`id_ad`) REFERENCES `asignacion_deduccion` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `prenomina_empleado`
+--
+ALTER TABLE `prenomina_empleado`
+  ADD CONSTRAINT `prenomina_empleado_ibfk_1` FOREIGN KEY (`id_prenomina`) REFERENCES `pre_nomina` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `prenomina_empleado_ibfk_2` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `producto_proveedor`

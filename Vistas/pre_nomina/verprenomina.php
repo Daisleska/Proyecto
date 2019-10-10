@@ -1,7 +1,7 @@
 <?php
 include_once "../includes/menu.php"; 
 extract($_REQUEST);
-$prenomina=unserialize($prenomina);
+$datos=unserialize($datos);
  ?>
 
  
@@ -41,7 +41,7 @@ $prenomina=unserialize($prenomina);
     </div>
     
 
-                           <div class="col-md-2,5">
+     <div class="col-md-2,5">
                                  <p style="margin-left: 17cm;"><a href="../../Controladores/ControladorPreNomina.php?operacion=generar" class="btn btn-block btn-danger btn-sm">Generar</a></p>
                                 </div>
                             </div>
@@ -50,7 +50,9 @@ $prenomina=unserialize($prenomina);
                                     <thead>
                                        <tr>
                                         <th>N°</th>
-                                        <th>Quincena</th>
+                                        <th>Cedula</th>
+                                        <th>Nombre</th>
+                                        <th>Monto</th>
                                         <th>Estado</th>
                                         <th>Opciones</th>
                                        </tr>
@@ -64,11 +66,11 @@ $prenomina=unserialize($prenomina);
                             
                             <td><?=$num?></td>
                         <?php for ($j=1; $j < $campos; $j++) { ?>
-                        <td><?=$prenomina[$i][$j]?></td>
+                        <td><?=$datos[$i][$j]?></td>
 
                             <?php } ?>
 
-                            <td><a href="../../Controladores/ControladorPreNomina.php?operacion=ver&id_pre_nomina=<?=$prenomina[$i][0]?>"><i title="Ver Detalles" class="menu-icon fa fa-search-plus"></i></a>
+                            <td><a href="../../Controladores/ControladorPreNomina.php?operacion=vermas&id_empleado=<?=$datos[$i][0]?>"><i title="Ver Detalles" class="menu-icon fa fa-search-plus"></i></a>
 
                            <a href="../../Controladores/ControladorPreNomina.php?operacion=aprobar&id_empleado=<?=$aprobar[$i][0]?>"><i title="Aprobar" class="fa fa-check"></a></i>
                                 
@@ -78,10 +80,6 @@ $prenomina=unserialize($prenomina);
                                 }   ?>
                                     </tbody>
                                 </table>
-
-                                <div class="col-md-2,5">
-                                 <p style="margin-left: 8cm;"><a href="../../Controladores/ControladorPreNomina.php?operacion=aprobadas" class="btn btn-block btn-danger btn-sm">Reportes</a></p>
-                                </div>
                             </div>
                         </div>
                     </div>
