@@ -78,21 +78,10 @@ $data=unserialize($data);
  
             <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
                 <div class="col col-md-4"><label for="hf-monto" class=" form-control-label">Monto:</label></div>
-                <div class="col-12 col-md-7"><input type="text" id="hf-monto" name="monto" onkeypress="return solonumeros(event)" required="required" minlength="6" maxlength="20" class="form-control" value="<?php echo $data['monto']; ?>"></div>
+                <div class="col-12 col-md-7"><input type="text" id="hf-monto" name="monto" onkeypress="return solonumeros(event)" required="required" minlength="4" maxlength="20" class="form-control" value="<?php echo $data['monto']; ?>"></div>
             </div>
 
-            <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
-                <div class="col col-md-4"><label for="hf-obli" class=" form-control-label">¿Obligatorio?:</label></div>
-                <div class="col-12 col-md-7">
-
-                  <select id="hf-obli" name="obligatorio" class="form-control" required="required">
-                    
-                    <option value="<?php echo $data['obligatorio']; ?>">Selecciona</option>
-                    <option value="Si">Sí</option>
-                    <option value="No">No</option>
-                  </select>
-                </div>
-            </div>
+            
  
  
                 <div class="card-footer">

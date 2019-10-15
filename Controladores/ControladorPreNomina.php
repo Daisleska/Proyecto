@@ -71,82 +71,230 @@ public function generar(){
 	
 	$db=new clasedb();
 	$conex=$db->conectar();
-
-	$sql="SELECT * FROM pre_nomina";
-
-	echo $sql;
-
-
-
-	/*/$i=1;
-    $sql="INSERT INTO `pre_nomina` (`id`, `quincena`, `status`) VALUES (NULL, CURDATE(), ".$i.")";
-
-    $result=mysqli_query($conex,$sql);//esto funciona
-
-    $id_prenomina=mysqli_insert_id($conex);//obteniendo el último id generado
-	//echo $id_prenomina;
+  
+	$sql="SELECT * FROM pre_nomina WHERE mes=MONTH( CURDATE() )";
     
-    $sql2="SELECT * FROM empleado";
+	$res=mysqli_query($conex,$sql);
 
-    $res=mysqli_query($conex,$sql2);
+	$filas=mysqli_num_rows($res);
 
-	$i=0;
+    
+    if ($filas==0) {
+
+    	$sql="INSERT INTO `pre_nomina` (`id`, `quincena`, `mes`, `anio`, `status`) VALUES (NULL, '1', MONTH( CURDATE() ), YEAR( CURDATE() ), 'Procesando')";
+
+    	$res=mysqli_query($conex,$sql);
+
+    	$id_prenomina=mysqli_insert_id($conex);//obteniendo el último id generado
+	    //echo $id_prenomina;
+        
+    	$sql2="SELECT * FROM empleado";
+
+        $res=mysqli_query($conex,$sql2);
+
+	    $i=0;
+
+	while($data=mysqli_fetch_object($res)){
+	    
+	    $sql3="INSERT INTO `prenomina_empleado` (`id`, `id_prenomina`, `id_empleado`) VALUES (NULL,  ".$id_prenomina.", ".$data->id.")";
+
+		$resultado=mysqli_query($conex,$sql3);
+
+	
+		$asignaciones[$i]=$this->calcular_asignaciones($data->id);
+       
+		$deducciones[$i]=$this->calcular_deducciones($data->id);
+
+		$inasistencias[$i]=$this->inasistencia($data->id);
+
+		$quincena[$i]=$this->sueldo($data->id);
+
+		$diast=$quincena/10;
+
+		$inasistencia=$inasistencias*$diast;
+
+		$sueldo_neto=($quincena-$inasistencia)+($asignaciones-$deducciones);
+
+
+
+		$i++;
+     }
+    	
+    }else {
+
+    if ($filas==1) {
+
+    	$sql="INSERT INTO `pre_nomina` (`id`, `quincena`, `mes`, `anio`, `status`) VALUES (NULL, '2', MONTH( CURDATE() ), YEAR( CURDATE() ), 'Procesando')";
+
+    	$res=mysqli_query($conex,$sql);
+
+    	$id_prenomina=mysqli_insert_id($conex);//obteniendo el último id generado
+	    //echo $id_prenomina;
+
+    	$sql2="SELECT * FROM empleado";
+
+        $res=mysqli_query($conex,$sql2);
+
+	    $i=0;
 
 	while($data=mysqli_fetch_object($res)){
 	   $sql3="INSERT INTO `prenomina_empleado` (`id`, `id_prenomina`, `id_empleado`) VALUES (NULL,  ".$id_prenomina.", ".$data->id.")";
+
 		$resultado=mysqli_query($conex,$sql3);
+
+        $asignaciones[$i]=$this->calcular_asignaciones($data->id);
+       
+		$deducciones[$i]=$this->calcular_deducciones($data->id);
+
+		$inasistencias[$i]=$this->inasistencia($data->id);
+
+		$quincena[$i]=$this->sueldo($data->id);
+
+		$inasistencias_mes[$i]=$this->inasistencia_mes($data->id);
+
+		$monto[$i]=$this->cestaticket($data->id);
+        
+        $diast=$quincena/10;
+
+		$inasistencia=$inasistencias*$diast;
+
+		$diasc=$cestaticket/20;
+
+		$sueldo_neto=($quincena-$inasistencia)+($asignaciones-$deducciones)+($cestaticket-($inasistencia_mes*$diasc));
+
+
 		$i++;
-     }/*/
+     }
+    	
 
 
+    }else{
 
+    	?>
+		<script type="text/javascript">
+			alert("No se pueden generar mas nominas por este mes");
+			window.location="ControladorPreNomina.php?operacion=prenomina";
+		</script>
+			<?php
 
+    }
 
+}
 
 }//fin de la funcion generar
 
 
 
-
-
-public function ver(){
-
-    $db=new clasedb();
+public function calcular_asignaciones ($id_empleado){
+	
+	extract($_REQUEST);
+	$db=new clasedb();
 	$conex=$db->conectar();
-    $suma=0;
-    $resta=0;
-    
-    $sql="SELECT empleado.cedula, empleado.nombres, empleado.id_cargo, cargos.salario, asignacion_deduccion.tipo, asignacion_deduccion.monto FROM empleado, cargos, asignacion_deduccion WHERE empleado.id_cargo=cargos.id";
-    
+
+	$sql="SELECT SUM(monto) AS total FROM asignacion_deduccion WHERE tipo='Asignacion' AND id_empleado=".$id_empleado."";
+	  
+	
     $res=mysqli_query($conex,$sql);
+
+    $data=mysqli_fetch_object($res);
+
+    return $data->total;
+
+}//fin de la funcion calcular asignaciones 
+
+
+public function calcular_deducciones($id_empleado){
 	
-	while($data=mysqli_fetch_object($res)){
-	   if ($data->tipo="Asignacion") {
-	   	   $suma=$suma+$data->monto;
-	   }
-      
-	   else{
-           $resta=$resta+$data->monto;
-	   }
-	    
-	    $sueldo_neto=(($salario/2) +$suma-$resta);
-		$i++;
-     }
+	extract($_REQUEST);
+	$db=new clasedb();
+	$conex=$db->conectar();
 
-
-
-
-
+	$sql="SELECT SUM(monto) AS total FROM asignacion_deduccion WHERE tipo='Deduccion' AND id_empleado=".$id_empleado.""
+	  
 	
+    $res=mysqli_query($conex,$sql);
+
+    $data=mysqli_fetch_object($res);
+
+    return $data->total;
+
+
+}//fin de la funcion calcular deducciones
 
 
 
+public function inasistencia($id_empleado){
+
+	extract($_REQUEST);
+	$db=new clasedb();
+	$conex=$db->conectar();
+
+	$sql="SELECT COUNT(status) AS inasistencias FROM asistencias WHERE status='NASJ' AND fecha_hora BETWEEN DAY(CURRENT_TIMESTAMP()-14) AND CURRENT_TIMESTAMP AND id_empleado=".$id_empleado.""
+	  
+	
+    $res=mysqli_query($conex,$sql);
+
+    $data=mysqli_fetch_object($res);
+
+    return $data->inasistencias;
 
 
-}//fin de la funcion ver
+}//fin de la función inasistencias 
 
 
+public function inasistencia_mes($id_empleado){
 
+	extract($_REQUEST);
+	$db=new clasedb();
+	$conex=$db->conectar();
+
+	$sql="SELECT COUNT(status) AS inasistencias_mes FROM asistencias WHERE status='NASJ' AND fecha_hora BETWEEN DAY(CURRENT_TIMESTAMP()-28) AND CURRENT_TIMESTAMP AND id_empleado=".$id_empleado.""
+	  
+	
+    $res=mysqli_query($conex,$sql);
+
+    $data=mysqli_fetch_object($res);
+
+    return $data->inasistencias_mes;
+
+
+}//fin de la función inasistencias del mes  
+
+public function sueldo($id_empleado){
+
+	extract($_REQUEST);
+	$db=new clasedb();
+	$conex=$db->conectar();
+
+	$sql="SELECT empleado.id, empleado.id_cargo, cargos.salario/2 AS quincena FROM empleado, cargos WHERE empleado.id_cargo=cargos.id AND empleado.id=".$id_empleado.""
+	  
+	
+    $res=mysqli_query($conex,$sql);
+
+    $data=mysqli_fetch_object($res);
+
+    return $data->quincena;
+
+
+}//fin de la función sueldo quincenal  
+
+public function cestaticket($id_empleado){
+
+	extract($_REQUEST);
+	$db=new clasedb();
+	$conex=$db->conectar();
+
+	$sql="SELECT monto FROM cestaticket";
+	  
+	
+    $res=mysqli_query($conex,$sql);
+
+    $data=mysqli_fetch_object($res);
+
+    return $data->monto;
+
+
+}//fin de la función cestaticket  
 
 static function controlador($operacion){
 		$pago=new ControladorPreNomina();
@@ -158,6 +306,31 @@ static function controlador($operacion){
 		case 'generar':
 			$pago->generar();
 			break;
+
+		case 'calcular_asignaciones':
+			$pago->calcular_asignaciones();
+			break;
+
+		case 'calcular_deducciones':
+			$pago->calcular_deducciones();
+			break;
+
+		case 'inasistencia':
+			$pago->inasistencia();
+			break;
+
+		case 'inasistencia_mes':
+			$pago->inasistencia_mes();
+			break;
+
+		case 'sueldo':
+			$pago->sueldo();
+			break;
+
+		case 'cestaticket':
+			$pago->cestaticket();
+			break;
+
 
 		case 'aprobadas':
 			$pago->aprobadas();

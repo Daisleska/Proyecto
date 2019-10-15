@@ -38,7 +38,6 @@ include_once "../includes/menu.php";
                                             <th>Descripción</th>
                                             <th>Tipo</th>
                                             <th>Monto</th>
-                                            <th>Obligatorio</th>
                                             <th>opciones</th>
                                         </tr>
                                     </thead>

@@ -25,7 +25,7 @@ extract($_REQUEST);
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <a title="Descargar PDF" style="float: right; padding-right: 40px;" href=#><i style="font-size: 30px;" class="fa fa-cloud-download"></i>&nbsp;</a>
+                                
 
                                 <div>
                                   <strong style="margin-right: 4cm;" class="card-title"><i class="fa fa-list"></i> NOMINA PENDIENTE</strong>

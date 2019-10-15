@@ -51,6 +51,8 @@ $prenomina=unserialize($prenomina);
                                        <tr>
                                         <th>N°</th>
                                         <th>Quincena</th>
+                                        <th>Mes</th>
+                                        <th>Año</th>
                                         <th>Estado</th>
                                         <th>Opciones</th>
                                        </tr>
