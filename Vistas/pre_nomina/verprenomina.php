@@ -1,7 +1,8 @@
 <?php
 include_once "../includes/menu.php"; 
 extract($_REQUEST);
-$datos=unserialize($datos);
+$empleado=unserialize($empleado);
+$sueldo_neto=unserialize($sueldo_neto);
  ?>
 
  
@@ -42,18 +43,19 @@ $datos=unserialize($datos);
     
 
      <div class="col-md-2,5">
-                                 <p style="margin-left: 17cm;"><a href="../../Controladores/ControladorPreNomina.php?operacion=generar" class="btn btn-block btn-danger btn-sm">Generar</a></p>
-                                </div>
+                                 
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
                                        <tr>
-                                        <th>N°</th>
+                                        <th>N°</th> 
+                                        <th>Nombres</th>
+                                        <th>Apellidos</th>
                                         <th>Cedula</th>
-                                        <th>Nombre</th>
-                                        <th>Monto</th>
-                                        <th>Estado</th>
+                                        <th>Cargo</th>
+                                        <th>Salario Base</th>
+                                        <th>Total a pagar</th>
                                         <th>Opciones</th>
                                        </tr>
                                     </thead>
@@ -65,14 +67,16 @@ $datos=unserialize($datos);
                             ?>  
                             
                             <td><?=$num?></td>
-                        <?php for ($j=1; $j < $campos; $j++) { ?>
-                        <td><?=$datos[$i][$j]?></td>
+                        <?php for ($j=1; $j < 6; $j++) { ?>
+                        <td><?=$empleado[$i][$j]?></td>
 
                             <?php } ?>
+                            <td><?=$sueldo_neto[$i]?></td>
+                            <td><a href="#"></i></a>
 
-                            <td><a href="../../Controladores/ControladorPreNomina.php?operacion=vermas&id_empleado=<?=$datos[$i][0]?>"><i title="Ver Detalles" class="menu-icon fa fa-search-plus"></i></a>
+                           <button class="btn-primary" onclick="detalles('<?=$asignaciones[$i]?>')"><i title="Detalles" class="btn btn-secondary mb-1  fa fa-search"  data-toggle="modal" data-target="#mediumModal"></i></button>
 
-                           <a href="../../Controladores/ControladorPreNomina.php?operacion=aprobar&id_empleado=<?=$aprobar[$i][0]?>"><i title="Aprobar" class="fa fa-check"></a></i>
+                           <a href="#"><i title="Aprobar" class="fa fa-check"></a></i>
                                 
                             </td>
                                 <?php   
@@ -91,4 +95,57 @@ $datos=unserialize($datos);
 
 
     </div><!-- /#right-panel -->
+
+
+                <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="mediumModalLabel">Detalles de Nomina del empleado</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                            <table>
+                                <thead>
+                                    <tr>
+                                    <th>Nombres:</th>
+                                    <th>Apellidos:</th> 
+                                    <th>Cedula:</th> 
+                                    <th>Cargo:</th>  
+                                    </tr>
+                                </thead> 
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        
+                                    </tr>
+                                </tbody> 
+                            </table>  
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-primary">Confirmar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+   <script type="text/javascript">
+  
+  function detalles(asignaciones) {
+    
+    console.log(asignaciones);
+    $("#asignaciones")(asignaciones);
+  }
+  
+
+
+</script>
+
 <?php include_once "../includes/footer.php"; ?>
