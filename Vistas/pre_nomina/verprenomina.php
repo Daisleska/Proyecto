@@ -4,47 +4,21 @@ extract($_REQUEST);
 $empleado=unserialize($empleado);
 $sueldo_neto=unserialize($sueldo_neto);
  ?>
-
- 
         <!-- Header-->
+<div class="breadcrumbs"></div>
+    <div class="content mt-3">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header" >
+                                <div></div>
 
-        <div class="breadcrumbs">
-           
-         
-
-                    
-        </div>
-
-        <div class="content mt-3">
-            <div class="animated fadeIn">
-                <div class="row">
-
-               
-
-                    
-
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header" >
-                            
-                               
-
-                                <div>
-                                  
-                                </div>
-
-<div class="form-1-2">
-    
-      <input type="text" name="caja_busqueda" id="caja_busqueda" placeholder=" Buscar">
-
-      <button  type="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>
-
-    </div>
-    
-
-     <div class="col-md-2,5">
-                                 
-                            </div>
+                        <div class="form-1-2">
+                            <input type="text" name="caja_busqueda" id="caja_busqueda" placeholder=" Buscar">
+                            <button  type="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>
+                        </div>
+                        <div class="col-md-2,5"></div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
@@ -74,7 +48,7 @@ $sueldo_neto=unserialize($sueldo_neto);
                             <td><?=$sueldo_neto[$i]?></td>
                             <td><a href="#"></i></a>
 
-                           <button class="btn-primary" onclick="detalles('<?=$asignaciones[$i]?>')"><i title="Detalles" class="btn btn-secondary mb-1  fa fa-search"  data-toggle="modal" data-target="#mediumModal"></i></button>
+                           <button class="btn-primary" onclick="detalles('<?=$asignaciones[$i]?>','<?=$empleado[$i][1]?>')"><i title="Detalles" class="btn btn-secondary mb-1  fa fa-search"  data-toggle="modal" data-target="#mediumModal"></i></button>
 
                            <a href="#"><i title="Aprobar" class="fa fa-check"></a></i>
                                 
@@ -118,7 +92,7 @@ $sueldo_neto=unserialize($sueldo_neto);
                                 </thead> 
                                 <tbody>
                                     <tr>
-                                        <td></td>
+                                        <td><span id="nombres"></span></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
@@ -138,10 +112,11 @@ $sueldo_neto=unserialize($sueldo_neto);
 
    <script type="text/javascript">
   
-  function detalles(asignaciones) {
+  function detalles(asignaciones,nombres) {
     
-    console.log(asignaciones);
+    console.log(nombres);
     $("#asignaciones")(asignaciones);
+    $("#nombres").text(nombres);
   }
   
 

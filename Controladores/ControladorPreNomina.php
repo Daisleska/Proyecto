@@ -137,7 +137,7 @@ public function generar(){
 
     if ($filas==1) {
 
-    	/*/$sql="INSERT INTO `pre_nomina` (`id`, `quincena`, `mes`, `anio`, `status`) VALUES (NULL, '2', MONTH( CURDATE() ), YEAR( CURDATE() ), 'Procesando')";
+    	/*$sql="INSERT INTO `pre_nomina` (`id`, `quincena`, `mes`, `anio`, `status`) VALUES (NULL, '2', MONTH( CURDATE() ), YEAR( CURDATE() ), 'Procesando')";
 
     	$res=mysqli_query($conex,$sql);
 
@@ -184,8 +184,8 @@ public function generar(){
 
 		$i++;
      }
-    	
-    /*/
+    	*/
+    
     }else{
 
     	?>
