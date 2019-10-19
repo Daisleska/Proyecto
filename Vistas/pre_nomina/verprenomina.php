@@ -3,7 +3,8 @@ include_once "../includes/menu.php";
 extract($_REQUEST);
 $empleado=unserialize($empleado);
 $sueldo_neto=unserialize($sueldo_neto);
- ?>
+$asignaciones=unserialize($asignaciones);
+?>
         <!-- Header-->
 <div class="breadcrumbs"></div>
     <div class="content mt-3">
@@ -81,25 +82,8 @@ $sueldo_neto=unserialize($sueldo_neto);
                                 </button>
                             </div>
                             <div class="modal-body">
-                            <table>
-                                <thead>
-                                    <tr>
-                                    <th>Nombres:</th>
-                                    <th>Apellidos:</th> 
-                                    <th>Cedula:</th> 
-                                    <th>Cargo:</th>  
-                                    </tr>
-                                </thead> 
-                                <tbody>
-                                    <tr>
-                                        <td><span id="nombres"></span></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        
-                                    </tr>
-                                </tbody> 
-                            </table>  
+                            <p><b>Nombres: </b></p><span id="nombres"></span>  
+                            <p><b>Asignaciones: </b></p><span id="asignaciones"></span>  
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -114,8 +98,8 @@ $sueldo_neto=unserialize($sueldo_neto);
   
   function detalles(asignaciones,nombres) {
     
-    console.log(nombres);
-    $("#asignaciones")(asignaciones);
+    console.log(asignaciones);
+    $("#asignaciones").text(asignaciones);
     $("#nombres").text(nombres);
   }
   

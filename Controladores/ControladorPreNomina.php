@@ -78,7 +78,7 @@ public function generar(){
 
 	$filas=mysqli_num_rows($res);
 
-    
+    //$filas=0;
     if ($filas==0) {
 
     	$sql="INSERT INTO `pre_nomina` (`id`, `quincena`, `mes`, `anio`, `status`) VALUES (NULL, '1', MONTH( CURDATE() ), YEAR( CURDATE() ), 'Procesando')";
@@ -122,7 +122,7 @@ public function generar(){
         $empleado[$i][5]=$data->salario/2;
 
 	    
-	    $sql3="INSERT INTO `prenomina_empleado` (`id`, `id_prenomina`, `id_empleado`) VALUES (NULL,  ".$id_prenomina.", ".$data->id.")";
+	    $sql3="INSERT INTO prenomina_empleado VALUES (NULL,  ".$id_prenomina.", ".$data->id.")";
        
 		$resultado=mysqli_query($conex,$sql3);
 
@@ -131,6 +131,7 @@ public function generar(){
 
 		$i++;
      }
+     
     header("Location: ../Vistas/pre_nomina/verprenomina.php?filas=".$filas."&asignaciones=".serialize($asignaciones)."&deducciones=".serialize($deducciones)."&inasistencia=".serialize($inasistencia)."&sueldo_neto=".serialize($sueldo_neto)."&empleado=".serialize($empleado));
     	
     }else {
@@ -208,19 +209,20 @@ public function calcular_asignaciones($id_empleado){
 	extract($_REQUEST);
 	$db=new clasedb();
 	$conex=$db->conectar();
+    $total=0;
 
 	$sql="SELECT SUM(asignacion_deduccion.monto) AS total FROM asignacion_deduccion,empleado,empleado_asig WHERE asignacion_deduccion.tipo='Asignacion' AND empleado_asig.id_empleado=empleado.id AND empleado_asig.id_asignaciones=asignacion_deduccion.id AND empleado.id=".$id_empleado."";
 	  
 	
-	//echo $sql;
-    $res=mysqli_query($conex,$sql);
+	//echo $sql."<br>";
+    if($res=mysqli_query($conex,$sql)){
 
     $data=mysqli_fetch_object($res);
-    $total=0;
+
     if ($data->total>=0) {
     	$total=$data->total;
     }
-    
+    }
     return $total;
 
 }//fin de la funcion calcular asignaciones 
