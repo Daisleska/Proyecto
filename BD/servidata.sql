@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-10-2019 a las 01:57:49
+-- Tiempo de generación: 19-10-2019 a las 03:10:34
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.2.12
 
@@ -46,7 +46,7 @@ CREATE TABLE `asignacion_deduccion` (
   `id` int(90) NOT NULL,
   `descripcion` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
   `tipo` enum('Asignacion','Deduccion') COLLATE utf8_unicode_ci NOT NULL,
-  `monto` varchar(90) COLLATE utf8_unicode_ci NOT NULL
+  `monto` int(90) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -54,9 +54,9 @@ CREATE TABLE `asignacion_deduccion` (
 --
 
 INSERT INTO `asignacion_deduccion` (`id`, `descripcion`, `tipo`, `monto`) VALUES
-(1, 'Memoriales La Victoria C.A', 'Deduccion', '10000'),
-(2, 'Prima por Hijo', 'Asignacion', '50000'),
-(8, 'Memoriales La Victor', 'Asignacion', '500000');
+(1, 'Memoriales La Victoria C.A', 'Deduccion', 15000),
+(2, 'Prima por Hijo', 'Asignacion', 50000),
+(8, 'Memoriales La Victor', 'Asignacion', 500000);
 
 -- --------------------------------------------------------
 
@@ -77,9 +77,11 @@ CREATE TABLE `asistencias` (
 --
 
 INSERT INTO `asistencias` (`id`, `id_empleado`, `fecha_hora`, `status`, `justificacion`) VALUES
-(1, 14, '2019-10-10 04:00:00', 'Sin Marcar', ''),
-(2, 15, '2019-10-10 04:00:00', 'Sin Marcar', ''),
-(3, 17, '2019-10-10 04:00:00', 'Sin Marcar', '');
+(2, 15, '2019-10-10 04:00:00', 'NACJ', ' Reposo medico'),
+(3, 17, '2019-10-10 04:00:00', 'NACJ', ' '),
+(5, 15, '2019-10-11 04:00:00', 'A', ''),
+(6, 15, '2019-10-17 04:00:00', 'Sin Marcar', ''),
+(7, 17, '2019-10-17 04:00:00', 'Sin Marcar', '');
 
 -- --------------------------------------------------------
 
@@ -190,13 +192,6 @@ CREATE TABLE `dia_lab` (
 --
 
 INSERT INTO `dia_lab` (`id`, `id_empleado`, `nombre`) VALUES
-(24, 14, ' Lunes'),
-(25, 14, ' Martes'),
-(26, 14, ' MiÃ©rcoles'),
-(27, 14, ' Jueves'),
-(28, 14, ' Viernes'),
-(29, 14, ' SÃ¡bado'),
-(30, 14, ' Domingo'),
 (31, 15, ' Lunes'),
 (32, 15, ' Martes'),
 (33, 15, ' MiÃ©rcoles'),
@@ -237,10 +232,6 @@ CREATE TABLE `empleado` (
 --
 
 INSERT INTO `empleado` (`id`, `cedula`, `nombres`, `apellidos`, `direccion`, `telefono`, `fecha_ingreso`, `condicion`, `fecha_venc`, `ncuenta`, `id_cargo`, `id_departamento`) VALUES
-(8, '4400947', 'carmen', 'figueroaa', 'la victoria', '3423132', '2019-10-02', 'Fijo', '2019-11-01', '2147483647', 1, 1),
-(9, '28147989', 'Hector Hernandez Hernandez Ceb', 'Hernandez Ceballos', 'cagua', '3590130', '2019-10-06', 'Contratado', '2019-10-18', '2147483647', 1, 4),
-(11, '29554496', 'Hector Hernandez Hernandez Ceb', 'Hernandez Ceballos', 'cagua', '3590130', '2019-10-03', 'Fijo', '2019-11-06', '2147483647', 1, 2),
-(14, '28147983', 'Darwis', 'Rojas', 'moomoo', '02120000098', '2019-10-07', 'Fijo', '2019-10-16', '23456789876543234567', 2, 2),
 (15, '999999999', 'nnninini', 'nininii', 'niiini', '02120000098', '2019-10-07', 'Contratado', '2019-10-31', '23456789876543234567', 1, 2),
 (16, '12345678', 'agro', 'empleado', 'maracay', '494894', '2019-10-09', 'Contratado', '2019-11-06', '12345678890998787654', 1, 2),
 (17, '28123456', 'daisleska', 'vilera', 'consejo', '020202020', '2019-10-08', 'Fijo', '0000-00-00', '10120202022222222222', 1, 3);
@@ -262,7 +253,6 @@ CREATE TABLE `empleado_asig` (
 --
 
 INSERT INTO `empleado_asig` (`id`, `id_empleado`, `id_asignaciones`) VALUES
-(1, 14, 2),
 (2, 15, 2),
 (3, 15, 8),
 (7, 16, 1),
@@ -436,6 +426,15 @@ CREATE TABLE `prenomina_empleado` (
   `id_empleado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `prenomina_empleado`
+--
+
+INSERT INTO `prenomina_empleado` (`id`, `id_prenomina`, `id_empleado`) VALUES
+(145, 40, 15),
+(146, 40, 16),
+(147, 40, 17);
+
 -- --------------------------------------------------------
 
 --
@@ -455,7 +454,7 @@ CREATE TABLE `pre_nomina` (
 --
 
 INSERT INTO `pre_nomina` (`id`, `quincena`, `mes`, `anio`, `status`) VALUES
-(1, 1, 10, 2019, 'Aprobado');
+(40, 1, 10, 2019, 'Procesando');
 
 -- --------------------------------------------------------
 
@@ -953,7 +952,7 @@ ALTER TABLE `asignacion_deduccion`
 -- AUTO_INCREMENT de la tabla `asistencias`
 --
 ALTER TABLE `asistencias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `auditoria`
@@ -1037,13 +1036,13 @@ ALTER TABLE `pago`
 -- AUTO_INCREMENT de la tabla `prenomina_empleado`
 --
 ALTER TABLE `prenomina_empleado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
 
 --
 -- AUTO_INCREMENT de la tabla `pre_nomina`
 --
 ALTER TABLE `pre_nomina`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de la tabla `privilegios`
