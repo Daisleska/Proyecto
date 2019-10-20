@@ -6,6 +6,9 @@ $sueldo_neto=unserialize($sueldo_neto);
 $asignaciones=unserialize($asignaciones);
 $deducciones=unserialize($deducciones);
 $inasistencia=unserialize($inasistencia);
+$inasistencia_mes=unserialize($inasistencia_mes);
+$monto=unserialize($monto);
+
 
 ?>
         <!-- Header-->
@@ -53,7 +56,7 @@ $inasistencia=unserialize($inasistencia);
                             <td><?=$sueldo_neto[$i]?></td>
                             <td><a href="#"></i></a>
 
-                           <button  onclick="detalles('<?=$asignaciones[$i]?>', '<?=$deducciones[$i]?>', '<?=$inasistencia[$i]?>', '<?=$sueldo_neto[$i]?>','<?=$empleado[$i][1]?>', '<?=$empleado[$i][2]?>', '<?=$empleado[$i][3]?>', '<?=$empleado[$i][4]?>', '<?=$empleado[$i][5]?>')"><i title="Detalles" class="fa fa-search"  data-toggle="modal" data-target="#mediumModal"></i></button>
+                           <button  onclick="detalles('<?=$asignaciones[$i]?>', '<?=$deducciones[$i]?>', '<?=$inasistencia[$i]?>', '<?=$monto[$i]?>', '<?=$inasistencia_mes[$i]?>', '<?=$sueldo_neto[$i]?>','<?=$empleado[$i][1]?>', '<?=$empleado[$i][2]?>', '<?=$empleado[$i][3]?>', '<?=$empleado[$i][4]?>', '<?=$empleado[$i][5]?>' )"><i title="Detalles" class=" fa fa-search"  data-toggle="modal" data-target="#mediumModal"></i></button>
 
                            <button><a href="#"><i title="Aprobar" class="fa fa-check"></a></i></button>
                                 
@@ -80,13 +83,13 @@ $inasistencia=unserialize($inasistencia);
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="mediumModalLabel">Detalles de Nómina del empleado</h5>
+                                <h5 class="modal-title" id="mediumModalLabel">Detalles de Nómina del Empleado</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                
+
                             <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
@@ -126,7 +129,14 @@ $inasistencia=unserialize($inasistencia);
                                     <td></td>
                                 </tr>
 
-                            
+                                <tr>
+                                    <td>Cestaticket:</td>
+                                    <td><span id="monto" style="font-weight: normal;"></span> Bs.S</td>
+                                    <td></td>
+                                </tr>
+
+                                
+                                 
 
                                 <tr>
                                     <td>Inasistencias: </td>
@@ -134,7 +144,11 @@ $inasistencia=unserialize($inasistencia);
                                     <td><span id="inasistencia" style="font-weight: normal;"></span> Bs.S</td>
                                 </tr>
 
-                            
+                                <tr>
+                                    <td>Inasistencias del Mes: </td>
+                                    <td></td>
+                                    <td><span id="inasistencia_mes" style="font-weight: normal;"></span> Bs.S</td>
+                                </tr>
 
                                 <tr>
                                     <td>Deducciones:</td>
@@ -150,7 +164,7 @@ $inasistencia=unserialize($inasistencia);
                                 
                             </table>
 
-
+                               
                             
                             </div>
                             <div class="modal-footer">
@@ -165,18 +179,21 @@ $inasistencia=unserialize($inasistencia);
 
    <script type="text/javascript">
   
-  function detalles(asignaciones,deducciones, inasistencia, sueldo_neto, nombres, apellidos, cedula, nombre, salario ) {
+  function detalles(asignaciones,deducciones, inasistencia, monto, inasistencia_mes, sueldo_neto,  nombres, apellidos, cedula, nombre, salario) {
     
     console.log(asignaciones);
     $("#asignaciones").text(asignaciones);
     $("#deducciones").text(deducciones);
     $("#inasistencia").text(inasistencia);
+    $("#monto").text(monto);
+    $("#inasistencia_mes").text(inasistencia_mes);
     $("#sueldo_neto").text(sueldo_neto);
     $("#nombres").text(nombres);
     $("#apellidos").text(apellidos);
     $("#cedula").text(cedula);
     $("#nombre").text(nombre);
     $("#salario").text(salario);
+
     
 
   }

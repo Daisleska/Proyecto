@@ -70,9 +70,9 @@ $prenomina=unserialize($prenomina);
 
                             <?php } ?>
 
-                            <td><a href="../../Controladores/ControladorPreNomina.php?operacion=ver&id_pre_nomina=<?=$prenomina[$i][0]?>"><i title="Ver Detalles" class="menu-icon fa fa-search-plus"></i></a>
+                            <td><button><a href="../../Controladores/ControladorPreNomina.php?operacion=ver&id_pre_nomina=<?=$prenomina[$i][0]?>"><i title="Ver Detalles" class="menu-icon fa fa-search-plus"></i></a></button>
 
-                           <a href="../../Controladores/ControladorPreNomina.php?operacion=aprobar&id_empleado=<?=$aprobar[$i][0]?>"><i title="Aprobar" class="fa fa-check"></a></i>
+                           <button><a href="../../Controladores/ControladorPreNomina.php?operacion=aprobar&id_empleado=<?=$aprobar[$i][0]?>"><i title="Aprobar" class="fa fa-check"></a></i></button>
                                 
                             </td>
                                 <?php   

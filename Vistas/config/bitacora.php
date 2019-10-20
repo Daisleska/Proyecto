@@ -34,7 +34,7 @@ $usuarios=unserialize($usuarios);
                           <tr>
                           <form action="../../Controladores/ControladorBitacora.php?operacion=bitacora_fecha" method="POST">
                             <td><input type="date" class="form-control" name="fecha" title="Seleccione una fecha"/></td>
-                            <td><button class="btn btn-success" type="submit" name="operacion" value="bitacora_fecha">Buscar <i class="fa fa-search"><span class="glyphicon glyphicon-search"></span></button></td>
+                            <td><button class="btn btn-success" type="submit" name="operacion" value="bitacora_fecha"><i class="fa fa-search"><span class="glyphicon glyphicon-search"></span></button></td>
                          </form>
 
 
@@ -53,7 +53,7 @@ $usuarios=unserialize($usuarios);
 
                            </select></td>
 
-                            <td><button class="btn btn-success" type="submit" name="operacion" value="bitacora_usuario">Buscar <i class="fa fa-search"><span class="glyphicon glyphicon-search"></span></button></td>
+                            <td><button class="btn btn-success" type="submit" name="operacion" value="bitacora_usuario"><i class="fa fa-search"><span class="glyphicon glyphicon-search"></span></button></td>
                           </form>
                           </tr>
 
@@ -70,7 +70,7 @@ $usuarios=unserialize($usuarios);
                           
 
                          </select></td>
-                         <td><button class="btn btn-success" type="submit" name="operacion" value="bitacora_hora">Buscar <i class="fa fa-search"><span class="glyphicon glyphicon-search"></span></button></td>
+                         <td><button class="btn btn-success" type="submit" name="operacion" value="bitacora_hora"><i class="fa fa-search"><span class="glyphicon glyphicon-search"></span></button></td>
                          </form>
 
        
@@ -80,7 +80,7 @@ $usuarios=unserialize($usuarios);
                          
                          
                        </select></td>
-                         <td><button class="btn btn-success" type="submit" name="operacion" value="bitacora_actividad"><span class="glyphicon glyphicon-search">Buscar <i class="fa fa-search"></span></button></td>
+                         <td><button class="btn btn-success" type="submit" name="operacion" value="bitacora_actividad"><span class="glyphicon glyphicon-search"><i class="fa fa-search"></span></button></td>
                        </form>
                        </tr>
                       

@@ -138,54 +138,78 @@ public function generar(){
 
     if ($filas==1) {
 
-    	/*$sql="INSERT INTO `pre_nomina` (`id`, `quincena`, `mes`, `anio`, `status`) VALUES (NULL, '2', MONTH( CURDATE() ), YEAR( CURDATE() ), 'Procesando')";
+    	$sql="INSERT INTO `pre_nomina` (`id`, `quincena`, `mes`, `anio`, `status`) VALUES (NULL, '2', MONTH( CURDATE() ), YEAR( CURDATE() ), 'Procesando')";
 
     	$res=mysqli_query($conex,$sql);
 
     	$id_prenomina=mysqli_insert_id($conex);//obteniendo el último id generado
 	    //echo $id_prenomina;
+        
+    	$sql2="SELECT empleado.*,cargos.nombre,cargos.salario FROM empleado, cargos WHERE empleado.id_cargo=cargos.id";
 
-    	$sql2="SELECT * FROM empleado";
-
-        $res=mysqli_query($conex,$sql2);
+        $res2=mysqli_query($conex,$sql2);
+        $filas=mysqli_num_rows($res2);//cuantos registro trae la consulta
 
 	    $i=0;
 
-	while($data=mysqli_fetch_object($res)){
-	   $sql3="INSERT INTO `prenomina_empleado` (`id`, `id_prenomina`, `id_empleado`) VALUES (NULL,  ".$id_prenomina.", ".$data->id.")";
+	while($data=mysqli_fetch_object($res2)){
 
-		$resultado=mysqli_query($conex,$sql3);
+	
+		$asignaciones[$i]=$this->calcular_asignaciones($data->id);
 
-        $asignaciones[$i]=$this->calcular_asignaciones($data->id);
-       
+
 		$deducciones[$i]=$this->calcular_deducciones($data->id);
+
 
 		$inasistencias[$i]=$this->inasistencia($data->id);
 
 		$inasistencias_mes[$i]=$this->inasistencia_mes($data->id);
 
 		$monto[$i]=$this->cestaticket($data->id);
-        
-        //$diasc=valor del dia de cestaticket;
 
-        $diast=$data->salario/30;
+		
+		$diast=$data->salario/30;
 
 		$inasistencia=$inasistencias[$i]*$diast;
 
-		$sueldo_neto[$i]=(($data->salario/2)-$inasistencia[$i])+($asignaciones[$i]-$deducciones[$i])+($cestaticket-($inasistencia_mes[$i]*$diasc));;
+		$inasistencia_mes=$inasistencia_mes[$i]*$diasc;
 
+        $diasc=$monto[$i]/30;
+
+		$sueldo_neto[$i]=(($data->salario/2)-$inasistencia[$i])+($asignaciones[$i]-$deducciones[$i])+($monto[$i]-$inasistencia_mes);
+
+		
+
+
+		
         $empleado[$i][0]=$data->id;
         $empleado[$i][1]=$data->nombres;
         $empleado[$i][2]=$data->apellidos;
         $empleado[$i][3]=$data->cedula;
         $empleado[$i][4]=$data->nombre;
-        $empleado[$i][5]=$data->salario;
+        $empleado[$i][5]=$data->salario/2;
+
+        $totalasig=($monto[$i]-$inasistencia_mes)+$asignaciones[$i]+$empleado[$i][5];
+
+	    
+	    $sql3="INSERT INTO prenomina_empleado VALUES (NULL,  ".$id_prenomina.", ".$data->id.")";
+       
+		$resultado=mysqli_query($conex,$sql3);
 
 
+		
 
 		$i++;
      }
-    	*/
+     
+    header("Location: ../Vistas/pre_nomina/verprenomina2.php?filas=".$filas."&asignaciones=".serialize($asignaciones)."&deducciones=".serialize($deducciones)."&inasistencia=".serialize($inasistencia)."&monto=".serialize($monto)."&inasistencia_mes=".serialize($inasistencia_mes)."&sueldo_neto=".serialize($sueldo_neto)."&empleado=".serialize($empleado));
+
+    	
+
+		
+       
+
+
     
     }else{
 
@@ -277,7 +301,7 @@ public function inasistencia_mes($id_empleado){
 	$db=new clasedb();
 	$conex=$db->conectar();
 
-	$sql="SELECT COUNT(status) AS inasistencias_mes FROM asistencias WHERE status='NASJ' AND fecha_hora BETWEEN DAY(CURRENT_TIMESTAMP()-28) AND CURRENT_TIMESTAMP AND id_empleado=".$id_empleado."";
+    $sql="SELECT COUNT(status) AS inasistencias_mes FROM asistencias WHERE status='NASJ' AND fecha_hora BETWEEN DAY(CURRENT_TIMESTAMP()-28) AND CURRENT_TIMESTAMP AND id_empleado=".$id_empleado."";
 	  
 	
     $res=mysqli_query($conex,$sql);
@@ -285,6 +309,7 @@ public function inasistencia_mes($id_empleado){
     $data=mysqli_fetch_object($res);
 
     return $data->inasistencias_mes;
+
 
 
 }//fin de la función inasistencias del mes  

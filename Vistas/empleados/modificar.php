@@ -99,10 +99,7 @@ $data=unserialize($data);
                                     </div>
 
                                     
-                                    <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
-                                    <div class="col col-md-5"><label for="hf-salario" class=" form-control-label">Salario:</label></div>
-                                    <div class="col-12 col-md-5"><input type="text" id="hf-salario" name="salario" placeholder="Ingrese el salario" onkeypress="return solonumeros(event)" minlength="6" maxlength="15" required="required" class="form-control" value="<?php echo $data['salario']; ?>"></div>
-                                    </div>
+                                
 
 
                                     <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
