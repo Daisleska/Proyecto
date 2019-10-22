@@ -47,10 +47,25 @@ $inasistencia=unserialize($inasistencia);
                             
                             <td><?=$num?></td>
                         <?php for ($j=1; $j < 6; $j++) { ?>
-                        <td><?=$empleado[$i][$j]?></td>
+                        <td><?php 
+                        if ($j==5) {
+
+                            echo number_format($empleado[$i][$j], 2, ',', '.');
+
+                        }else{
+
+                            echo $empleado[$i][$j];
+                             
+                         } ?></td>
 
                             <?php } ?>
-                            <td><?=$sueldo_neto[$i]?></td>
+                            <td>
+                            <?php
+                                echo number_format($sueldo_neto[$i], 2, ',', '.');
+                             ?>   
+                            </td>
+
+
                             <td><a href="#"></i></a>
 
                            <button  onclick="detalles('<?=$asignaciones[$i]?>', '<?=$deducciones[$i]?>', '<?=$inasistencia[$i]?>', '<?=$sueldo_neto[$i]?>','<?=$empleado[$i][1]?>', '<?=$empleado[$i][2]?>', '<?=$empleado[$i][3]?>', '<?=$empleado[$i][4]?>', '<?=$empleado[$i][5]?>')"><i title="Detalles" class="fa fa-search"  data-toggle="modal" data-target="#mediumModal"></i></button>
@@ -145,6 +160,7 @@ $inasistencia=unserialize($inasistencia);
                                 <tr>
                                     <td>Total a Pagar:</td>
                                     <td><span id="sueldo_neto" style="font-weight: normal;"></span> Bs.S</td>
+
                                     <td></td>
                                 </tr>
                                 
@@ -166,12 +182,17 @@ $inasistencia=unserialize($inasistencia);
    <script type="text/javascript">
   
   function detalles(asignaciones,deducciones, inasistencia, sueldo_neto, nombres, apellidos, cedula, nombre, salario ) {
-    
-    console.log(inasistencia+"sdfghjk");
+var num_ina=parseFloat(inasistencia);  
+var inadecimal=num_ina.toFixed(2);
+var num_sueldo=parseFloat(sueldo_neto);
+var sueldodecimal=num_sueldo.toFixed(2);
+
+//var sueldodecimal=sueldo_neto.toFixed(2);
+  
     $("#asignaciones").text(asignaciones);
     $("#deducciones").text(deducciones);
-    $("#inasistencia").text(inasistencia);
-    $("#sueldo_neto").text(sueldo_neto);
+    $("#inasistencia").text(inadecimal);
+    $("#sueldo_neto").text(sueldodecimal);
     $("#nombres").text(nombres);
     $("#apellidos").text(apellidos);
     $("#cedula").text(cedula);
@@ -181,7 +202,6 @@ $inasistencia=unserialize($inasistencia);
 
   }
   
-
 
 </script>
 

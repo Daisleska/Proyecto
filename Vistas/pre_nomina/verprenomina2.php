@@ -6,7 +6,7 @@ $sueldo_neto=unserialize($sueldo_neto);
 $asignaciones=unserialize($asignaciones);
 $deducciones=unserialize($deducciones);
 $inasistencia=unserialize($inasistencias);
-$inasistencia_mes=unserialize($inasistencia_mes);
+$inasistencia_mes=unserialize($inasistencias_mes);
 $monto=unserialize($monto);
 
 

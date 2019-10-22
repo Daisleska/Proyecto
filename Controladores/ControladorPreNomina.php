@@ -108,9 +108,9 @@ public function generar(){
 		$inasistencias[$i]=$this->inasistencia($data->id);
 
 		
-		$diast=$data->salario/30;
+		$diast=$data->salario/30;//valor de un día de trabajo
 
-		$inasistencia=$inasistencias[$i]*$diast;
+		$inasistencia[$i]=$inasistencias[$i]*$diast;//monto total de inasistencias 
 
 		$sueldo_neto[$i]=(($data->salario/2)-$inasistencia[$i])+($asignaciones[$i]-$deducciones[$i]);
 
@@ -194,7 +194,7 @@ public function generar(){
 		$i++;
      }
      
-    header("Location: ../Vistas/pre_nomina/verprenomina2.php?filas=".$filas."&asignaciones=".serialize($asignaciones)."&deducciones=".serialize($deducciones)."&inasistencias=".serialize($inasistencias)."&monto=".serialize($monto)."&inasistencia_mes=".serialize($inasistencia_mes)."&sueldo_neto=".serialize($sueldo_neto)."&empleado=".serialize($empleado));
+    header("Location: ../Vistas/pre_nomina/verprenomina2.php?filas=".$filas."&asignaciones=".serialize($asignaciones)."&deducciones=".serialize($deducciones)."&inasistencias=".serialize($inasistencias)."&monto=".serialize($monto)."&inasistencias_mes=".serialize($inasistencias_mes)."&sueldo_neto=".serialize($sueldo_neto)."&empleado=".serialize($empleado));
 
     	
 
@@ -242,6 +242,7 @@ public function calcular_asignaciones($id_empleado){
     return $total;
 
 }//fin de la funcion calcular asignaciones 
+
 
 
 public function calcular_deducciones($id_empleado){
@@ -337,31 +338,7 @@ static function controlador($operacion){
 			$pago->generar();
 			break;
 
-		case 'calcular_asignaciones':
-			$pago->calcular_asignaciones();
-			break;
-
-		case 'calcular_deducciones':
-			$pago->calcular_deducciones();
-			break;
-
-		case 'inasistencia':
-			$pago->inasistencia();
-			break;
-
-		case 'inasistencia_mes':
-			$pago->inasistencia_mes();
-			break;
-
-		case 'cestaticket':
-			$pago->cestaticket();
-			break;
-
-
-		case 'aprobadas':
-			$pago->aprobadas();
-			break;
-
+		
 		
 		
 		default:
