@@ -167,7 +167,7 @@ $inasistencia=unserialize($inasistencia);
   
   function detalles(asignaciones,deducciones, inasistencia, sueldo_neto, nombres, apellidos, cedula, nombre, salario ) {
     
-    console.log(asignaciones);
+    console.log(inasistencia+"sdfghjk");
     $("#asignaciones").text(asignaciones);
     $("#deducciones").text(deducciones);
     $("#inasistencia").text(inasistencia);

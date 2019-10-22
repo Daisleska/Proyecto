@@ -5,7 +5,7 @@ $empleado=unserialize($empleado);
 $sueldo_neto=unserialize($sueldo_neto);
 $asignaciones=unserialize($asignaciones);
 $deducciones=unserialize($deducciones);
-$inasistencia=unserialize($inasistencia);
+$inasistencia=unserialize($inasistencias);
 $inasistencia_mes=unserialize($inasistencia_mes);
 $monto=unserialize($monto);
 
@@ -181,7 +181,7 @@ $monto=unserialize($monto);
   
   function detalles(asignaciones,deducciones, inasistencia, monto, inasistencia_mes, sueldo_neto,  nombres, apellidos, cedula, nombre, salario) {
     
-    console.log(asignaciones);
+    console.log(inasistencia+"sdfghjk");
     $("#asignaciones").text(asignaciones);
     $("#deducciones").text(deducciones);
     $("#inasistencia").text(inasistencia);
