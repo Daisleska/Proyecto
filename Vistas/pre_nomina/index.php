@@ -2,45 +2,21 @@
 include_once "../includes/menu.php"; 
 extract($_REQUEST);
 $prenomina=unserialize($prenomina);
+//$aprobar=unserialize($aprobar);
  ?>
-
- 
-        <!-- Header-->
-
-        <div class="breadcrumbs">
-           
-         
-
-                    
-        </div>
-
-        <div class="content mt-3">
-            <div class="animated fadeIn">
-                <div class="row">
-
-               
-
-                    
-
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header" >
-                            
-                               
-
-                                <div>
-                                  
-                                </div>
-
-<div class="form-1-2">
-    
-      <input type="text" name="caja_busqueda" id="caja_busqueda" placeholder=" Buscar">
-
-      <button  type="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>
-
-    </div>
-    
-
+<!-- Header-->
+<div class="breadcrumbs"></div>
+    <div class="content mt-3">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header" >
+                            <div></div>
+                            <div class="form-1-2">
+                                <input type="text" name="caja_busqueda" id="caja_busqueda" placeholder=" Buscar">
+                                <button  type="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>
+                            </div>
                            <div class="col-md-2,5">
                                  <p style="margin-left: 17cm;"><a href="../../Controladores/ControladorPreNomina.php?operacion=generar" class="btn btn-block btn-danger btn-sm">Generar</a></p>
                                 </div>
@@ -71,8 +47,8 @@ $prenomina=unserialize($prenomina);
                             <?php } ?>
 
                             <td><button><a href="../../Controladores/ControladorPreNomina.php?operacion=ver&id_pre_nomina=<?=$prenomina[$i][0]?>"><i title="Ver Detalles" class="menu-icon fa fa-search-plus"></i></a></button>
-
-                           <button><a href="../../Controladores/ControladorPreNomina.php?operacion=aprobar&id_empleado=<?=$aprobar[$i][0]?>"><i title="Aprobar" class="fa fa-check"></a></i></button>
+                                <button><a href="../../Controladores/ControladorPreNomina.php?operacion=aprobar"><i title="Aprobar" class="fa fa-check"></a></i></button>
+                           <!-- <button><a href="../../Controladores/ControladorPreNomina.php?operacion=aprobar&id_empleado=<?=$aprobar[$i][0]?>"><i title="Aprobar" class="fa fa-check"></a></i></button> -->
                                 
                             </td>
                                 <?php   
@@ -87,8 +63,6 @@ $prenomina=unserialize($prenomina);
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div><!-- .animated -->
         </div><!-- .content -->
