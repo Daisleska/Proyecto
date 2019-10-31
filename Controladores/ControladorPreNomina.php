@@ -167,10 +167,31 @@ public function generar(){
         $filas=mysqli_num_rows($res2);//cuantos registro trae la consulta
 
 	    $i=0;
-
+	    $detalles = array();
+	    $inicio=0;//variable para inicio de matriz de detalle por empleado
+	    $p=0;//variable de incremente sumando las asig de cada empleado
 	while($data=mysqli_fetch_object($res2)){
 
+		//detalles de las asignaciones de cada empleado
 
+		$matrix_asig=$this->detalle_asignaciones($data->id);
+		//echo count($matrix_asig)."--";
+		
+		$fin=count($matrix_asig)+$p;//limite de ciclo por emplead
+
+	    $t=0;//variable para iterar la matriz que llega
+		for ($k=$inicio; $k < $fin ; $k++) { 
+			$detalles[$k][0]=$matrix_asig[$t][0];
+			$detalles[$k][1]=$matrix_asig[$t][1];
+			$detalles[$k][2]=$matrix_asig[$t][2];
+			$p++;
+			$t++;
+			
+		}
+		$inicio=$p;
+		// la matriz detalle es la que se va a enviar en la funcion header
+		//contiene todas las asignaciones de todos los empleados
+		//------------------
 	
 		$asignaciones[$i]=$this->calcular_asignaciones($data->id);
 
@@ -214,6 +235,7 @@ public function generar(){
      }
      
     header("Location: ../Vistas/pre_nomina/verprenomina2.php?filas=".$filas."&asignaciones=".serialize($asignaciones)."&deducciones=".serialize($deducciones)."&inasistencia=".serialize($inasistencia)."&monto=".serialize($monto)."&inasistencia_mes=".serialize($inasistencia_mes)."&sueldo_neto=".serialize($sueldo_neto)."&empleado=".serialize($empleado));
+    
     
     }else{
 
@@ -265,20 +287,14 @@ public function detalle_asignaciones($id_empleado){
 	$res=mysqli_query($conex,$sql);
 	$filas=mysqli_num_rows($res);
     
-    $i =1;
-
-
-	while ($data=mysqli_fetch_object($res)) { 
-	  
-	  $asignacion[$i][1]=$data->descripcion;
-      $asignacion[$i][2]=$data->monto;
-
+    $i =0;
     
 
-	$i++;
-
-	
-
+	while ($data=mysqli_fetch_object($res)) { 
+	  $asignacion[$i][0]= $id_empleado;
+	  $asignacion[$i][1]=$data->descripcion;
+      $asignacion[$i][2]=$data->monto;
+      $i++;
 } 
 
 return $asignacion;
