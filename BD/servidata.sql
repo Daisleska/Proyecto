@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-10-2019 a las 05:28:51
+-- Tiempo de generación: 31-10-2019 a las 01:08:50
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.2.12
 
@@ -55,7 +55,8 @@ CREATE TABLE `asignacion_deduccion` (
 
 INSERT INTO `asignacion_deduccion` (`id`, `descripcion`, `tipo`, `monto`) VALUES
 (1, 'Memoriales La Victoria C.A', 'Deduccion', 15000),
-(2, 'Prima por Hijo', 'Asignacion', 50000);
+(2, 'Prima por Hijo', 'Asignacion', 50000),
+(3, 'Prima Prof. TSU', 'Asignacion', 60000);
 
 -- --------------------------------------------------------
 
@@ -77,11 +78,11 @@ CREATE TABLE `asistencias` (
 
 INSERT INTO `asistencias` (`id`, `id_empleado`, `fecha_hora`, `status`, `justificacion`) VALUES
 (2, 1, '2019-10-10 04:00:00', 'NACJ', ' Reposo medico'),
-(3, 3, '2019-10-10 04:00:00', 'NACJ', ' '),
 (5, 1, '2019-10-11 04:00:00', 'A', ''),
 (6, 1, '2019-10-17 04:00:00', 'NASJ', ''),
-(7, 3, '2019-10-17 04:00:00', 'A', ''),
-(8, 1, '2019-10-19 04:00:00', 'NASJ', '');
+(8, 1, '2019-10-19 04:00:00', 'NASJ', ''),
+(9, 1, '2019-10-22 04:00:00', 'A', ''),
+(10, 2, '2019-10-22 04:00:00', 'NASJ', ' ');
 
 -- --------------------------------------------------------
 
@@ -154,10 +155,7 @@ CREATE TABLE `departamentos` (
 
 INSERT INTO `departamentos` (`id`, `nombre`) VALUES
 (1, 'Almacen'),
-(2, 'Recursos Humanos'),
-(3, 'Administración'),
-(4, 'Informática'),
-(5, 'Producción');
+(2, 'Recursos Humanos');
 
 -- --------------------------------------------------------
 
@@ -202,9 +200,11 @@ INSERT INTO `dia_lab` (`id`, `id_empleado`, `nombre`) VALUES
 (41, 2, ' Lunes'),
 (42, 2, ' Martes'),
 (43, 2, ' MiÃ©rcoles'),
-(44, 3, ' Martes'),
-(45, 3, ' MiÃ©rcoles'),
-(46, 3, ' Jueves');
+(47, 3, ' Lunes'),
+(48, 3, ' Martes'),
+(49, 3, ' MiÃ©rcoles'),
+(50, 3, ' Jueves'),
+(51, 3, ' Viernes');
 
 -- --------------------------------------------------------
 
@@ -234,7 +234,7 @@ CREATE TABLE `empleado` (
 INSERT INTO `empleado` (`id`, `cedula`, `nombres`, `apellidos`, `direccion`, `telefono`, `fecha_ingreso`, `condicion`, `fecha_venc`, `ncuenta`, `id_cargo`, `id_departamento`) VALUES
 (1, '25873122', 'Juan Carlos', 'Figueredo ', 'La Victoria', '04243160235', '2019-10-08', 'Fijo', '2024-10-18', '01354567898765432345', 2, 2),
 (2, '28147989', 'Hector Argenis', 'Hernandez Ceballo', 'San Mateo', '04243590130', '2019-10-09', 'Contratado', '2019-11-06', '01915678890998787654', 1, 2),
-(3, '18610668', 'Eynsterd Samuel', 'Velazco', 'Zuata', '04163462604', '2019-10-08', 'Fijo', '2019-10-30', '01027693406500432765', 2, 3);
+(3, '18610668', 'Eynsterd Samuel', 'Velazco', 'Zuata', '04163462604', '2019-10-08', 'Contratado', '2020-02-08', '01357859875673408765', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -257,8 +257,9 @@ INSERT INTO `empleado_asig` (`id`, `id_empleado`, `id_asignaciones`) VALUES
 (2, 1, 1),
 (3, 2, 1),
 (4, 2, 2),
-(5, 3, 1),
-(6, 3, 2);
+(5, 3, 2),
+(6, 3, 3),
+(7, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -429,12 +430,12 @@ CREATE TABLE `prenomina_empleado` (
 --
 
 INSERT INTO `prenomina_empleado` (`id`, `id_prenomina`, `id_empleado`) VALUES
-(1, 1, 1),
-(2, 1, 2),
-(3, 1, 3),
-(4, 2, 1),
-(5, 2, 2),
-(6, 2, 3);
+(43, 16, 1),
+(44, 16, 2),
+(45, 16, 3),
+(46, 17, 1),
+(47, 17, 2),
+(48, 17, 3);
 
 -- --------------------------------------------------------
 
@@ -455,8 +456,8 @@ CREATE TABLE `pre_nomina` (
 --
 
 INSERT INTO `pre_nomina` (`id`, `quincena`, `mes`, `anio`, `status`) VALUES
-(1, 1, 10, 2019, 'Procesando'),
-(2, 2, 10, 2019, 'Procesando');
+(16, 1, 10, 2019, 'Procesando'),
+(17, 2, 10, 2019, 'Procesando');
 
 -- --------------------------------------------------------
 
@@ -948,13 +949,13 @@ ALTER TABLE `almacen`
 -- AUTO_INCREMENT de la tabla `asignacion_deduccion`
 --
 ALTER TABLE `asignacion_deduccion`
-  MODIFY `id` int(90) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(90) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `asistencias`
 --
 ALTER TABLE `asistencias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `auditoria`
@@ -978,7 +979,7 @@ ALTER TABLE `cestaticket`
 -- AUTO_INCREMENT de la tabla `departamentos`
 --
 ALTER TABLE `departamentos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `despachos`
@@ -990,7 +991,7 @@ ALTER TABLE `despachos`
 -- AUTO_INCREMENT de la tabla `dia_lab`
 --
 ALTER TABLE `dia_lab`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
@@ -1002,7 +1003,7 @@ ALTER TABLE `empleado`
 -- AUTO_INCREMENT de la tabla `empleado_asig`
 --
 ALTER TABLE `empleado_asig`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `enviados`
@@ -1038,13 +1039,13 @@ ALTER TABLE `pago`
 -- AUTO_INCREMENT de la tabla `prenomina_empleado`
 --
 ALTER TABLE `prenomina_empleado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT de la tabla `pre_nomina`
 --
 ALTER TABLE `pre_nomina`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `privilegios`

@@ -7,13 +7,29 @@ class ControladorPreNomina
 {
 	
 
-public function prenomina(){
+public function prenomina(){ 
 	extract($_POST);
 	$db=new clasedb();//instanciando clasedb
 	$conex=$db->conectar();//conectando con la base de datos
 
-	$sql="SELECT * FROM pre_nomina WHERE status=1";//query
+	// $sql="SELECT * FROM pre_nomina WHERE status=1 AND mes=MONTH( CURDATE() )";
 
+	// $resultado=mysqli_query($conex, $sql);
+	// $filas=mysqli_num_rows($resultado);
+
+	// if ($filas==0) {
+
+	// 	$sql="SELECT * FROM pre_nomina WHERE status=1";
+
+	//     header("Location: ../Vistas/pre_nomina/index.php");
+	
+
+	// }else {
+
+		
+		// $sql="SELECT empleado.id_departamento, departamentos.nombre,  pre_nomina.status FROM empleado, departamentos, pre_nomina, prenomina_empleado WHERE status=1 AND empleado.id_departamento=departamentos.id AND prenomina_empleado.id_empleado=empleado.id AND prenomina_empleado.id_prenomina=pre_nomina.id";
+
+    $sql="SELECT id, status FROM pre_nomina WHERE status=1";
 
 	//ejecutando query
 	if ($res=mysqli_query($conex,$sql)) {
@@ -29,43 +45,46 @@ public function prenomina(){
 			} 
 			$i++;
 		}
+
 		
 	    header("Location: ../Vistas/pre_nomina/index.php?filas=".$filas."&campos=".$campos."&prenomina=".serialize($prenomina));
 	} else {
 		echo "Error en la BASE DE DATOS";
 
 	}//enviando datos
+//}
+	
 }//fin de la funcion 
 
-public function aprobadas(){
-	extract($_POST);
-	$db=new clasedb();//instanciando clasedb
-	$conex=$db->conectar();//conectando con la base de datos
+// public function aprobadas(){
+// 	extract($_POST);
+// 	$db=new clasedb();//instanciando clasedb
+// 	$conex=$db->conectar();//conectando con la base de datos
 
-	$sql="SELECT * FROM pre_nomina WHERE status=2";//query
+// 	$sql="SELECT * FROM pre_nomina WHERE status=2";//query
 
 
-	//ejecutando query
-	if ($res=mysqli_query($conex,$sql)) {
-		//echo "entro";
-		$campos=mysqli_num_fields($res);//cuantos campos trae la consulta	
-		$filas=mysqli_num_rows($res);//cuantos registro trae la consulta
-		$i=0;
-		$prenomina[]=array();//inicializando array
-		//extrayendo datos
-		while($data=mysqli_fetch_array($res)){
-			for ($j=0; $j <$campos; $j++) { 
-				$prenomina[$i][$j]=$data[$j];
-			} 
-			$i++;
-		}
+// 	//ejecutando query
+// 	if ($res=mysqli_query($conex,$sql)) {
+// 		//echo "entro";
+// 		$campos=mysqli_num_fields($res);//cuantos campos trae la consulta	
+// 		$filas=mysqli_num_rows($res);//cuantos registro trae la consulta
+// 		$i=0;
+// 		$prenomina[]=array();//inicializando array
+// 		//extrayendo datos
+// 		while($data=mysqli_fetch_array($res)){
+// 			for ($j=0; $j <$campos; $j++) { 
+// 				$prenomina[$i][$j]=$data[$j];
+// 			} 
+// 			$i++;
+// 		}
 		
-	    header("Location: ../Vistas/pre_nomina/aprobadas.php?filas=".$filas."&campos=".$campos."&prenomina=".serialize($prenomina));
-	} else {
-		echo "Error en la BASE DE DATOS";
+// 	    header("Location: ../Vistas/pre_nomina/aprobadas.php?filas=".$filas."&campos=".$campos."&prenomina=".serialize($prenomina));
+// 	} else {
+// 		echo "Error en la BASE DE DATOS";
 
-	}//enviando datos
-}//fin de la funcion 
+// 	}//enviando datos
+// }//fin de la funcion 
 
 public function generar(){
 	
@@ -97,10 +116,11 @@ public function generar(){
 
 	while($data=mysqli_fetch_object($res2)){
 
-	
+
 		$asignaciones[$i]=$this->calcular_asignaciones($data->id);
 
 		//echo $asignaciones[$i];
+
 
 		$deducciones[$i]=$this->calcular_deducciones($data->id);
 
@@ -125,10 +145,6 @@ public function generar(){
 	    $sql3="INSERT INTO prenomina_empleado VALUES (NULL,  ".$id_prenomina.", ".$data->id.")";
        
 		$resultado=mysqli_query($conex,$sql3);
-
-
-		
-
 		$i++;
      }
      
@@ -154,6 +170,7 @@ public function generar(){
 
 	while($data=mysqli_fetch_object($res2)){
 
+
 	
 		$asignaciones[$i]=$this->calcular_asignaciones($data->id);
 
@@ -170,13 +187,15 @@ public function generar(){
 		
 		$diast=$data->salario/30;
 
-		$inasistencia=$inasistencias[$i]*$diast;
+		$inasistencia[$i]=$inasistencias[$i]*$diast;
 
-		$inasistencia_mes=$inasistencia_mes[$i]*$diasc;
+		$diasc=$monto[$i]/30;
 
-        $diasc=$monto[$i]/30;
+		$inasistencia_mes[$i]=$inasistencias_mes[$i]*$diasc;
 
-		$sueldo_neto[$i]=(($data->salario/2)-$inasistencia[$i])+($asignaciones[$i]-$deducciones[$i])+($monto[$i]-$inasistencia_mes);
+        
+
+		$sueldo_neto[$i]=(($data->salario/2)-$inasistencia[$i])+($asignaciones[$i]-$deducciones[$i])+($monto[$i]-$inasistencia_mes[$i]);
 
         $empleado[$i][0]=$data->id;
         $empleado[$i][1]=$data->nombres;
@@ -185,7 +204,7 @@ public function generar(){
         $empleado[$i][4]=$data->nombre;
         $empleado[$i][5]=$data->salario/2;
 
-        $totalasig=($monto[$i]-$inasistencia_mes)+$asignaciones[$i]+$empleado[$i][5];
+        
 
 	    
 	    $sql3="INSERT INTO prenomina_empleado VALUES (NULL,  ".$id_prenomina.", ".$data->id.")";
@@ -194,14 +213,7 @@ public function generar(){
 		$i++;
      }
      
-    header("Location: ../Vistas/pre_nomina/verprenomina2.php?filas=".$filas."&asignaciones=".serialize($asignaciones)."&deducciones=".serialize($deducciones)."&inasistencias=".serialize($inasistencias)."&monto=".serialize($monto)."&inasistencias_mes=".serialize($inasistencias_mes)."&sueldo_neto=".serialize($sueldo_neto)."&empleado=".serialize($empleado));
-
-    	
-
-		
-       
-
-
+    header("Location: ../Vistas/pre_nomina/verprenomina2.php?filas=".$filas."&asignaciones=".serialize($asignaciones)."&deducciones=".serialize($deducciones)."&inasistencia=".serialize($inasistencia)."&monto=".serialize($monto)."&inasistencia_mes=".serialize($inasistencia_mes)."&sueldo_neto=".serialize($sueldo_neto)."&empleado=".serialize($empleado));
     
     }else{
 
@@ -242,6 +254,36 @@ public function calcular_asignaciones($id_empleado){
     return $total;
 
 }//fin de la funcion calcular asignaciones 
+
+public function detalle_asignaciones($id_empleado){
+	extract($_REQUEST);
+	$db=new clasedb();
+	$conex=$db->conectar();
+
+	$sql="SELECT asignacion_deduccion.descripcion, asignacion_deduccion.monto FROM asignacion_deduccion, empleado, empleado_asig WHERE asignacion_deduccion.tipo='Asignacion' AND empleado_asig.id_empleado=empleado.id AND empleado_asig.id_asignaciones=asignacion_deduccion.id AND empleado.id=".$id_empleado."";
+
+	$res=mysqli_query($conex,$sql);
+	$filas=mysqli_num_rows($res);
+    
+    $i =1;
+
+
+	while ($data=mysqli_fetch_object($res)) { 
+	  
+	  $asignacion[$i][1]=$data->descripcion;
+      $asignacion[$i][2]=$data->monto;
+
+    
+
+	$i++;
+
+	
+
+} 
+
+return $asignacion;
+
+}//fin de la función detalle de asignaciones
 
 
 
@@ -326,6 +368,8 @@ public function cestaticket($id_empleado){
 
 
 }//fin de la función cestaticket  
+
+
 
 static function controlador($operacion){
 		$pago=new ControladorPreNomina();
