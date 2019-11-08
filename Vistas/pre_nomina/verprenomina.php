@@ -4,10 +4,28 @@ extract($_REQUEST);
 $empleado=unserialize($empleado);
 $sueldo_neto=unserialize($sueldo_neto);
 $asignaciones=unserialize($asignaciones);
+//$asignacion=unserialize($asignacion);
 $deducciones=unserialize($deducciones);
 $inasistencia=unserialize($inasistencia);
 
 ?>
+
+<script type="text/javascript">
+
+function makeArray() {
+for (i = 0; i<makeArray.arguments.length; i++)
+this[i + 1] = makeArray.arguments[i];}
+var months = new makeArray('Enero','Febrero','Marzo','Abril','Mayo',
+'Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre');
+var date = new Date();
+var day = date.getDate();
+var month = date.getMonth() + 1;
+var yy = date.getYear();
+var year = (yy < 1000) ? yy + 1900 : yy;
+
+//]]>
+
+</script>
         <!-- Header-->
 <div class="breadcrumbs"></div>
     <div class="content mt-3">
@@ -16,7 +34,9 @@ $inasistencia=unserialize($inasistencia);
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header" >
-                                <div></div>
+                        <h4 style="text-align: center;">DETALLES DE LA PRE NOMINA</h4>
+                        <h4 style="text-align: right;">
+                            <script type="text/javascript">document.write("" + months[month] + " " + year);</script></h4>
 
                         <div class="form-1-2">
                             <input type="text" name="caja_busqueda" id="caja_busqueda" placeholder=" Buscar">
@@ -47,11 +67,27 @@ $inasistencia=unserialize($inasistencia);
                             
                             <td><?=$num?></td>
                         <?php for ($j=1; $j < 6; $j++) { ?>
-                        <td><?=$empleado[$i][$j]?></td>
+                        <td><?php 
+                        if ($j==5) {
+
+                            echo number_format($empleado[$i][$j], 2, ',', '.');
+
+                        }else{
+
+                            echo $empleado[$i][$j];
+                             
+                         } ?></td>
 
                             <?php } ?>
-                            <td><?=$sueldo_neto[$i]?></td>
+                            <td>
+                            <?php
+                                echo number_format($sueldo_neto[$i], 2, ',', '.');
+                             ?>   
+                            </td>
+
+
                             <td><a href="#"></i></a>
+                            <!-- '<?=$asignacion[$i][1]?>', '<?=$asignacion[$i][2]?>', -->
 
                            <button  onclick="detalles('<?=$asignaciones[$i]?>', '<?=$deducciones[$i]?>', '<?=$inasistencia[$i]?>', '<?=$sueldo_neto[$i]?>','<?=$empleado[$i][1]?>', '<?=$empleado[$i][2]?>', '<?=$empleado[$i][3]?>', '<?=$empleado[$i][4]?>', '<?=$empleado[$i][5]?>')"><i title="Detalles" class="fa fa-search"  data-toggle="modal" data-target="#mediumModal"></i></button>
 
@@ -103,49 +139,54 @@ $inasistencia=unserialize($inasistencia);
                                 <caption></caption>
                                 
                                 <tr>
-                                    
-                                     <td td style="text-align: center; background-color: black; color: white;">DESCRIPCIÓN</td>  
-
-                                    <td  style="text-align: center; background-color: black; color: white;">ASIGNACIONES</td>
-
-                                     <td  style="text-align: center; background-color: black; color: white;">DEDUCCIONES</td>
-                                    
-                                    
+                                    <td colspan="3"  style="text-align: center; background-color: black; color: white;">ASIGNACIONES</td>
                                 </tr>
 
                                 <tr>
                                     <td>Sueldo base:</td>
                                     <td><span id="salario" style="font-weight: normal;"></span> Bs.S</td>
-                                    <td></td>
+                                    
                                     
                                 </tr>
 
+                               <!--  <tr>
+                                    <td><span id="descripcion"></span></td>
+                                    <td><span id="monto"></span></td>
+                                </tr> -->
+
                                 <tr>
-                                    <td>Asignaciones:</td>
-                                    <td><span id="asignaciones" style="font-weight: normal;"></span> Bs.S</td>
-                                    <td></td>
+                                    <td>Total de Asignaciones:</td>
+                                    <td ><span id="asignaciones" style="font-weight: normal;"></span> Bs.S</td>
+                                   
                                 </tr>
 
+
+                                     <td colspan="3" style="text-align: center; background-color: black; color: white;">DEDUCCIONES</td>
+                                    
+                                    
+                                </tr>
                             
 
                                 <tr>
                                     <td>Inasistencias: </td>
-                                    <td></td>
+                                  
                                     <td><span id="inasistencia" style="font-weight: normal;"></span> Bs.S</td>
                                 </tr>
+
+                               
 
                             
 
                                 <tr>
-                                    <td>Deducciones:</td>
-                                    <td></td>
+                                    <td>Total de Deducciones:</td>
+                                 
                                     <td><span id="deducciones" style="font-weight: normal;"></span> Bs.S</td>
                                 </tr>
 
                                 <tr>
                                     <td>Total a Pagar:</td>
                                     <td><span id="sueldo_neto" style="font-weight: normal;"></span> Bs.S</td>
-                                    <td></td>
+
                                 </tr>
                                 
                             </table>
@@ -164,14 +205,22 @@ $inasistencia=unserialize($inasistencia);
 
 
    <script type="text/javascript">
+    //descripcion, monto
   
-  function detalles(asignaciones,deducciones, inasistencia, sueldo_neto, nombres, apellidos, cedula, nombre, salario ) {
-    
-    console.log(inasistencia+"sdfghjk");
+  function detalles(asignaciones, deducciones, inasistencia, sueldo_neto, nombres, apellidos, cedula, nombre, salario ) {
+var num_ina=parseFloat(inasistencia);  
+var inadecimal=num_ina.toFixed(2);
+var num_sueldo=parseFloat(sueldo_neto);
+var sueldodecimal=num_sueldo.toFixed(2);
+
+//var sueldodecimal=sueldo_neto.toFixed(2);
+  
     $("#asignaciones").text(asignaciones);
+    //$("#descripcion").text(descripcion);
+    //$("#monto").text(monto);
     $("#deducciones").text(deducciones);
-    $("#inasistencia").text(inasistencia);
-    $("#sueldo_neto").text(sueldo_neto);
+    $("#inasistencia").text(inadecimal);
+    $("#sueldo_neto").text(sueldodecimal);
     $("#nombres").text(nombres);
     $("#apellidos").text(apellidos);
     $("#cedula").text(cedula);
@@ -181,7 +230,6 @@ $inasistencia=unserialize($inasistencia);
 
   }
   
-
 
 </script>
 
