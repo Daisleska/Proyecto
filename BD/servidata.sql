@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-10-2019 a las 01:08:50
+-- Tiempo de generación: 08-11-2019 a las 16:36:44
 -- Versión del servidor: 10.1.37-MariaDB
--- Versión de PHP: 7.2.12
+-- Versión de PHP: 7.1.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -30,11 +30,19 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `almacen` (
   `id` int(11) NOT NULL,
-  `id_produccion` int(11) NOT NULL,
-  `existencia` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
-  `ce` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
-  `paletas` varchar(90) COLLATE utf8_unicode_ci NOT NULL
+  `id_producto` int(11) NOT NULL,
+  `id_ubicacion` int(11) NOT NULL,
+  `stock` int(11) NOT NULL,
+  `ce` varchar(90) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `paletas` varchar(90) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `almacen`
+--
+
+INSERT INTO `almacen` (`id`, `id_producto`, `id_ubicacion`, `stock`, `ce`, `paletas`) VALUES
+(1, 1, 1, 11, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -55,8 +63,7 @@ CREATE TABLE `asignacion_deduccion` (
 
 INSERT INTO `asignacion_deduccion` (`id`, `descripcion`, `tipo`, `monto`) VALUES
 (1, 'Memoriales La Victoria C.A', 'Deduccion', 15000),
-(2, 'Prima por Hijo', 'Asignacion', 50000),
-(3, 'Prima Prof. TSU', 'Asignacion', 60000);
+(2, 'Prima por Hijo', 'Asignacion', 50000);
 
 -- --------------------------------------------------------
 
@@ -69,26 +76,8 @@ CREATE TABLE `asistencias` (
   `id_empleado` int(11) NOT NULL,
   `fecha_hora` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'fecha de asistencia',
   `status` enum('A','NACJ','NASJ','Sin Marcar') COLLATE utf8_unicode_ci NOT NULL,
-  `justificacion` mediumtext COLLATE utf8_unicode_ci
+  `justificacion` enum('Permiso','Reposo','','') COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Volcado de datos para la tabla `asistencias`
---
-
-INSERT INTO `asistencias` (`id`, `id_empleado`, `fecha_hora`, `status`, `justificacion`) VALUES
-<<<<<<< HEAD
-(1, 14, '2019-10-10 04:00:00', 'Sin Marcar', ''),
-(2, 15, '2019-10-10 04:00:00', 'Sin Marcar', ''),
-(3, 17, '2019-10-10 04:00:00', 'Sin Marcar', '');
-=======
-(2, 1, '2019-10-10 04:00:00', 'NACJ', ' Reposo medico'),
-(5, 1, '2019-10-11 04:00:00', 'A', ''),
-(6, 1, '2019-10-17 04:00:00', 'NASJ', ''),
-(8, 1, '2019-10-19 04:00:00', 'NASJ', ''),
-(9, 1, '2019-10-22 04:00:00', 'A', ''),
-(10, 2, '2019-10-22 04:00:00', 'NASJ', ' ');
->>>>>>> 5b8d90f249010d39c1492c1d5ba338742943b2f9
 
 -- --------------------------------------------------------
 
@@ -161,7 +150,10 @@ CREATE TABLE `departamentos` (
 
 INSERT INTO `departamentos` (`id`, `nombre`) VALUES
 (1, 'Almacen'),
-(2, 'Recursos Humanos');
+(2, 'Recursos Humanos'),
+(3, 'Administración'),
+(4, 'Informática'),
+(5, 'Producción');
 
 -- --------------------------------------------------------
 
@@ -206,11 +198,9 @@ INSERT INTO `dia_lab` (`id`, `id_empleado`, `nombre`) VALUES
 (41, 2, ' Lunes'),
 (42, 2, ' Martes'),
 (43, 2, ' MiÃ©rcoles'),
-(47, 3, ' Lunes'),
-(48, 3, ' Martes'),
-(49, 3, ' MiÃ©rcoles'),
-(50, 3, ' Jueves'),
-(51, 3, ' Viernes');
+(44, 3, ' Martes'),
+(45, 3, ' MiÃ©rcoles'),
+(46, 3, ' Jueves');
 
 -- --------------------------------------------------------
 
@@ -240,7 +230,7 @@ CREATE TABLE `empleado` (
 INSERT INTO `empleado` (`id`, `cedula`, `nombres`, `apellidos`, `direccion`, `telefono`, `fecha_ingreso`, `condicion`, `fecha_venc`, `ncuenta`, `id_cargo`, `id_departamento`) VALUES
 (1, '25873122', 'Juan Carlos', 'Figueredo ', 'La Victoria', '04243160235', '2019-10-08', 'Fijo', '2024-10-18', '01354567898765432345', 2, 2),
 (2, '28147989', 'Hector Argenis', 'Hernandez Ceballo', 'San Mateo', '04243590130', '2019-10-09', 'Contratado', '2019-11-06', '01915678890998787654', 1, 2),
-(3, '18610668', 'Eynsterd Samuel', 'Velazco', 'Zuata', '04163462604', '2019-10-08', 'Contratado', '2020-02-08', '01357859875673408765', 2, 2);
+(3, '18610668', 'Eynsterd Samuel', 'Velazco', 'Zuata', '04163462604', '2019-10-08', 'Fijo', '2019-10-30', '01027693406500432765', 2, 3);
 
 -- --------------------------------------------------------
 
@@ -263,9 +253,8 @@ INSERT INTO `empleado_asig` (`id`, `id_empleado`, `id_asignaciones`) VALUES
 (2, 1, 1),
 (3, 2, 1),
 (4, 2, 2),
-(5, 3, 2),
-(6, 3, 3),
-(7, 3, 1);
+(5, 3, 1),
+(6, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -300,11 +289,48 @@ CREATE TABLE `empleado_producto` (
 
 CREATE TABLE `enviados` (
   `id` int(11) NOT NULL,
-  `id_materia` int(11) NOT NULL,
-  `cantidad` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
-  `filial` enum('Produccion') COLLATE utf8_unicode_ci NOT NULL,
-  `observacion` varchar(90) COLLATE utf8_unicode_ci NOT NULL
+  `id_productos` int(11) NOT NULL,
+  `id_ubicacion` int(11) NOT NULL,
+  `id_codigo` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `fecha_registro` date NOT NULL,
+  `observacion` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `enviados`
+--
+
+INSERT INTO `enviados` (`id`, `id_productos`, `id_ubicacion`, `id_codigo`, `cantidad`, `fecha_registro`, `observacion`) VALUES
+(1, 0, 2, 0, 100, '2019-11-06', NULL),
+(2, 0, 2, 0, 100, '2019-11-06', NULL),
+(3, 0, 2, 0, 40, '2019-11-06', NULL),
+(4, 0, 2, 0, 1000, '2019-11-06', NULL),
+(5, 0, 2, 0, 100, '2019-11-06', NULL),
+(6, 0, 2, 0, 10, '2019-11-06', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `historial`
+--
+
+CREATE TABLE `historial` (
+  `id` int(11) NOT NULL,
+  `tiempo` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `motivo` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
+  `id_producto` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `historial`
+--
+
+INSERT INTO `historial` (`id`, `tiempo`, `motivo`, `id_producto`, `cantidad`) VALUES
+(1, '2019-11-05 21:42:52', 'ingreso', 1, 100),
+(2, '2019-11-05 21:46:05', 'egreso', 5, -10),
+(3, '2019-11-05 21:50:20', 'ingreso', 5, 100);
 
 -- --------------------------------------------------------
 
@@ -368,15 +394,21 @@ CREATE TABLE `materia_prima` (
   `nombre` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
   `presentacion` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
   `unidad` enum('Kgs','Lts') COLLATE utf8_unicode_ci NOT NULL,
-  `stock_max` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL
+  `stock` int(11) NOT NULL,
+  `stock_minimo` int(11) NOT NULL,
+  `stock_maximo` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `borrado` enum('N','S') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N',
+  `activo` enum('S','N') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'S'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `materia_prima`
 --
 
-INSERT INTO `materia_prima` (`id`, `codigo`, `nombre`, `presentacion`, `unidad`, `stock_max`) VALUES
-(1, 'C1903', 'XILENO ', 'BARITANQUE DE 1000 LTS ', 'Lts', '100000');
+INSERT INTO `materia_prima` (`id`, `codigo`, `nombre`, `presentacion`, `unidad`, `stock`, `stock_minimo`, `stock_maximo`, `borrado`, `activo`) VALUES
+(1, 'C1903', 'XILENO ', 'BARITANQUE DE 1000 LTS ', 'Lts', 5050, 1000, '100000', 'N', 'S'),
+(2, '2h2h22', 'madera', 'tablas', 'Lts', 30, 10, '40', 'N', 'S'),
+(3, '2h2fkfk', 'agua', 'paletas', 'Lts', 2000, 100, '10000', 'N', 'S');
 
 -- --------------------------------------------------------
 
@@ -422,6 +454,79 @@ CREATE TABLE `pago_asignaciondeduccion` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `pedido`
+--
+
+CREATE TABLE `pedido` (
+  `id` int(11) NOT NULL,
+  `fecha_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `fecha_edicion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `estado` enum('Completado','En Espera','Cancelado') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'En Espera',
+  `tipo` enum('interno','externo') COLLATE utf8_unicode_ci NOT NULL,
+  `id_proveedor` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `pedido`
+--
+
+INSERT INTO `pedido` (`id`, `fecha_registro`, `fecha_edicion`, `estado`, `tipo`, `id_proveedor`) VALUES
+(1, '2019-11-08 03:03:58', '2019-11-08 02:42:53', 'Cancelado', 'interno', 1),
+(2, '2019-11-08 03:20:35', '2019-11-08 03:20:35', 'En Espera', 'interno', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pedido_detalles`
+--
+
+CREATE TABLE `pedido_detalles` (
+  `id` int(11) NOT NULL,
+  `id_pedido` int(25) NOT NULL,
+  `tiempo_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tiempo_modificado` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `id_producto` int(11) NOT NULL,
+  `id_proveedor_personalizado` int(11) DEFAULT NULL,
+  `cantidad_solicitada` int(11) NOT NULL,
+  `cantidad_despachada` int(11) DEFAULT NULL,
+  `observaciones` text CHARACTER SET utf8
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `pedido_detalles`
+--
+
+INSERT INTO `pedido_detalles` (`id`, `id_pedido`, `tiempo_registro`, `tiempo_modificado`, `id_producto`, `id_proveedor_personalizado`, `cantidad_solicitada`, `cantidad_despachada`, `observaciones`) VALUES
+(1, 2, '2019-11-08 03:20:35', NULL, 1, NULL, 10, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `permisos`
+--
+
+CREATE TABLE `permisos` (
+  `id` int(11) NOT NULL,
+  `motivo` enum('Reposo','Permiso') COLLATE utf8_unicode_ci DEFAULT NULL,
+  `cantidad_dias` int(11) NOT NULL,
+  `inicio_permiso` date NOT NULL,
+  `fin_permiso` date NOT NULL,
+  `resta` int(11) NOT NULL,
+  `status` enum('En Curso','Cumplido') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'En Curso',
+  `id_empleado` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `permisos`
+--
+
+INSERT INTO `permisos` (`id`, `motivo`, `cantidad_dias`, `inicio_permiso`, `fin_permiso`, `resta`, `status`, `id_empleado`) VALUES
+(1, 'Reposo', 3, '2019-10-01', '2019-10-03', 3, 'En Curso', 3),
+(2, 'Permiso', 3, '2019-10-20', '2019-10-22', 3, 'En Curso', 3);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `prenomina_empleado`
 --
 
@@ -436,12 +541,9 @@ CREATE TABLE `prenomina_empleado` (
 --
 
 INSERT INTO `prenomina_empleado` (`id`, `id_prenomina`, `id_empleado`) VALUES
-(43, 16, 1),
-(44, 16, 2),
-(45, 16, 3),
-(46, 17, 1),
-(47, 17, 2),
-(48, 17, 3);
+(7, 3, 1),
+(8, 3, 2),
+(9, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -462,8 +564,7 @@ CREATE TABLE `pre_nomina` (
 --
 
 INSERT INTO `pre_nomina` (`id`, `quincena`, `mes`, `anio`, `status`) VALUES
-(16, 1, 10, 2019, 'Procesando'),
-(17, 2, 10, 2019, 'Procesando');
+(3, 1, 10, 2019, 'Procesando');
 
 -- --------------------------------------------------------
 
@@ -539,18 +640,27 @@ CREATE TABLE `produccion` (
 
 CREATE TABLE `productos` (
   `id` int(11) NOT NULL,
+  `codigo` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
   `nombre` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
   `presentacion` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
-  `unidad` enum('Kgs','Lts') COLLATE utf8_unicode_ci NOT NULL
+  `unidad` enum('Kgs','Lts') COLLATE utf8_unicode_ci NOT NULL,
+  `stock` int(11) NOT NULL,
+  `stock_minimo` int(11) NOT NULL,
+  `stock_maximo` int(11) NOT NULL,
+  `borrado` enum('N','S') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N',
+  `activo` enum('S','N') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'S'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id`, `nombre`, `presentacion`, `unidad`) VALUES
-(1, 'hierro', 'paletas', 'Kgs'),
-(2, 'metal', 'paletas', 'Lts');
+INSERT INTO `productos` (`id`, `codigo`, `nombre`, `presentacion`, `unidad`, `stock`, `stock_minimo`, `stock_maximo`, `borrado`, `activo`) VALUES
+(1, '12356', 'hierro', 'paletas', 'Kgs', 10, 5, 30, 'N', 'S'),
+(2, '7272727', 'metal', 'paletas', 'Lts', 80, 10, 5000, 'N', 'S'),
+(3, 'nuh779', 'cosa', 'paletas', 'Kgs', 10, 10, 200, 'N', 'S'),
+(4, '32020', 'madera', 'flota', 'Lts', 56, 10, 100, 'N', 'N'),
+(5, '2h2h22', 'koll', 'tablas', 'Lts', 869, 9, 900, 'N', 'S');
 
 -- --------------------------------------------------------
 
@@ -574,21 +684,25 @@ CREATE TABLE `producto_proveedor` (
 
 CREATE TABLE `proveedor` (
   `id` int(11) NOT NULL,
+  `cod_rif` enum('V','J','E','G') COLLATE utf8_unicode_ci NOT NULL,
   `cedula` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
   `nombre` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
   `direccion` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
-  `telefono` varchar(90) COLLATE utf8_unicode_ci NOT NULL
+  `telefono` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
+  `borrado` enum('N','S') COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `proveedor`
 --
 
-INSERT INTO `proveedor` (`id`, `cedula`, `nombre`, `email`, `direccion`, `telefono`) VALUES
-(2, '25873122', 'Juan Carlos Figueredo', 'juan2912@gmail.com', 'La Victoria', '3163502'),
-(4, 'J-1345678', 'Inica Cagua C.A', 'inicacca@gmail.com', 'Cagua ', '9876556'),
-(5, '29554496', 'holahhh', 'holgggggga@gmail.com', 'aahha', '23456787654');
+INSERT INTO `proveedor` (`id`, `cod_rif`, `cedula`, `nombre`, `email`, `direccion`, `telefono`, `borrado`) VALUES
+(2, 'V', '25873122', 'Juan Carlos Figueredo', 'juan2912@gmail.com', 'La Victoria', '3163502', 'N'),
+(4, 'J', 'J-1345678', 'Inica Cagua C.A', 'inicacca@gmail.com', 'Cagua ', '9876556', 'S'),
+(5, 'V', '29554496', 'holahhh', 'holgggggga@gmail.com', 'aahha', '23456787654', 'N'),
+(6, 'V', '23353454', 'esaaaaaa', '', 'gagu', '342342323', 'N'),
+(7, 'V', '099988', 'koll', 'hectorher149@gmail.com', '', '8889998', 'S');
 
 -- --------------------------------------------------------
 
@@ -611,6 +725,28 @@ CREATE TABLE `recibidos` (
 
 INSERT INTO `recibidos` (`id`, `id_pmp`, `cantidad`, `fecha`, `observacion`, `ce`) VALUES
 (2, 1, '102002', '2019-10-07', '8jjkk', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ubicacion`
+--
+
+CREATE TABLE `ubicacion` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `bloqueado` enum('N','S') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N',
+  `borrado` enum('N','S') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N',
+  `tipo` enum('I','E') COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `ubicacion`
+--
+
+INSERT INTO `ubicacion` (`id`, `nombre`, `bloqueado`, `borrado`, `tipo`) VALUES
+(1, 'produccion', 'N', 'N', 'I'),
+(2, 'almacen', 'N', 'N', 'I');
 
 -- --------------------------------------------------------
 
@@ -738,7 +874,9 @@ INSERT INTO `usuarios_has_privilegios` (`id`, `id_usuario`, `id_privilegio`, `st
 -- Indices de la tabla `almacen`
 --
 ALTER TABLE `almacen`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_producto` (`id_producto`),
+  ADD KEY `id_ubicacion` (`id_ubicacion`);
 
 --
 -- Indices de la tabla `asignacion_deduccion`
@@ -826,7 +964,17 @@ ALTER TABLE `empleado_producto`
 -- Indices de la tabla `enviados`
 --
 ALTER TABLE `enviados`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_ubicacion` (`id_ubicacion`),
+  ADD KEY `id_codigo` (`id_codigo`),
+  ADD KEY `id_productos` (`id_productos`) USING BTREE;
+
+--
+-- Indices de la tabla `historial`
+--
+ALTER TABLE `historial`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_producto` (`id_producto`);
 
 --
 -- Indices de la tabla `inventario`
@@ -875,6 +1023,25 @@ ALTER TABLE `pago`
 ALTER TABLE `pago_asignaciondeduccion`
   ADD KEY `id_pago` (`id_pago`),
   ADD KEY `id_ad` (`id_ad`);
+
+--
+-- Indices de la tabla `pedido`
+--
+ALTER TABLE `pedido`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `pedido_detalles`
+--
+ALTER TABLE `pedido_detalles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `permisos`
+--
+ALTER TABLE `permisos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_empleado` (`id_empleado`);
 
 --
 -- Indices de la tabla `prenomina_empleado`
@@ -928,6 +1095,12 @@ ALTER TABLE `recibidos`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `ubicacion`
+--
+ALTER TABLE `ubicacion`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -949,19 +1122,19 @@ ALTER TABLE `usuarios_has_privilegios`
 -- AUTO_INCREMENT de la tabla `almacen`
 --
 ALTER TABLE `almacen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `asignacion_deduccion`
 --
 ALTER TABLE `asignacion_deduccion`
-  MODIFY `id` int(90) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(90) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `asistencias`
 --
 ALTER TABLE `asistencias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `auditoria`
@@ -985,7 +1158,7 @@ ALTER TABLE `cestaticket`
 -- AUTO_INCREMENT de la tabla `departamentos`
 --
 ALTER TABLE `departamentos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `despachos`
@@ -997,7 +1170,7 @@ ALTER TABLE `despachos`
 -- AUTO_INCREMENT de la tabla `dia_lab`
 --
 ALTER TABLE `dia_lab`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
@@ -1009,13 +1182,19 @@ ALTER TABLE `empleado`
 -- AUTO_INCREMENT de la tabla `empleado_asig`
 --
 ALTER TABLE `empleado_asig`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `enviados`
 --
 ALTER TABLE `enviados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `historial`
+--
+ALTER TABLE `historial`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `inventario`
@@ -1027,7 +1206,7 @@ ALTER TABLE `inventario`
 -- AUTO_INCREMENT de la tabla `materia_prima`
 --
 ALTER TABLE `materia_prima`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `nomina`
@@ -1042,16 +1221,34 @@ ALTER TABLE `pago`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `pedido`
+--
+ALTER TABLE `pedido`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `pedido_detalles`
+--
+ALTER TABLE `pedido_detalles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `permisos`
+--
+ALTER TABLE `permisos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `prenomina_empleado`
 --
 ALTER TABLE `prenomina_empleado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `pre_nomina`
 --
 ALTER TABLE `pre_nomina`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `privilegios`
@@ -1069,18 +1266,24 @@ ALTER TABLE `produccion`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `recibidos`
 --
 ALTER TABLE `recibidos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `ubicacion`
+--
+ALTER TABLE `ubicacion`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
@@ -1174,6 +1377,12 @@ ALTER TABLE `pago`
 --
 ALTER TABLE `pago_asignaciondeduccion`
   ADD CONSTRAINT `pago_asignaciondeduccion_ibfk_1` FOREIGN KEY (`id_ad`) REFERENCES `asignacion_deduccion` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `permisos`
+--
+ALTER TABLE `permisos`
+  ADD CONSTRAINT `dias_permiso` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `prenomina_empleado`
