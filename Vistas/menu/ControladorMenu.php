@@ -27,6 +27,7 @@
 		case'registar':include"Vistas/inventario/registar.php";break;
 		case'index':include"Vistas/inventario/index.php";break;
 		case'usar':include"../inventario/usar_producto.php";break;
+		case'añadir':include"../inventario/añadir_producto.php";break;
 		case'existencia_pro':include"../inventario/actualizado_producto.php";break;
 		case'inventario':include"../inventario/inventario.php";break;
 		case'registro_inv':include"../inventario/registrar_inventario.php";break;
@@ -46,6 +47,7 @@
 		case'lista_consulta':include"../asistencias/lista_consulta.php";break;
 		case'marcar_asistencia':include"../asistencias/marcar_asistencia.php";break;
 		case'guardar':include"../../Controladores/controladorAsistencia.php";break;
+		case'permisos':include"../../Controladores/controladorAsistencia.php";break;
 
 		//Asig/ Deducc
 		case'registar':include"Vistas/asigdeducc/registar.php";break;
@@ -60,6 +62,7 @@
 		case'usuario':include"Vistas/mantenimiento/usuario.php";break;
 		case'auditoria':include"../config/auditoria.php";break;
 		case'bitacora':include"../config/bitacora.php";break;
+		case'mantenimiento':include"../config/mantenimiento.php";break;
 		case'respaldarbd':include"Vistas/mantenimiento/respaldarbd.php";break;
 		case'restaurarbd':include"Vistas/mantenimiento/restaurarbd.php";break;
 

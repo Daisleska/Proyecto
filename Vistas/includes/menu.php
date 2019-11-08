@@ -8,26 +8,31 @@
 <!--<![endif]-->
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Serviform C.A</title>
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../vendors/css/estilos.css">
+
 
     <link rel="../../apple-touch-icon" href="apple-icon.png">
     <link rel="../../shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="../../vendors/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../vendors/bootstrap/css/bootstrap.min.css"> 
     <link rel="stylesheet" href="../../vendors/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="../../vendors/themify-icons/css/themify-icons.css">
     <link rel="stylesheet" href="../../vendors/flag-icon-css/css/flag-icon.min.css">
     <link rel="stylesheet" href="../../vendors/selectFX/css/cs-skin-elastic.css">
     <link rel="stylesheet" href="../../vendors/jqvmap/dist/jqvmap.min.css">
+    <link rel="stylesheet" href="../../vendors/chosen/chosen.min.css">
 
 
     <link rel="stylesheet" href="../../assets/css/style.css">
 
   <link rel="stylesheet" href="../../vendors/plugins/datepicker/bootstrap-datepicker.css">
    <link rel="stylesheet" href="../../vendors/plugins/daterangepicker/daterangepicker.css">
+   <link rel="stylesheet" href="../../vendors/css/iziToast.min.css">
 
     <link rel="stylesheet" href="../../vendors/plugins/sweetalert2.min.css">
     <link rel="stylesheet" href="../../vendors/animate.css/animate.css">
@@ -58,34 +63,13 @@
                     </li>
                     <h3 class="menu-title">ALMACEN</h3><!-- /.menu-title -->
                    
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-archive"></i>Materia Prima</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-list"></i><a href="../../Controladores/ControladorMP.php?operacion=index">Listado</a></li>
 
-                        </ul>
-                    </li>
-                    
-
-                     <li class="menu-item-has-children dropdown">
-                        <a href="../../Controladores/ControladorRecibidos.php?operacion=registrar"> <i class="menu-icon fa fa-archive"></i>Recibidos</a>
-                        
-                    </li>
-
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-archive"></i>Producto</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-list"></i><a href="../../Controladores/ControladorProductos.php?operacion=registrar">Registro</a></li>
-                            <li><i class="fa fa-list"></i><a href="../../Controladores/ControladorProductos.php?operacion=index">Listado</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-archive"></i>Inventario</a>
-                        <ul class="sub-menu children dropdown-menu">
+                    <li class="">
+                        <a href="../menu/ControladorMenu.php?operacion=inventario" > <i class="menu-icon fa fa-archive"></i>Inventario</a>
+                       <!--  <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-list"></i><a href="../menu/ControladorMenu.php?operacion=inventario">General</a></li>
                             <li><i class="fa fa-list"></i><a href="../menu/ControladorMenu.php?operacion=registro_inv">Registro</a></li>
-                        </ul>
+                        </ul> -->
                     </li>
 
                    
@@ -101,12 +85,9 @@
                         </ul>
                     </li>
 
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user"></i>Asistencia</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-table"></i><a href="../menu/ControladorMenu.php?operacion=consulta">Listado</a></li>
-                            <li><i class="menu-icon fa fa-check-circle"></i><a href="../asistencias/ControlA.php?operacion=index">Marcar Asistencia</a></li>
-                        </ul>
+                    <li>
+                        <a href="../asistencias/ControlA.php?operacion=index"> <i class="menu-icon fa fa-users"></i>Asistencia</a>
+                       
                     </li>
 
                     
@@ -120,7 +101,7 @@
                     </li>
 
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Cargos</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon ti ti-stats-up"></i>Cargos</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-users"></i><a href="../../Controladores/ControladorCargos.php?operacion=registrar">Registrar</a></li>
                             <li><i class="menu-icon fa fa-list"></i><a href="../../Controladores/ControladorCargos.php?operacion=index">Listado</a></li>
@@ -128,7 +109,7 @@
                     </li>
 
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Cestaticket</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon ti ti-ticket"></i>Cestaticket</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-users"></i><a href="../../Controladores/ControladorCestaticket.php?operacion=registrar">Registrar</a></li>
                             <li><i class="menu-icon fa fa-list"></i><a href="../../Controladores/ControladorCestaticket.php?operacion=index">Listado</a></li>
@@ -146,14 +127,8 @@
 
                     <h3 class="menu-title">Ajustes</h3><!-- /.menu-title -->
 
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Mantenimiento</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-desktop"></i><a href="../menu/ControladorMenu.php?operacion=bitacora">Bitacora</a></li>
-                            <li><i class="menu-icon fa fa-cloud"></i><a href="../config/respaldar.php">Respaldar BD</a></li>
-                            <li><i class="menu-icon fa fa-cloud-upload"></i><a href="../config/restaurar.php">Restaurar BD</a></li>
-                             <li><i class="menu-icon fa fa-cloud-upload"></i><a href="../../Controladores/controladorUsuario.php?operacion=index">Listado de usuarios</a></li>
-                        </ul>
+                    <li>
+                        <a href="../menu/ControladorMenu.php?operacion=mantenimiento"> <i class="menu-icon fa fa-cogs"></i>Mantenimiento</a>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
@@ -256,33 +231,7 @@ window.onload=function(){startTime();}
         </header><!-- /header -->
         <!-- Header-->
 
-        <div class="breadcrumbs">
-
-         <!--    membrete------------------------------------------------- -->
-
-            <div class="col-md-9">
-
-               <!--  <div class="col-md-3" >
-                    <a class="navbar-brand" href="#"><img style="float: left;" width="70" src="../../images/upta.png" width="100" height="70" alt="Logo"></a>
-                    </div> -->
-
-                
-            </div>
-
-            <!-- fin del membrete-------------------------------------------- -->
-
-
-       <!--  Hora y fecha------------------------------------------------- -->
-            
-            <div class="col-sm-3">
-                <!--   <header style="text-align: right; margin-right: 20px;">
-                    <p style="margin-bottom: 1px;">Fecha Y Hora:</p> -->
-
-
-
-
-            </div>
-        </div>
+     
 
 <!-- fin de hora y fecha-------------------------------------------------- -->
 

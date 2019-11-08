@@ -2,6 +2,7 @@
 
 extract($_REQUEST);
 $data=unserialize($data);
+$justificacion=unserialize($justificacion);
 
 /*$query_perfil=mysqli_query($con,"select * from perfil where id=1");
   $rw=mysqli_fetch_assoc($query_perfil);
@@ -13,7 +14,6 @@ $data=unserialize($data);
 
 
 <div class="col-md-12"><section style="padding-left: 20px;" class="content-header">
-        <h3>Asistencia</h3>
       <ol class="breadcrumb">
         <li><i class="fa fa-users"><a href="../menu/ControladorMenu.php?operacion=asistencia"></i> Asistencia /</a></li>
 
@@ -26,9 +26,7 @@ $data=unserialize($data);
      <section style="padding-left: 20px;"  class="invoice">
       <div class="row">
         <div class="col-md-12">
-          <h3 class="page-header">
-            <i class="fa fa-edit"></i> Control de Asistencia
-          </h3>
+          <h1 align="center"> Asistencias <span class="badge badge-info">Control <i class="menu-icon fa fa-edit"></i> </span></h1>
         </div>
         <!-- /.col -->
       </div>
@@ -36,11 +34,8 @@ $data=unserialize($data);
       <div class="row invoice-info">
         <div class="col-sm-offset-4 col-sm-4 invoice-col">
         <form action="../../Controladores/controladorAsistencia.php" method="POST" id="asistencia">
-            <div class="form-group">
-            <label>Cédula de Empleado:</label>
-                <input type="text" name="cedula" id="cedula" placeholder="Cédula" class="form-control" required>
-            <span class="help-block"></span>
-            </div>
+           
+
           <!-- /.col -->
           <!-- <div class="form-group">
             <div class="col-sm-offset-4 col-sm-4">
@@ -65,12 +60,26 @@ $data=unserialize($data);
                     <div class="table-responsive"  style="overflow-x: hidden;">
                       <div class="row">
                         
-                        <div class="col-sm-12">
+                        <div class="col-sm-9">
                           <label><b>A:</b> Asistió, <b>NACJ:</b> No Asistió (Con Justificativo), <b>NASJ:</b> No Asistió (Sin Justificativo)</label>
                         </div>
+                        <div class="col-sm-3">
+                        <a href="../menu/ControladorMenu.php?operacion=consulta"><button type="button" title="Listado" class="btn btn-secondary"><i class="fa fa-list"></i>&nbsp;</a></button></div>
                       </div><br>
+                      <div class="col-sm-3">
+                        <a href="../menu/ControladorMenu.php?operacion=Permisos"><button type="button" title="Permiso" class="btn btn-secondary"><i class="fa fa-truck"></i>&nbsp;</a></button></div>
                     </div>
-                    <table id="order_data_censo" class="table table-bordered table-hover">
+
+
+                     <div class="content mt-3">
+            <div class="animated fadeIn">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="card">
+                          
+                            <div class="card-body">
+                    <table id="bootstrap-data-table-export" class="table table-striped table-bordered" >
                       <thead>
                         <tr>
                           <th>N°</th>
@@ -129,6 +138,14 @@ $data=unserialize($data);
                    
                   </div>
 
+                     </div>
+            </div><!-- .animated -->
+        </div><!-- .content -->
+
+
+    </div><!-- /#right-panel -->
+
+
       <!-- info row -->
      
       <!-- /.row -->
@@ -164,8 +181,14 @@ $data=unserialize($data);
                               </div>
                               <div class="row">
                                 <div class="col-md-12">
-                                   <label>Justificación:</label>
-                               <textarea maxlength="500"  placeholder=" Explique su Motivo de inisistencia en caso de estar justificado" name="justificacion"> </textarea>
+                                   <label>Justificación: </label>
+                                   <select class="" name="justificacion" >
+                                   <option value="" selected="selected" disabled="disabled"></option>
+                                  <option>Reposo</option>
+                                  <option>Permiso</option>
+                                  </select>
+                             <label>Dias de Permiso: </label>
+                             <input type="number" title="Ingrese la cantidad de dias de permiso" name="dias_permiso">
                                 </div>
                              </div>
                             </div>

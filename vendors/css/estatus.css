@@ -1,0 +1,14 @@
+p{
+	margin: 0;
+	padding:0;
+	display: inline-block;
+}
+
+label,.subtitulo{
+	color: rgb(0, 34, 79);
+}
+.atras{
+
+	float: left;
+	color: #000;
+}

@@ -1,0 +1,91 @@
+*,p{
+	margin: 0;
+	padding: 0;
+}
+.row{
+	padding: 0;
+	margin: 0;
+}
+.icono_alert{
+	height: 15%;
+	width: 15%;
+	color: rgb(0, 34, 79);
+}
+.l_alert{
+	padding: 0px;
+	margin: 0px;
+	color: rgb(0, 34, 79);
+}
+.notificaciones{
+	padding: 5px;
+	box-shadow: 0px 0px 3px grey;
+	margin-bottom: 10px;
+	overflow: auto;
+}
+.col{
+	margin-right: 0px;
+}
+h1{
+	color: rgb(0, 34, 79);
+}
+.bien{
+	width: 100%;
+	height: 49%;
+	color: #04B404;
+}
+button{
+	margin: 0;
+	padding: 0;
+}
+.con-iv{
+	padding-bottom: 20px;
+	height: 600px;
+}
+.vehiculo,.inventario{
+	background: #fff;
+	width: 49%;
+	padding: 20px;
+	display: inline-block;
+	box-shadow: 0px 0px 3px grey;
+	overflow: auto;
+}
+.noc_i{
+	float: left;
+}
+.nom_noc{
+	font-size: 10px;
+}
+.inventario{
+	float: right;
+	height: 550px;
+}
+.vehiculo{
+	float: left;
+	height: 550px;
+}
+.reporte{
+	padding: 20px;
+	margin-bottom: 20px;
+	background-color: #fff;
+	box-shadow: 0px 0px 3px grey;
+	overflow: auto;
+	height: 400px;
+}
+.critico{
+	color: #ff000f;
+}
+.noc_i{
+	width: 70%;
+	height: 100%;
+}
+@media(max-width: 500px){
+
+	.vehiculo,.inventario{
+	width: 100%;
+	display: block;
+	margin-bottom: 20px;
+}
+	.notificaciones{
+		display: block;
+	}
+}

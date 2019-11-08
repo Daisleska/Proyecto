@@ -50,8 +50,9 @@
     <script src="../../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../../assets/js/main.js"></script>
 
+<script src="../../vendors/js/iziToast.min.js"></script>
 
-    <script src="../../../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="../../vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script src="../../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
     <script src="../../vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
@@ -83,6 +84,28 @@
       <!--  plugins sweet alert 2 -->
    <script src="../../vendors/plugins/sweetalert2.all.min.js"></script>
    <script src="../../vendors/popper.js/codigo.js"></script>
+   <script type="text/javascript">
+      function eliminar(id){
+
+        swal({
+        title: "¡Advertencia!",
+        text: "¿Ésta seguro que deseas salir?",
+        icon: "warning",
+        buttons: ['Cancelar','Salir'],
+        dangerMode: 'Salir',
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+                    
+          window.location="../../../index.php";
+
+        } else {
+                    
+
+         }
+        });      
+      }
+</script>
 
 
 </body>

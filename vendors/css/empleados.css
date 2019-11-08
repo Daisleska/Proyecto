@@ -1,0 +1,52 @@
+form{
+	width: 100%;
+	text-align: center;
+}
+select{
+	padding: 6px;
+	width: 25%;
+}
+option{
+	width: 25%;
+}
+input{
+	width: 45%;
+	padding: 6px;
+}
+.boton{
+	width: 15%;
+	background: #007bff;
+	border-color: #007bff;
+	color: #fff;
+	border-radius: 5px;
+}
+.col{
+	padding: 5px;
+}
+.cont_dd{
+	padding-bottom: 150px;
+}
+.datos_Personales{
+
+	width: 45%;
+	float: left;
+
+}
+.direccion{
+
+	width: 45%;
+	float: right;
+}
+
+.contacto{
+	width: 100%;
+	margin-top: 20px;
+	padding-top: 20px;
+}
+
+@media(max-width: 600px){
+
+	.datos_Personales, .direccion{
+		width: 100%;
+	}
+}

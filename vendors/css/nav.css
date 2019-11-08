@@ -1,0 +1,255 @@
+nav{
+	display: block;
+	padding: 14px;
+	background: rgba(0, 34, 79, 0.86);
+	color: #fff;
+	width: 100%;
+	position: fixed;
+	z-index: 1000;	
+}
+nav a{
+	color: #fff;
+	display: block;
+	text-decoration: none;
+	text-decoration-line: none;
+	list-style: none;
+
+}
+nav a:hover{
+	color: #fff;
+	text-decoration: none;
+
+}
+.div-modal-1{
+	display: none;
+}
+.div-modal-2{
+	display: none;
+}
+.cont-nav{
+	position: absolute;
+}
+.cont-nav-2{
+	margin-top: 30px;
+	padding: 10px;
+	background: #f8f9fb;
+	color: #333;
+	box-shadow: 0 0 3px grey;
+	margin-left: -150px;
+	margin-right: 20px;
+}
+.contenedor{
+	position: fixed;
+	width: 200px;
+	height: 100%;
+	background: #F8F9FB;
+	padding-top: 50px;
+	box-shadow: 0px 0px 5px grey;
+	z-index: 2;
+}
+.menu{
+	position: fixed;
+	list-style: none;
+	width: 200px;
+	height: 90%;
+	background: #F8F9FB;
+	color: #333;
+	overflow: auto;
+	padding-bottom: 30px;
+}
+
+.cont-nav-2 ul{
+	list-style: none;
+	padding: 0;
+	margin:0;
+}
+
+.cont-nav-2 a{
+	display: block;
+	padding: 10px;
+	text-decoration: none;
+	text-decoration-line: none;
+	color: #333;
+	list-style: none;
+}
+.cont-nav-2 .active{
+	color: #007bff;
+}
+.cont-nav-2 .active:hover{
+	color: #007bff;
+}
+.cont-nav-2 .active .feather  {
+  width: 28px;
+  height: 28px;
+}
+.cont-nav-2 a:hover{
+	color: #000;
+	font-size: 18px;
+}
+.cont-nav-2 a .ico, .iconav,.iconav-2{
+	float: right;
+}
+
+.cont-nav-2 li{
+
+	list-style: none;
+}
+.cont-nav-2 .icon-user-div{
+	width: 50%;
+	height: 100%;
+}
+
+/*Inicio*/
+.cont-nav-3{
+	margin-top: 30px;
+	padding: 10px;
+	background: #f8f9fb;
+	color: #333;
+	box-shadow: 0 0 3px grey;
+	margin-left: -120px;
+	margin-right: 20px;
+}
+
+.cont-nav-3 ul{
+	list-style: none;
+	padding: 0;
+	margin:0;
+}
+
+.cont-nav-3 a{
+	display: block;
+	padding: 10px;
+	text-decoration: none;
+	text-decoration-line: none;
+	color: #333;
+	list-style: none;
+}
+.cont-nav-3 .active{
+	color: #007bff;
+}
+.cont-nav-3 .active:hover{
+	color: #007bff;
+}
+.cont-nav-3 .active .feather  {
+  width: 28px;
+  height: 28px;
+}
+.cont-nav-3 a:hover{
+	color: #000;
+	font-size: 18px;
+}
+.cont-nav-3{
+	float: right;
+}
+
+.cont-nav-3 li{
+
+	list-style: none;
+}
+.cont-nav-3 .icon-user-div{
+	width: 50%;
+	height: 100%;
+}
+.menu .logo_i{
+	padding-top: 5px;
+	width: 100px;
+}
+
+/*Fin*/
+.menu ul{
+	list-style: none;
+	padding: 0;
+	margin:0;
+}
+
+.menu a{
+	display: block;
+	padding: 10px;
+	text-decoration: none;
+	text-decoration-line: none;
+	color: #333;
+	list-style: none;
+}
+.feather{
+  width: 22px;
+  height: 22px;
+  vertical-align: text-bottom;
+}
+.ico_2{
+	width: 30px;
+}
+.contenido{
+	padding-top: 50px;
+	margin-left: 205px;
+	margin-right: 0px;
+}
+
+.menu .active{
+	color: #007bff;
+}
+.menu .active:hover{
+	color: #007bff;
+}
+.menu .active .feather  {
+  width: 28px;
+  height: 28px;
+}
+.menu a:hover{
+	color: #000;
+	font-size: 18px;
+}
+.menu a .ico, .iconav,.iconav-2{
+	float: right;
+}
+.iconav-2{
+	margin-right: 15px;
+	margin-left: 15px;
+}
+.iconav{
+	display: none;
+	width: 16%;
+	height: 25px;
+}
+.submenu{
+	display: none;
+	background:#f2f2f2;
+}
+.submenu li a{
+	font-size: 12px;
+}
+.submenu li a:hover{
+	font-size: 14;
+}
+
+.cont2{
+	padding: 20px;
+	box-shadow: 0px 0px 5px grey;
+}
+
+@media(max-width: 600px){
+	.contenedor{
+		display: none;
+	}
+	.iconav{
+		display: block;
+	}
+	.contenido{
+		margin-left: 10px;
+	}
+	.menu, .contenedor{
+		width: 100%;
+		height: 80%;
+		box-shadow: 0px 0px 5px grey;
+	}
+
+	.icon-m{
+
+		display: none;
+	}
+
+	.iconav-2{
+		margin-left: 5px; 
+		margin-right: 5px;
+	}
+}
+

@@ -18,22 +18,9 @@ $data=unserialize($data);
 ?>
 
 
-
-        <div class="breadcrumbs">
-           
-         
-
-                    
-        </div>
-
         <div class="content mt-3">
             <div class="animated fadeIn">
                 <div class="row">
-
-               
-
-                	
-
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
@@ -43,13 +30,10 @@ $data=unserialize($data);
                                   <strong style="margin-right: 4cm;" class="card-title"><i class="fa fa-list"></i> LISTADO DE USUARIOS</strong>
                                 </div>
 
-                                <div class="form-1-2">
-      <label for="caja_busqueda">Buscar:</label>
-      <input type="text" name="caja_busqueda" id="caja_busqueda">
-    </div>
+                            
                             </div>
                             <div class="card-body">
-                                <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                                <table class="table table-striped table-sm" id="table">
                                     <thead>
                                        <tr>
                                        	<th>N°</th>
@@ -79,7 +63,7 @@ $data=unserialize($data);
 							<a href="../../Controladores/ControladorUsuario.php?operacion=eliminar&id_usuarios=<?=$data[$i][0]?>"><i title="Eliminar" class="menu-icon fa fa-trash-o"></a></i>
 
                 <a href="../../Controladores/ControladorUsuario.php?operacion=asignar_registrar&id_usuarios=<?=$data[$i][0]?>"><i title="Asignar privilegios" class="menu-icon fa fa-edit"></a></i>
-                                
+              
 							</td>
 								<?php	
 								$num++;
@@ -97,4 +81,85 @@ $data=unserialize($data);
 
 
     </div><!-- /#right-panel -->
-<?php include_once "../includes/footer.php"; ?>
+    <?php include_once "../includes/footer.php"; ?>
+
+    <script src="../../vendors/js/feather.min.js"></script>
+    <script>
+      feather.replace();
+    </script>
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../vendors/js/datatables.min.js"></script>
+    <script type="text/javascript">
+
+       <?php
+        error_reporting(0);
+        extract($_REQUEST);
+        //Registro
+        if ($reg==1 or $registrado=='s') {
+            echo "
+              iziToast.success({
+                title: '¡Registrado! ',
+                message: 'Usuario registrado correctamente',
+                color: 'rgb(174, 240, 191)',
+                
+              });
+            ";
+        }else if($reg==2 or $registrado=='n'){
+          echo
+               "iziToast.error({
+                title: '¡Error al registrar! ',
+                message: 'El Usuario no pudo ser registrado',
+                color: '#ffb6bb',
+            
+              });";
+        }
+         if ($e==1) {
+            echo "
+              iziToast.success({
+                title: 'Exito! ',
+                message: 'Operacion realizada con exito',
+                color: 'rgb(174, 240, 191)',
+                
+              });
+            ";
+        }else if($e==2){
+          echo
+               "iziToast.error({
+                title: '¡Error ! ',
+                message: 'No se realizòla operacion',
+                color: '#ffb6bb',
+            
+              });";
+        }
+
+        //Eliminar articulos
+      ?>
+</script>
+<script type="text/javascript">
+         $(document).ready( function () {
+          $('#table').DataTable({
+            "searching": true,
+            language: {
+            "decimal": "",
+            "emptyTable": "No hay información",
+            "info": "Mostrando la página _PAGE_ de _PAGES_",
+            "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+            "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+            "infoPostFix": "",
+            "thousands": ",",
+            "lengthMenu": "Mostrar _MENU_ Entradas",
+            "loadingRecords": "Cargando...",
+            "processing": "Procesando...",
+            "search": "Buscar:",
+            "zeroRecords": "Sin resultados encontrados",
+            "paginate": {
+                "first": "Primero",
+                "last": "Ultimo",
+                "next": "Siguiente",
+                "previous": "Anterior"
+              }
+            }
+          });
+      } );
+         </script>
+

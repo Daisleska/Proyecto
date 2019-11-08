@@ -6,48 +6,49 @@ $data=unserialize($data);
 
    <section style="padding-left: 20px;" class="content-header">
       <ol class="breadcrumb">
-        <li><i class="fa fa-users"><a href="../menu/ControladorMenu.php?operacion=asistencia"></i> Asistencia/ </a></li>
 
-        <li><i class="fa fa-table"><a href="../asistencias/ControlA.php?operacion=index"></i> Consulta de asistencias</a></li>
+       <h1 align="center"> Asistencias <span class="badge badge-info">Reportes <i class="menu-icon fa fa-list"></i> </span></h1>
+      <br>
     
         <li class="col-md-2,5" style=" padding-left: 290px;">
-        <a href="../../reportes/reporte_asistencia.php" target="blank" class="btn btn-block btn-danger btn-sm"><i class="fa fa-file-pdf-o"></i> Reporte PDF</a>
+        <a href="../../reportes/reporte_asistencia.php" target="blank" class="btn btn-block btn-danger btn-sm"><i class="fa fa-file-pdf-o"></i>PDF</a>
         </li>
       </ol>
 </section >
      <section style="padding-left: 20px;"  class="invoice">
-      <!-- <div class="row">
-        <div class="col-md-12">
-          <h2 class="page-header">
-            <i class="fa fa-edit"></i> Listado de Asistencia
-          </h2>
-        </div>
-      </div> -->
+      
        <div class="box-body">
                     <div class="table-responsive"  style="overflow-x: hidden;">
+                      <form action="../asistencias/ControlA.php?operacion=consulta" method="POST">
                       <div class="row">
-                        <div class="input-daterange">
-                          <div class="col-sm-offset-3 col-sm-8">
-                            <div data-date-format="yyyy/mm/dd" data-date="yyyy/mm/dd" class="input-group input-large">
-                              <input type="text" name="start_date" id="start_date" class="form-control" placeholder="Desde"/>
-                              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                              <input type="text" name="end_date" id="end_date" class="form-control" placeholder="Hasta"/>
-                            </div>
+                        <div class="col-md-3">    
+                        <div class="input-group">    
+                       <input class="form-control" type="date" name="fecha">
+                       
+                          <button type="submit" id="buscar" class="btn btn-primary active" ><i class="fa fa-search"></i></button>
+                        </form>
                           </div>
                         </div>
-                        <div  class="col-sm-2">
-                          <button type="button" name="search1" id="search1" class="btn btn-primary active" ><i class="fa fa-search"></i> Buscar</button>
-                        </div>
-                        
+                      
                       </div><br>
                     </div>
-                    <table id="order_data_censo" class="table table-bordered table-hover">
+
+              <div class="content mt-3">
+            <div class="animated fadeIn">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="card">
+                          
+                            <div class="card-body">
+                    <table id="bootstrap-data-table-export" class="table table-striped table-bordered" >
                       <thead>
                         <tr>
                           <th>N°</th>
                           <th>Cédula</th>
                           <th>Fecha de Registro</th>
-                          <th>Opciones</th>
+                          <th>Justificación</th>
+                        
                         </tr>
                       </thead>
                       <tbody>
@@ -64,11 +65,6 @@ $data=unserialize($data);
 
               <?php } ?>
 
-              <td>
-
-              <a href="ControlA.php?operacion=eliminar&id_asistencias=<?=$data[$i][0]?>"><i style="font-size: 20px;" title="Eliminar" class="menu-icon fa fa-trash-o"></a></i>
-                                
-              </td>
                 <?php 
                 $num++;
                 }   ?>
@@ -78,9 +74,14 @@ $data=unserialize($data);
                    
                   </div>
 
+                </div>
+              </div>
+            </div>
+          </div>
       <!-- info row -->
      
       <!-- /.row -->
     </section> <!-- Fin de Main content Section-->
+  </div>
 
     <?php include_once "../includes/footer.php"; ?>

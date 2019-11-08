@@ -42,20 +42,17 @@ $asignaciones=unserialize($asignaciones);
             </div>
         </div>
 
+
+
         <div class="content mt-3 container">
             <div class="animated fadeIn">
-
-
-                                            
-                                                
+                      
+                       <h2 style="text-align: center; "><strong>Registrar Empleado</strong><br></h2><hr>                          
 
                 
                     <div class="col-lg-10" style="margin-left: 2cm;">
                      <div class="card">
-                    <div class="card-header" >
-                     <strong><i class="fa fa-edit"></i> REGISTRAR EMPLEADO</strong> 
-                                                    </div>
-
+      
                  
                     <div class="card-body card-block">
                     <form action="../../Controladores/ControladorEmpleado.php" method="post" class="form-horizontal justify-content-center">
@@ -203,7 +200,7 @@ $asignaciones=unserialize($asignaciones);
                                     <?php 
                     for ($i=0; $i<$filas_asi; $i++){
                     ?>
-                    <option value="<?=$asignaciones[$i][0]?>"><?=$asignaciones[$i][1]?></option>
+                    <option value="<?=$asignaciones[$i][0]?>"><?=$asignaciones[$i][1]?> / <?=$asignaciones[$i][2]?></option>
                     <?php
                     }
                     ?>

@@ -99,6 +99,8 @@ $data=unserialize($data);
                                 </button>
                             </form>
 
+                            <button class="btn-success"><i class="menu-icon fa fa-cloud"></i><a href="../config/respaldar.php">Respaldar Base de datos</a></button>
+
 
 
                             </div>
