@@ -1,12 +1,13 @@
 <?php
 include_once "../includes/menu.php"; 
 extract($_REQUEST);
+$detalles=unserialize($detalles);
 $empleado=unserialize($empleado);
 $sueldo_neto=unserialize($sueldo_neto);
 $asignaciones=unserialize($asignaciones);
-//$asignacion=unserialize($asignacion);
 $deducciones=unserialize($deducciones);
 $inasistencia=unserialize($inasistencia);
+
 
 ?>
 
@@ -38,10 +39,7 @@ var year = (yy < 1000) ? yy + 1900 : yy;
                         <h4 style="text-align: right;">
                             <script type="text/javascript">document.write("" + months[month] + " " + year);</script></h4>
 
-                        <div class="form-1-2">
-                            <input type="text" name="caja_busqueda" id="caja_busqueda" placeholder=" Buscar">
-                            <button  type="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>
-                        </div>
+                      
                     </div>
                         <div class="col-md-2,5"></div>
                             <div class="card-body">
@@ -59,13 +57,13 @@ var year = (yy < 1000) ? yy + 1900 : yy;
                                        </tr>
                                     </thead>
                                     <tbody>
-                          <?php $num=1;
+                        <?php $num=1;
                             for ($i=0; $i < $filas; $i++) { 
                                 
                             echo "<tr>";        
-                            ?>  
+                        ?>  
                             
-                            <td><?=$num?></td>
+                        <td><?=$num?></td>
                         <?php for ($j=1; $j < 6; $j++) { ?>
                         <td><?php 
                         if ($j==5) {
@@ -84,14 +82,14 @@ var year = (yy < 1000) ? yy + 1900 : yy;
                                 echo number_format($sueldo_neto[$i], 2, ',', '.');
                              ?>   
                             </td>
+                        
 
 
                             <td><a href="#"></i></a>
-                            <!-- '<?=$asignacion[$i][1]?>', '<?=$asignacion[$i][2]?>', -->
 
                            <button  onclick="detalles('<?=$asignaciones[$i]?>', '<?=$deducciones[$i]?>', '<?=$inasistencia[$i]?>', '<?=$sueldo_neto[$i]?>','<?=$empleado[$i][1]?>', '<?=$empleado[$i][2]?>', '<?=$empleado[$i][3]?>', '<?=$empleado[$i][4]?>', '<?=$empleado[$i][5]?>')"><i title="Detalles" class="fa fa-search"  data-toggle="modal" data-target="#mediumModal"></i></button>
 
-                           <button><a href="#"><i title="Aprobar" class="fa fa-check"></a></i></button>
+                           
                                 
                             </td>
                                 <?php   
@@ -113,7 +111,7 @@ var year = (yy < 1000) ? yy + 1900 : yy;
 
 
                 <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-dialog modal-lg"  role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="mediumModalLabel">Detalles de Nómina del empleado</h5>
@@ -134,63 +132,8 @@ var year = (yy < 1000) ? yy + 1900 : yy;
                                     </thead>
                                 </table>
 
-
-                                <table border="1" width="750" >
-                                <caption></caption>
+                                <div id="tablita"></div>
                                 
-                                <tr>
-                                    <td colspan="3"  style="text-align: center; background-color: black; color: white;">ASIGNACIONES</td>
-                                </tr>
-
-                                <tr>
-                                    <td>Sueldo base:</td>
-                                    <td><span id="salario" style="font-weight: normal;"></span> Bs.S</td>
-                                    
-                                    
-                                </tr>
-
-                               <!--  <tr>
-                                    <td><span id="descripcion"></span></td>
-                                    <td><span id="monto"></span></td>
-                                </tr> -->
-
-                                <tr>
-                                    <td>Total de Asignaciones:</td>
-                                    <td ><span id="asignaciones" style="font-weight: normal;"></span> Bs.S</td>
-                                   
-                                </tr>
-
-
-                                     <td colspan="3" style="text-align: center; background-color: black; color: white;">DEDUCCIONES</td>
-                                    
-                                    
-                                </tr>
-                            
-
-                                <tr>
-                                    <td>Inasistencias: </td>
-                                  
-                                    <td><span id="inasistencia" style="font-weight: normal;"></span> Bs.S</td>
-                                </tr>
-
-                               
-
-                            
-
-                                <tr>
-                                    <td>Total de Deducciones:</td>
-                                 
-                                    <td><span id="deducciones" style="font-weight: normal;"></span> Bs.S</td>
-                                </tr>
-
-                                <tr>
-                                    <td>Total a Pagar:</td>
-                                    <td><span id="sueldo_neto" style="font-weight: normal;"></span> Bs.S</td>
-
-                                </tr>
-                                
-                            </table>
-
 
                             
                             </div>
@@ -207,17 +150,26 @@ var year = (yy < 1000) ? yy + 1900 : yy;
    <script type="text/javascript">
     //descripcion, monto
   
-  function detalles(asignaciones, deducciones, inasistencia, sueldo_neto, nombres, apellidos, cedula, nombre, salario ) {
+  function detalles(asignaciones, deducciones, inasistencia, sueldo_neto, nombres, apellidos, cedula, nombre, salario) {
 var num_ina=parseFloat(inasistencia);  
 var inadecimal=num_ina.toFixed(2);
 var num_sueldo=parseFloat(sueldo_neto);
 var sueldodecimal=num_sueldo.toFixed(2);
 
-//var sueldodecimal=sueldo_neto.toFixed(2);
+
+// console.log(asignaciones+" "+deducciones+" "+inasistencia+" "+sueldo_neto+" "+salario);
+
+
+    $.ajax({
+        url: 'ajax.php',
+        type: 'POST',
+        data: {nombres: nombres, apellidos: apellidos, cedula: cedula}
+    }).success(function(respuesta){
+        // console.log(respuesta);
+        $('#tablita').html(respuesta);
+    });
   
     $("#asignaciones").text(asignaciones);
-    //$("#descripcion").text(descripcion);
-    //$("#monto").text(monto);
     $("#deducciones").text(deducciones);
     $("#inasistencia").text(inadecimal);
     $("#sueldo_neto").text(sueldodecimal);

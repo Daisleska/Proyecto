@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-11-2019 a las 16:36:44
+-- Tiempo de generación: 30-11-2019 a las 05:27:05
 -- Versión del servidor: 10.1.37-MariaDB
--- Versión de PHP: 7.1.26
+-- Versión de PHP: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -63,7 +63,8 @@ CREATE TABLE `asignacion_deduccion` (
 
 INSERT INTO `asignacion_deduccion` (`id`, `descripcion`, `tipo`, `monto`) VALUES
 (1, 'Memoriales La Victoria C.A', 'Deduccion', 15000),
-(2, 'Prima por Hijo', 'Asignacion', 50000);
+(2, 'Prima por Hijo', 'Asignacion', 50000),
+(3, 'Prima Prof. TSU', 'Asignacion', 60000);
 
 -- --------------------------------------------------------
 
@@ -150,10 +151,7 @@ CREATE TABLE `departamentos` (
 
 INSERT INTO `departamentos` (`id`, `nombre`) VALUES
 (1, 'Almacen'),
-(2, 'Recursos Humanos'),
-(3, 'Administración'),
-(4, 'Informática'),
-(5, 'Producción');
+(2, 'Recursos Humanos');
 
 -- --------------------------------------------------------
 
@@ -228,9 +226,9 @@ CREATE TABLE `empleado` (
 --
 
 INSERT INTO `empleado` (`id`, `cedula`, `nombres`, `apellidos`, `direccion`, `telefono`, `fecha_ingreso`, `condicion`, `fecha_venc`, `ncuenta`, `id_cargo`, `id_departamento`) VALUES
-(1, '25873122', 'Juan Carlos', 'Figueredo ', 'La Victoria', '04243160235', '2019-10-08', 'Fijo', '2024-10-18', '01354567898765432345', 2, 2),
+(1, '25873122', 'Juan Carlos', 'Figueredo ', 'La Victoria', '04243160235', '2019-10-08', 'Fijo', '2024-10-18', '01354567898765432345', 2, 1),
 (2, '28147989', 'Hector Argenis', 'Hernandez Ceballo', 'San Mateo', '04243590130', '2019-10-09', 'Contratado', '2019-11-06', '01915678890998787654', 1, 2),
-(3, '18610668', 'Eynsterd Samuel', 'Velazco', 'Zuata', '04163462604', '2019-10-08', 'Fijo', '2019-10-30', '01027693406500432765', 2, 3);
+(3, '18610668', 'Eynsterd Samuel', 'Velazco', 'Zuata', '04163462604', '2019-10-08', 'Fijo', '2019-10-30', '01027693406500432765', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -254,7 +252,8 @@ INSERT INTO `empleado_asig` (`id`, `id_empleado`, `id_asignaciones`) VALUES
 (3, 2, 1),
 (4, 2, 2),
 (5, 3, 1),
-(6, 3, 2);
+(6, 3, 2),
+(7, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -426,6 +425,18 @@ CREATE TABLE `nomina` (
   `monto` varchar(90) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `nomina`
+--
+
+INSERT INTO `nomina` (`id`, `id_empleado`, `id_prenomina`, `sueldo`, `total_asig`, `total_deducc`, `monto`) VALUES
+(1, 1, 1, '200000', '250000', '15000', '235000'),
+(2, 2, 1, '500000', '550000', '15000', '535000'),
+(3, 3, 1, '200000', '310000', '15000', '295000'),
+(28, 1, 9, '200000', '275000', '15000', '260000'),
+(29, 2, 9, '500000', '575000', '15000', '560000'),
+(30, 3, 9, '200000', '335000', '15000', '320000');
+
 -- --------------------------------------------------------
 
 --
@@ -541,9 +552,12 @@ CREATE TABLE `prenomina_empleado` (
 --
 
 INSERT INTO `prenomina_empleado` (`id`, `id_prenomina`, `id_empleado`) VALUES
-(7, 3, 1),
-(8, 3, 2),
-(9, 3, 3);
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(25, 9, 1),
+(26, 9, 2),
+(27, 9, 3);
 
 -- --------------------------------------------------------
 
@@ -564,7 +578,8 @@ CREATE TABLE `pre_nomina` (
 --
 
 INSERT INTO `pre_nomina` (`id`, `quincena`, `mes`, `anio`, `status`) VALUES
-(3, 1, 10, 2019, 'Procesando');
+(1, 1, 11, 2019, 'Aprobado'),
+(9, 2, 11, 2019, 'Aprobado');
 
 -- --------------------------------------------------------
 
@@ -1128,7 +1143,7 @@ ALTER TABLE `almacen`
 -- AUTO_INCREMENT de la tabla `asignacion_deduccion`
 --
 ALTER TABLE `asignacion_deduccion`
-  MODIFY `id` int(90) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(90) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `asistencias`
@@ -1182,7 +1197,7 @@ ALTER TABLE `empleado`
 -- AUTO_INCREMENT de la tabla `empleado_asig`
 --
 ALTER TABLE `empleado_asig`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `enviados`
@@ -1212,7 +1227,7 @@ ALTER TABLE `materia_prima`
 -- AUTO_INCREMENT de la tabla `nomina`
 --
 ALTER TABLE `nomina`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `pago`
@@ -1242,13 +1257,13 @@ ALTER TABLE `permisos`
 -- AUTO_INCREMENT de la tabla `prenomina_empleado`
 --
 ALTER TABLE `prenomina_empleado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `pre_nomina`
 --
 ALTER TABLE `pre_nomina`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `privilegios`

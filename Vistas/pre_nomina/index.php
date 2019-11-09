@@ -2,6 +2,7 @@
 include_once "../includes/menu.php"; 
 extract($_REQUEST);
 $prenomina=unserialize($prenomina);
+
  ?>
 <!-- Header-->
  <script type="text/javascript">
@@ -53,26 +54,29 @@ var year = (yy < 1000) ? yy + 1900 : yy;
                                     </thead>
                                     <tbody>
                           <?php $num=1;
-                            for ($i=0; $i < $filas; $i++) { 
-                                
-                            echo "<tr>";        
-                            ?>  
-                            
-                            <td><?=$num?></td>
-                        <?php for ($j=1; $j < $campos; $j++) { ?>
-                        <td><?=$prenomina[$i][$j]?></td>
-
-                            <?php } ?>
-
-
-                            <td><button><a href="../../Controladores/ControladorPreNomina.php?operacion=ver&id_pre_nomina=<?=$prenomina[$i][0]?>"><i title="Ver Detalles" class="menu-icon fa fa-search-plus"></i></a></button>
-                                <button><a href="../../Controladores/ControladorPreNomina.php?operacion=aprobar"><i title="Aprobar" class="fa fa-check"></a></i></button>
-                           <!-- <button><a href="../../Controladores/ControladorPreNomina.php?operacion=aprobar&id_empleado=<?=$aprobar[$i][0]?>"><i title="Aprobar" class="fa fa-check"></a></i></button> -->
-                                
-                            </td>
-                                <?php   
-                                $num++;
-                                }   ?>
+                          if ($prenomina!=NULL) {
+                          foreach ($prenomina as $prenomin) {
+                              ?>
+                              <tr>
+                                  <td><?=$num?></td>
+                                  <td>Almacen y Recursos Humanos</td>
+                                  <td><?php echo($prenomin['cantidad']); ?></td>
+                                  <td><?php echo($prenomin['status']); ?></td>
+                                <td><button><a href="../../Controladores/ControladorPreNomina.php?operacion=ver&id_prenomina=<?php echo($prenomin['id']); ?>"><i title="Ver Detalles" class="menu-icon fa fa-search-plus"></i></a></button>
+                                <button><a href="../../Controladores/ControladorPreNomina.php?operacion=aprobar&id_prenomina=<?php echo($prenomin['id']);?>"><i title="Aprobar" class="fa fa-check"></a></i></button>
+                                <button><a href="../../Controladores/ControladorPreNomina.php?operacion=eliminar&id_prenomina=<?php echo($prenomin['id']);?>"><i title="Eliminar" class="menu-icon fa fa-trash-o"></a></i></button>
+                           
+                              </tr>
+                              <?php
+                              $num++;
+                          }
+                          } else {
+                            ?>
+                            <tr>
+                                <td style="color: red; text-align: center;" colspan="5">No hay prenominas</td>
+                            </tr>
+                            <?php
+                          } ?>
                                     </tbody>
                                 </table>
 
