@@ -67,7 +67,7 @@ function ver(cod){
     }
 
   });
-    $('#ver-historial').attr('href','../inventario/ver-historial-inventario.php?articulo='+cod);
+    $('#ver-historial').attr('href','../inventario/ver-historial-mp.php?articulo='+cod);
     $('#ver_articulo').modal('show');
 }
 

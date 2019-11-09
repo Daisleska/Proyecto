@@ -13,73 +13,53 @@ $justificacion=unserialize($justificacion);
 
 
 
-<div class="col-md-12"><section style="padding-left: 20px;" class="content-header">
+<div class="col-md-12">
+  <section style="padding-left: 20px;" class="content-header">
       <ol class="breadcrumb">
-        <li><i class="fa fa-users"><a href="../menu/ControladorMenu.php?operacion=asistencia"></i> Asistencia /</a></li>
-
-        <li><i class="fa fa-table"><a href="../asistencias/ControlA.php?operacion=index"></i>Consulta de asistencias</a></li>
-    
+       
+         <h1 align="center"> Asistencias <span class="badge badge-info">Control <i class="menu-icon fa fa-edit"></i> </span></h1>
         
       </ol>
-</section ></div>
+   </section >
+</div>
 
-     <section style="padding-left: 20px;"  class="invoice">
-      <div class="row">
-        <div class="col-md-12">
-          <h1 align="center"> Asistencias <span class="badge badge-info">Control <i class="menu-icon fa fa-edit"></i> </span></h1>
-        </div>
-        <!-- /.col -->
-      </div>
+     <section style="padding-left: 10px;"  class="invoice">
+      
       <!-- info row -->
-      <div class="row invoice-info">
-        <div class="col-sm-offset-4 col-sm-4 invoice-col">
-        <form action="../../Controladores/controladorAsistencia.php" method="POST" id="asistencia">
-           
-
-          <!-- /.col -->
-          <!-- <div class="form-group">
-            <div class="col-sm-offset-4 col-sm-4">
-                <input type="hidden" name="operacion" value="guardar">
-              <button type="submit" class="btn btn-success" id="submit_btn" data-loading-text="Buscando Empleado...."><i class="fa fa-check"></i></button>
-               
-                
-            </div>
-          </div> -->
-        </form>
-      </div>
-      </div>
-      <section style="padding-left: 20px;"  class="invoice">
-      <!-- <div class="row">
-        <div class="col-md-12">
-          <h2 class="page-header">
-            <i class="fa fa-edit"></i> Listado de Asistencia
-          </h2>
-        </div>
-      </div> -->
+      <section style="padding-left: 10px;"  class="invoice">
        <div class="box-body">
-                    <div class="table-responsive"  style="overflow-x: hidden;">
-                      <div class="row">
-                        
-                        <div class="col-sm-9">
+           <div class="table-responsive"  style="overflow-x: hidden;">
+               <div class="row" style="padding-left: 40px;">
+                 <ul class="nav nav-tabs" >
+
+                    <li class="nav-item">
+                     <a class="nav-link active" href="../asistencias/ControlA.php?operacion=index">Asistencia</a>
+                     </li>
+        
+                    <li class="nav-item">
+                     <a class="nav-link" href="../menu/ControladorMenu.php?operacion=consulta">Listado</a>
+                     </li>
+                    <li class="nav-item">
+                     <a class="nav-link " href="../menu/ControladorMenu.php?operacion=permisos">Permisos</a>
+                     </li>
+                   
+               </ul>
+            </div> 
+                  <br>
+
+                <div class="row" style="padding-left: 40px;">
+                    <div class="col-">
                           <label><b>A:</b> Asistió, <b>NACJ:</b> No Asistió (Con Justificativo), <b>NASJ:</b> No Asistió (Sin Justificativo)</label>
                         </div>
-                        <div class="col-sm-3">
-                        <a href="../menu/ControladorMenu.php?operacion=consulta"><button type="button" title="Listado" class="btn btn-secondary"><i class="fa fa-list"></i>&nbsp;</a></button></div>
-                      </div><br>
-                      <div class="col-sm-3">
-                        <a href="../menu/ControladorMenu.php?operacion=Permisos"><button type="button" title="Permiso" class="btn btn-secondary"><i class="fa fa-truck"></i>&nbsp;</a></button></div>
-                    </div>
+                     </div>
 
-
-                     <div class="content mt-3">
-            <div class="animated fadeIn">
-                <div class="row">
-
+           <div class="content mt-3">
+                <div class="animated fadeIn">
+                  <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                          
                             <div class="card-body">
-                    <table id="bootstrap-data-table-export" class="table table-striped table-bordered" >
+                    <table class="table table-striped table-sm " id="table" >
                       <thead>
                         <tr>
                           <th>N°</th>
@@ -101,7 +81,7 @@ $justificacion=unserialize($justificacion);
               
               <td><?=$num?></td>
             <?php for ($j=1; $j <$campos; $j++) { ?>
-            <td><?=utf8_encode($data[$i][$j])?></td>
+            <td><?php=utf8_encode($data[$i][$j])?></td>
 
               <?php } ?>
 
@@ -132,28 +112,20 @@ $justificacion=unserialize($justificacion);
                 <?php 
                 $num++;
                 }   ?>
-                      </tbody>
-                    </table>
+                       </tbody>
+                     </table>
+                    </div> 
                   </div>
-                   
-                  </div>
-
-                     </div>
+               </div>
             </div><!-- .animated -->
         </div><!-- .content -->
-
-
     </div><!-- /#right-panel -->
-
-
       <!-- info row -->
-     
       <!-- /.row -->
     </section> <!-- Fin de Main content Section-->
 
 
 <form action="ControlA.php?operacion=asistencia" method="POST">
-
     <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
@@ -212,6 +184,9 @@ $justificacion=unserialize($justificacion);
       <!-- /.row -->
     </section> <!-- Fin de Main content Section-->
 
+    <?php include_once "../includes/footer.php"; ?>
+
+
     <script type="text/javascript">
   
   function asistio(id_asistencia) {
@@ -248,9 +223,33 @@ $justificacion=unserialize($justificacion);
 
 </script>
 
+    <script src="../../vendors/js/sweetalert.min.js"></script>
+    <script src="../../vendors/js/datatables.min.js"></script>
+    <script type="text/javascript">
 
+          $('#table').DataTable({
+            "searching": true,
+            language: {
+            "decimal": "",
+            "emptyTable": "No hay información",
+            "info": "Mostrando la página _PAGE_ de _PAGES_",
+            "infoEmpty": "Mostrando 0 de 0 Entradas",
+            "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+            "infoPostFix": "",
+            "thousands": ",",
+            "lengthMenu": "Mostrar _MENU_ Entradas",
+            "loadingRecords": "Cargando...",
+            "processing": "Procesando...",
+            "search": "Buscar:",
+            "zeroRecords": "Sin resultados encontrados",
+            "paginate": {
+                "first": "Primero",
+                "last": "Ultimo",
+                "next": "Siguiente",
+                "previous": "Anterior"
+              }
+            }
+            
+          });
 
-
-
-
-<?php include_once "../includes/footer.php"; ?>
+  </script>

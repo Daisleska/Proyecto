@@ -68,9 +68,9 @@
 	extract($_REQUEST);
 
 	if ($o==2) {
-		$action="pedidos-externos.php?i=".$i;
+		$action="pedidos-externos.php?pp=".$i;
 	}else if($o==1){
-		$action="pedidos-internos.php?i=".$i;
+		$action="pedidos-internos.php?pp=".$i;
 	}
 ?>
 <script type="text/javascript">

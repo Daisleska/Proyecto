@@ -64,7 +64,7 @@ switch ($dia) {
 
     		$sql3="INSERT INTO asistencias VALUES(NULL,".$empleados[$i][0].",'".$hoy."','Sin Marcar','')";
 
-    		//$registro=mysqli_query($conex,$sql3);
+    		$registro=mysqli_query($conex,$sql3);
     	}
     }
     //buscando los registros en asistencias
@@ -110,7 +110,7 @@ $sql3="SELECT justificacion FROM asistencias";
     }
      if ($cont==0){
 		//enviando datos
-		//header("Location: asistencia.php?filas=".$filas."&campos=".$campos."&data=".serialize($asistencia)."&campos_a=".$campos_a."&filas_a=".$filas_a."&justificacion=".serialize($justificacion));
+		header("Location: asistencia.php?filas=".$filas."&campos=".$campos."&data=".serialize($asistencia)."&campos_a=".$campos_a."&filas_a=".$filas_a."&justificacion=".serialize($justificacion));
 	}else{
 		echo "Error en la Base de Datos";
 	}
@@ -149,7 +149,7 @@ $conex=$db->conectar();
 /*
 consultando permisos*/
 
-$sql="SELECT fecha_inicio, resta FROM permisos WHERE status='En Curso' AND id_empleado=".$id_empleado." ORDER BY id DESC LIMIT 0,1";
+$sql="SELECT inicio_permiso, resta FROM permisos WHERE status='En Curso' AND id_empleado=".$id_empleado." ORDER BY id DESC LIMIT 0,1";
 
 $res=mysqli_query($conex,$sql);
 $rows=mysqli_num_rows($res);
@@ -158,19 +158,21 @@ $data=mysqli_fetch_object($res);
 
 /*consultando dias restantes del permiso*/
     $hoy=date('Y-m-d');
-    $sql2="SELECT DATEDIFF('$fecha_inicio', '$hoy') AS días FROM permisos" ;
+    $sql2="SELECT DATEDIFF('$inicio_permiso','$hoy') AS días FROM permisos" ;
+    $result=mysqli_query($conex,$sql2);
 
-    if ($sql= $dias<$resta) {
+//si la resta del permiso es igual a 0 el permiso termino//
 
-       $sql3="UPDATE  FROM permisos WHERE id_empleado=".$id_empleado;
+    if ($dias==0) {
 
-           } else {
-               
-               $sql4="UPDATE";
-           }
-    
+       $sql3="UPDATE permisos SET status='Cumplido' WHERE id_empleado=".$id_empleado;
+        $resultado=mysqli_query($conex,$sql3);
+
+     } else{
+
+         header('location: asistencia.php?bueno=1');
+      }
    }//condicional 1
-
 } //fin de la funcion buscando permisos
   
 public function asistencia()
@@ -244,10 +246,41 @@ $sql="SELECT * FROM asistencias WHERE fecha_hora LIKE '%".$fecha."%'";
             <?php
         }
 
-}
+}// fin de la funcion consulta
 
+/*
+public function permisos(){
+     extract($_POST);
+    $db=new clasedb();
+    $conex=$db->conectar();
 
+    $sql="SELECT empleado.nombres, empleado.cedula, permisos.status, permisos.cantidad_dias, permisos.motivo, permisos.inicio_permiso FROM permisos, empleado WHERE empleado.id=permisos.id_empleado";
 
+    $resul=mysqli_query($conex,$sql);
+    $filas=mysqli_num_rows($resul);
+    $campos=mysqli_num_fields($resul);
+    $permisos[]=array();
+    $i=0;
+    if ($res=mysqli_query($conex,$sql)) {
+    while ($data=mysqli_fetch_array($resul)) {
+        for ($j=0; $j < $campos ; $j++) { 
+            $permisos[$i][$j]=$data[$j];
+        }
+        $i++;   
+          }
+
+         header("Location:permisos.php?filas=".$filas."&campos=".$campos."&data=".serialize($permisos));
+               
+        } else {
+            ?>
+                <script type="text/javascript">
+                    alert("Error en la conexion!");
+                    window.location="ControlA.php?operacion=index";
+                </script>
+            <?php
+        }
+
+}//fin de la funcion permisos*/
 
 static function controlador($operacion) {
 		$asis=new ControlA();
@@ -269,9 +302,12 @@ static function controlador($operacion) {
         case 'asistencia':
         $asis->asistencia();
         break;
+
+        case 'permisos':
+        $asis->permisos();
+        break;
 		default: 
 		?>
-
 		<script type="text/javascript">
 			alert("La ruta no existe");
 			window.location="ControlA.php?operacion=index";

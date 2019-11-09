@@ -79,26 +79,9 @@
                 
                 include('../../Modelos/conexion.php');
                 
-                if ($categoria==0 or $categoria=='') {
 
-                  if ($subcategoria=='') {
-                      $sql="UPDATE articulos SET codarticulo='$codarticulo', id_categoria=NULL, articulo='$articulo',stock='$stock', stock_minimo='$stock_minimo', stock_maximo='$stock_maximo',descripcion='$descripcion',activo='$activo',valor_unitario='$valor', id_moneda='$moneda',id_subcategoria=NULL WHERE id='$art'";
-                  }else{
-                    $sql="UPDATE articulos SET codarticulo='$codarticulo', id_categoria=NULL, articulo='$articulo',stock='$stock', stock_minimo='$stock_minimo', stock_maximo='$stock_maximo',descripcion='$descripcion',activo='$activo',valor_unitario='$valor', id_moneda='$moneda',id_subcategoria='$subcategoria' WHERE id='$art'";
-                  }
-                }else{
-
-                  if ($subcategoria=='') {
-                      $sql="UPDATE articulos SET codarticulo='$codarticulo', id_categoria='$categoria', articulo='$articulo',stock='$stock', stock_minimo='$stock_minimo', stock_maximo='$stock_maximo',descripcion='$descripcion',activo='$activo',valor_unitario='$valor', id_moneda='$moneda',id_subcategoria=NULL WHERE id='$art'";
-                  }else{
-
-                    if ($tipo=='') {
-                      $sql="UPDATE articulos SET codarticulo='$codarticulo', id_categoria='$categoria', articulo='$articulo',stock='$stock', stock_minimo='$stock_minimo', stock_maximo='$stock_maximo',descripcion='$descripcion',activo='$activo',valor_unitario='$valor', id_moneda='$moneda',id_subcategoria='$subcategoria' WHERE id='$art'";
-
-                    }else{
-
-                      $sql="UPDATE articulos SET codarticulo='$codarticulo', id_categoria='$categoria', articulo='$articulo',stock='$stock', stock_minimo='$stock_minimo', stock_maximo='$stock_maximo',descripcion='$descripcion',activo='$activo',valor_unitario='$valor', id_moneda='$moneda',id_subcategoria='$subcategoria', id_tipo_subcategoria='$tipo' WHERE id='$art'";
-                    }
+                      $sql="UPDATE productos SET codigo='$codarticulo',  nombre='$articulo',presentacion='presentacion', unidad='unidad',stock='$stock', stock_minimo='$stock_minimo', stock_maximo='$stock_maximo',activo='$activo'WHERE id='$art'";
+                    
                   }
                 }
 
@@ -117,8 +100,7 @@
                 include('../../Modelos/desconectar.php');
 
               }
-        }
-            }
+        
 
       }
   }

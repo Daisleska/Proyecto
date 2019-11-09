@@ -1,19 +1,25 @@
 <?php
+
+
 	include('funcion-notificaciones.php');
+
+
 
 	function conectar(){
 		//(error_reporting(0);
 		//(include('../conectar.php');
 		include('../../Modelos/conexion.php');
 
-		return $conexion;
+		return $conectar;
 	}
 
-	function desconectar($conexion){
+	function desconectar($conectar){
 		//(error_reporting(0);
 		//(include ('../desconectar.php');
 		include ('../../Modelos/desconectar.php');
 	}
+
+	
 
 	function registro($id_producto,$cantidad){
 
@@ -57,13 +63,13 @@
 
 	//falta arreglar el de abajo
 
-	function sumar_articulo_pedido($id_producto,$cantidad,$id_usuario,$id_pedido){
+	function sumar_articulo_pedido($id_producto,$cantidad,$id_pedido){
 
 		$conexion=conectar();
 
 		$motivo="Ingreso";
 
-		$sql="INSERT INTO art_historial (id_articulo, motivo, cantidad , id_usuario,id_pedido) VALUES ('$id_producto', '$motivo' ,'$cantidad','$id_usuario','$id_pedido')";
+		$sql="INSERT INTO historial (id_producto, motivo, cantidad , id_pedido) VALUES ('$id_producto', '$motivo' ,'$cantidad','$id_pedido')";
 		$resutado=mysqli_query($conexion,$sql);
 
 		desconectar($conexion);
@@ -123,7 +129,7 @@
 	}
 	
 	//falta arreglar esto
-	function pedido_interno($i,$articulos,$cantidad,$pedido,$usuario,$valor_u){
+	function pedido_interno($i,$articulos,$cantidad,$pedido){
 
 
 
@@ -138,7 +144,7 @@
 
 			
 
-			$sql="UPDATE pedido_detalles set cantidad_despachada='$cantidad[$j]' WHERE id_pedido='$pedido' AND id_articulo='$articulos[$j]'";
+			$sql="UPDATE pedido_detalles set cantidad_despachada='$cantidad[$j]' WHERE id_pedido='$pedido' AND id_producto='$articulos[$j]'";
 
 			$resultado=mysqli_query($conexion,$sql);
 
@@ -146,7 +152,7 @@
 
 				$res1='S';
 
-				$sql2="SELECT * FROM articulos WHERE id='$articulos[$j]'";	
+				$sql2="SELECT * FROM productos WHERE id='$articulos[$j]'";	
 
 				$resultado2=mysqli_query($conexion,$sql2);
 
@@ -163,7 +169,7 @@
 					continue;
 				}else{
 					$stock_nuevo=$stock+$cantidad[$j];
-					$sql3="UPDATE articulos SET stock='$stock_nuevo' WHERE id='$articulos[$j]'";
+					$sql3="UPDATE productos SET stock='$stock_nuevo' WHERE id='$articulos[$j]'";
 					$resultado3=mysqli_query($conexion,$sql3);
 
 
@@ -185,16 +191,17 @@
 
 						
 						
-						sumar_articulo_pedido($articulos[$j],$cantidad[$j],$usuario,$pedido);
+						sumar_articulo_pedido($articulos[$j],$cantidad[$j],$pedido);
 					}else{
 						$res2[$j]='N';
 					}
+
 				}
 
 			}
 		}
 
-		$sql="UPDATE pedido SET estado='Completada' WHERE id='$pedido'";
+		$sql="UPDATE pedido SET estado='Completado' WHERE id='$pedido'";
 		$resultado=mysqli_query($conexion,$sql);
 
 

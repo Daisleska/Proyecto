@@ -6,8 +6,9 @@ $data=unserialize($data);
 
    <section style="padding-left: 20px;" class="content-header">
       <ol class="breadcrumb">
+        <a href="../asistencias/ControlA.php?operacion=index" class="atras" title="Atras"><span class="fa fa-arrow-left" style="font-size: 35px;" ></span></a>
 
-       <h1 align="center"> Asistencias <span class="badge badge-info">Reportes <i class="menu-icon fa fa-list"></i> </span></h1>
+       <h1 style="padding-left: 40px;"> Asistencias <span class="badge badge-info">Reportes <i class="menu-icon fa fa-list"></i> </span></h1>
       <br>
     
         <li class="col-md-2,5" style=" padding-left: 290px;">
@@ -20,8 +21,9 @@ $data=unserialize($data);
        <div class="box-body">
                     <div class="table-responsive"  style="overflow-x: hidden;">
                       <form action="../asistencias/ControlA.php?operacion=consulta" method="POST">
-                      <div class="row">
-                        <div class="col-md-3">    
+                        
+                     <div class="row">
+                        <div class="col-md-4">    
                         <div class="input-group">    
                        <input class="form-control" type="date" name="fecha">
                        
@@ -41,7 +43,7 @@ $data=unserialize($data);
                         <div class="card">
                           
                             <div class="card-body">
-                    <table id="bootstrap-data-table-export" class="table table-striped table-bordered" >
+                    <table  class="table table-striped table-sm " id="table" >
                       <thead>
                         <tr>
                           <th>N°</th>
@@ -85,3 +87,35 @@ $data=unserialize($data);
   </div>
 
     <?php include_once "../includes/footer.php"; ?>
+
+    <script src="../../vendors/js/sweetalert.min.js"></script>
+    <script src="../../vendors/js/feather.min.js"></script>
+    <script src="../../vendors/js/datatables.min.js"></script>
+    <script type="text/javascript">
+
+          $('#table').DataTable({
+            "searching": true,
+            language: {
+            "decimal": "",
+            "emptyTable": "No hay información",
+            "info": "Mostrando la página _PAGE_ de _PAGES_",
+            "infoEmpty": "Mostrando 0 de 0 Entradas",
+            "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+            "infoPostFix": "",
+            "thousands": ",",
+            "lengthMenu": "Mostrar _MENU_ Entradas",
+            "loadingRecords": "Cargando...",
+            "processing": "Procesando...",
+            "search": "Buscar:",
+            "zeroRecords": "Sin resultados encontrados",
+            "paginate": {
+                "first": "Primero",
+                "last": "Ultimo",
+                "next": "Siguiente",
+                "previous": "Anterior"
+              }
+            }
+            
+          });
+
+  </script>

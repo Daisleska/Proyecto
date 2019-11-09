@@ -475,8 +475,8 @@
         if ($canc==1) {
             echo "
               iziToast.success({
-                title: '¡Pedido completado correctamente! ',
-                message: 'EL pedido se realizó correctamente',
+                title: '¡Pedido eliminado! ',
+                message: 'EL pedido se elimino correctamente',
                 color: 'rgb(174, 240, 191)',
                 
               });
@@ -484,8 +484,8 @@
         }else if($canc==2){
           echo
                "iziToast.error({
-                title: '¡Error al completar el pedido! ',
-                message: 'El pedido no pudo ser procesado',
+                title: '¡Error al eliminar! ',
+                message: 'El pedido no pudo ser eliminado',
                 color: '#ffb6bb',
             
               });";

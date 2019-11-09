@@ -47,7 +47,7 @@
 		case'lista_consulta':include"../asistencias/lista_consulta.php";break;
 		case'marcar_asistencia':include"../asistencias/marcar_asistencia.php";break;
 		case'guardar':include"../../Controladores/controladorAsistencia.php";break;
-		case'permisos':include"../../Controladores/controladorAsistencia.php";break;
+		case'permisos':include"../asistencias/permisos.php";break;
 
 		//Asig/ Deducc
 		case'registar':include"Vistas/asigdeducc/registar.php";break;

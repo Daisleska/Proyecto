@@ -10,7 +10,7 @@ include("../../Modelos/conexion.php");
 
 
 
-$sql="INSERT INTO enviados (id_productos, id_ubicacion, id_codigo, cantidad, fecha_registro) VALUES ('".$id_articulo."','".$ubicacion."','".$codarticulo."','".$stock."','".$actual."')";
+$sql="INSERT INTO enviados (id_productos, id_ubicacion, id_codigo, cantidad, fecha_registro) VALUES ('".$producto."','".$ubicacion."','".$codigo."','".$stock."','".$actual."')";
 
 
 $result=mysqli_query($conectar,$sql);

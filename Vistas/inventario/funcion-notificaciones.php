@@ -17,7 +17,7 @@
 
 		$sql="SELECT * FROM productos WHERE stock<=stock_minimo AND activo='S' AND borrado='N'";
 
-		$resultado=mysqli_query($conectar,$sql);
+		$resultado=mysqli_query($conexion,$sql);
 
 		$res_busqueda=mysqli_num_rows($resultado);
 
@@ -34,13 +34,13 @@
 			
 			
 			$sql="INSERT INTO notificaciones(titulo,mensaje) VALUES('$titulo','$mensaje')";
-			$resultado=mysqli_query($conectar,$sql);
+			$resultado=mysqli_query($conexion,$sql);
 
 			$id_notificaciones=mysqli_insert_id($conexion);
 
 
 			$sql2="SELECT * FROM usuarios WHERE activo='Si' AND cargo='1' or cargo='4'";
-			$resultado2=mysqli_query($conectar,$sql2);
+			$resultado2=mysqli_query($conexion,$sql2);
 
 			while ($consulta=mysqli_fetch_array($resultado2)) {
 				
@@ -48,13 +48,13 @@
 
 				$sql3="INSERT INTO notificaciones_detalles(id_notificaciones,id_usuario) VALUES('$id_notificaciones','$id_usuario')";
 
-				$res2=mysqli_query($conectar,$sql3);
+				$res2=mysqli_query($conexion,$sql3);
 
 			}
 			
 		}
 
-		desconexion($conectar);
+		desconexion($conexion);
 	}
 
 
@@ -62,7 +62,7 @@
 
 		$conexion=conexion();
 
-		$sql="SELECT * FROM pedido WHERE tipo='Interno' AND estado='En espera...'";
+		$sql="SELECT * FROM pedido WHERE tipo='Interno' AND estado='En Espera'";
 
 		$resultado=mysqli_query($conexion,$sql);
 
@@ -106,7 +106,7 @@
 
 		$conexion=conexion();
 
-		$sql="SELECT * FROM pedido WHERE tipo='Externo' AND estado='En espera...'";
+		$sql="SELECT * FROM pedido WHERE tipo='externo' AND estado='En Espera'";
 
 		$resultado=mysqli_query($conexion,$sql);
 
@@ -162,13 +162,13 @@
 
 	    $contador[0]=$res_busqueda;
 
-	    $sql="SELECT * FROM pedido WHERE tipo='Externo' AND estado='En espera...'";
+	    $sql="SELECT * FROM pedido WHERE tipo='externo' AND estado='En Espera'";
 	    $resultado=mysqli_query($conexion,$sql);
 	    $res_busqueda=mysqli_num_rows($resultado);
 
 	    $contador[1]=$res_busqueda;
 
-	    $sql="SELECT * FROM pedido WHERE tipo='interno' AND estado='En espera...'";
+	    $sql="SELECT * FROM pedido WHERE tipo='interno' AND estado='En Espera'";
 	    $resultado=mysqli_query($conexion,$sql);
 	    $res_busqueda=mysqli_num_rows($resultado);
 
@@ -237,7 +237,7 @@
            }
 
 
-		desconexion($conectar);
+		desconexion($conexion);
 
 		if ($o==1) {
 			return $alerta;

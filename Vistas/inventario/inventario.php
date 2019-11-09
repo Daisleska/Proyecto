@@ -294,12 +294,9 @@ include_once "../includes/menu.php";
                 <li class="nav-item">
                   <a class="nav-link" href="../inventario/proveedores.php">Proveedores</a>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Pedidos <span class="badge badge-primary badge-pill" style="float: right;">'.$res_busqueda.'</span></a>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="pedidos-internos.php">Internos <span class="badge badge-primary badge-pill" style="float: right;">'.$cont_interno.'</span></a>
-                    <a class="dropdown-item" href="pedidos-externos.php">Externos <span class="badge badge-primary badge-pill" style="float: right;">'.$cont_externo.'</span></a>
-                  </div>
+                <li class="nav-item ">
+                  <a class="nav-link" href="pedidos-internos.php">Pedidos </a>
+                 
                 </li>
 
               ';

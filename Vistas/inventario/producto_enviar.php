@@ -23,8 +23,8 @@ include_once "../includes/menu.php";
             <input type="number" class="form-control" name="stock" id="stock" required="required"  min="0" placeholder="Ej. 50"><br>
           </div>
           	
-          	<input type="hidden" name="id_producto" id="id_articulo" >
-              <input type="hidden" name="id_usuario" id="id_usuario" >
+          	<input type="hidden" name="id_producto" id="id_producto" >
+          <!--     <input type="hidden" name="id_usuario" id="id_usuario" > -->
     </div>
         <div class="row">
           
