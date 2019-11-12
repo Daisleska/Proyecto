@@ -22,27 +22,36 @@ var year = (yy < 1000) ? yy + 1900 : yy;
 
 </script>
 
-<div class="breadcrumbs"></div>
-    <div class="content mt-3">
+    <div class="content mt-3" style="padding-left: 20px;">
         <div class="animated fadeIn">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header" >
-                            
-                           <!--  <div class="form-1-2">
-                                <input type="text" name="caja_busqueda" id="caja_busqueda" placeholder=" Buscar">
-                                <button  type="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>
-                            </div> -->
+                  <h2 style="text-align: center"><a href="inventario.php" class="atras" title="Atras"><span data-feather="arrow-left" ></span></a><strong>Pre-Nomina: </strong><script style="text-align: right;" type="text/javascript">document.write("" + months[month] + " " + year);</script>
+                    <br></h2>
+                 <hr>
 
-                            <h4 style="text-align: center;"> PRE NOMINA
-                            <script style="text-align: right;" type="text/javascript">document.write("" + months[month] + " " + year);</script></h4> 
-                           <div class="col-md-2,5">
-                                 <p style="margin-left: 17cm;"><a href="../../Controladores/ControladorPreNomina.php?operacion=generar" class="btn btn-block btn-danger btn-sm">Generar</a></p>
+                 <div class="row" style="padding-left:600px;">
+                     <ul class="nav nav-tabs" >
+
+                    <li class="nav-item">
+                     <a class="nav-link" title="Ver nominas aprobadas" href="../../Controladores/ControladorPreNomina.php?operacion=aprobadas">Aprobadas</a>
+                     </li>
+        
+                    <li class="nav-item">
+                     <a class="nav-link" href="../menu/ControladorMenu.php?operacion=consulta">Listado</a>
+                     </li>
+                    <li class="nav-item">
+                     <a class="nav-link" title="Generar nueva pre-nomina" href="../../Controladores/ControladorPreNomina.php?operacion=generar">Generar</a>
+                     </li>
+                   
+               </ul>
+
+             </div>
+                            
+                           
                             </div>
-                            </div>
-                            <div class="card-body">
-                                <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-sm " id="table">
                                     <thead>
                                        <tr>
                                         <th>N°</th>
@@ -70,29 +79,52 @@ var year = (yy < 1000) ? yy + 1900 : yy;
                               <?php
                               $num++;
                           }
-                          } else {
+                          } 
                             ?>
-                            <tr>
-                                <td style="color: red; text-align: center;" colspan="5">No hay prenominas</td>
-                            </tr>
-                            <?php
-                          } ?>
+                           
+
                                     </tbody>
                                 </table>
 
-                                <div class="col-md-2,5">
-                                 <p style="margin-left: 8cm;"><a href="../../Controladores/ControladorPreNomina.php?operacion=aprobadas" class="btn btn-block btn-danger btn-sm">Reportes</a></p>
-
-                                
-
-                                </div>
+                               <!--  <div class="col-md-2,5">
+                                 <p style="margin-left: 8cm;"><a href="../../Controladores/ControladorPreNomina.php?operacion=aprobadas" class="btn btn-block btn-danger btn-sm">Reportes</a></p> </div> -->
                             </div>
                         </div>
-                    </div>
-                </div>
+               
             </div><!-- .animated -->
         </div><!-- .content -->
 
 
     </div><!-- /#right-panel -->
 <?php include_once "../includes/footer.php"; ?>
+    <script src="../../vendors/js/sweetalert.min.js"></script>
+    <script src="../../vendors/js/datatables.min.js"></script>
+    <script type="text/javascript">
+
+          $('#table').DataTable({
+            "searching": true,
+            language: {
+            "decimal": "",
+            "emptyTable": "No hay información",
+            "info": "Mostrando la página _PAGE_ de _PAGES_",
+            "infoEmpty": "Mostrando 0 de 0 Entradas",
+            "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+            "infoPostFix": "",
+            "thousands": ",",
+            "lengthMenu": "Mostrar _MENU_ Entradas",
+            "loadingRecords": "Cargando...",
+            "processing": "Procesando...",
+            "search": "Buscar:",
+            "zeroRecords": "Sin resultados encontrados",
+            "paginate": {
+                "first": "Primero",
+                "last": "Ultimo",
+                "next": "Siguiente",
+                "previous": "Anterior"
+              }
+            }
+            
+          });
+
+  </script>
+
