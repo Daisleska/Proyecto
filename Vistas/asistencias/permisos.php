@@ -4,9 +4,16 @@
 
  <div class="contenido" style="padding-left: 20px">
     <div class="content-2">
-         <a href="../asistencias/ControlA.php?operacion=index" class="atras" title="Atras"><span class="fa fa-arrow-left" style="font-size: 32px;" ></span></a>
-    <h2 style="text-align: center"><strong>Permisos</strong><br></h2><hr>
+         
 
+     <section style="padding-left: 20px;" class="content-header">
+      <ol class="breadcrumb">
+        <a href="../asistencias/ControlA.php?operacion=index" class="atras" title="Atras"><span class="fa fa-arrow-left" style="font-size: 32px;" ></span></a>
+        
+        <h1 align="center"><span style="margin-left: 5.5cm;" class="badge badge-info">Permisos <i class="fa fa-file-text-o"></i> </span></h1>
+      <br>
+      </ol>
+</section >
 
        <div class="table-responsive" style="padding-left: 20px;">
             <table class="table table-striped table-sm " id="table">

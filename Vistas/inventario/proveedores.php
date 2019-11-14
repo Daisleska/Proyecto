@@ -30,7 +30,13 @@
 
   <div class="contenido" style="padding-left: 20px">
     <div class="content-2">
-    <h2 style="text-align: center"><strong>Inventario</strong><br></h2><hr>
+    <section style="padding-left: 20px;" class="content-header">
+      <ol class="breadcrumb">
+       
+         <h1 align="center">  <span style="margin-left: 6.5cm;" class="badge badge-info">Inventario <i class="menu-icon fa fa-edit"></i> </span></h1>
+        
+      </ol>
+   </section >
        <!--nav inventario -->
          <ul class="nav nav-tabs">
           <li class="nav-item">
@@ -74,9 +80,9 @@
           ?>
         </ul><br>
     <center>
-      <a href="proveedor-registro.php" class="btn btn-primary">Agregar proveedor</a>
+      <a href="proveedor-registro.php" class="btn btn-primary"><i class="ti-pencil-alt"></i> Registrar Proveedor</a>
     </center><br>
-    <div class="table-responsive">
+    <div class="table-responsive" style="padding-left: 20px;">
       <table class="table table-striped table-sm " id="table">
         <thead>
           <th>RIF</th>
