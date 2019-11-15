@@ -189,12 +189,12 @@
         <div class="row" style="padding-left: 20px">
           
           <div class="col-md-4">
-            <label><strong>Cantidad minima</strong> <strong class="estado-r">*</strong></label>
+            <label><strong>Cantidad mínima</strong> <strong class="estado-r">*</strong></label>
             <input type="number" class="form-control" name="stock_minimo" id="stock_minimo" required="required" min="0" placeholder="Ej. 10"><br>
           </div>
 
           <div class="col-md-4">
-            <label><strong>Cantidad maxima</strong> <strong class="estado-r">*</strong></label>
+            <label><strong>Cantidad máxima</strong> <strong class="estado-r">*</strong></label>
             <input type="number" name="stock_maximo" id="stock_maximo" class="form-control" required="required" placeholder="Ej. 60"><br>
           </div>
         </div>

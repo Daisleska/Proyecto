@@ -406,7 +406,7 @@ elseif ($consulta['tipo']=='Externo') {
                     <div class="modal-body">
                        <h6 class="nota-input">Los campos con un <i class="estado-r">*</i> son obligatorios </h6><br>
                       <label><strong>Ubicación</strong></label>
-                      <input type="text" name="ubicacion_act" id="ubicacion_act" class="form-control" placeholder="CUbicación" value="" required="required">
+                      <input type="text" name="ubicacion_act" id="ubicacion_act" class="form-control" placeholder="Ubicación" value="" required="required">
                       <div id="result"></div>
                       <div class="valid-feedback">
                         Disponible

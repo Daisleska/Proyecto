@@ -53,7 +53,7 @@
 </div>
 
 <p style="text-align: justify;">
-	<strong>Nota:</strong> los siguientes articulos se sumaran al inventario automaticamente
+	<strong>Nota:</strong> los siguientes productos se sumarán al inventario automáticamente
 </p>
 
 <?php

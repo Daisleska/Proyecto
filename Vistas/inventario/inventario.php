@@ -266,7 +266,7 @@ include_once "../includes/menu.php";
     <section  class="content-header">
       <ol class="breadcrumb">
        
-         <h1 align="center">  <span style="margin-left: 8.5cm;" class="badge badge-info">Inventario <i class="menu-icon fa fa-badge"></i> </span></h1>
+         <h1 align="center">  <span style="margin-left: 8.5cm;" class="badge badge-info">Inventario <i class="menu-icon fa fa-book"></i> </span></h1>
         
       </ol>
    </section >

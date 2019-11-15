@@ -20,11 +20,11 @@
                 <thead>
                   <tr>
                     <th>Nombre</th>
-                    <th>Cedula</th>
+                    <th>Cédula</th>
                     <th>Fecha</th>
                     <th>Motivo</th>
-                    <th>Cantidad dias</th>
-                    <th>Status</th>
+                    <th>días Cantidad</th>
+                    <th>Estado</th>
                     <!--th>Ubicación Actual</th-->
                     <?php
                       

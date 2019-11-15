@@ -93,7 +93,7 @@ include("../../Modelos/conexion.php");
 
 
                 <?php if ($_SESSION['tipo_usuario']=='Usuario 1' or $_SESSION['tipo_usuario']=='Admin' ){  ?>
-                    <h3 class="menu-title">ALMACEN</h3><!-- /.menu-title -->
+                    <h3 class="menu-title">ALMACÉN</h3><!-- /.menu-title -->
                    
 
                     <li class="">
@@ -145,7 +145,7 @@ include("../../Modelos/conexion.php");
                     </li>
 
                      <li class="">
-                        <a href="../../Controladores/ControladorPreNomina.php?operacion=prenomina"> <i class="menu-icon fa fa-money"></i>Nomina</a>
+                        <a href="../../Controladores/ControladorPreNomina.php?operacion=prenomina"> <i class="menu-icon fa fa-money"></i>Nómina</a>
                         
                     </li>
 
@@ -158,7 +158,7 @@ include("../../Modelos/conexion.php");
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Mantenimiento</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-desktop"></i><a href="../config/bitacora.php">Bitacora</a></li>
+                            <li><i class="menu-icon fa fa-desktop"></i><a href="../config/bitacora.php">Bitácora</a></li>
                             <li><i class="menu-icon fa fa-cloud"></i><a href="../config/respaldar.php">Respaldar BD</a></li>
                             <li><i class="menu-icon fa fa-cloud-upload"></i><a href="../config/restaurar.php">Restaurar BD</a></li>
                              <li><i class="menu-icon fa fa-cloud-upload"></i><a href="../../Controladores/controladorUsuario.php?operacion=login">Listado de usuarios</a></li>
