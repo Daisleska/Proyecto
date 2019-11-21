@@ -27,7 +27,7 @@
 
 		$motivo="Registro";
 
-		$sql="INSERT INTO historial ( motivo,id_producto, cantidad ) VALUES ('$motivo' , '$id_producto','$cantidad')";
+		$sql="INSERT INTO historial (motivo,id_producto, cantidad ) VALUES ('$motivo' , '$id_producto','$cantidad')";
 
 		$resutado=mysqli_query($conexion,$sql);
 
@@ -322,6 +322,7 @@ function almacen($i,$ubicacion,$cantidad,$art){
 					$sql="INSERT INTO historial ( motivo, cantidad , id_producto) VALUES ('$motivo','$cantidad','$articulos[$j]')";
 
 					$resultado=mysqli_query($conexion,$sql);
+
 
 					desconectar($conexion);
 					if ($resultado) {

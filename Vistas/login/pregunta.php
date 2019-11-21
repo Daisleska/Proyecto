@@ -80,6 +80,11 @@ extract($_REQUEST);
         </div>
     </div>
 
+    <div style="margin: 0px 0px 16px; text-align: center; width: 100%;">
+
+  <a href="#" style="color: rgb(255, 255, 255); font-size: 11px; font-weight: normal; max-width: 135px; padding: 4px 7px;" > ServiForm C.A Todos los derechos reservados (c)copyright 2019-2020  </a> 
+</div>
+
 
     <script src="../../vendors/jquery/dist/jquery.min.js"></script>
     <script src="../../vendors/popper.js/dist/umd/popper.min.js"></script>

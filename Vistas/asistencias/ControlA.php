@@ -58,14 +58,19 @@ switch ($dia) {
     	$sql2="SELECT * FROM asistencias WHERE id_empleado=".$empleados[$i][0]." && fecha_hora LIKE '%".$hoy."%'";
     	/*echo $sql2;*/
     	$buscar=mysqli_query($conex,$sql2);
-    	if (mysqli_num_rows($buscar)==0) {
+  
+    	if (mysqli_num_rows($buscar)==0)  {
             $hallado=$this->BuscandoPermiso($empleados[$i][0]);
-            echo $hallado;
+            if ($hallado==false) {
+                $sql3="INSERT INTO asistencias VALUES(NULL,".$empleados[$i][0].",'".$hoy."','Sin Marcar','')";
 
-    		$sql3="INSERT INTO asistencias VALUES(NULL,".$empleados[$i][0].",'".$hoy."','Sin Marcar','')";
-
-    		$registro=mysqli_query($conex,$sql3);
+            $registro=mysqli_query($conex,$sql3);
+            } 
+            
+    		
     	}
+
+
     }
     //buscando los registros en asistencias
     $sql4="SELECT asistencias.id,empleado.nombres,empleado.apellidos,empleado.cedula,asistencias.status,asistencias.justificacion FROM empleado, asistencias WHERE asistencias.id_empleado=empleado.id && asistencias.fecha_hora LIKE '%".$hoy."%'";
@@ -158,21 +163,51 @@ $data=mysqli_fetch_object($res);
 
 /*consultando dias restantes del permiso*/
     $hoy=date('Y-m-d');
-    $sql2="SELECT DATEDIFF('$inicio_permiso','$hoy') AS días FROM permisos" ;
-    $result=mysqli_query($conex,$sql2);
+    $sql2="SELECT DATEDIFF('$hoy','$data->inicio_permiso') AS dias, cantidad_dias,id, resta FROM permisos WHERE status='En Curso' AND id_empleado=".$id_empleado;
+
+    $resul=mysqli_query($conex,$sql2);
+  
+    $hallado=mysqli_num_rows($resul);
+
+    if ($hallado>0) {
+        $datos=mysqli_fetch_assoc($resul);
+
+        if (($datos['dias'])==$datos['cantidad_dias']) {
+           
+            $resta=0;
+            $status='Cumplido';
+            $id_permiso=$datos['id'];
+
+            $sql="UPDATE permisos SET resta='$resta', status='$status' WHERE id=$id_permiso";
+            mysqli_query($conex,$sql);
+            return true;
+
+        } elseif (($datos['dias'])< $datos['cantidad_dias'])   {
+            $resta=$datos['cantidad_dias']-$datos['dias'];
+            $id_permiso=$datos['id'];
+
+            $sql="UPDATE permisos SET resta='$resta' WHERE id=$id_permiso";
+            mysqli_query($conex,$sql);
+            return true;
+        }
+        
+    } else {
+        return false;
+    }
+    
 
 //si la resta del permiso es igual a 0 el permiso termino//
 
-    if ($dias==0) {
+    /*if ($dias==0) {
 
        $sql3="UPDATE permisos SET status='Cumplido' WHERE id_empleado=".$id_empleado;
         $resultado=mysqli_query($conex,$sql3);
 
      } else{
 
-         header('location: asistencia.php?bueno=1');
+        $sql="";
       }
-   }//condicional 1
+*/   }//condicional 1
 } //fin de la funcion buscando permisos
   
 public function asistencia()
@@ -248,7 +283,7 @@ $sql="SELECT * FROM asistencias WHERE fecha_hora LIKE '%".$fecha."%'";
 
 }// fin de la funcion consulta
 
-/*
+
 public function permisos(){
      extract($_POST);
     $db=new clasedb();
@@ -280,7 +315,7 @@ public function permisos(){
             <?php
         }
 
-}//fin de la funcion permisos*/
+}//fin de la funcion permisos
 
 static function controlador($operacion) {
 		$asis=new ControlA();

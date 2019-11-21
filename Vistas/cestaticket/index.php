@@ -31,7 +31,7 @@ include_once "../includes/menu.php";
                                 <strong class="card-title"><i class="fa fa-list"></i>  LISTADO DE CESTATICKET</strong>
                             </div>
                             <div class="card-body">
-                                <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                                <table class="table table-striped table-sm " id="table">
                                     <thead>
                                         <tr>
                                             <th>N°</th>
@@ -86,3 +86,32 @@ include_once "../includes/menu.php";
 
     </div><!-- /#right-panel -->
  <?php include_once "../includes/footer.php"; ?>
+      <script src="../../vendors/js/datatables.min.js"></script>
+    <script type="text/javascript">
+
+          $('#table').DataTable({
+            "searching": true,
+            language: {
+            "decimal": "",
+            "emptyTable": "No hay información",
+            "info": "Mostrando la página _PAGE_ de _PAGES_",
+            "infoEmpty": "Mostrando 0 de 0 Entradas",
+            "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+            "infoPostFix": "",
+            "thousands": ",",
+            "lengthMenu": "Mostrar _MENU_ Entradas",
+            "loadingRecords": "Cargando...",
+            "processing": "Procesando...",
+            "search": "Buscar:",
+            "zeroRecords": "Sin resultados encontrados",
+            "paginate": {
+                "first": "Primero",
+                "last": "Ultimo",
+                "next": "Siguiente",
+                "previous": "Anterior"
+              }
+            }
+            
+          });
+
+  </script>

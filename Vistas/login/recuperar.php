@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="../../vendors/flag-icon-css/css/flag-icon.min.css">
     <link rel="stylesheet" href="../../vendors/selectFX/css/cs-skin-elastic.css">
 
+     <link rel="stylesheet" href="../../vendors/plugins/sweetalert2.min.css">
+
     <link rel="stylesheet" href="../../assets/css/style.css">
 
     <link href='../../https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
@@ -65,6 +67,10 @@
     </div>
 </div>
 
+<div style="margin: 0px 0px 16px; text-align: center; width: 100%;">
+
+  <a href="#" style="color: rgb(255, 255, 255); font-size: 11px; font-weight: normal; max-width: 135px; padding: 4px 7px;" > ServiForm C.A Todos los derechos reservados (c)copyright 2019-2020  </a> 
+</div>
 
 
 
@@ -72,6 +78,47 @@
     <script src="../../vendors/popper.js/dist/umd/popper.min.js"></script>
     <script src="../../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../../assets/js/main.js"></script>
+    <script src="../../vendors/js/sweetalert.min.js"></script>
+   <script src="../../vendors/popper.js/codigo.js"></script>
+  <script src="../../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../vendors/js/feather.min.js"></script>
+    <script>
+      feather.replace();
+        <?php
+        error_reporting(0);
+        extract($_REQUEST);
+        if ($con==1) {
+
+            echo '
+                swal("Error", "Correo no registrado ", "error");
+
+            ';
+        }
+        if ($con==2) {
+
+            echo '
+                swal("Lo Sentimos!", "La Respuesta no es correcta", "error");
+
+            ';
+        }
+
+        if ($con==3) {
+
+            echo '
+                swal("Lo Sentimos!", "Fallo al cambiar clave, intente nuevamente", "error");
+
+            ';
+        }
+         if ($con==4) {
+
+            echo '
+                swal("Lo sentimos", "Los campos no coinciden ", "warning");
+
+            ';
+        }
+      ?>
+    </script>
+
 
 
 </body>

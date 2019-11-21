@@ -1,4 +1,27 @@
+<?php
+session_start();
 
+
+include("../../Modelos/conexion.php");
+
+    
+    
+    $sql="SELECT * FROM usuarios WHERE borrado='N'";
+
+    $resultado = $conectar->query($sql) or die ( "Algo ha ido mal en la consulta a la base de datos");
+
+    if ($f=$resultado->fetch_array()) {
+
+            
+       
+            $d=" ";
+            $_SESSION['id']=$f['id'];
+            $_SESSION['user']=$f['nombre'];
+            $_SESSION['tipo_usuario']=$f['tipo_usuario'];
+            $cargo=$_SESSION['tipo_usuario'];
+        
+    }
+?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="es"> <![endif]-->
@@ -14,6 +37,7 @@
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../vendors/css/estilos.css">
+    <link rel="stylesheet" href="../../vendors/bootstrap/gsdk-bootstrap-wizard.css" rel="stylesheet" />
 
 
     <link rel="../../apple-touch-icon" href="apple-icon.png">
@@ -57,24 +81,26 @@
             </div>
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
+               
                 <ul class="nav navbar-nav">
+            
                     <li>
                         <a href="../home/home.php"> <i class="menu-icon fa fa-home"></i>Inicio </a>
                     </li>
+
+
+
+                <?php if ($_SESSION['tipo_usuario']=='Usuario 1' or $_SESSION['tipo_usuario']=='Admin' ){  ?>
                     <h3 class="menu-title">ALMACEN</h3><!-- /.menu-title -->
                    
 
                     <li class="">
                         <a href="../menu/ControladorMenu.php?operacion=inventario" > <i class="menu-icon fa fa-archive"></i>Inventario</a>
-                       <!--  <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-list"></i><a href="../menu/ControladorMenu.php?operacion=inventario">General</a></li>
-                            <li><i class="fa fa-list"></i><a href="../menu/ControladorMenu.php?operacion=registro_inv">Registro</a></li>
-                        </ul> -->
                     </li>
 
-                   
+                  <?php } ?>
                     
-
+                   <?php if ($_SESSION['tipo_usuario']=='Usuario 2' or $_SESSION['tipo_usuario']=='Admin'){  ?>
                     <h3 class="menu-title">RECURSOS HUMANOS</h3><!-- /.menu-title -->
 
                     <li class="menu-item-has-children dropdown">
@@ -121,13 +147,16 @@
                         
                     </li>
 
-                  
+                <?php } ?>
 
+                  
+              <?php if ($_SESSION['tipo_usuario']=='Admin'){  ?>
                     <h3 class="menu-title">Ajustes</h3><!-- /.menu-title -->
 
                     <li>
                         <a href="../menu/ControladorMenu.php?operacion=mantenimiento"> <i class="menu-icon fa fa-cogs"></i>Mantenimiento</a>
                     </li>
+                <?php } ?>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
@@ -148,8 +177,7 @@
 
                         <img src="../../images/servi.png" width="100">
 
-                        <p style="text-align: center; margin-left: 6cm; margin-top: 0cm;">SERVIFORM C.A La Victoria Edo. Aragua</p>
-                    </div>
+                                           </div>
         
 
                         <div class="form-inline">
@@ -170,7 +198,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="user-avatar rounded-circle" src="../../images/admin.jpg" alt="User Avatar">
 
-                            <script type="text/javascript">
+<script type="text/javascript">
 //<![CDATA[
 
 function makeArray() {
@@ -207,14 +235,17 @@ window.onload=function(){startTime();}
 
                         <div class="user-menu dropdown-menu">
                             <a class="nav-link" href="../../Controladores/ControladorPerfil.php?operacion=verperfil"><i class="fa fa-user"></i> Mi perfil</a>
-
+                         <?php if ($_SESSION['tipo_usuario']=='Admin' ){?>
                             <a class="nav-link" href="../../Controladores/controladorUsuario.php?operacion=registrar"><i class="fa fa-user"></i>Registrar usuario</a>
-
+                        <?php }?>
                             <a class="nav-link" href="../../Controladores/controladorLogin.php?operacion=logout"><i class="fa fa-power-off" ></i> Salir</a>
 
                            
                         </div>
                       
+                      <strong style="padding-left: 60px;" class="active"><?php echo $_SESSION['user'];?></strong><br>
+                      <cite style="padding-left: 60px;"><?php echo $_SESSION['tipo_usuario']; ?></cite>
+
                   
                      
                     

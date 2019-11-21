@@ -67,11 +67,10 @@ if ($nombresbd>0){
 	if($resultado) {
 
 		?> 
-
-			<script type="text/javascript">
-				alert("Se registro éxitosamente");
-				window.location="ControladorAsigDeducc.php?operacion=index";
-			</script>
+		<?php
+		 header('location:ControladorAsigDeducc.php?operacion=index');
+		 ?>
+			
 			<?php 
 	
 	} else { 

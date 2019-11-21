@@ -24,8 +24,6 @@
 		$i++;
 	}
 
-	include('../../Modelos/desconectar.php');
-
 	function articulos ($i,$codarticulo,$articulos,$cantidad_solicitada,$cantidad_despachada,$observacion,$valor_unitario,$moneda){
 
 		$html='';
@@ -74,7 +72,7 @@
 
 	$fecha=$tiempo[8].$tiempo[9].$tiempo[4].$tiempo[5].$tiempo[6].$tiempo[7].$tiempo[0].$tiempo[1].$tiempo[2].$tiempo[3];
 
-	require_once('tcpdf/tcpdf.php');
+	require_once('../../tcpdf/tcpdf.php');
 	$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 	// remove default header/footer
@@ -106,7 +104,7 @@ height: 30%;
   <tr height="30px;" >
     <th colspan="2"  style="text-align: center;">
     <br><br>
-    <img src="img/millar.jpg" width="40px;" >
+    <img src="../../images/servi.jpg" width="40px;" >
 <h4 text-align="center">Millar IPC,C.A. <br>
 RIF J-31537859-0</h4>
    <br>  
@@ -129,9 +127,6 @@ CELULARES&nbsp;&nbsp;&nbsp;   0414-147.9025                 Luis Alfredo Chacón
   </tr>
   <tr>
     <th colspan="10" style=""> LISTA DE ARTÍCULOS A SOLICITAR </th>
-  </tr>
-  <tr>
-    <th colspan="10" style=""> JEFE DE LA DEPENDENCIA SOLICITANTE: '.$solicitante.' </th>
   </tr>
 </table>' , 0, 1, 0, true, '', true);
 

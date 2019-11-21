@@ -29,7 +29,8 @@ extract($_REQUEST);
 
     <link rel="stylesheet" href="../../assets/css/style.css">
 
-     <link rel="stylesheet" href="../../vendors/plugins/sweetalert2.min.css">
+       <link rel="stylesheet" href="../../vendors/plugins/sweetalert2.min.css">
+
     <link rel="stylesheet" href="../../vendors/animate.css/animate.css">
     <link href='../../https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -86,16 +87,33 @@ extract($_REQUEST);
         </div>
     </div>
 
+<div style="margin: 0px 0px 16px; text-align: center; width: 100%;">
 
+  <a href="#" style="color: rgb(255, 255, 255); font-size: 11px; font-weight: normal; max-width: 135px; padding: 4px 7px;" > ServiForm C.A Todos los derechos reservados (c)copyright 2019-2020  </a> 
+</div>
     <script src="../../vendors/jquery/dist/jquery.min.js"></script>
     <script src="../../vendors/popper.js/dist/umd/popper.min.js"></script>
     <script src="../../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../../assets/js/main.js"></script>
 
-    
-     <!--  plugins sweet alert 2 -->
-   <script src="../../vendors/plugins/sweetalert2.all.min.js"></script>
+    <script src="../../vendors/js/sweetalert.min.js"></script>
    <script src="../../vendors/popper.js/codigo.js"></script>
+  <script src="../../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../vendors/js/feather.min.js"></script>
+    <script>
+      feather.replace();
+        <?php
+        error_reporting(0);
+        extract($_REQUEST);
+        if ($con==1) {
+
+            echo '
+                swal("Lo sentimos", "Los campos no coinciden ", "warning");
+
+            ';
+        }
+      ?>
+    </script>
 
 
 </body>

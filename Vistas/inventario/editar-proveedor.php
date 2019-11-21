@@ -5,8 +5,8 @@
         
     if ($nacionalidad=='' or $numero_documento=='' or $telef1=='' or $nombre=='') {
       echo '
-      <script src="bootstrap/js/jquery.js"></script>
-      <script src="js/sweetalert.min.js"></script>
+      <script src="../../bootstrap/js/jquery.js"></script>
+      <script src="../../vendors/js/sweetalert.min.js"></script>
       <script>
         $(document).ready(function(){
           swal("Error","Por favor, llene todo los campos correspondiente con un *", "error");
@@ -14,29 +14,29 @@
       </script>';
     }else{
 
-      include('conectar.php');
+      include('../../Modelos/conexion.php');
 
-      $sql="SELECT * FROM proveedores WHERE borrado='N' AND cod_rif='$nacionalidad' AND rif='$numero_documento' AND id!='$proveedor'";
-      $resultado=mysqli_query($conexion,$sql);
+      $sql="SELECT * FROM proveedor WHERE borrado='N' AND cod_rif='$nacionalidad' AND cedula='$numero_documento' AND id!='$proveedor'";
+      $resultado=mysqli_query($conectar,$sql);
 
       $busqueda = mysqli_num_rows($resultado);
 
       if ($busqueda>0) {
          echo '
-          <script src="bootstrap/js/jquery.js"></script>
-          <script src="js/sweetalert.min.js"></script>
+          <script src="../../bootstrap/js/jquery.js"></script>
+          <script src="../../vendors/sweetalert.min.js"></script>
           <script>
             $(document).ready(function(){
               swal("Error","El RIF ya se encuentra registrado", "error");
             });
           </script>';
       }else{
-         include('conectar.php');
+         include('../../Modelos/conexion.php');
 
 
-        $sql="UPDATE proveedores SET cod_rif='$nacionalidad', rif='$numero_documento',empresa='$nombre',telef1='$telef1',telef2='$telef2',otros='$otro', correo='$correo' WHERE id='$proveedor'";
+        $sql="UPDATE proveedor SET cod_rif='$nacionalidad', cedula='$numero_documento',nombre='$nombre',telefono='$telef1',direccion='$otro', email='$correo' WHERE id='$proveedor'";
 
-        $resultado=mysqli_query($conexion,$sql);
+        $resultado=mysqli_query($conectar,$sql);
 
         if ($resultado) {
           
@@ -50,49 +50,36 @@
           //echo $sql;
         }
 
-        include('desconectar.php');
+    
         }
 
       }
   }
 
-  include('conectar.php');
+  include('../../Modelos/conexion.php');
 
-  $sql="SELECT * FROM proveedores WHERE id='$proveedor'";
-  $resultado=mysqli_query($conexion,$sql);
+  $sql="SELECT * FROM proveedor WHERE id='$proveedor'";
+  $resultado=mysqli_query($conectar,$sql);
 
   while ($consulta=mysqli_fetch_array($resultado)) {
     
     $codrif=$consulta['cod_rif'];
-    $rif=$consulta['rif'];
-    $empresa=$consulta['empresa'];
-    $telef1=$consulta['telef1'];
-    $telef2=$consulta['telef2'];
-    $otros=$consulta['otros'];
+    $rif=$consulta['cedula'];
+    $empresa=$consulta['nombre'];
+    $telef1=$consulta['telefono'];
+    $correo=$consulta['email'];
+    $otros=$consulta['direccion'];
   }
 
   if (mysqli_num_rows($resultado)==0) {
     header('location: proveedores.php');
   }
-  include('desconectar.php');
+
+
+  include_once "../includes/menu.php";
 ?>
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="css/datatables.min.css">
-    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">  
-    <link rel="stylesheet" type="text/css" href="css/estilos.css">
-    <link rel="stylesheet" type="text/css" href="css/nav.css">
-    <link rel="stylesheet" type="text/css" href="css/iziToast.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Inventario</title>
-  </head>
-  <body>
-      <?php
-        include("nav.php");
-      ?>
+
   <div class="contenido">
     <div class="content-2">
       <h2 style="text-align: center"><a href="proveedores.php" class="atras" title="Atras"><span data-feather="arrow-left"></span></a><strong>Editar proveedor</strong></h2>
@@ -106,37 +93,17 @@
               <div style="width: 100%;">
                 <div style="width: 20%; float: left;">
                   <select class="form-control" name="nacionalidad" required="required" id="select_d" >
-                    <option value=""></option>
-                    <?php
-                      include('conectar.php');
-
-                      $sql="SELECT * FROM rif_categoria WHERE borrado='N'";
-
-                      $resultado=mysqli_query($conexion,$sql);
-
-                      while ($consulta=mysqli_fetch_array($resultado)) {
-
-                          if ($codrif==$consulta['id']) {
-                              $s='selected';
-                          }else{
-                            $s='';
-                          }
-                          
-                          echo "<option ".$s." value='".$consulta['id']."'>".$consulta['simbologia']."</option>";
-                      }
-                      include('desconectar.php');
-                    ?>
+                    <option selected="selected" value="">-</option>
+                    <option value="V">V</option>
+                    <option value="J">J</option>
+                    <option value="E">E</option>
+                    <option value="G">G</option>
+                  
                   </select>
                 </div>
                 <div style="width: 77%; float: right;">
                   <input type="number" name="numero_documento" class="form-control" placeholder="Ej.112345" required="required" id="documento_numero" min="0" value="<?php echo $rif; ?>">
-                  <div id="result"></div>
-                  <div class="valid-feedback">
-                    Disponible
-                  </div>
-                  <div class="invalid-feedback">
-                    RIF ya registrado
-                  </div><br>
+                
                 </div>
               </div>
               
@@ -148,26 +115,24 @@
         </div>
         <div class="row">
           <div class="col-md-6">
-            <label><strong>Teléfono 1</strong> <strong class='estado-r'>*</strong></label>
+            <label><strong>Teléfono</strong> <strong class='estado-r'>*</strong></label>
             <input type="number" class="form-control" name="telef1" placeholder="Ej.0424987654 " required="required" value="<?php echo $telef1; ?>"><br>
           </div>
+
           <div class="col-md-6">
-            <label><strong>Teléfono 2</strong></label>
-            <input type="number" class="form-control" name="telef2" placeholder="Ej. 0424987654" value="<?php echo $telef2; ?>"><br>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
             <label><strong>Correo</strong></label>
             <input type="email" class="form-control" name="correo" placeholder="Ej. ejemplo@ejemplo.com"><br>
           </div>
         </div>
-         <div class="row">
-            <div class="col">
-              <label><strong>Otros</strong></label>
-              <textarea class="form-control" name="otro"><?php echo $otros; ?></textarea><br>
-            </div>
+
+
+        <div class="row">
+          <div class="col">
+            <label><strong>Dirección</strong></label>
+            <input type="text" class="form-control" name="otros" placeholder="Ej: La Victoria"><br>
           </div>
+        </div>
+         
         <center>
           <a href="proveedores.php" class="btn btn-danger">Cancelar</a>
           <button  type="submit" class="btn btn-primary btn-reg" name="guardar-proveedor">Actualizar</button>
@@ -175,9 +140,11 @@
       </form>
     </div>
    </div>    
-    <script src="bootstrap/js/jquery.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script src="js/feather.min.js"></script>
+
+    <?php include_once "../includes/footer.php"; ?>
+    <script src="../../bootstrap/js/jquery.js"></script>
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../vendors/js/feather.min.js"></script>
     <script>
       feather.replace();
 
@@ -283,13 +250,3 @@
       });
     </script>
     <script type="text/javascript">var X=3</script>
-    <script src="js/main.js"></script>
-    <script src="js/iziToast.min.js"></script>
-    <script src="js/sweetalert.min.js"></script>
-
-    <script type="text/javascript">
-        
-    </script>
-  </body>
-</html>
-

@@ -50,7 +50,7 @@ var year = (yy < 1000) ? yy + 1900 : yy;
                             
                            
                             </div>
-                            <div class="table-responsive">
+                            <div class="table-responsive" style="padding-left: 30px; padding-right: 20px;">
                                 <table class="table table-striped table-sm " id="table">
                                     <thead>
                                        <tr>

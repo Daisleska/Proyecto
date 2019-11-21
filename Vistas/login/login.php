@@ -16,7 +16,6 @@
     <link rel="../../apple-touch-icon" href="apple-icon.png">
     <link rel="../../shortcut icon" href="favicon.ico">
 
-<link rel="stylesheet" href="../../vendors/plugins/sweetalert2.min.css">
     <link rel="stylesheet" href="../../vendors/animate.css/animate.css">
 
 
@@ -27,6 +26,7 @@
     <link rel="stylesheet" href="../../vendors/selectFX/css/cs-skin-elastic.css">
 
     <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../vendors/plugins/sweetalert2.min.css">
 
     
     <link href='../../https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
@@ -37,13 +37,34 @@
 
 <body class="bg-dark fondo">
 
+    <?php
+
+         if (extract($_REQUEST)) {?>
+         <script type="text/javascript">
+         var ress= '<?php echo $con;?>';
+
+        if (ress==1) {
+                swal("Hecho", "Se modifico su contraseña exitosamente", "success");
+          } else if (ress==0) {
+                swal("Lo sentimos", "No se pudo modificar su Contraseña ", "error");
+          }else if (ress==4) {
+                swal("Lo sentimos", "El usuario no existe ", "error");
+          } 
+          </script>
+      <?php
+    }
+    ?>
+
 
     <div class="sufee-login d-flex align-content-center flex-wrap">
         <div class="container">
             <div class="login-content">
 
                 <div class="login-form">
-                    <p class="text-center" style="font-size: 70px;">
+
+          <!--   <h3 align="center" style="color: rgb(51, 51, 51); font-size: 32px; font-weight: bold; -webkit-font-smoothing: antialiased; letter-spacing: -1.2px;">Te damos la bienvenida</h3> -->
+
+                    <p class="text-center" style="font-size: 50px;">
             <i class="fa fa-user"></i>
         </p>
            <p align="center">Iniciar Sesión</p>
@@ -77,12 +98,40 @@
             </div>
         </div>
     </div>
+ <!-- footer del login -->
+ <br><br><br><br><br>
+ <div style="margin: 0px 0px 16px; text-align: center; width: 100%;">
 
-    <script src="../../vendors/jquery/jquery-3.3.1.min.js"></script>
-    <script src="../../vendors/jquery/dist/jquery.min.js"></script>
-    <script src="../../vendors/popper.js/dist/umd/popper.min.js"></script>
-    <script src="../../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+  <a href="#" style="color: rgb(255, 255, 255); font-size: 11px; font-weight: normal; max-width: 135px; padding: 4px 7px;" > ServiForm C.A Todos los derechos reservados (c)copyright 2019-2020  </a> 
+</div>
+
+    <script src="../../bootstrap/js/jquery.js"></script>
     <script src="../../assets/js/main.js"></script>
+     <script src="../../vendors/js/sweetalert.min.js"></script>
+   <script src="../../vendors/popper.js/codigo.js"></script>
+  <script src="../../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../vendors/js/feather.min.js"></script>
+    <script>
+      feather.replace();
+        <?php
+        error_reporting(0);
+        extract($_REQUEST);
+        if ($con==2) {
+
+            echo '
+                swal("Lo sentimos", "Usuario y/o Contraseña incorrectos ", "warning");
+
+            ';
+        }
+        if ($con==1) {
+
+            echo '
+                swal("Completado", "Cambio de clave exitoso!", "success");
+
+            ';
+        }
+      ?>
+    </script>
 
      <!--  plugins sweet alert 2 -->
 <!--    <script src="../../vendors/plugins/sweetalert2.all.min.js"></script>

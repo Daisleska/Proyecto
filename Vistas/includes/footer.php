@@ -12,13 +12,13 @@
                         <h4 class="all-tittles">Desarrolladores</h4>
                         <br>
                         <ul class="list-unstyled">
-                            <li><a href="https://www.facebook.com/hectorher149"><i  class="fa fa-facebook-square"></i>&nbsp;</a> Hector Hernández<!--  <i class="zmdi zmdi-facebook zmdi-hc-fw footer-social"></i><i class="zmdi zmdi-instagram zmdi-hc-fw footer-social"></i> --></li>
+                            <li><a href="https://www.facebook.com/hectorher149"><i  class="fa fa-facebook-square"></i>&nbsp;</a> Hector Hernández</li>
                         </ul>
                         <ul class="list-unstyled">
-                            <li><a href="#"><i  class="fa fa-facebook-square"></i> &nbsp;</a> Daisleska Vilera <!-- <i  class="fa fa-facebook-square"></i><i class="fa fa-instagram"></i> --></li>
+                            <li><a href="#"><i  class="fa fa-facebook-square"></i> &nbsp;</a> Daisleska Vilera</li>
                         </ul>
                          <ul class="list-unstyled">
-                            <li><a href="#"><i  class="fa fa-facebook-square"></i> &nbsp;</a> Genessi Escobar <!-- <i  class="fa fa-facebook-square"></i><i class="fa fa-instagram"></i> --></li>
+                            <li><a href="#"><i  class="fa fa-facebook-square"></i> &nbsp;</a> Genessi Escobar</li>
                         </ul>
                     </div>
 
@@ -36,7 +36,7 @@
 
 
                     <div class=" col-sm-12">
-                        <h6 style="text-align: center; color: #fff;">Serviform, C.A &copy RIF J-00000</h6>
+                        <h6 style="text-align: center; color: #fff;">Serviform, C.A La Victoria &copy RIF J-00000</h6>
                         
                     </div>
 
@@ -67,6 +67,11 @@
   <script src="../../vendors/plugins/datepicker/bootstrap-datepicker.js"></script>
  <script src="../../vendors/plugins/daterangepicker/daterangepicker.js"></script>
  <script src="../../vendors/chosen/chosen.jquery.min.js"></script>
+
+ <!-- InputMask -->
+<script src="../../vendors/js/jquery.inputmask.js"></script>
+<script src="../../vendors/js/jquery.inputmask.date.extensions.js"></script>
+<script src="../../vendors/js/jquery.inputmask.extensions.js"></script>
 <script>
     jQuery(document).ready(function() {
         jQuery(".standardSelect").chosen({

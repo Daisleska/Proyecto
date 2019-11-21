@@ -295,7 +295,7 @@ include_once "../includes/menu.php";
                   <a class="nav-link" href="../inventario/proveedores.php">Proveedores</a>
                 </li>
                 <li class="nav-item ">
-                  <a class="nav-link" href="pedidos-internos.php">Pedidos </a>
+                  <a class="nav-link" href="../inventario/pedidos-internos.php">Pedidos </a>
                  
                 </li>
 

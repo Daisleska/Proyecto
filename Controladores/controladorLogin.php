@@ -58,11 +58,9 @@ public function loguear()
 		$hallado=mysqli_num_rows($res);
 		if ($hallado==0) {
 			?>
-				<script type="text/javascript">
-					alert('Correo o Contraseña incorrecto');
-					window.location="../Vistas/login/login.php"
-				</script>
-
+			<?php
+				echo '<script>location.href="../Vistas/login/login.php?con=2"</script>';
+            ?>
 			<?php	
 		} else {
 			//creando variables de sesión
@@ -92,7 +90,6 @@ public function logout()
 		if (session_destroy()) {
 		?>
 				<script type="text/javascript">
-					alert('Ha cerrado sesión correctamente...');
 					window.location="../Vistas/login/login.php"
 				</script>
 
@@ -126,10 +123,9 @@ public function validar_correo()
 		} else {
 
 		?>
-				<script type="text/javascript">
-					alert('Correo no registrado');
-					window.location="../Vistas/login/recuperar.php"
-				</script>
+				<?php
+				echo '<script>location.href="../Vistas/login/recuperar.php?con=1"</script>';
+            ?>
 
 			<?php
 		}
@@ -161,12 +157,9 @@ public function verificar_respuesta()
 			} else {
 				# respuesta incorrecta
 				?>
-				<script type="text/javascript">
-					
-					alert('Respuesta incorrecta...');
-					window.location="../Vistas/login/recuperar.php"
-				</script>
-
+				<?php
+				echo '<script>location.href="../Vistas/login/recuperar.php?con=2"</script>';
+            ?>
 			<?php	
 			}
 			
@@ -203,19 +196,16 @@ public function cambiar_clave()
 				if ($res) {
 					# en caso de que se hizo el update
 					?>
-					<script type="text/javascript">
-						alert('Cambio de clave exitoso...');
-						window.location="../Vistas/login/login.php";
-					</script>
+					<?php
+				echo '<script>location.href="../Vistas/login/login.php?con=1"</script>';
+            ?>
 				<?php	
 				} else {
 					# en caso de que falló el update
 					?>
-						<script type="text/javascript">
-							alert('Falla al cambiar clave...');
-							window.location="../Vistas/login/recuperar.php";
-						</script>
-					<?php	
+							<?php
+				echo '<script>location.href="../Vistas/login/recuperar.php?con=3"</script>';
+            ?>					<?php	
 				}
 				
 			} else {
@@ -226,11 +216,9 @@ public function cambiar_clave()
 		} else {
 			# en caso de no ser iguales
 			?>
-			<script type="text/javascript">
-				var id_usuario="<?php echo $id_usuario; ?>";
-				alert('Los campos de clave nueva no coinciden...');
-				window.location="../Vistas/login/clave_nueva.php?id_usuario="+id_usuario;
-			</script>
+			<?php
+				echo '<script>location.href="../Vistas/login/recuperar.php?con=4"</script>';
+            ?>
 		<?php	
 		}
 		
