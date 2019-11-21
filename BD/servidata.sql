@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-11-2019 a las 01:21:32
+-- Tiempo de generación: 21-11-2019 a las 22:46:07
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.1.26
 
@@ -89,8 +89,12 @@ INSERT INTO `asistencias` (`id`, `id_empleado`, `fecha_hora`, `status`, `justifi
 (5, 3, '2019-11-13 04:30:00', 'Sin Marcar', ''),
 (6, 1, '2019-11-15 04:30:00', 'Sin Marcar', ''),
 (7, 1, '2019-11-16 04:30:00', 'Sin Marcar', ''),
-(8, 1, '2019-11-21 04:30:00', 'Sin Marcar', ''),
-(9, 3, '2019-11-21 04:30:00', 'Sin Marcar', '');
+(8, 1, '2019-11-21 04:30:00', 'A', ''),
+(9, 3, '2019-11-21 04:30:00', 'Sin Marcar', ''),
+(10, 1, '2019-11-22 04:30:00', 'Sin Marcar', ''),
+(11, 1, '2019-11-27 04:30:00', 'Sin Marcar', ''),
+(12, 2, '2019-11-27 04:30:00', 'Sin Marcar', ''),
+(13, 3, '2019-11-27 04:30:00', 'Sin Marcar', '');
 
 -- --------------------------------------------------------
 
@@ -106,6 +110,13 @@ CREATE TABLE `auditoria` (
   `hora` time NOT NULL,
   `status` enum('0','1') COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `auditoria`
+--
+
+INSERT INTO `auditoria` (`id`, `id_usuario`, `actividad`, `fecha`, `hora`, `status`) VALUES
+(1, 1, 'logueo', '2019-11-21', '00:00:00', '1');
 
 -- --------------------------------------------------------
 
@@ -361,7 +372,8 @@ INSERT INTO `historial` (`id`, `tiempo`, `motivo`, `id_producto`, `cantidad`) VA
 (5, '2019-11-08 15:43:29', 'Ingreso', 1, 9),
 (6, '2019-11-08 16:30:41', 'Ingreso', 5, 1),
 (7, '2019-11-20 15:46:33', 'Egreso', 1, -5),
-(8, '2019-11-20 15:47:22', 'Egreso', 1, -2);
+(8, '2019-11-20 15:47:22', 'Egreso', 1, -2),
+(9, '2019-11-21 15:22:47', 'Registro', 6, 10000);
 
 -- --------------------------------------------------------
 
@@ -460,7 +472,8 @@ CREATE TABLE `materia_prima` (
 INSERT INTO `materia_prima` (`id`, `codigo`, `nombre`, `presentacion`, `unidad`, `stock`, `stock_minimo`, `stock_maximo`, `borrado`, `activo`) VALUES
 (1, 'C1903', 'XILENO ', 'BARITANQUE DE 1000 LTS ', 'Lts', 5050, 1000, '100000', 'N', 'S'),
 (2, '2h2h22', 'madera', 'tablas', 'Lts', 30, 10, '40', 'N', 'S'),
-(3, '2h2fkfk', 'agua', 'paletas', 'Lts', 3000, 100, '10000', 'N', 'S');
+(3, '2h2fkfk', 'agua', 'paletas', 'Lts', 3000, 100, '10000', 'N', 'S'),
+(4, 'hhhhh', 'maiz', 'sacos', 'Kgs', 9900, 100, '10000', 'N', 'S');
 
 -- --------------------------------------------------------
 
@@ -744,19 +757,21 @@ CREATE TABLE `productos` (
   `stock_maximo` int(11) NOT NULL,
   `borrado` enum('N','S') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N',
   `activo` enum('S','N') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'S',
-  `valor_unitario` int(11) DEFAULT NULL
+  `valor_unitario` int(11) DEFAULT NULL,
+  `id_ubicacion` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id`, `codigo`, `nombre`, `presentacion`, `unidad`, `stock`, `stock_minimo`, `stock_maximo`, `borrado`, `activo`, `valor_unitario`) VALUES
-(1, '12356', 'hierro', 'paletas', 'Kgs', 3, 5, 30, 'N', 'S', NULL),
-(2, '7272727', 'metal', 'paletas', 'Lts', 80, 10, 5000, 'N', 'S', NULL),
-(3, 'nuh779', 'cosa', 'paletas', 'Kgs', 10, 10, 200, 'N', 'S', NULL),
-(4, '32020', 'madera', 'flota', 'Lts', 56, 10, 100, 'N', 'N', NULL),
-(5, '2h2h22', 'koll', 'tablas', 'Lts', 870, 9, 900, 'N', 'S', NULL);
+INSERT INTO `productos` (`id`, `codigo`, `nombre`, `presentacion`, `unidad`, `stock`, `stock_minimo`, `stock_maximo`, `borrado`, `activo`, `valor_unitario`, `id_ubicacion`) VALUES
+(1, '12356', 'hierro', 'paletas', 'Kgs', 3, 5, 30, 'N', 'S', NULL, NULL),
+(2, '7272727', 'metal', 'paletas', 'Lts', 80, 10, 5000, 'N', 'S', NULL, NULL),
+(3, 'nuh779', 'cosa', 'paletas', 'Kgs', 10, 10, 200, 'S', 'S', NULL, NULL),
+(4, '32020', 'madera', 'flota', 'Lts', 56, 10, 100, 'N', 'N', NULL, NULL),
+(5, '2h2h22', 'koll', 'tablas', 'Lts', 870, 9, 900, 'N', 'S', NULL, NULL),
+(6, '65247', 'arena', 'sacos', 'Kgs', 10000, 1000, 20000, 'N', 'S', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -796,9 +811,10 @@ CREATE TABLE `proveedor` (
 INSERT INTO `proveedor` (`id`, `cod_rif`, `cedula`, `nombre`, `email`, `direccion`, `telefono`, `borrado`) VALUES
 (2, 'V', '25873122', 'Juan Carlos Figueredo', 'juan2912@gmail.com', 'La Victoria', '3163502', 'N'),
 (4, 'J', 'J-1345678', 'Inica Cagua C.A', 'inicacca@gmail.com', 'Cagua ', '9876556', 'S'),
-(5, 'V', '29554496', 'holahhh', 'holgggggga@gmail.com', 'aahha', '23456787654', 'N'),
+(5, 'V', '29554496', 'holahhh', 'holgggggga@gmail.com', 'aahha', '23456787654', 'S'),
 (6, 'V', '23353454', 'esaaaaaa', '', 'gagu', '342342323', 'N'),
-(7, 'V', '099988', 'koll', 'hectorher149@gmail.com', '', '8889998', 'S');
+(7, 'V', '099988', 'koll', 'hectorher149@gmail.com', '', '8889998', 'S'),
+(8, 'J', '099988', 'el palmar', 'palmar@gmail.com', 'san mateo ', '0211230303', 'N');
 
 -- --------------------------------------------------------
 
@@ -841,8 +857,9 @@ CREATE TABLE `ubicacion` (
 --
 
 INSERT INTO `ubicacion` (`id`, `nombre`, `bloqueado`, `borrado`, `tipo`) VALUES
-(1, 'produccion', 'N', 'N', 'I'),
-(2, 'almacen', 'N', 'N', 'I');
+(1, 'produccion', 'N', 'S', 'I'),
+(2, 'almacen', 'N', 'N', 'I'),
+(3, 'aya', 'N', 'S', 'I');
 
 -- --------------------------------------------------------
 
@@ -866,7 +883,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `correo`, `clave`, `tipo_usuario`, `pregunta`, `respuesta`, `borrado`) VALUES
-(1, 'Daileska Vilera', 'dvilera610@gmail.com', '044598473886535a33126083e3d2e1170e4a67befe897a83ad95a33209a64b3a', 'Usuario 1', 'Mascota', 'Sandy', 'S'),
+(1, 'Daileska Vilera', 'dvilera610@gmail.com', '044598473886535a33126083e3d2e1170e4a67befe897a83ad95a33209a64b3a', 'Usuario 2', 'Mascota', 'Sandy', 'S'),
 (2, 'hector hernandez', 'hectorher149@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Admin', 'nombre de mascota', 'body', 'N'),
 (3, 'Alejandro', 'darvisalfonso@gmail.com', '67d9f1c944a4ee6ef3634298c97639c81927a228d6aa490b343abf594e45aecf', 'Usuario 1', 'nombre de mascota', 'pelusa', 'S'),
 (4, 'Genessi', 'genessie@gmail.com', '8491502322172e09ec7222d33941d33afbfcc22ab0c4dd1033dd72232308675a', 'Admin', 'mes de nacimiento', 'noviembre', 'S');
@@ -1091,7 +1108,8 @@ ALTER TABLE `produccion`
 -- Indices de la tabla `productos`
 --
 ALTER TABLE `productos`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_ubicacion` (`id_ubicacion`);
 
 --
 -- Indices de la tabla `producto_proveedor`
@@ -1144,13 +1162,13 @@ ALTER TABLE `asignacion_deduccion`
 -- AUTO_INCREMENT de la tabla `asistencias`
 --
 ALTER TABLE `asistencias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `auditoria`
 --
 ALTER TABLE `auditoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `cargos`
@@ -1204,7 +1222,7 @@ ALTER TABLE `enviados`
 -- AUTO_INCREMENT de la tabla `historial`
 --
 ALTER TABLE `historial`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `historial_mp`
@@ -1222,7 +1240,7 @@ ALTER TABLE `inventario`
 -- AUTO_INCREMENT de la tabla `materia_prima`
 --
 ALTER TABLE `materia_prima`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `nomina`
@@ -1288,13 +1306,13 @@ ALTER TABLE `produccion`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `recibidos`
@@ -1306,7 +1324,7 @@ ALTER TABLE `recibidos`
 -- AUTO_INCREMENT de la tabla `ubicacion`
 --
 ALTER TABLE `ubicacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

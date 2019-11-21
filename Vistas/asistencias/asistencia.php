@@ -1,7 +1,7 @@
 <?php include_once "../includes/menu.php"; 
 
 extract($_REQUEST);
-$data=unserialize($data);
+$asistencia=unserialize($asistencia);
 $justificacion=unserialize($justificacion);
 
 /*$query_perfil=mysqli_query($con,"select * from perfil where id=1");
@@ -57,8 +57,7 @@ $justificacion=unserialize($justificacion);
                 <div class="animated fadeIn">
                   <div class="row">
                     <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-body">
+                   
                     <table class="table table-striped table-sm " id="table" >
                       <thead>
                         <tr>
@@ -66,8 +65,8 @@ $justificacion=unserialize($justificacion);
                           <th>Nombres</th>
                           <th>Apellidos</th>
                           <th>Cédula</th>
-                          <th>Status</th>
-                          <th>Justificacion</th>
+                          <th>Estado</th>
+                          <th>Justificación</th>
                           <th>Opciones</th>
                         </tr>
                       </thead>
@@ -75,33 +74,32 @@ $justificacion=unserialize($justificacion);
 
               <?php $num=1; 
               for ($i=0; $i < $filas; $i++) { 
-                                
               echo "<tr>";    
               ?>  
               
               <td><?=$num?></td>
             <?php for ($j=1; $j <$campos; $j++) { ?>
-            <td><?php=utf8_encode($data[$i][$j])?></td>
+            <td><?php=utf8_encode($asistencia[$i][$j])?></td>
 
               <?php } ?>
 
               <td>
 
                     <?php 
-                   if (utf8_encode($data[$i][4])=="Sin Marcar") {
+                   if (utf8_encode($asistencia[$i][4])=="Sin Marcar") {
                     ?>
-               <i data-toggle="modal" onclick="asistio(<?=$data[$i][0]?>)" data-target="#mediumModal" style="font-size: 20px;" title="Marcar Asistencia" class="menu-icon fa fa-check"></i>
+               <i data-toggle="modal" onclick="asistio(<?=$asistencia[$i][0]?>)" data-target="#mediumModal" style="font-size: 20px;" title="Marcar Asistencia" class="menu-icon fa fa-check"></i>
 
-               <i data-toggle="modal" onclick="noasistio(<?=$data[$i][0]?>)" data-target="#mediumModal" style="font-size: 20px;" title="No asistió" class="menu-icon fa fa-times"></i>
+               <i data-toggle="modal" onclick="noasistio(<?=$asistencia[$i][0]?>)" data-target="#mediumModal" style="font-size: 20px;" title="No asistió" class="menu-icon fa fa-times"></i>
                   <?php 
                   }else{
-                    if(utf8_encode($data[$i][4])=="A"){?>
-                    <i data-toggle="modal" onclick="noasistio(<?=$data[$i][0]?>)" data-target="#mediumModal" style="font-size: 20px;" title="No asistió" class="menu-icon fa fa-times"></i>
+                    if(utf8_encode($asistencia[$i][4])=="A"){?>
+                    <i data-toggle="modal" onclick="noasistio(<?=$asistencia[$i][0]?>)" data-target="#mediumModal" style="font-size: 20px;" title="No asistió" class="menu-icon fa fa-times"></i>
                     <?php
 
                   }else{
                     ?>
-                    <i data-toggle="modal" onclick="asistio(<?=$data[$i][0]?>)" data-target="#mediumModal" style="font-size: 20px;" title="Marcar Asistencia" class="menu-icon fa fa-check"></i>
+                    <i data-toggle="modal" onclick="asistio(<?=$asistencia[$i][0]?>)" data-target="#mediumModal" style="font-size: 20px;" title="Marcar Asistencia" class="menu-icon fa fa-check"></i>
                     <?php
                   }
                 }
@@ -115,8 +113,7 @@ $justificacion=unserialize($justificacion);
                        </tbody>
                      </table>
                     </div> 
-                  </div>
-               </div>
+                  
             </div><!-- .animated -->
         </div><!-- .content -->
     </div><!-- /#right-panel -->

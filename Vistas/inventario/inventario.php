@@ -440,26 +440,20 @@ include_once "../includes/menu.php";
                             <a href='javascript:ver(".$consulta['id'].")' class='ver'  title='Ver'><span class='fa fa-eye'></span></a>
                            <a href='editar_inventario.php?art=".$consulta['id']."' class='editar'  title='Editar'><span class='fa fa-edit'></span></a>
                             
-                            <a href='generar_barras_articulo.php?art=".$consulta['id']."' class='ver'  title='File'><span class='fa fa-list'></span></a>
-                            <a href='javascript: mas(".$consulta['id'].")' class='mas' title='Añadir'><span class='fa fa-plus'></span></a>                          
+                                                     
                         
                             " ;
 
-                            if ($consulta['stock']==0) {
+                            if ($consulta['stock']==0 or $_SESSION['tipo_usuario']=='Admin') {
                               
                               echo "<a href='javascript: eliminar(".$consulta['id'].")' class='x' title='Eliminar'><span class='fa fa-times'></span></a>";
 
-                            }else{
-
-                              echo "<a href='javascript: menos(".$consulta["id"].")' id='menos-".$consulta["id"]."' class='menos' name='".$consulta["stock"]."' title='Retirar'><span class='fa fa-minus'></span></a>";
+                            }
 
                                echo "
                                   </td>
 
-                              </tr>
-
-                            ";
-                            }
+                              </tr> ";
 
                            
                         }

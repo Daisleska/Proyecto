@@ -22,6 +22,7 @@ class PDF extends FPDF {
     $this->SetFont('Times','BU',12);
     $this->Ln(4);
     $this->Cell(0,40,utf8_decode('LISTADO DE PRODUCTOS EN EL INVENTARIO'),0,0,'C');
+    $this->Cell(-30,35,utf8_decode ('RIF: j-293901039'),0,0,'C');
     $this->Ln(20);
 
     $this->SetX(25);

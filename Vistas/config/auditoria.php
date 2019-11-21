@@ -1,82 +1,62 @@
 <?php include_once "../includes/menu.php"; 
-extract($_REQUEST);
-$data=unserialize($data);
+
 ?>
 
 
-  <div class="breadcrumbs">
-           
-
-
-                    
-        </div>
-        
-        <div class="content mt-3">
-            <div class="animated fadeIn">
+    <section class="content-header">
+      <h1>Tablero<small>Auditoria</small></h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Tablero</a></li>
+        <li class="active">auditoria</li>
+      </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-md-12">
+        <div class="box box-danger">
+          <div class="box-header">
+            <div class="col-xs-2"><br>
+              <h3 class="box-title"><i class="fa fa-table"></i> Auditoria</h3>  
+            </div>
+            <div class="box-body">
+              <div class="table-responsive"  style="overflow-x: hidden;">
                 <div class="row">
-                    
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                              <h3 class="box-title"><i class="fa fa-table"></i> Auditoria</h3>  
-                               
-                            </div>
-                            <div class="card-body">
-                            
-                                <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
-       
-    
-    
-                                <thead>
-                                  <tr>
-                                      <th>ID</th>
-                                      <th>Usuario</th>
-                                      <th>Fecha</th>
-                                      <th>Hora</th>
-                                      <th>Actividad</th>
-                                  </tr>
-                                </thead>
-
-                                <tbody>
-                                <?php $num=1;
-                                for ($i=0; $i < $filas; $i++) { 
-                                
-                                echo "<tr>";    
-                                ?>  
-              
-                                <td><?=$num?></td>
-                                <?php for ($j=1; $j < $campos; $j++) { ?>
-                                <td><?=$data[$i][$j]?></td>
-
-                                <?php } ?>
-                                    
-                                        
-                                <?php 
-                                $num++;
-                                }   ?>
-                                </tbody>
-
-                                </table>
-
-                          
-
-
-                            </div>
-                        </div>
+                  <div class="input-daterange">
+                    <div class="col-md-6">
+                      <div data-date-format="yyyy/mm/dd" data-date="yyyy/mm/dd" class="input-group input-large">
+                        <input type="text" name="start_date" id="start_date" class="form-control dpd1" placeholder="Desde"/>
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        <input type="text" name="end_date" id="end_date" class="form-control dpd2" placeholder="Hasta"/>
+                      </div>
                     </div>
-
-
-
-
-                </div>
-            </div><!-- .animated -->
-        </div><!-- .content -->
-
-
-    </div><!-- /#right-panel -->
-                
-
-
+                  </div>
+                  <div class="col-md-4">
+                    <button type="button" name="search" id="search" class="btn btn-primary active" ><i class="fa fa-search"></i> Buscar</button>
+                  </div>
+                </div><br>
+              </div>
+              <table id="order_data" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Usuario</th>
+                  <th>Actividad</th>
+                  <th>Fecha</th>
+                  <th>Hora</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+            <!-- /.box-body -->
+        </div>
+        </div>
+      </div>
+    </section>
+</div>
     
 
 

@@ -142,8 +142,8 @@
         }
 
         $sql="UPDATE ubicacion SET borrado='S' WHERE id=".$borrar;
-        $resultado=mysqli_query($conexion,$sql);
-        include("../../Modelos/desconectar.php");
+        $resultado=mysqli_query($conectar,$sql);
+      
 
         if ($resultado) {
             header('location: ubicacion_inventario.php?e=1');

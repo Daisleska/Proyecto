@@ -4,9 +4,9 @@ session_start();
 
 include("../../Modelos/conexion.php");
 
+    $usuario= $_SESSION['correo'];
     
-    
-    $sql="SELECT * FROM usuarios WHERE borrado='N'";
+    $sql="SELECT * FROM usuarios WHERE correo='$usuario'";
 
     $resultado = $conectar->query($sql) or die ( "Algo ha ido mal en la consulta a la base de datos");
 
@@ -61,6 +61,8 @@ include("../../Modelos/conexion.php");
     <link rel="stylesheet" href="../../vendors/plugins/sweetalert2.min.css">
     <link rel="stylesheet" href="../../vendors/animate.css/animate.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+    <link rel="icon" href="../../images/servi.png">
 
 </head>
 
@@ -153,8 +155,14 @@ include("../../Modelos/conexion.php");
               <?php if ($_SESSION['tipo_usuario']=='Admin'){  ?>
                     <h3 class="menu-title">Ajustes</h3><!-- /.menu-title -->
 
-                    <li>
-                        <a href="../menu/ControladorMenu.php?operacion=mantenimiento"> <i class="menu-icon fa fa-cogs"></i>Mantenimiento</a>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Mantenimiento</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-desktop"></i><a href="../config/bitacora.php">Bitacora</a></li>
+                            <li><i class="menu-icon fa fa-cloud"></i><a href="../config/respaldar.php">Respaldar BD</a></li>
+                            <li><i class="menu-icon fa fa-cloud-upload"></i><a href="../config/restaurar.php">Restaurar BD</a></li>
+                             <li><i class="menu-icon fa fa-cloud-upload"></i><a href="../../Controladores/controladorUsuario.php?operacion=login">Listado de usuarios</a></li>
+                        </ul>
                     </li>
                 <?php } ?>
                 </ul>

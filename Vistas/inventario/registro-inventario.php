@@ -203,7 +203,7 @@
           <button type="reset" class="btn btn-danger btn-sm col-md-1">
           <i class="fa fa-ban"></i></button>
 
-          <button type="submit" class="btn btn-primary btn-sm col-md-1"><i class="fa fa-check"></i>&nbsp;</button>
+          <button type="submit" name="btn_registrar_art" class="btn btn-primary btn-sm col-md-1"><i class="fa fa-check"></i>&nbsp;</button>
         </center>
 
 

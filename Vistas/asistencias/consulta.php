@@ -48,8 +48,9 @@ $data=unserialize($data);
                         <tr>
                           <th>N°</th>
                           <th>Cédula</th>
+                          <th>Empleado</th>
                           <th>Fecha de Registro</th>
-                          <th>Justificación</th>
+                          <th>Estado</th>
                         
                         </tr>
                       </thead>

@@ -363,6 +363,7 @@ include_once "../includes/menu.php";
                     <th>Presentación</th>
                     <th>Activo</th>
                     <th>Stock</th>
+                    <th>Unidad</th>
                     <!--th>Ubicación Actual</th-->
                     <?php
                       
@@ -425,6 +426,7 @@ include_once "../includes/menu.php";
                       echo "
                         <td ".$alert2.">".$activo."</td>
                         <td><strong ".$alert." >".$consulta['stock']."</strong></td>
+                        <td><strong>".$consulta['unidad']."</strong></td>
                      
                         ";
                            
@@ -442,19 +444,15 @@ include_once "../includes/menu.php";
                             echo "  <td>
                             <a href='javascript:ver(".$consulta['id'].")' class='ver'  title='Ver'><span class='fa fa-eye'></span></a>
                            <a href='editar-inventario.php?art=".$consulta['id']."' class='editar'  title='Editar'><span class='fa fa-edit'></span></a>
-                            
-                            <a href='generar_barras_articulo.php?art=".$consulta['id']."' class='ver'  title='File'><span class='fa fa-list'></span></a>
-                            <a href='javascript: mas(".$consulta['id'].")' class='mas' title='Añadir'><span class='fa fa-plus'></span></a>                          
+                                                  
                         
                             " ;
 
-                            if ($consulta['stock']==0) {
+                            if ($consulta['stock']==0  or $_SESSION['tipo_usuario']=='Admin') {
                               
                               echo "<a href='javascript: eliminar(".$consulta['id'].")' class='x' title='Eliminar'><span class='fa fa-times'></span></a>";
 
-                            }else{
-
-                              echo "<a href='javascript: menos(".$consulta["id"].")' id='menos-".$consulta["id"]."' class='menos' name='".$consulta["stock"]."' title='Retirar'><span class='fa fa-minus'></span></a>";
+                            }
 
                                echo "
                                   </td>
@@ -463,9 +461,6 @@ include_once "../includes/menu.php";
 
                             ";
                             }
-
-                           
-                        }
 
                     
 

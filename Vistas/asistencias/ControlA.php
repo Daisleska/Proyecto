@@ -73,8 +73,10 @@ switch ($dia) {
 
     }
     //buscando los registros en asistencias
-    $sql4="SELECT asistencias.id,empleado.nombres,empleado.apellidos,empleado.cedula,asistencias.status,asistencias.justificacion FROM empleado, asistencias WHERE asistencias.id_empleado=empleado.id && asistencias.fecha_hora LIKE '%".$hoy."%'";
+    $sql4="SELECT * FROM asistencias join empleado where asistencias.id_empleado = empleado.id AND fecha_hora ='".$hoy."'";
 
+    echo $sql4;
+    
   
     $result=mysqli_query($conex,$sql4);
     $filas=mysqli_num_rows($result);
@@ -115,7 +117,7 @@ $sql3="SELECT justificacion FROM asistencias";
     }
      if ($cont==0){
 		//enviando datos
-		header("Location: asistencia.php?filas=".$filas."&campos=".$campos."&data=".serialize($asistencia)."&campos_a=".$campos_a."&filas_a=".$filas_a."&justificacion=".serialize($justificacion));
+		header("Location: asistencia.php?filas=".$filas."&campos=".$campos."&asistencia=".serialize($asistencia)."&campos_a=".$campos_a."&filas_a=".$filas_a."&justificacion=".serialize($justificacion));
 	}else{
 		echo "Error en la Base de Datos";
 	}
@@ -233,7 +235,6 @@ if ($opcion=="asiste") {
  if ($res) {
             ?>
                 <script type="text/javascript">
-                    alert("Exitoso!");
                     window.location="ControlA.php?operacion=index";
                 </script>
             <?php
@@ -253,7 +254,7 @@ public function consulta(){
     $conex=$db->conectar();
     
 
-$sql="SELECT * FROM asistencias WHERE fecha_hora LIKE '%".$fecha."%'";
+$sql="SELECT asistencias.id, empleado.cedula, empleado.nombres, asistencias.fecha_hora, asistencias.status, asistencias.justificacion FROM asistencias, empleado WHERE asistencias.id_empleado=empleado.id AND fecha_hora LIKE  '%".$fecha."%'";
  
  if ($res=mysqli_query($conex,$sql)) {
     $campos=mysqli_num_fields($res);//cuantos campos trae la consulta

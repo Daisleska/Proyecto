@@ -99,16 +99,48 @@
             
 
             <div class="col-md-12">
-                        <div class="card" >
+                      
                             <img style="page-break-after: 1cm; height: 7cm;" class="card-img-top" src="../../images/servi.jpg" alt="Card image cap">
                             <div class="card-body">
                                 <h4 class="card-title mb-3"></p>
                             </div>
-                        </div>
+                      
                     </div>
 
 
 <div class="row" style="padding-left: 30px;">
+
+<?php if ($_SESSION['tipo_usuario']=='Usuario 2' or $_SESSION['tipo_usuario']=='Admin' ){  ?>
+   <div class="col-md-5" >
+          <div class="card mb-1 box-shadow"> <!--card mb-1 box-shadow-->
+            <div class="row">
+            <div class="col NHA" style=";padding: 0; text-align: left; ">
+                <img src="../../images/img/vehiculo.png" class="img-responsive" height="100%">
+              </div>
+              <div class="col NHA" style=";text-align: justify;">
+                <label><strong>Cantidad de Empleados a laboral:</strong></label><br>
+                <p style="font-size: 20px;">
+
+                  <?php
+                    include('../../Modelos/conexion.php');
+                    $hoy=date('Y-m-d');
+                    $sql="SELECT * FROM asistencias WHERE fecha_hora='$hoy'";
+                    $resultados=mysqli_query($conectar,$sql);
+                    $res=mysqli_num_rows($resultados);
+                    echo $res;
+           
+                   ?>
+                  
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+<?php } ?>
+
+<?php if ($_SESSION['tipo_usuario']=='Usuario 1' or $_SESSION['tipo_usuario']=='Admin' ){  ?>
+
     <div class="col-md-7 hidden-xs">
           <!-- TABLE: LATEST ORDERS -->
           <div class="box box-primary">
@@ -180,6 +212,8 @@
           </div>
           <!-- /.box -->
           </div>
+          <br><br>
+        <?php } ?>
                      
         </div>
 

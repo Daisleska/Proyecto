@@ -214,8 +214,8 @@
         //Eliminar articulos
 
         if ($e==1) {
-            echo "
-              iziToast.success({
+            echo 
+            "  iziToast.success({
                 title: '¡Eliminado! ',
                 message: 'Proveedor eliminado correctamente',
                 color: 'rgb(174, 240, 191)',
