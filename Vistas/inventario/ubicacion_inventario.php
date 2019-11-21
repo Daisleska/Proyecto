@@ -156,7 +156,13 @@
 ?>
   <div class="contenido">
     <div class="content-2">
-    <h2 style="text-align: center"><strong>Inventario</strong><br></h2><hr>
+    <section style="padding-left: 20px;" class="content-header">
+      <ol class="breadcrumb">
+       
+         <h1 align="center">  <span style="margin-left: 6.5cm;" class="badge badge-info">Inventario <i class="menu-icon fa fa-edit"></i> </span></h1>
+        
+      </ol>
+   </section >
     <!--nav inventario -->
          <ul class="nav nav-tabs">
           <li class="nav-item">
@@ -203,7 +209,7 @@
       
             echo '
                 <center>
-                  <button class="btn btn-primary agregar">Agregar ubicación</button>
+                  <button class="btn btn-primary agregar"><i class="ti-pencil-alt"></i> Registrar Ubicación</button>
                 </center>
             ';
           
@@ -211,7 +217,7 @@
 
 
     <br>
-    <div class="table-responsive">
+    <div class="table-responsive" style="padding-left: 20px;">
         <table class="table table-striped table-sm " id="table">
         <thead>
           <th>#</th>
@@ -270,8 +276,8 @@ if ($consulta['tipo']=='Interno') {
 
               echo "
               <td>
-              <a href='historial_almacen_interno.php?ubicacion=".$consulta['id']."' class='ver'  title='Ver'><span data-feather='eye'></span></a>
-               <a href='reporte_almacen_interno.php?ubicacion=".$consulta['id']."' class='ver'  title='File'><span data-feather='file'></span></a>
+              <a href='historial_almacen_interno.php?ubicacion=".$consulta['id']."' class='ver'  title='Ver'><span class='fa fa-eye'></span></a>
+               <a href='reporte_almacen_interno.php?ubicacion=".$consulta['id']."' class='ver'  title='File'><span class='fa fa-file-o'></span></a>
 
 
               ";
@@ -295,9 +301,9 @@ elseif ($consulta['tipo']=='Externo') {
               echo "
 
 
-                <a href='".$link1."' class='editar' name='".$consulta['ubicacion']."' id='editar-".$consulta['id']."' title='Editar'><span data-feather='edit'></span></a>
+                <a href='".$link1."' class='editar' name='".$consulta['ubicacion']."' id='editar-".$consulta['id']."' title='Editar'><span class='fa fa-edit'></span></a>
 
-                <a href='".$link2."' class='x' title='Eliminar' id='".$consulta["id"]."'><span data-feather='x'></span></a
+                <a href='".$link2."' class='x' title='Eliminar' id='".$consulta["id"]."'><span class='fa fa-trash-o'></span></a
 
               ";
             

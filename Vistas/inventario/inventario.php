@@ -261,9 +261,15 @@
 <?php 
 include_once "../includes/menu.php";
 ?>
-  <div class="contenido" style="padding-left: 20px">
+  <div class="contenido" style="padding-left: 15px">
     <div class="content-2">
-    <h2 style="text-align: center"><strong>Inventario</strong><br></h2><hr>
+    <section  class="content-header">
+      <ol class="breadcrumb">
+       
+         <h1 align="center">  <span style="margin-left: 6.5cm;" class="badge badge-info">Inventario <i class="menu-icon fa fa-edit"></i> </span></h1>
+        
+      </ol>
+   </section >
     <!--nav inventario -->
          <ul class="nav nav-tabs" >
           <li class="nav-item">
@@ -335,11 +341,11 @@ include_once "../includes/menu.php";
               echo '
 
                 <center>
-                    <a href="../inventario/registro-inventario.php" class="btn btn-primary">Agregar Producto</a>
+                    <a href="../inventario/registro-inventario.php" class="btn btn-primary"><i class="ti-pencil-alt"></i> Registrar Producto</a>
 
-                    <a href="../../reportes/reporte_inventario.php" class="btn btn-secondary" title="Descargar PDF"> PDF <i class="ti ti-import"></i></a>
+                    <a href="../../reportes/reporte_inventario.php" class="btn btn-secondary" title="Descargar PDF"><i class="ti ti-import"></i> Descargar PDF</a>
 
-                    <a href="../inventario/producto_enviar.php" class="btn btn-success">Enviar Productos</a>   
+                    <a href="../inventario/producto_enviar.php" class="btn btn-success"><i class="fa fa-truck"></i> Enviar Productos</a>   
               </center><br>
 
               ';

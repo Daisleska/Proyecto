@@ -4,15 +4,15 @@ $data=unserialize($data);
 ?>
   <?php include_once "../includes/menu.php"; ?>
 
-   <section style="padding-left: 20px;" class="content-header">
+   <section style="padding-left: 30px; padding-right: 20px;" class="content-header">
       <ol class="breadcrumb">
         <a href="../asistencias/ControlA.php?operacion=index" class="atras" title="Atras"><span class="fa fa-arrow-left" style="font-size: 35px;" ></span></a>
 
-       <h1 style="padding-left: 40px;"> Asistencias <span class="badge badge-info">Reportes <i class="menu-icon fa fa-list"></i> </span></h1>
+       <h1 align="center"><span style="margin-left: 4.5cm;" class="badge badge-info">Reportes de Asistencias <i class="menu-icon fa fa-list"></i> </span></h1>
       <br>
     
-        <li class="col-md-2,5" style=" padding-left: 290px;">
-        <a href="../../reportes/reporte_asistencia.php" target="blank" class="btn btn-block btn-danger btn-sm"><i class="fa fa-file-pdf-o"></i>PDF</a>
+        <li class="col-md-2,5" style=" padding-left: 290px; margin-left: 10cm;">
+        <!-- <a href="../../reportes/reporte_asistencia.php" target="blank" class="btn btn-block btn-danger btn-sm"><i class="fa fa-file-pdf-o"></i> PDF</a> -->
         </li>
       </ol>
 </section >
@@ -22,7 +22,7 @@ $data=unserialize($data);
                     <div class="table-responsive"  style="overflow-x: hidden;">
                       <form action="../asistencias/ControlA.php?operacion=consulta" method="POST">
                         
-                     <div class="row">
+                     <div class="row" style="padding-left: 15px;">
                         <div class="col-md-4">    
                         <div class="input-group">    
                        <input class="form-control" type="date" name="fecha">

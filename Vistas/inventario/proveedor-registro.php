@@ -56,12 +56,19 @@
 
   <div class="contenido" style="padding-left: 20px">
     <div class="content-2">
-      <h2 style="text-align: center"><a href="proveedores.php" class="atras" title="Atras"><span data-feather="arrow-left"></span></a><strong>Registrar proveedor</strong></h2>
-      <hr><br>
+     <section style="padding-left: 20px;" class="content-header">
+      <ol class="breadcrumb">
+         
+         <h2 style="text-align: center"><a href="inventario.php" class="atras" title="Atras"><span data-feather="arrow-left"></span></a></h2>
+          <br>
+         <h1 align="center">  <span style="margin-left: 3.5cm;" class="badge badge-info">Registro Proveedor <i class="menu-icon fa fa-edit"></i> </span></h1>
+        
+      </ol>
+   </section >
 
       <form action="proveedor-registro.php" method="POST" name="form" class="form">
         <h6 class="nota-input">Los campos con un <i class="estado-r">*</i> son obligatorios </h6><br>
-        <div class="row">
+        <div class="row" style="padding-left: 20px">
           <div class="col-md-6">
             <label><strong>RIF:</strong> <strong class='estado-r'>*</strong></label>
               <div style="width: 100%;">
@@ -74,7 +81,7 @@
                     <option value="G">G</option>
                   </select>
                 </div>
-                <div style="width: 77%; float: right;">
+                <div class="col-md-8">
                   <input type="text" name="numero_documento" class="form-control" placeholder="Ej.112345" required="required" min="0" maxlength="15">
                 <!--   <div id="result"></div>id="documento_numero"
                   <div class="valid-feedback">
@@ -87,17 +94,17 @@
               </div>
               
           </div>
-          <div class="col-md-6">
+          <div class="col-md-5">
             <label><strong>Nombre de la empresa</strong> <strong class='estado-r'>*</strong></label>
             <input type="text" class="form-control" name="nombre" placeholder="Ej. Corporación.C.A" required="required"><br>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-6">
+        <div class="row" style="padding-left: 20px">
+          <div class="col-md-5">
             <label><strong>Teléfono</strong> <strong class='estado-r'>*</strong></label>
             <input type="number" class="form-control" name="telefono" placeholder="Ej.0424987654 " required="required"><br>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-5">
             <label><strong>Correo</strong></label>
             <input type="email" class="form-control" name="correo" placeholder="Ej. ejemplo@ejemplo.com"><br>
           </div>

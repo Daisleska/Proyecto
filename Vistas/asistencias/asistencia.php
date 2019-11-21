@@ -17,7 +17,7 @@ $justificacion=unserialize($justificacion);
   <section style="padding-left: 20px;" class="content-header">
       <ol class="breadcrumb">
        
-         <h1 align="center"> Asistencias <span class="badge badge-info">Control <i class="menu-icon fa fa-edit"></i> </span></h1>
+         <h1 align="center">  <span style="margin-left: 6.5cm;" class="badge badge-info">Asistencias <i class="menu-icon fa fa-edit"></i> </span></h1>
         
       </ol>
    </section >
@@ -140,7 +140,7 @@ $justificacion=unserialize($justificacion);
                               <div id="asiste" style="display: none;">
                               <div class="row" >
                                 <div class="col-md-12">
-                                  <label>Seguro que desea marcar como asistió?</label>
+                                  <label>¿Seguro que desea marcar como asistió?</label>
                                 </div>   
                               </div>
                             </div>
@@ -148,13 +148,13 @@ $justificacion=unserialize($justificacion);
                             <div id="noasiste" style="display: none;">
                               <div class="row" >
                                 <div class="col-md-12">
-                                  <label>Seguro que desea marcar como no asistió?</label>
+                                  <label>¿Seguro que desea marcar como no asistió?</label>
                                 </div>   
                               </div>
                               <div class="row">
                                 <div class="col-md-12">
                                    <label>Justificación: </label>
-                                   <select class="" name="justificacion" >
+                                   <select class="" name="justificacion">
                                    <option value="" selected="selected" disabled="disabled"></option>
                                   <option>Reposo</option>
                                   <option>Permiso</option>

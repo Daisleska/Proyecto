@@ -263,7 +263,13 @@ include_once "../includes/menu.php";
 ?>
   <div class="contenido" style="padding-left: 20px">
     <div class="content-2">
-    <h2 style="text-align: center"><strong>Materia Prima</strong><br></h2><hr>
+    <section  class="content-header">
+      <ol class="breadcrumb">
+       
+         <h1 align="center">  <span style="margin-left: 6.5cm;" class="badge badge-info">Materia Prima <i class="fa fa-truck"></i> </span></h1>
+        
+      </ol>
+   </section >
     <!--nav inventario -->
          <ul class="nav nav-tabs" >
           <li class="nav-item">
@@ -338,11 +344,11 @@ include_once "../includes/menu.php";
               echo '
 
                 <center>
-                    <a href="../inventario/registro_materiaprima.php" class="btn btn-primary">Agregar Materia Prima</a>
+                    <a href="../inventario/registro_materiaprima.php" class="btn btn-primary"><i class="ti-pencil-alt"></i> Registrar Materia Prima</a>
 
-                    <a href="../../reportes/reporte_materiaprima.php" class="btn btn-secondary"> Descargar PDF</a>
+                    <a href="../../reportes/reporte_materiaprima.php" class="btn btn-secondary"><i class="ti ti-import"></i> Descargar PDF</a>
 
-                    <a href="../inventario/materiaprima_enviar.php" class="btn btn-success">Enviar Materia Prima</a>   
+                    <a href="../inventario/materiaprima_enviar.php" class="btn btn-success"><i class="fa fa-truck"></i> Enviar Materia Prima</a>   
               </center><br>
 
               ';

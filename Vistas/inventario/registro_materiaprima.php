@@ -123,12 +123,19 @@
   <div class="contenido">
     <div class="content-2">
  <form action="registro_materiaprima.php" method="POST" enctype="multipart/form-data">
-      <h2 style="text-align: center"><a href="materiaprima.php" class="atras" title="Atras"><span data-feather="arrow-left" ></span></a><strong>Registrar Materia Prima</strong></h2>
-      <hr><br>
+      <section style="padding-left: 20px;" class="content-header">
+      <ol class="breadcrumb">
+         
+         <h2 style="text-align: center"><a href="inventario.php" class="atras" title="Atras"><span data-feather="arrow-left"></span></a></h2>
+          <br>
+         <h1 align="center">  <span style="margin-left: 3.5cm;" class="badge badge-info">Registro de Materia Prima <i class="menu-icon fa fa-edit"></i> </span></h1>
+        
+      </ol>
+   </section >
      
         <h6 class="nota-input">Los campos con un <i class="estado-r">*</i> son obligatorios </h6><br>
-        <div class="row">
-          <div class="col-md-6">
+        <div class="row" style="padding-left: 20px">
+          <div class="col-md-4">
             <label><strong>Código</strong> <strong class="estado-r">*</strong></label>
             <input type="text" name="codigo" class="form-control codarticulo" required="required" placeholder="Ej. RJ-59014a">
 
@@ -141,60 +148,62 @@
               </div><br>
           </div>
           
-          <div class="col-md-6">
+          <div class="col-md-4">
             <label><strong>Activo</strong> <strong class="estado-r">*</strong></label>
             <select class="form-control" name="activo" required="required">
               <option value="S">Si</option>
               <option value="N">No</option>
             </select><br>
           </div>
-        </div>
-
-         <div class="row">
-          <div class="col-md-6">
+           <div class="col-md-4">
              <label><strong>Presentación</strong> <strong class="estado-r">*</strong></label>
             <input type="text" name="presentacion"  class="form-control" required="required" maxlength="120" placeholder="Ej. Paletas"><br>
           </div>
+        </div>
 
-          <div class="col-md-6">
+         <div class="row" style="padding-left: 20px">
+          
+          <div class="col-md-4">
             <label><strong>Unidad</strong> <strong class="estado-r">*</strong></label>
             <select class="form-control" name="unidad" required="required">
               <option value="lts">Ltrs</option>
               <option value="kgs">Klgs</option>
             </select><br>
           </div>
-        </div>
        
-        <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
              <label><strong>Nombre</strong> <strong class="estado-r">*</strong></label>
             <input type="text" name="nombre"  class="form-control" required="required" maxlength="120" placeholder="Xileno"><br>
           </div>
 
-          <div class="col-md-6">
+          <div class="col-md-4">
             <label><strong>Cantidad</strong> <strong class="estado-r">*</strong></label>
             <input type="number" class="form-control" name="stock" id="stock" required="required"  min="0" placeholder="Ej. 50"><br>
           </div>
         </div>
-        <div class="row">
+        <div class="row" style="padding-left: 20px">
           
-          <div class="col-md-6">
+          <div class="col-md-4">
             <label><strong>Cantidad minima</strong> <strong class="estado-r">*</strong></label>
             <input type="number" class="form-control" name="stock_minimo" id="stock_minimo" required="required" min="0" placeholder="Ej. 10"><br>
           </div>
 
-          <div class="col-md-6">
+          <div class="col-md-4">
             <label><strong>Cantidad maxima</strong> <strong class="estado-r">*</strong></label>
             <input type="number" name="stock_maximo" id="stock_maximo" class="form-control" required="required" placeholder="Ej. 60"><br>
           </div>
         </div>
        
          
-          <a href="materiaprima.php" class="btn btn-danger">Cancelar</a>
-          <input type="submit" value="Registrar" class="btn btn-primary btn-reg" name="btn_registrar_art">
+          <button type="reset" class="btn btn-danger btn-sm col-md-1">
+          <i class="fa fa-ban"></i></button>
+
+          <button type="submit" class="btn btn-primary btn-sm col-md-1"><i class="fa fa-check"></i>&nbsp;</button>
         </center>
 </form>
           </div>
+
+          <br><br><br><br><br><br><br><br><br>
 
         
        
