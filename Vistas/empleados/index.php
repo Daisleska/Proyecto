@@ -41,6 +41,8 @@ $data=unserialize($data);
 
                                     <a href="../../Controladores/ControladorEmpleado.php?operacion=vermas&id_empleado=<?=$data[$i][0]?>"><i title="Ver más" class="menu-icon fa fa-search-plus "></a></i>
 
+
+
                                     <a href="../../Controladores/ControladorEmpleado.php?operacion=verhorario&cedula=<?=$data[$i][1]?>"><i title="Horario" class="menu-icon fa fa-list"></a></i>
 
                                     <a href="../../Controladores/ControladorEmpleado.php?operacion=eliminar&id_empleado=<?=$data[$i][0]?>"><i title="Eliminar" class="menu-icon fa fa-trash-o"></a></i>

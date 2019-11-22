@@ -17,7 +17,7 @@ public function prenomina(){
 	$res=mysqli_query($conex,$sql);
 	while($fila=mysqli_fetch_array($res)){
 		$id=$fila['id'];
-		$sql2="SELECT COUNT(prenomina_empleado.id_prenomina) AS cantidad, pre_nomina.status, pre_nomina.id FROM pre_nomina INNER JOIN prenomina_empleado ON pre_nomina.id=prenomina_empleado.id_prenomina WHERE pre_nomina.id='$id'";
+		$sql2="SELECT COUNT(prenomina_empleado.id_prenomina) AS cantidad, pre_nomina.status, pre_nomina.id, pre_nomina.departamento FROM pre_nomina INNER JOIN prenomina_empleado ON pre_nomina.id=prenomina_empleado.id_prenomina WHERE pre_nomina.id='$id'";
 		$resultado=mysqli_query($conex,$sql2);
 		$fila2=mysqli_fetch_assoc($resultado);
 		$prenomina[$count]=$fila2;
@@ -40,7 +40,7 @@ public function aprobadas(){
 
 	while($fila=mysqli_fetch_array($res)){
 		$id=$fila['id'];
-		$sql2="SELECT COUNT(prenomina_empleado.id_prenomina) AS cantidad, pre_nomina.status, pre_nomina.id FROM pre_nomina INNER JOIN prenomina_empleado ON pre_nomina.id=prenomina_empleado.id_prenomina WHERE pre_nomina.id='$id'";
+		$sql2="SELECT COUNT(prenomina_empleado.id_prenomina) AS cantidad, pre_nomina.status, pre_nomina.id, pre_nomina.departamento FROM pre_nomina INNER JOIN prenomina_empleado ON pre_nomina.id=prenomina_empleado.id_prenomina WHERE pre_nomina.id='$id'";
 		$resultado=mysqli_query($conex,$sql2);
 		$fila2=mysqli_fetch_assoc($resultado);
 		$aprobadas[$count]=$fila2;
@@ -67,49 +67,32 @@ public function generar(){
     //$filas=0;
     if ($filas==0 && date('d')<16) {
 
-    	$sql="INSERT INTO `pre_nomina` (`id`, `quincena`, `mes`, `anio`, `status`) VALUES (NULL, '1', MONTH( CURDATE() ), YEAR( CURDATE() ), 'Procesando')";
+    	$sql="SELECT nombre FROM departamentos";
+    	$res=mysqli_query($conex, $sql);
+        $id_departamento=1;
+        $count=0;
+
+    	while ($fila=mysqli_fetch_array($res)) {
+
+        $nombre=$fila['nombre'];
+	 
+    	$sql="INSERT INTO `pre_nomina` (`id`, `quincena`, `mes`, `anio`, `departamento`, `status`) VALUES (NULL, '1', MONTH( CURDATE() ), YEAR( CURDATE() ), '$nombre', 'Procesando')";
 
     	$res=mysqli_query($conex,$sql);
 
     	$id_prenomina=mysqli_insert_id($conex);//obteniendo el último id generado
 	    //echo $id_prenomina;
         
-    	$sql2="SELECT empleado.*,cargos.nombre,cargos.salario FROM empleado, cargos WHERE empleado.id_cargo=cargos.id";
+    	$sql2="SELECT DISTINCT empleado.*,cargos.nombre,cargos.salario FROM empleado, cargos, departamentos WHERE empleado.id_cargo=cargos.id AND empleado.id_departamento=".$id_departamento." ";
 
         $res2=mysqli_query($conex,$sql2);
         $filas=mysqli_num_rows($res2);//cuantos registro trae la consulta
-
+        
 	    $i=0;
-	    $detalles = array();
-	    $inicio=0;//variable para inicio de matriz de detalle por empleado
-	    $p=0;//variable de incremente sumando las asig de cada empleado
-
-//Si jodes pana con un array se podia
-
+	    
 	while($data=mysqli_fetch_object($res2)){
 
-		//detalles de las asignaciones de cada empleado
-
-		$matrix_asig=$this->detalle_asignaciones($data->id);
-		//echo count($matrix_asig)."--";
 		
-		$fin=count($matrix_asig)+$p;//limite de ciclo por emplead
-
-	    $t=0;//variable para iterar la matriz que llega
-		for ($k=$inicio; $k < $fin ; $k++) { 
-			$detalles[$k][0]=$matrix_asig[$t][0];
-			$detalles[$k][1]=$matrix_asig[$t][1];
-			$detalles[$k][2]=$matrix_asig[$t][2];
-			$p++;
-			$t++;
-			
-		}
-		$inicio=$p;
-		// la matriz detalle es la que se va a enviar en la funcion header
-		//contiene todas las asignaciones de todos los empleados
-		//------------------
-
-
 		$asignaciones[$i]=$this->calcular_asignaciones($data->id);
 
 		//echo $asignaciones[$i];
@@ -141,50 +124,50 @@ public function generar(){
        
 		$resultado=mysqli_query($conex,$sql3);
 		$i++;
-     }
+   }
+   $count++;
+   $id_departamento++;
 
-    header("Location: ../Vistas/pre_nomina/verprenomina.php?filas=".$filas."&detalles=".serialize($detalles)."&asignaciones=".serialize($asignaciones)."&deducciones=".serialize($deducciones)."&inasistencia=".serialize($inasistencia)."&sueldo_neto=".serialize($sueldo_neto)."&empleado=".serialize($empleado));
-    	
+    ?>
+		<script type="text/javascript">
+			alert("¡Se generó exitosamente!");
+			window.location="ControladorPreNomina.php?operacion=prenomina";
+		</script>
+			<?php
+
+
+    }
+     
+  	
     }else if ($filas==1  && date('d')>15) {
 
-    	$sql="INSERT INTO `pre_nomina` (`id`, `quincena`, `mes`, `anio`, `status`) VALUES (NULL, '2', MONTH( CURDATE() ), YEAR( CURDATE() ), 'Procesando')";
+    	$sql="SELECT nombre FROM departamentos";
+    	$res=mysqli_query($conex, $sql);
+        $id_departamento=1;
+        $count=0;
+
+    	while ($fila=mysqli_fetch_array($res)) {
+
+        $nombre=$fila['nombre'];
+	 
+
+    	$sql="INSERT INTO `pre_nomina` (`id`, `quincena`, `mes`, `anio`, `departamento`, `status`) VALUES (NULL, '2', MONTH( CURDATE() ), YEAR( CURDATE() ), '$nombre', 'Procesando')";
 
     	$res=mysqli_query($conex,$sql);
 
     	$id_prenomina=mysqli_insert_id($conex);//obteniendo el último id generado
 	    //echo $id_prenomina;
         
-    	$sql2="SELECT empleado.*,cargos.nombre,cargos.salario FROM empleado, cargos WHERE empleado.id_cargo=cargos.id";
+    	$sql2="SELECT empleado.*,cargos.nombre,cargos.salario FROM empleado, cargos WHERE empleado.id_cargo=cargos.id AND empleado.id_departamento=".$id_departamento." ";
 
         $res2=mysqli_query($conex,$sql2);
         $filas=mysqli_num_rows($res2);//cuantos registro trae la consulta
 
 	    $i=0;
-	    $detalles = array();
-	    $inicio=0;//variable para inicio de matriz de detalle por empleado
-	    $p=0;//variable de incremente sumando las asig de cada empleado
+	   
 	while($data=mysqli_fetch_object($res2)){
 
-		//detalles de las asignaciones de cada empleado
-
-		$matrix_asig=$this->detalle_asignaciones($data->id);
-		//echo count($matrix_asig)."--";
-		
-		$fin=count($matrix_asig)+$p;//limite de ciclo por emplead
-
-	    $t=0;//variable para iterar la matriz que llega
-		for ($k=$inicio; $k < $fin ; $k++) { 
-			$detalles[$k][0]=$matrix_asig[$t][0];
-			$detalles[$k][1]=$matrix_asig[$t][1];
-			$detalles[$k][2]=$matrix_asig[$t][2];
-			$p++;
-			$t++;
-			
-		}
-		$inicio=$p;
-		// la matriz detalle es la que se va a enviar en la funcion header
-		//contiene todas las asignaciones de todos los empleados
-		//------------------
+	
 	
 		$asignaciones[$i]=$this->calcular_asignaciones($data->id);
 
@@ -227,8 +210,16 @@ public function generar(){
 		$i++;
      }
 
-    header("Location: ../Vistas/pre_nomina/verprenomina2.php?filas=".$filas."&detalles=".serialize($detalles)."&asignaciones=".serialize($asignaciones)."&deducciones=".serialize($deducciones)."&inasistencia=".serialize($inasistencia)."&monto=".serialize($monto)."&inasistencia_mes=".serialize($inasistencia_mes)."&sueldo_neto=".serialize($sueldo_neto)."&empleado=".serialize($empleado));
-    
+    $count++;
+   $id_departamento++;
+
+    ?>
+		<script type="text/javascript">
+			alert("¡Se generó exitosamente!");
+			window.location="ControladorPreNomina.php?operacion=prenomina";
+		</script>
+			<?php
+    }
     
     } elseif (($filas==1 && date('d')<16) || ($filas==2 && date('d')>15)) {
     	?>
@@ -268,7 +259,7 @@ public function aprobar(){
     //$filas=0;
     if ($filas['quincena']==1) {
         
-    	$sql2="SELECT empleado.*,cargos.nombre,cargos.salario FROM empleado, cargos WHERE empleado.id_cargo=cargos.id";
+    	$sql2="SELECT DISTINCT prenomina_empleado.id_prenomina, empleado.*,cargos.nombre,cargos.salario FROM empleado, cargos, prenomina_empleado WHERE empleado.id_cargo=cargos.id AND prenomina_empleado.id_empleado=empleado.id AND prenomina_empleado.id_prenomina=".$id_prenomina;
 
         $res2=mysqli_query($conex,$sql2);
         $filas=mysqli_num_rows($res2);//cuantos registro trae la consulta
@@ -324,7 +315,7 @@ public function aprobar(){
    
     }else if ($filas['quincena']==2) {
         
-    	$sql2="SELECT empleado.*,cargos.nombre,cargos.salario FROM empleado, cargos WHERE empleado.id_cargo=cargos.id";
+    	$sql2="SELECT DISTINCT prenomina_empleado.id_prenomina, empleado.*,cargos.nombre,cargos.salario FROM empleado, cargos, prenomina_empleado WHERE empleado.id_cargo=cargos.id AND prenomina_empleado.id_empleado=empleado.id AND prenomina_empleado.id_prenomina=".$id_prenomina;
 
         $res2=mysqli_query($conex,$sql2);
         $filas=mysqli_num_rows($res2);//cuantos registro trae la consulta
@@ -578,41 +569,17 @@ public function ver(){
     //$filas=0;
     if ($filas['quincena']==1) {
         
-    	$sql2="SELECT empleado.*,cargos.nombre,cargos.salario FROM empleado, cargos WHERE empleado.id_cargo=cargos.id";
+    	$sql2="SELECT DISTINCT prenomina_empleado.id_prenomina, empleado.*,cargos.nombre,cargos.salario FROM empleado, cargos, prenomina_empleado WHERE empleado.id_cargo=cargos.id AND prenomina_empleado.id_empleado=empleado.id AND prenomina_empleado.id_prenomina=".$id_prenomina;
 
-        $res2=mysqli_query($conex,$sql2);
-        $filas=mysqli_num_rows($res2);//cuantos registro trae la consulta
-
+        $res2=mysqli_query($conex, $sql2);
+        $filas=mysqli_num_rows($res2);
+       
 	    $i=0;
-	    $detalles = array();
-	    $inicio=0;//variable para inicio de matriz de detalle por empleado
-	    $p=0;//variable de incremente sumando las asig de cada empleado
+	   
 
-//Si jodes pana con un array se podia
-
-	while($data=mysqli_fetch_object($res2)){
+	    while($data=mysqli_fetch_object($res2)){
 
 		//detalles de las asignaciones de cada empleado
-
-		$matrix_asig=$this->detalle_asignaciones($data->id);
-		//echo count($matrix_asig)."--";
-		
-		$fin=count($matrix_asig)+$p;//limite de ciclo por emplead
-
-	    $t=0;//variable para iterar la matriz que llega
-		for ($k=$inicio; $k < $fin ; $k++) { 
-			$detalles[$k][0]=$matrix_asig[$t][0];
-			$detalles[$k][1]=$matrix_asig[$t][1];
-			$detalles[$k][2]=$matrix_asig[$t][2];
-			$p++;
-			$t++;
-			
-		}
-		$inicio=$p;
-		// la matriz detalle es la que se va a enviar en la funcion header
-		//contiene todas las asignaciones de todos los empleados
-		//------------------
-
 
 		$asignaciones[$i]=$this->calcular_asignaciones($data->id);
 
@@ -642,47 +609,25 @@ public function ver(){
         $empleado[$i][5]=$data->salario/2;
 
 	    
-	   
-       
-		$resultado=mysqli_query($conex,$sql3);
 		$i++;
      }
 
-    header("Location: ../Vistas/pre_nomina/verprenomina.php?filas=".$filas."&detalles=".serialize($detalles)."&asignaciones=".serialize($asignaciones)."&deducciones=".serialize($deducciones)."&inasistencia=".serialize($inasistencia)."&sueldo_neto=".serialize($sueldo_neto)."&empleado=".serialize($empleado));
+    header("Location: ../Vistas/pre_nomina/verprenomina.php?filas=".$filas."&asignaciones=".serialize($asignaciones)."&deducciones=".serialize($deducciones)."&inasistencia=".serialize($inasistencia)."&sueldo_neto=".serialize($sueldo_neto)."&empleado=".serialize($empleado));
     	
     }else if ($filas['quincena']==2) {
         
-    	$sql2="SELECT empleado.*,cargos.nombre,cargos.salario FROM empleado, cargos WHERE empleado.id_cargo=cargos.id";
+    	$sql2="SELECT DISTINCT prenomina_empleado.id_prenomina, empleado.*,cargos.nombre,cargos.salario FROM empleado, cargos, prenomina_empleado WHERE empleado.id_cargo=cargos.id AND prenomina_empleado.id_empleado=empleado.id AND prenomina_empleado.id_prenomina=".$id_prenomina;
+
+
 
         $res2=mysqli_query($conex,$sql2);
         $filas=mysqli_num_rows($res2);//cuantos registro trae la consulta
 
 	    $i=0;
-	    $detalles = array();
-	    $inicio=0;//variable para inicio de matriz de detalle por empleado
-	    $p=0;//variable de incremente sumando las asig de cada empleado
+	    
 	while($data=mysqli_fetch_object($res2)){
 
-		//detalles de las asignaciones de cada empleado
-
-		$matrix_asig=$this->detalle_asignaciones($data->id);
-		//echo count($matrix_asig)."--";
-		
-		$fin=count($matrix_asig)+$p;//limite de ciclo por emplead
-
-	    $t=0;//variable para iterar la matriz que llega
-		for ($k=$inicio; $k < $fin ; $k++) { 
-			$detalles[$k][0]=$matrix_asig[$t][0];
-			$detalles[$k][1]=$matrix_asig[$t][1];
-			$detalles[$k][2]=$matrix_asig[$t][2];
-			$p++;
-			$t++;
-			
-		}
-		$inicio=$p;
-		// la matriz detalle es la que se va a enviar en la funcion header
-		//contiene todas las asignaciones de todos los empleados
-		//------------------
+	
 	
 		$asignaciones[$i]=$this->calcular_asignaciones($data->id);
 
@@ -720,7 +665,6 @@ public function ver(){
 
 	    
        
-		$resultado=mysqli_query($conex,$sql3);
 		$i++;
      }
 

@@ -138,7 +138,8 @@ if ($nombresbd>0){
 		extract($_REQUEST);
 		$db=new clasedb;
 		$conex=$db->conectar();
-		$sql="DELETE * FROM asignacion_deduccion WHERE id=".$id_asignacion_deduccion;
+		$sql="DELETE FROM asignacion_deduccion WHERE id=".$id;
+		
 		
 	$res=mysqli_query($conex,$sql);
 		if ($res) {

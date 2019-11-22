@@ -1,7 +1,6 @@
 <?php
 include_once "../includes/menu.php"; 
 extract($_REQUEST);
-$detalles=unserialize($detalles);
 $empleado=unserialize($empleado);
 $sueldo_neto=unserialize($sueldo_neto);
 $asignaciones=unserialize($asignaciones);
@@ -29,19 +28,23 @@ var year = (yy < 1000) ? yy + 1900 : yy;
 
 </script>
         <!-- Header-->
-<div class="breadcrumbs"></div>
+
     <div class="content mt-3">
         <div class="animated fadeIn">
             <div class="row">
                 <div class="col-md-12">
-                     <h2 style="text-align: center"><a href="../../Controladores/ControladorPreNomina.php?operacion=prenomina" class="atras" title="Atras"><span class="fa fa-arrow-left" ></span></a><strong>Detalles Pre-Nomina:2  </strong><script style="text-align: right;" type="text/javascript">document.write("" + months[month] + " " + year);</script>
-                    <br></h2>
-                    <br>
+                    <section style="padding-left: 20px;" class="content-header">
+                       <ol class="breadcrumb">
 
-                        
-                    </div>
+                        <a href="../../Controladores/ControladorPreNomina.php?operacion=prenomina" class="atras" title="Atras"><span class="fa fa-arrow-left" style="font-size: 35px;" ></span></a>
+
+           
+                       <h1 align="center">  <span style="margin-left: 1cm;" class="badge badge-info">Detalles Pre-Nóminas </strong><script style="text-align: right;" type="text/javascript">document.write("" + months[month] + " " + year);</script> <i class="menu-icon fa fa-edit"></i> </span></h1>
+            
+                        </ol>
+                    </section >
                     
-                            <div class="col-md-2,5"></div>
+                            <div class="table-responsive" style="padding-left: 30px; padding-right: 20px;">
                                 <table class="table table-striped table-sm " id="table" >
                                     <thead>
                                        <tr>

@@ -27,8 +27,16 @@ var year = (yy < 1000) ? yy + 1900 : yy;
         <div class="animated fadeIn">
             <div class="row">
                 <div class="col-md-12">
-                     <h2 style="text-align: center"><a href="../../Controladores/ControladorPreNomina.php?operacion=prenomina" class="atras" title="Atras"><span class="fa fa-arrow-left" ></span></a><strong>Nominas Aprobadas: </strong><script style="text-align: right;" type="text/javascript">document.write("" + months[month] + " " + year);</script>
-                    <br></h2>
+                     
+                     <section style="padding-left: 20px;" class="content-header">
+                    <ol class="breadcrumb">
+
+                    <a href="../../Controladores/ControladorPreNomina.php?operacion=prenomina" class="atras" title="Atras"><span class="fa fa-arrow-left" style="font-size: 35px;" ></span></a>
+           
+                   <h1 align="center">  <span style="margin-left: 1cm;" class="badge badge-info">Nóminas Aprobadas </strong><script style="text-align: right;" type="text/javascript">document.write("" + months[month] + " " + year);</script> <i class="menu-icon fa fa-edit"></i> </span></h1>
+            
+                    </ol>
+                  </section >
               
                             
                            <div class="col-md-2,5">
@@ -54,7 +62,7 @@ var year = (yy < 1000) ? yy + 1900 : yy;
                               ?>
                               <tr>
                                   <td><?=$num?></td>
-                                  <td>Almacen y Recursos Humanos</td>
+                                  <td><?php echo($aprobad['departamento']); ?></td>
                                   <td><?php echo($aprobad['cantidad']); ?></td>
                                   <td><?php echo($aprobad['status']); ?></td>
                                 <td>
