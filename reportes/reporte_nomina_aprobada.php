@@ -14,7 +14,7 @@ class PDF extends FPDF {
     $this->Ln(10);
     $this->Cell(0,0,utf8_decode('REPÚBLICA BOLIVARIANA DE VENEZUELA'),0,0,'C');    
     $this->Ln(1); 
-    $this->Cell(0,8,utf8_decode('SERVIFORM C.A"'),0,0,'C');
+    $this->Cell(0,8,utf8_decode('SERVIFORM C.A'),0,0,'C');
     $this->Ln(1); 
     $this->Cell(0,16,utf8_decode('LA VICTORIA - ESTADO ARAGUA'),0,0,'C');
     $this->Ln(0); 

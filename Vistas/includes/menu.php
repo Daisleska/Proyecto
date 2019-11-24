@@ -177,36 +177,18 @@ include("../../Modelos/conexion.php");
     <div id="right-panel" class="right-panel">
 
         <!-- Header-->
-        <header id="header" class="header  col-md-12"><div class="header-menu "><div class="col-md-7">
+        <header id="header" class="header  col-md-12">
+            <div class="header-menu ">
+                <div class="col-md-4">
                     <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa-hand-o-left"></i></a>
                     <div class="header-left">
-
-                        
-
                         <img src="../../images/servi.png" width="100">
-
-                                           </div>
-        
-
-                        <div class="form-inline">
-
-                        
-                        </div>
-
-                        
-
-                    
+                    </div>
                     </div>
                     
                 </div>
-
-
-                <div class="col-md-5">
-                    <div class="user-area dropdown float-right">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="../../images/admin.jpg" alt="User Avatar">
-
-<script type="text/javascript">
+<div class="col-md-4" style="align-content: center;">
+        <script type="text/javascript">
 //<![CDATA[
 
 function makeArray() {
@@ -223,6 +205,7 @@ document.write("" + day + " de " + months[month] + " del " + year);
 //]]>
 
 </script>   
+
  <script type="text/javascript">
 
 function startTime(){
@@ -239,7 +222,15 @@ function checkTime(i)
 window.onload=function(){startTime();}
 </script>
 <div id="reloj" style="font-size:15px;" ></div>
-                        </a>
+
+</div>
+
+                <div class="col-md-4">
+                    <div class="user-area dropdown float-right">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="user-avatar rounded-circle" src="../../images/admin.jpg" alt="User Avatar">
+
+                         </a>
 
                         <div class="user-menu dropdown-menu">
                             <a class="nav-link" href="../../Controladores/ControladorPerfil.php?operacion=verperfil"><i class="fa fa-user"></i> Mi perfil</a>
@@ -254,20 +245,15 @@ window.onload=function(){startTime();}
                       <strong style="padding-left: 60px;" class="active"><?php echo $_SESSION['user'];?></strong><br>
                       <cite style="padding-left: 60px;"><?php echo $_SESSION['tipo_usuario']; ?></cite>
 
-                  
-                     
-                    
-                
-                
-               
-               
- 
                 </div>
             </div>
 
         </header><!-- /header -->
         <!-- Header-->
 
+
+
+                       
      
 
 <!-- fin de hora y fecha-------------------------------------------------- -->

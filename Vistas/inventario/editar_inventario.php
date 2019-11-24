@@ -60,7 +60,7 @@
               $sql="SELECT * FROM productos WHERE codigo='$codarticulo' AND borrado='N' AND id!='$art'";
               $resultado=mysqli_query($conectar,$sql);
               $res_busqueda=mysqli_num_rows($resultado);
-              include('../../Modelos/desconectar.php');
+            
 
               if ($res_busqueda>0) {
                 
@@ -85,7 +85,7 @@
                   }
                 }
 
-                $resultado=mysqli_query($conexion,$sql);
+                $resultado=mysqli_query($conectar,$sql);
                 if ($resultado) {
                   include ('funcion-inventario.php');
 
@@ -124,13 +124,9 @@
       $x=1;
     }
 
-    include('../../Modelos/desconectar.php');
-
     if ($x==0) {
       header('location: inventario.php');
     }
-
-    include_once "../includes/menu.php";
 
 ?>
 
@@ -183,7 +179,9 @@
     
     });
     </script>
-
+<?php 
+include_once "../includes/menu.php";
+?>
 
   <div class="contenido">
     <div class="content-2">

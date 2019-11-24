@@ -54,7 +54,11 @@
 ?>
   <div class="contenido">
     <div class="content-2">
-        <h2 style="text-align: center"><strong>Inventario</strong><br></h2><hr>
+        <ol class="breadcrumb">
+       
+         <h1 align="center">  <span style="margin-left: 8.5cm;" class="badge badge-info">Pedidos <i class="menu-icon fa fa-edit"></i> </span></h1>
+        
+      </ol>
             <!--nav inventario -->
          <ul class="nav nav-tabs">
           <li class="nav-item">
@@ -116,18 +120,18 @@
               echo '
 
                 <li class="nav-item">
-                  <a class="nav-link" href="categorias-inventario.php">Categorías</a>
+                   <a class="nav-link" href="../inventario/materiaprima.php">Materia Prima</a>
                 </li>
                   <li class="nav-item">
-                  <a class="nav-link " href="ubicacion-inventario.php">Ubicación</a>
+                  <a class="nav-link " href="../inventario/ubicacion_inventario.php">Ubicación</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="proveedores.php">Proveedores</a>
+                 <a class="nav-link" href="../inventario/proveedores.php">Proveedores</a>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Pedidos <span class="badge badge-primary badge-pill" style="float: right;">'.$res_busqueda.'</span></a>
+                  <a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Pedidos <span class="badge badge-primary badge-pill" style="float: right;">'.$res_busqueda.' '.$cont_interno.'</span></a>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item active" href="pedidos-internos.php">Internos <span class="badge badge-primary badge-pill" style="float: right;">'.$cont_interno.'</span></a>
+                    <a class="dropdown-item active" href="pedidos-internos.php">Internos <span class="badge badge-primary badge-pill" style="float: right;"></span></a>
                     <a class="dropdown-item" href="pedidos-externos.php">Externos <span class="badge badge-primary badge-pill" style="float: right;">'.$cont_externo.'</span></a>
                   </div>
                 </li>
@@ -419,6 +423,7 @@
     <script type="text/javascript">var X=3</script>
     <script src="../../vendors/js/datatables.min.js"></script>
     <script src="../../vendors/js/sweetalert.min.js"></script>
+    <script src="../../vendors/js/main.js"></script>
     <script type="text/javascript">
 
           $('#table').DataTable({

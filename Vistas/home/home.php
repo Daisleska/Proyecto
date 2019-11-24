@@ -7,7 +7,7 @@
     <div class="content-2">
       <div style="width: 100%; padding-left: 20px; padding-right: 20px;">
         <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
           <div class="card mb-1 box-shadow"> <!--card mb-1 box-shadow-->
             <div class="row">
             <div class="col NHA" style=";padding: 0; text-align: left; ">
@@ -31,7 +31,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4" >
+        <div class="col-md-3" >
           <div class="card mb-1 box-shadow"> <!--card mb-1 box-shadow-->
             <div class="row">
             <div class="col NHA" style=";padding: 0; text-align: left; ">
@@ -55,7 +55,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
           <div class="card mb-1 box-shadow"> <!--card mb-1 box-shadow-->
             <div class="row">
             <div class="col NHA" style=";padding: 0; text-align: left; ">
@@ -78,10 +78,42 @@
             </div>
           </div>
         </div>
+
+         <?php if ($_SESSION['tipo_usuario']=='Usuario 2' or $_SESSION['tipo_usuario']=='Admin' ){  ?>
+   <div class="col-md-3" >
+          <div class="card mb-1 box-shadow"> <!--card mb-1 box-shadow-->
+            <div class="row">
+            <div class="col NHA" style=";padding: 0; text-align: left; ">
+                <img src="../../images/img/cube.png" class="img-responsive" height="100%">
+              </div>
+              <div class="col NHA" style=";text-align: justify;">
+                <label><strong>Empleados a laboral:</strong></label><br>
+                <p style="font-size: 20px;">
+
+                  <?php
+                    include('../../Modelos/conexion.php');
+                    $hoy=date('Y-m-d');
+                    $sql="SELECT * FROM asistencias WHERE fecha_hora='$hoy'";
+                    $resultados=mysqli_query($conectar,$sql);
+                    $res=mysqli_num_rows($resultados);
+                    echo $res;
+           
+                   ?>
+                  
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+<?php } ?>
+
       </div>
       </div>
       </div>
   </div>
+
+
 
 
         <div class="content mt-3">
@@ -108,36 +140,7 @@
                     </div>
 
 
-<div class="row" style="padding-left: 30px;">
 
-<?php if ($_SESSION['tipo_usuario']=='Usuario 2' or $_SESSION['tipo_usuario']=='Admin' ){  ?>
-   <div class="col-md-5" >
-          <div class="card mb-1 box-shadow"> <!--card mb-1 box-shadow-->
-            <div class="row">
-            <div class="col NHA" style=";padding: 0; text-align: left; ">
-                <img src="../../images/img/vehiculo.png" class="img-responsive" height="100%">
-              </div>
-              <div class="col NHA" style=";text-align: justify;">
-                <label><strong>Cantidad de Empleados a laboral:</strong></label><br>
-                <p style="font-size: 20px;">
-
-                  <?php
-                    include('../../Modelos/conexion.php');
-                    $hoy=date('Y-m-d');
-                    $sql="SELECT * FROM asistencias WHERE fecha_hora='$hoy'";
-                    $resultados=mysqli_query($conectar,$sql);
-                    $res=mysqli_num_rows($resultados);
-                    echo $res;
-           
-                   ?>
-                  
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-<?php } ?>
 
 <?php if ($_SESSION['tipo_usuario']=='Usuario 1' or $_SESSION['tipo_usuario']=='Admin' ){  ?>
 

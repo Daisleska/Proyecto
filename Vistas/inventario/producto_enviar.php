@@ -35,7 +35,7 @@ include_once "../includes/menu.php";
                       <option id="empresa_select" value="">Seleccione una ubicación</option>
                      <?php 
                        include("../../Modelos/conexion.php");
-                     $sql="SELECT * FROM ubicacion WHERE tipo='I'";
+                     $sql="SELECT * FROM ubicacion WHERE tipo='I' AND borrado='N'";
                     $res_emp=$conectar->query($sql);
                         while ($ubicacion=$res_emp->fetch_array()) {
                        ?>

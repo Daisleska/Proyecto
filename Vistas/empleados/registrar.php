@@ -26,28 +26,11 @@ $asignaciones=unserialize($asignaciones);
     }
 </script>
 
-
-
-
-        <div class="breadcrumbs">
-            <div class="col-sm-4">
-                <div class="page-header float-left">
-                    
-                </div>
-            </div>
-            <div class="col-sm-8">
-                <div class="page-header float-right">
-                    
-                </div>
-            </div>
-        </div>
-
-
-
         <div class="content mt-3 container">
             <div class="animated fadeIn">
                       
-                       <h2 style="text-align: center; "><strong>Registrar Empleado</strong><br></h2><hr>                          
+                      <h1 align="center"><span style="margin-left: 0.5cm;" class="badge badge-info">Registrar Empleado <i class="fa fa-user"></i> </span></h1>
+                      <hr>                          
 
                 
                     <div class="col-lg-10" style="margin-left: 2cm;">
@@ -55,7 +38,7 @@ $asignaciones=unserialize($asignaciones);
       
                  
                     <div class="card-body card-block">
-                    <form action="../../Controladores/ControladorEmpleado.php" method="post" class="form-horizontal justify-content-center">
+                    <form action="../../Controladores/ControladorEmpleado.php" method="post" class="form-horizontal justify-content-center" name="f1">
 
 
                                       
@@ -182,21 +165,24 @@ $asignaciones=unserialize($asignaciones);
                             <th> Domingo</th>
                            <input type="checkbox" name="checkbox[]" id="checkbox" value="Domingo">
                            <br>
+                           <br>
+                           <a href="javascript:seleccionar_todo()">Marcar todos</a> |
+                           <a href="javascript:deseleccionar_todo()">Marcar ninguno</a>
                        </div>
+
              </div>
          </div>
                </div>
 
 
           <!-- asignaciones y deducciones -->
-               <div class="card">
-                            <div class="card-header" >
-                                <strong class="card-title">Asignaciones / Deducciones</strong>
-                            </div>
-                            <div class="card-body">
-
-                                <select name="asignaciones[]" data-placeholder="..." multiple class="standardSelect" >
-                                    <option value="" selected="selected" disabled="disabled"></option>
+       <div class="card">
+        <div class="card-header" >
+          <strong class="card-title">Asignaciones / Deducciones</strong>
+        </div>
+         <div class="card-body">
+           <select name="asignaciones[]" data-placeholder="Seleccione" multiple class="standardSelect" >
+             <option value="" selected="selected" disabled="disabled"></option>
                                     <?php 
                     for ($i=0; $i<$filas_asi; $i++){
                     ?>
@@ -205,10 +191,10 @@ $asignaciones=unserialize($asignaciones);
                     }
                     ?>
                                    
-                                </select>
+             </select>
 
-                            </div>
-                        </div>
+             </div>
+      </div>
             
                     <div class="card-footer">
                     <input type="hidden" name="operacion" value="guardar">
@@ -233,4 +219,18 @@ $asignaciones=unserialize($asignaciones);
                                 <!-- Right Panel -->
 
    <?php include_once "../includes/footer.php"; ?>
+
+   <script type="text/javascript">
+     function seleccionar_todo(){
+   for (i=0;i<document.f1.elements.length;i++)
+      if(document.f1.elements[i].type == "checkbox")
+         document.f1.elements[i].checked=1
+}
+
+function deseleccionar_todo(){
+   for (i=0;i<document.f1.elements.length;i++)
+      if(document.f1.elements[i].type == "checkbox")
+         document.f1.elements[i].checked=0
+}
+   </script>
 

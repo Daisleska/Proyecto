@@ -266,7 +266,7 @@ include_once "../includes/menu.php";
     <section  class="content-header">
       <ol class="breadcrumb">
        
-         <h1 align="center">  <span style="margin-left: 6.5cm;" class="badge badge-info">Inventario <i class="menu-icon fa fa-edit"></i> </span></h1>
+         <h1 align="center">  <span style="margin-left: 8.5cm;" class="badge badge-info">Inventario <i class="menu-icon fa fa-badge"></i> </span></h1>
         
       </ol>
    </section >
@@ -301,7 +301,7 @@ include_once "../includes/menu.php";
                   <a class="nav-link" href="../inventario/proveedores.php">Proveedores</a>
                 </li>
                 <li class="nav-item ">
-                  <a class="nav-link" href="../inventario/pedidos-internos.php">Pedidos </a>
+                  <a class="nav-link" href="../inventario/pedidos-internos.php">Pedidos <span class="badge badge-primary badge-pill" style="float: right;"> </span> '.$cont_interno.'</a>
                  
                 </li>
 
@@ -360,6 +360,7 @@ include_once "../includes/menu.php";
                     <th>Presentación</th>
                     <th>Activo</th>
                     <th>Stock</th>
+                     <th>Unidad</th>
                     <!--th>Ubicación Actual</th-->
                     <?php
                       
@@ -422,6 +423,7 @@ include_once "../includes/menu.php";
                       echo "
                         <td ".$alert2.">".$activo."</td>
                         <td><strong ".$alert." >".$consulta['stock']."</strong></td>
+                         <td><strong>".$consulta['unidad']."</strong></td>
                      
                         ";
                            
@@ -438,7 +440,7 @@ include_once "../includes/menu.php";
                       
                             echo "  <td>
                             <a href='javascript:ver(".$consulta['id'].")' class='ver'  title='Ver'><span class='fa fa-eye'></span></a>
-                           <a href='editar_inventario.php?art=".$consulta['id']."' class='editar'  title='Editar'><span class='fa fa-edit'></span></a>
+                           <a href='../inventario/editar_inventario.php?art=".$consulta['id']."' class='editar'  title='Editar'><span class='fa fa-edit'></span></a>
                             
                                                      
                         

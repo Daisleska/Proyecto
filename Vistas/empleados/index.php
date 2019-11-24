@@ -4,15 +4,24 @@ $data=unserialize($data);
 ?>
 
        
-         <div class="content mt-3">
-            <div class="animated fadeIn">
-                <div class="row">
-                     <a href="../../reportes/reporte_empleados.php" target="blank" class="btn btn-block btn-danger btn-sm"><i class="fa fa-file-pdf-o"></i> Reporte PDF</a>
+         <div class="content mt-3" style="padding-left: 20px">
+ <section style="padding-left: 20px;" class="content-header">
+      <ol class="breadcrumb">
+       
+         <h1 align="center">  <span style="margin-left: 8.0cm;" class="badge badge-info">Listado empleados <i class="menu-icon fa fa-users"></i> </span></h1>
+        
+      </ol>
+   </section >
+        
+                <div class="row" style="padding-left: 20px">
+                    <center>
+      <a href="../../reportes/reporte_empleados.php" class="btn btn-block btn-danger btn-sm"><i class="fa fa-file-pdf-o"></i> Reporte PDF</a>
+    </center><br>
+                </div>
+                <br>
 
-                    <div class="col-md-12">
-                      <div class="card">   
-                            <div class="card-body">
-                    <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                 <div class="table-responsive">
+                    <table class="table table-striped table-sm " id="table">
                                     <thead>
                                         <tr>
                                             <th>N°</th>
@@ -22,7 +31,7 @@ $data=unserialize($data);
                                             <th>Dirección</th>
                                             <th>Teléfono</th>
                                             <th>Fecha de Ingreso</th>
-                                            <th>Opción</th>                                     
+                                            <th>Opciones</th>                                     
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -54,12 +63,8 @@ $data=unserialize($data);
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
-
-                     </div>
                         
-                </div>
-            </div><!-- .animated -->
+            
         </div><!-- .content -->
 
 
@@ -67,3 +72,43 @@ $data=unserialize($data);
 
     <!-- Right Panel -->
 <?php include_once "../includes/footer.php"; ?>
+
+ <script>
+      feather.replace();
+    </script>
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
+     <script src="../../vendors/js/feather.min.js"></script>
+    <script>
+      feather.replace();
+    </script>
+   <script type="text/javascript">var X=3</script>
+    <script src="../../vendors/js/datatables.min.js"></script>
+    <script src="../../vendors/js/sweetalert.min.js"></script>
+    <script type="text/javascript">
+
+          $('#table').DataTable({
+            "searching": true,
+            language: {
+            "decimal": "",
+            "emptyTable": "No hay información",
+            "info": "Mostrando la página _PAGE_ de _PAGES_",
+            "infoEmpty": "Mostrando 0 de 0 Entradas",
+            "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+            "infoPostFix": "",
+            "thousands": ",",
+            "lengthMenu": "Mostrar _MENU_ Entradas",
+            "loadingRecords": "Cargando...",
+            "processing": "Procesando...",
+            "search": "Buscar:",
+            "zeroRecords": "Sin resultados encontrados",
+            "paginate": {
+                "first": "Primero",
+                "last": "Ultimo",
+                "next": "Siguiente",
+                "previous": "Anterior"
+              }
+            }
+            
+          });
+
+        </script>

@@ -58,7 +58,7 @@ $justificacion=unserialize($justificacion);
                   <div class="row">
                     <div class="col-md-12">
                    
-                    <table class="table table-striped table-sm " id="table" >
+                 <table class="table table-striped table-sm " id="table" >
                       <thead>
                         <tr>
                           <th>N°</th>

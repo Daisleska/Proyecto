@@ -24,7 +24,7 @@
 		$i++;
 	}
 
-	function articulos ($i,$codarticulo,$articulos,$cantidad_solicitada,$cantidad_despachada,$observacion,$valor_unitario,$moneda){
+	function articulos ($i,$codarticulo,$articulos,$cantidad_solicitada,$cantidad_despachada,$observacion){
 
 		$html='';
 
@@ -36,11 +36,10 @@
 					<th width="5%" >'.$cont.'</th>
 					<th width="10.5%" >'.$codarticulo[$j].'</th>
 					<th width="30%" >'.$articulos[$j].'</th>
-					<th width="8%" >Unidades</th>
-					<th width="8%" >'.$cantidad_solicitada[$j].'</th>
-					<th width="8%" >'.$cantidad_despachada[$j].'</th>
-					<th width="12.5%" >'.$valor_unitario[$j].' '.$moneda[$j].'</th>
-					<th width="18%" >'.$observacion[$j].'</th>
+					<th width="10%" >Unidades</th>
+					<th width="11%" >'.$cantidad_solicitada[$j].'</th>
+					<th width="11%" >'.$cantidad_despachada[$j].'</th>
+					<th width="22.5%" >'.$observacion[$j].'</th>
 				</tr>
 			';
 
@@ -104,12 +103,12 @@ height: 30%;
   <tr height="30px;" >
     <th colspan="2"  style="text-align: center;">
     <br><br>
-    <img src="../../images/servi.jpg" width="40px;" >
-<h4 text-align="center">Millar IPC,C.A. <br>
+    <img src="../../images/servi.jpg" width="70px;" >
+<h4 text-align="center">SERVIFORM C.A. <br>
 RIF J-31537859-0</h4>
    <br>  
     </th>
-    <th  colspan="6"  style=" "><h5> MILLAR IPC,C.A.<br> CALLE 3 Nro. 123-Local C.Urb. Los Samanes. Maracay-Aragua<br>
+    <th  colspan="6"  style=" "><h5> SERVIFORM C.A.<br> CALLE 3 Nro. 123-Local C.Urb. Los Samanes. Maracay-Aragua<br>
 
  RIF J-31537859-0<br>
  TELEFONO&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
@@ -118,8 +117,8 @@ OFICINA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       0243-235.614
 CELULARES&nbsp;&nbsp;&nbsp;   0414-147.9025                 Luis Alfredo Chacón<br>  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0424-335.1384               Myriam Zambrano García 
 <br>
-&nbsp;Próximamente WWW.MILLARIPC.COM <br>
- Correos: millar.ipc@gmail.com; millaripc.adm@gmail.com
+&nbsp;Próximamente WWW.SERVIFORM.COM <br>
+ Correos: servi.form@gmail.com; servi1234.adm@gmail.com
  </h5>  </th>
     <th colspan="2" Style="text-align: center;"><br><strong>Fecha:</strong> '.$fecha.'
     <br> N°'.$id.' <br> 
@@ -133,7 +132,7 @@ CELULARES&nbsp;&nbsp;&nbsp;   0414-147.9025                 Luis Alfredo Chacón
 
 $pdf->SetFont('times', '',8);
 
-$datos=articulos($i,$codarticulo,$articulos,$cantidad_solicitada,$cantidad_despachada,$observacion,$valor_unitario,$moneda);
+$datos=articulos($i,$codarticulo,$articulos,$cantidad_solicitada,$cantidad_despachada,$observacion);
 
 	$pdf->writeHTMLCell(0, 0, '', '', '<style type="text/css">
  th, td {
@@ -146,15 +145,14 @@ $datos=articulos($i,$codarticulo,$articulos,$cantidad_solicitada,$cantidad_despa
 	  <th width="5%"  >ITEN</th>
 	  <th width="10.5%"  >COD</th>
 	  <th width="30%"  >DESCRIPCIÓN DEL ARTÍCULO</th>
-	  <th width="8%"  >U.M</th>
-	  <th width="8%"  >CANT PEDIDA</th>
-	  <th width="8%"  >CANT DESP.</th>
-	  <th width="12.5%"  >MONTO</th>
-	  <th width="18%"  >Observación</th>
+	  <th width="10%"  >U.M</th>
+	  <th width="11%"  >CANT PEDIDA</th>
+	  <th width="11%"  >CANT DESP.</th>
+	  <th width="22.5%"  >Observación</th>
   </tr>
   '.$datos.'
   <tr>
-  	<td colspan="8"  >USO DEL MATERIAL Y/O EQUIPO: OFICINA DE SERVICIOS GENERALES.</td>
+  	<td colspan="7"  >USO DEL MATERIAL Y/O EQUIPO: OFICINA DE SERVICIOS GENERALES.</td>
   </tr>
 </table>' , 0, 1, 0, true, '', true);
 
