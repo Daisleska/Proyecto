@@ -30,7 +30,7 @@ $data=unserialize($data);
                                             <th>Apellidos</th>
                                             <th>Dirección</th>
                                             <th>Teléfono</th>
-                                            <th>Fecha de Ingreso</th>
+                                            
                                             <th>Opciones</th>                                     
                                         </tr>
                                     </thead>
@@ -41,7 +41,7 @@ $data=unserialize($data);
                                     echo "<tr>";        
                                     ?>  
                                     <td><?=$num?></td>
-                                    <?php for ($j=1; $j <=6; $j++) { ?>
+                                    <?php for ($j=1; $j <=5; $j++) { ?>
                                     <td><?=$data[$i][$j]?></td>
 
                                     <?php } ?>
@@ -149,8 +149,6 @@ $data=unserialize($data);
             
           });
 
-
-  </script>
 
   </script>
 

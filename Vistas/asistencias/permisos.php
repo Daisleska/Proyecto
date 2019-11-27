@@ -91,34 +91,33 @@
                                 </div>   
                               </div>
                               <div class="row">
-                                <div class="col-md-12">
-                                   <label>Justificación: </label>
-                                   <select class="" name="motivo">
+                                <div class="col-md-6">
+                                   <label>Motivo: </label>
+                                   <select  class="form-control" name="motivo">
                                    <option value="" selected="selected" disabled="disabled"></option>
                                   <option>Reposo</option>
                                   <option>Permiso</option>
                                   </select>
                                   </div>
-                                </div>
-                                <div class="row">
-                              <div class="col-md-12">
+
+                                  <div class="col-md-6">
                              <label>Dias de Permiso: </label>
-                              <input type="number" title="Ingrese la cantidad de dias de permiso" name="dias_permiso">
+                              <input class="form-control" type="number" title="Ingrese la cantidad de dias de permiso" name="dias_permiso">
                                </div> 
-                               </div>
+                                </div>
+                               
 
                                <div class="row">
-                               <div class="col-md-12">
+                               <div class="col-md-6">
                                 <label>Cédula de empleado: </label>
-                                 <input type="number" name="cedula" id="cedula" required="required" placeholder="Ingrese cédula">
+                                 <input class="form-control" type="number" name="cedula" id="cedula" required="required" placeholder="Ingrese cédula">
                                </div>
-                             </div>
-                              <div class="row">
-                               <div class="col-md-12">
+                                 <div class="col-md-6">
                                 <label>Fin del permiso: </label>
-                                 <input type="date" name="fin_permiso" id="cedula" required="required" placeholder="Ingrese cédula">
+                                 <input class="form-control" type="date" name="fin_permiso" id="cedula" required="required" placeholder="Ingrese cédula">
                                </div>
                              </div>
+                             
                              
                             </div>
                              
