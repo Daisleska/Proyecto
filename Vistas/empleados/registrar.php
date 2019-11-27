@@ -26,79 +26,93 @@ $asignaciones=unserialize($asignaciones);
     }
 </script>
 
-        <div class="content mt-3 container">
-            <div class="animated fadeIn">
-                      
-                      <h1 align="center"><span style="margin-left: 0.5cm;" class="badge badge-info">Registrar Empleado <i class="fa fa-user"></i> </span></h1>
-                      <hr>                          
+      <div class="contenido">
+    <div class="content-2">
+    <section  class="content-header">
+      <ol class="breadcrumb">
+       
+         <h1 align="center">  <span style="margin-left: 5cm;" class="badge badge-info">Registro de Empleados <i class="menu-icon fa fa-edit"></i> </span></h1>
+        
+      </ol>
+   </section >
+<br>
 
-                
-                    <div class="col-lg-10" style="margin-left: 2cm;">
-                     <div class="card">
-      
-                 
-                    <div class="card-body card-block">
-                    <form action="../../Controladores/ControladorEmpleado.php" method="post" class="form-horizontal justify-content-center" name="f1">
+ <form action="../../Controladores/ControladorEmpleado.php?operacion=guardar" method="POST" name="form" class="form">
+  
+    <h6 class="nota-input">Los campos con un <i class="estado-r">*</i> son obligatorios </h6><br>
+
+     <div class="row" >
+          <div class="col-md-4" >
+            <label><strong>Cédula</strong> <strong class='estado-r'>*</strong></label>
+            <input required="required" type="text" id="hf-ci" minlength="8" maxlength="9" name="cedula" placeholder="Ej: 12.345.678" class="form-control"><br>
+          </div>
+
+       
+          <div class="col-md-4" >
+            <label><strong>Nombres</strong> <strong class='estado-r'>*</strong></label>
+            <input type="text" id="hf-nombres" minlength="4" maxlength="30" required="required" name="nombres" placeholder="Ej: Juan Armando" class="form-control"><br>
+          </div>
 
 
-                                      
-                    <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
-                     <div class="col col-md-5"><label for="hf-ci" class=" form-control-label">* Cédula:</label></div>
-                    <div class="col-12 col-md-5"><input required="required" type="text" id="hf-ci" minlength="8" maxlength="9" name="cedula" placeholder="Ej: 12.345.678" class="form-control"></div>
-                    </div>
+          <div class="col-md-4" >
+            <label><strong>Apellidos</strong> <strong class='estado-r'>*</strong></label>
+            <input type="text" id="hf-apellidos" minlength="4" maxlength="30" required="required" name="apellidos" placeholder="Ej: Hernández Ceballos" class="form-control"><br>
+          </div>
+        
+         </div>
+        <div class="row" >
 
-                     <div style="padding-left: 50px;" class="row form-group">
-                    <div class="col col-md-5"><label for="hf-nombres" class=" form-control-label">* Nombres:</label></div>
-                    <div class="col-12 col-md-5"><input type="text" id="hf-nombres" minlength="4" maxlength="30" required="required" name="nombres" placeholder="Ej: Juan Armando" class="form-control"></div>
-                     </div>
+          <div class="col-md-4" >
+            <label><strong>Dirección</strong> <strong class='estado-r'>*</strong></label>
+            <input type="textarea" id="hf-dir" name="direccion" minlength="5" maxlength="35" required="required" placeholder="Ej: La Victoria #00" class="form-control"><br>
+          </div>
 
-                     <div style="padding-left: 50px;" class="row form-group">
-                     <div class="col col-md-5"><label for="hf-apellidos" class=" form-control-label">* Apellidos:</label></div>
-                    <div class="col-12 col-md-5"><input type="text" id="hf-apellidos" minlength="4" maxlength="30" required="required" name="apellidos" placeholder="Ej: Hernández Ceballos" class="form-control"></div>
-                    </div>
+       
+          <div class="col-md-4" >
+            <label><strong>Teléfonos</strong> <strong class='estado-r'>*</strong></label>
+            <input type="text" onkeypress="return solonumeros(event)" id="hf-tlf" name="telefono"  minlength="7" maxlength="11" required="required" placeholder="Ej: 0212-0120300" class="form-control"><br>
+          </div>
 
-                     <div style="padding-left: 50px;" class="row form-group">
-                    <div class="col col-md-5"><label for="hf-dir" class=" form-control-label">* Dirección:</label></div>
-                    <div class="col-12 col-md-5"><input type="textarea" id="hf-dir" name="direccion" minlength="5" maxlength="35" required="required" placeholder="Ej: La Victoria #00" class="form-control"></div>
-                    </div>
 
-                    <div style="padding-left: 50px;" class="row form-group">
-                     <div class="col col-md-5"><label for="hf-tlf" class=" form-control-label">* Teléfono:</label></div>
-                    <div class="col-12 col-md-5"><input type="text" onkeypress="return solonumeros(event)" id="hf-tlf" name="telefono"  minlength="7" maxlength="11" required="required" placeholder="Ej: 0212-0120300" class="form-control"></div>
-                    </div>
+          <div class="col-md-4" >
+            <label><strong>Fecha de Ingreso</strong> <strong class='estado-r'>*</strong></label>
+            <input type="date" id="hf-fechai" name="fecha_ingreso" placeholder="Ej: 12-00-0000" class="form-control"><br>
+          </div>
+         
+        </div>
+     
+        
+        <div class="row" >
 
-                    <div style="padding-left: 50px;" class="row form-group">
-                    <div class="col col-md-5"><label for="hf-fechai" class=" form-control-label">* Fecha de Ingreso:</label></div>
-                    <div class="col-12 col-md-5"><input type="date" id="hf-fechai" name="fecha_ingreso" placeholder="Ej: 12-00-0000" class="form-control"></div>
-                    </div>
-
-                     <div style="padding-left: 50px;" class="row form-group">
-                    <div class="col col-md-5"><label for="hf-condicion" class=" form-control-label">* Condición</label></div>
-                    <div class="col-12 col-md-5">
-                    <select id="hf-condicion" name="condicion" class="form-control">
+          <div class="col-md-4" >
+            <label><strong>Condición</strong> <strong class='estado-r'>*</strong></label>
+             <select id="hf-condicion" name="condicion" class="form-control">
                     <option selected="selected">Seleccione</option>
                      <option>Fijo</option>
                     <option>Contratado</option>
                                                                         
-                    </select>
+                    </select><br>
+          </div>
 
-                    </div>
-                    </div>
+       
+          <div class="col-md-4" >
+            <label><strong>Fecha de Vencimiento</strong> <strong class='estado-r'>*</strong></label>
+            <input type="date" id="hf-fechav" name="fecha_venc" placeholder="Ej: 12-00-2000" class="form-control"><br>
+          </div>
 
-                    <div style="padding-left: 50px;" class="row form-group">
-                    <div class="col col-md-5"><label for="hf-fechav" class=" form-control-label">Fecha de Vencimiento:</label></div>
-                    <div class="col-12 col-md-5"><input type="date" id="hf-fechav" name="fecha_venc" placeholder="Ej: 12-00-2000" class="form-control"></div>
-                                                            </div>
 
-                    <div style="padding-left: 50px;" class="row form-group">
-                     <div class="col col-md-5"><label for="hf-ncuenta" class=" form-control-label">* Número de Cuenta:</label></div>
-                    <div class="col-12 col-md-5"><input type="text" onkeypress="return solonumeros(event)" id="hf-ncuenta" name="ncuenta" minlength="20" maxlength="20" placeholder="Ej: 017503002028919920" class="form-control"></div>
-                    </div>
+          <div class="col-md-4" >
+            <label><strong>Número de Cuenta</strong> <strong class='estado-r'>*</strong></label>
+            <input type="text" onkeypress="return solonumeros(event)" id="hf-ncuenta" name="ncuenta" minlength="20" maxlength="20" placeholder="Ej: 017503002028919920" class="form-control"><br>
+          </div>
+         
+        </div>
 
-                    <div style="padding-left: 50px;" class="row form-group">
-                    <div class="col col-md-5"><label for="hf-cargo" class=" form-control-label">* Cargo</label></div>
-                    <div class="col-12 col-md-5">
-                    <select name="id_cargo" title="Seleccione el cargo"class="form-control">
+          <div class="row" style="padding-left: 3cm;">
+
+          <div class="col-md-5" >
+            <label><strong>Cargo</strong> <strong class='estado-r'>*</strong></label>
+            <select name="id_cargo" title="Seleccione el cargo"class="form-control">
                     <option disabled="disabled" selected="selected" value="">Seleccione el Cargo</option>
                     <?php 
                     for ($i=0; $i<$filas_cat; $i++){
@@ -107,14 +121,13 @@ $asignaciones=unserialize($asignaciones);
                     <?php
                     }
                     ?>
-                    </select>
-                    </div>
-                    </div>
+                    </select><br>
+          </div>
 
-                     <div style="padding-left: 50px;" class="row form-group">
-                    <div class="col col-md-5"><label for="hf-departameno" class=" form-control-label">* Departamento</label></div>
-                    <div class="col-12 col-md-5">
-                    <select name="id_departamento" title="Seleccione el Departamento"class="form-control">
+       
+          <div class="col-md-5" >
+            <label><strong>Departamento</strong> <strong class='estado-r'>*</strong></label>
+            <select name="id_departamento" title="Seleccione el Departamento"class="form-control">
                     <option disabled="disabled" selected="selected" value="">Seleccione el Departamento</option>
                     <?php 
                     for ($i=0; $i<$filas_tip; $i++){
@@ -123,21 +136,18 @@ $asignaciones=unserialize($asignaciones);
                     <?php
                     }
                     ?>
-                    </select>
-                    </div>
-                    </div>
-                                        <p style="padding-left: 50px;">(*) Campos obligatorios</p>
+                    </select><br>
+          </div>
+         
+         
+        </div>
 
-
-                    
-                    </div>
-
-                    <div class="col-lg-11" style="padding-left: 50px;">
+        <div class="col-lg-11" style="padding-left: 50px;">
                     <div class="card">
                       <div class="card-header">
                         <strong style="text-align: center;">ASIGNAR DÍAS LABORABLES</strong>
                        
-                       <div>
+                       <div style="text-align: left;">
                         <th> Lunes</th>
                            <input type="checkbox" name="checkbox[]" id="checkbox" value="Lunes"> 
                            <br>
@@ -170,17 +180,16 @@ $asignaciones=unserialize($asignaciones);
                            <a href="javascript:deseleccionar_todo()">Marcar ninguno</a>
                        </div>
 
-             </div>
-         </div>
-               </div>
+                      </div>
+                    </div>
+            
+      
 
-
-          <!-- asignaciones y deducciones -->
-       <div class="card">
-        <div class="card-header" >
-          <strong class="card-title">Asignaciones / Deducciones</strong>
-        </div>
-         <div class="card-body">
+        
+       
+        <div class="row">
+          
+          <label><strong>Asignaciones | Deducciones</strong> <strong class='estado-r'>*</strong></label>
            <select name="asignaciones[]" data-placeholder="Seleccione" multiple class="standardSelect" >
              <option value="" selected="selected" disabled="disabled"></option>
                                     <?php 
@@ -191,34 +200,36 @@ $asignaciones=unserialize($asignaciones);
                     }
                     ?>
                                    
-             </select>
+             </select><br>
+ 
 
-             </div>
-      </div>
-            
-                    <div class="card-footer">
-                    <input type="hidden" name="operacion" value="guardar">
+</div>
+
+
+          </div>
+
+   
+        <div class="row" style="padding-left: 350px;">
+           <input type="hidden" name="operacion" value="guardar">
                     <button type="submit" class="btn btn-primary btn-sm">
                     <i class="fa fa-check"></i> 
                     </button>
+                    <p style="color: white;">.</p>
                     <button type="reset" class="btn btn-danger btn-sm">
                     <i class="fa fa-ban"></i> 
-                    </button></div></div>
-              
-                                      </form>   
-                                          </div>
-                                                </div>
-                                                
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><!-- .animated -->
-                                    </div><!-- .content -->
-                                </div><!-- /#right-panel -->
-                                <!-- Right Panel -->
+                    </button>
+        </div>
+      </form>
+    </div>
 
+   <br><br><br><br><br><br><br><br><br><br><br><br>     
    <?php include_once "../includes/footer.php"; ?>
+    <script src="../../bootstrap/js/jquery.js"></script>
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../vendors/js/feather.min.js"></script>
+    <script>
+            
+   
 
    <script type="text/javascript">
      function seleccionar_todo(){

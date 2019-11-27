@@ -4,33 +4,17 @@ $data=unserialize($data);
 include_once "../includes/menu.php"; 
 ?>
 
-        <div class="breadcrumbs">
-            <div class="col-sm-5">
-                <div class="page-header float-left">
-
-                
-    
-            </div>
-            <div class="col-sm-7">
-                <div class="page-header float-right">
-                    <div class="page-title">
-
-                     
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="content mt-3">
-            <div class="animated fadeIn">
-                <div class="row">
-
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title"><i class="fa fa-list"></i>  LISTADO DE CESTATICKET</strong>
-                            </div>
-                            <div class="card-body">
+       <div class="contenido" style="padding-left: 20px">
+    <div class="content-2">
+    <section  class="content-header">
+      <ol class="breadcrumb">
+       
+         <h1 align="center">  <span style="margin-left: 4cm;" class="badge badge-info">Listado de Cestaticket <i class="menu-icon fa fa-list"></i> </span></h1>
+        
+      </ol>
+   </section >
+<br>
+<div class="table-responsive">
                                 <table class="table table-striped table-sm " id="table">
                                     <thead>
                                         <tr>
@@ -59,7 +43,7 @@ include_once "../includes/menu.php";
 
                                     }  ?>
     
-                                    <td><a  href="../../Controladores/ControladorCestaticket.php?operacion=modificar&id_cestaticket=<?=$data[$i][0]?>"><i title="Modificar" class="menu-icon fa fa-edit"></a></i>
+                                    <td><a  href="../../Controladores/ControladorCestaticket.php?operacion=modificar&id=<?=$data[$i][0]?>"><i title="Modificar" class="menu-icon fa fa-edit"></a></i>
     
                                     
     
@@ -72,19 +56,13 @@ include_once "../includes/menu.php";
                                 }   ?>
                                     </tbody>
                                 </table>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div><!-- .animated -->
+                        
+    
         </div><!-- .content -->
-    </div>
-
-
-
-    </div><!-- /#right-panel -->
+          </div><!-- .content -->
+<br><br><br><br><br><br><br><br><br>
+             
+    </div><!-- /#     anel -->
  <?php include_once "../includes/footer.php"; ?>
       <script src="../../vendors/js/datatables.min.js"></script>
     <script type="text/javascript">

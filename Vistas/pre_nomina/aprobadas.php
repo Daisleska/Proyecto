@@ -49,7 +49,7 @@ var year = (yy < 1000) ? yy + 1900 : yy;
                                     <thead>
                                        <tr>
                                         <th>N°</th>
-                                        <th>Departamento</th>
+                                        <th>Quincena</th>
                                         <th>Cantidad</th>
                                         <th>Estado</th>
                                         <th>Opciones</th>
@@ -62,12 +62,12 @@ var year = (yy < 1000) ? yy + 1900 : yy;
                               ?>
                               <tr>
                                   <td><?=$num?></td>
-                                  <td><?php echo($aprobad['departamento']); ?></td>
+                                  <td><?php echo($aprobad['quincena']); ?></td>
                                   <td><?php echo($aprobad['cantidad']); ?></td>
                                   <td><?php echo($aprobad['status']); ?></td>
                                 <td>
                                  
-                                 <a style="width: 1cm;" href="../../reportes/reporte_empleados_nomina.php&id_pre_nomina=<?=$aprobad['id']?>" target="blank" ><i class="fa fa-eye" title="ver PDF"></i> </a>
+                                 <button><a href="../../Controladores/ControladorPreNomina.php?operacion=veraprobadas&id_nomina=<?php echo($aprobad['id']); ?>"><i title="Ver Detalles" class="menu-icon fa fa-search-plus"></i></a></button>
 
                               </tr>
                               <?php

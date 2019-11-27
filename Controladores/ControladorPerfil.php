@@ -87,6 +87,12 @@ public function actualizar_clave()
 
         $res=mysqli_query($conex,$sql);
               if ($res) {
+              	$sql="INSERT INTO auditoria VALUES (NULL, '".$_SESSION['id_usuario']."', 'cambió contraseña', 'usuarios', CURRENT_TIMESTAMP, '".$_SESSION['tipo_usuario']."')";
+
+		         $resultado=mysqli_query($conex,$sql);
+		         $sql="INSERT INTO auditoria VALUES (NULL, '".$_SESSION['id_usuario']."', 'cambió contraseña', 'usuarios', CURRENT_TIMESTAMP, '".$_SESSION['tipo_usuario']."')";
+
+		$resultado=mysqli_query($conex,$sql);
                 ?>
                   <script type="text/javascript">
                     alert("contraseña cambiada");
@@ -144,7 +150,7 @@ public function verperfil (){
   $conex=$db->conectar();//conectando con la base de datos
 
    
-  	$sql="SELECT nombre, correo, pregunta, respuesta FROM usuarios WHERE usuarios.id=".$_SESSION['id_usuario'];;//query
+  	$sql="SELECT id,nombre, correo, pregunta, respuesta FROM usuarios WHERE usuarios.id=".$_SESSION['id_usuario'];;//query
   
 			
 
@@ -210,6 +216,10 @@ public function actualizar(){
 
 			$res=mysqli_query($conex,$sql);
 			if ($res) {
+				$sql="INSERT INTO auditoria VALUES (NULL, '".$_SESSION['id_usuario']."', 'modificó perfil', 'usuarios', CURRENT_TIMESTAMP, '".$_SESSION['tipo_usuario']."')";
+
+		         $resultado=mysqli_query($conex,$sql);
+                ?>
 					?>
 					<script type="text/javascript">
 						alert("Registro modificado");

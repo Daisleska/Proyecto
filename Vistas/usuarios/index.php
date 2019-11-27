@@ -24,12 +24,16 @@ $data=unserialize($data);
                     <div class="col-md-12">
                    <section class="content-header"  style="padding-left: 15px">
                         <ol class="breadcrumb">
-                          <h1 align="center">  <span style="margin-left: 6.5cm;" class="badge badge-info">Usuarios Registrados <i class="menu-icon fa fa-users"></i> </span></h1>
+                          <h1 align="center">  <span style="margin-left: 5cm;" class="badge badge-info">Usuarios Registrados <i class="menu-icon fa fa-users"></i> </span></h1>
 
-                          <a title="Descargar PDF" style="margin-left: 5.5cm; padding-right: 40px;" href="../../reportes/reporte_usuarios.php"><i style="font-size: 30px;" class="fa fa-cloud-download"></i>&nbsp;</a>
+
                         </ol>
                    </section>
                         
+                          <div class="col-md-2,5">
+                                 <a style="margin-left: 16cm; width: 3.5cm;" href="../../reportes/reporte_usuarios.php" target="blank" class="btn btn-block btn-danger btn-sm"><i class="fa fa-file-pdf-o"></i> Reporte PDF</a>
+
+                            </div>
                                 
 
                                

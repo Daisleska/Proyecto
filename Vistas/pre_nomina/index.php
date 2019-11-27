@@ -58,7 +58,7 @@ var year = (yy < 1000) ? yy + 1900 : yy;
                                     <thead>
                                        <tr>
                                         <th>N°</th>
-                                        <th>Departamento</th>
+                                        <th>Quincena</th>
                                         <th>Cantidad</th>
                                         <th>Estado</th>
                                         <th>Opciones</th>
@@ -71,7 +71,7 @@ var year = (yy < 1000) ? yy + 1900 : yy;
                               ?>
                               <tr>
                                   <td><?=$num?></td>
-                                  <td><?php echo($prenomin['departamento']); ?></td>
+                                  <td><?php echo($prenomin['quincena']); ?></td>
                                   <td><?php echo($prenomin['cantidad']); ?></td>
                                   <td><?php echo($prenomin['status']); ?></td>
                                 <td><button><a href="../../Controladores/ControladorPreNomina.php?operacion=ver&id_prenomina=<?php echo($prenomin['id']); ?>"><i title="Ver Detalles" class="menu-icon fa fa-search-plus"></i></a></button>

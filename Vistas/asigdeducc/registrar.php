@@ -20,85 +20,67 @@
 </script>
 
 
-       <div class="breadcrumbs">
-           <div class="col-sm-5">
-                <div class="page-header float-left">
-                   
-                        <!-- <ol class="breadcrumb text-right">
-                            <li><a href="#">Proveedores</a></li>
-                            <li class="active">Materia Prima</li>
-                        </ol> -->
-                </div>
-            </div>
+<div class="contenido">
+    <div class="content-2">
+    <section  class="content-header">
+      <ol class="breadcrumb">
+       
+         <h1 align="center">  <span style="margin-left: 1cm;" class="badge badge-info">Registro de Asignaciones y Deducciones <i class="menu-icon fa fa-edit"></i> </span></h1>
+        
+      </ol>
+   </section >
+<br>
 
-            <div class="col-sm-7">
-                <div class="page-header float-right">
-                    <div class="page-title">
-                    
-                 </div>
-                </div>
-            </div>
-            
+ <form action="../../Controladores/ControladorAsigDeducc.php?operacion=guardar" method="POST" name="form" class="form">
+  
+    <h6 class="nota-input">Los campos con un <i class="estado-r">*</i> son obligatorios </h6><br>
+
+     <div class="row" >
+          <div class="col-md-4" >
+            <label><strong>Descripción</strong> <strong class='estado-r'>*</strong></label>
+            <input type="text" class="form-control" name="descripcion" minlength="7" maxlength="30" placeholder="Ej. " required="required"><br>
+          </div>
+
+       
+          <div class="col-md-4" >
+            <label><strong>Tipo</strong> <strong class='estado-r'>*</strong></label>
+            <select type="text" class="form-control" name="tipo"  placeholder="Ej. " required="required">
+              <option selected="selected">Seleccione</option>
+              <option value="Asignacion">Asignación</option>
+              <option value="Deduccion">Deducción</option>
+
+            </select><br>
+          </div>
+
+
+          <div class="col-md-4" >
+            <label><strong>Monto</strong> <strong class='estado-r'>*</strong></label>
+            <input type="text" class="form-control" name="monto" onkeypress="return solonumeros(event)" minlength="5" maxlength="20" placeholder="Ej. 100000" required="required"><br>
+          </div>
+
+         
         </div>
+      </div>
+      
+      
+        <div class="row" style="padding-left: 350px;">
+           <input type="hidden" name="operacion" value="guardar">
 
-        <!-- contenido -->
- <form action="../../Controladores/ControladorAsigDeducc.php?operacion=guardar" method="POST"  class="form">
-       <div style="padding-left: 150px;" class="col-lg-10">
-              <div class="card">
-              <div class="card-header">
-              <strong><i class="fa fa-edit"></i> REGISTRAR ASIGNACIONES Y DEDUCCIONES</strong> 
-              </div>
+           <button type="reset" class="btn btn-danger btn-sm col-md-1"><i class="fa fa-ban"></i></button>
 
+           <p style="color: white">..</p>
+          <button type="submit" name="enviar" class="btn btn-primary btn-sm col-md-1"><i class="fa fa-check"></i>&nbsp;</button>
+        </div>
+      </form>
+    </div>
 
-           <div class="card-body card-block">
-          
-
-          <div style="padding-left: 50px;" class="row form-group">
-                   <div class="col col-md-4"><label class=" form-control-label">* Descripción:</label></div>
-
-                   <div class="col-12 col-md-7"><input type="text" id="" name="descripcion" required="required"  minlength="4" maxlength="30" class="form-control"></div>
-          </div>
-
-          <div style="padding-left: 50px;" class="row form-group">
-                   <div class="col col-md-4"><label class=" form-control-label">* Tipo:</label></div>
-
-                   <div class="col-12 col-md-7"><select id="hf-tipo_ad" name="tipo" class="form-control" required="required"><span class="help-block"></span>
-                      <option value="" selected="selected">Selecciona Tipo</option>
-                      <option value="Asignacion">Asignación</option>
-                      <option value="Deduccion">Deducción</option>
-                  </select></div>
-          </div>
-
-          <div style="padding-left: 50px;" class="row form-group">
-                   <div class="col col-md-4"><label class=" form-control-label">* Monto:</label></div>
-
-                   <div class="col-12 col-md-7"><input type="text" id="" name="monto" required="required" onkeypress="return solonumeros(event)" minlength="4" maxlength="20" class="form-control"></div>
-          </div>
-
-          
-
-          <p style="padding-left: 50px; padding-top: 10px;">(*) Campos obligatorios</p>
-
-
-
-                     </div>
-                     <div class="card-footer">
-                <input type="hidden" name="operacion" value="guardar">
-                      <button type="submit" class="btn btn-primary btn-sm">
-                          <i class="fa fa-check"></i>&nbsp; 
-                      </button>
- 
-                            <button type="reset" class="btn btn-danger btn-sm">
-                    <i class="fa fa-ban"></i> 
-                            </form>
-                               </div>
-                         </div>
-
-                
-            </div><!-- /#right-panel -->
-         </div>
-
-            <!-- Right Panel -->
+   <br><br><br><br><br><br><br><br><br><br><br><br>     
+   <?php include_once "../includes/footer.php"; ?>
+    <script src="../../bootstrap/js/jquery.js"></script>
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../vendors/js/feather.min.js"></script>
+    <script>
+            
 
             
  <?php include_once "../includes/footer.php"; ?>

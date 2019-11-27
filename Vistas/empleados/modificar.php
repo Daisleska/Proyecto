@@ -1,8 +1,9 @@
 <?php 
-include ('../../Modelos/clasedb.php');
-include_once "../includes/menu.php";
-extract ($_REQUEST);
+include_once "../includes/menu.php"; 
+extract($_REQUEST);
 $data=unserialize($data);
+$departamentos=unserialize($departamentos);
+
 ?>
 <script type="text/javascript">
     function solonumeros(e){
@@ -23,117 +24,166 @@ $data=unserialize($data);
         }
     }
 </script>
- 
+
+      <div class="contenido">
+    <div class="content-2">
+    <section  class="content-header">
+      <ol class="breadcrumb">
+       
+         <h1 align="center">  <span style="margin-left: 5cm;" class="badge badge-info">Registro de Empleados <i class="menu-icon fa fa-edit"></i> </span></h1>
+        
+      </ol>
+   </section >
+<br>
+
+ <form action="../../Controladores/ControladorEmpleado.php?operacion=actualizar" method="POST" name="form" class="form">
+  
+    <h6 class="nota-input">Los campos con un <i class="estado-r">*</i> son obligatorios </h6><br>
+
+     <div class="row" >
+          <div class="col-md-4" >
+            <label><strong>Cédula</strong> <strong class='estado-r'>*</strong></label>
+            <input required="required" type="text" id="hf-ci" minlength="8" maxlength="9" name="cedula" placeholder="Ej: 12.345.678" class="form-control" readonly="readonly" value="<?php echo $data['cedula']; ?>"><br>
+          </div>
+
+       
+          <div class="col-md-4" >
+            <label><strong>Nombres</strong> <strong class='estado-r'>*</strong></label>
+            <input type="text" id="hf-nombres" minlength="4" maxlength="30" required="required" name="nombres" placeholder="Ej: Juan Armando" class="form-control" value="<?php echo $data['nombres']; ?>"><br>
+          </div>
 
 
-        <div class="breadcrumbs">
-            <div class="col-sm-4">
-                <div class="page-header float-left">
-                    
-                </div>
-            </div>
-            <div class="col-sm-8">
-                <div class="page-header float-right">
-                    
-                </div>
-            </div>
+          <div class="col-md-4" >
+            <label><strong>Apellidos</strong> <strong class='estado-r'>*</strong></label>
+            <input type="text" id="hf-apellidos" minlength="4" maxlength="30" required="required" name="apellidos" placeholder="Ej: Hernández Ceballos" class="form-control" value="<?php echo $data['apellidos']; ?>"><br>
+          </div>
+        
+         </div>
+        <div class="row" >
+
+          <div class="col-md-4" >
+            <label><strong>Dirección</strong> <strong class='estado-r'>*</strong></label>
+            <input type="textarea" id="hf-dir" name="direccion" minlength="5" maxlength="35" required="required" placeholder="Ej: La Victoria #00" class="form-control" value="<?php echo $data['direccion']; ?>"><br>
+          </div>
+
+       
+          <div class="col-md-4" >
+            <label><strong>Teléfonos</strong> <strong class='estado-r'>*</strong></label>
+            <input type="text" onkeypress="return solonumeros(event)" id="hf-tlf" name="telefono"  minlength="7" maxlength="11" required="required" placeholder="Ej: 0212-0120300" class="form-control" value="<?php echo $data['telefono']; ?>"><br>
+          </div>
+
+
+          <div class="col-md-4" >
+            <label><strong>Fecha de Ingreso</strong> <strong class='estado-r'>*</strong></label>
+            <input type="date" id="hf-fechai" name="fecha_ingreso" placeholder="Ej: 12-00-0000" class="form-control" value="<?php echo $data['fecha_ingreso']; ?>" readonly="readonly"><br>
+          </div>
+         
+        </div>
+     
+        
+        <div class="row" >
+
+          <div class="col-md-4" >
+            <label><strong>Condición</strong> <strong class='estado-r'>*</strong></label>
+             <select id="hf-condicion" name="condicion" class="form-control" value="<?php echo $data['condicion']; ?>">
+                    <option selected="selected">Seleccione</option>
+                     <option>Fijo</option>
+                    <option>Contratado</option>
+                                                                        
+                    </select><br>
+          </div>
+
+       
+          <div class="col-md-4" >
+            <label><strong>Fecha de Vencimiento</strong> <strong class='estado-r'>*</strong></label>
+            <input type="date" id="hf-fechav" name="fecha_venc" placeholder="Ej: 12-00-2000" class="form-control" value="<?php echo $data['fecha_venc']; ?>"><br>
+          </div>
+
+
+          <div class="col-md-4" >
+            <label><strong>Número de Cuenta</strong> <strong class='estado-r'>*</strong></label>
+            <input type="text" onkeypress="return solonumeros(event)" id="hf-ncuenta" name="ncuenta" minlength="20" maxlength="20" placeholder="Ej: 017503002028919920" class="form-control" value="<?php echo $data['ncuenta']; ?>"><br>
+          </div>
+         
         </div>
 
-        <div class="content mt-3">
-            <div class="animated fadeIn">
-                
-<div class="col-lg-10" style="margin-left: 2cm;">
-                    <div class="card">
-                      <div class="card-header">
-                           <strong><i class="fa fa-edit"></i> MODIFICAR EMPLEADO
-                          
+
+          <div class="row" style="padding-left: 3cm;">
+
+          <div class="col-md-5" >
+            <label><strong>Cargo</strong> <strong class='estado-r'>*</strong></label>
+            <select name="id_cargo" title="Seleccione el cargo"class="form-control" value="<?php echo $data['id_cargos']; ?>">
+                    <option disabled="disabled" selected="selected" value="">Seleccione el Cargo</option>
                     
-                 </strong>   
-                                </div>
-                                   <div class="card-body card-block">
-                                    <form action="../../Controladores/ControladorEmpleado.php?operacion=actualizar" method="POST" class="form-horizontal">
-                                    
-                                    <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
-                                    <div class="col col-md-5"><label for="hf-ci" class=" form-control-label">C.I:</label></div>
-                                    <div class="col-12 col-md-5"><input type="number" id="hf-ci" name="cedula" readonly="readonly" class="form-control" value="<?php echo $data['cedula']; ?>"></div>
-                                    </div>
+                 <?php 
+                       include("../../Modelos/conexion.php");
+                     $sql="SELECT * FROM cargos";
+                    $res_emp=$conectar->query($sql);
+                        while ($cargos=$res_emp->fetch_array()) {
+                       ?>
+                      <option value="<?=$cargos['id']?>" class="id_vaue_externo"><?=$cargos['nombre']?></option>
+                      <?php } 
 
-                                    <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
-                                    <div class="col col-md-5"><label for="hf-nombres" class=" form-control-label">Nombres:</label></div>
-                                    <div class="col-12 col-md-5"><input type="text" id="hf-nombres" name="nombres" placeholder="Ingrese el nombre" minlength="4" maxlength="30" required="required"class="form-control" value="<?php echo $data['nombres']; ?>"></div>
-                                    </div>
+  
+                      ?> 
+                    </select><br>
+          </div>
 
-                                    
-                                    <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
-                                    <div class="col col-md-5"><label for="hf-apellidos" class=" form-control-label">Apellidos:</label></div>
-                                    <div class="col-12 col-md-5"><input type="text" id="hf-apellidos" name="apellidos" placeholder="Ingrese el apellido" minlength="4" maxlength="30" required="required" class="form-control" value="<?php echo $data['apellidos']; ?>"></div>
-                                    </div>
+       
+          <div class="col-md-5" >
+            <label><strong>Departamento</strong> <strong class='estado-r'>*</strong></label>
+            <select name="id_departamento" title="Seleccione el Departamento"class="form-control">
+                    <option disabled="disabled" selected="selected" value="<?php echo $data['id_departamentos']; ?>">Seleccione el Departamento</option>
+                    <?php 
+                    for ($i=0; $i<$filas_tip; $i++){
+                    ?>
+                    <option value="<?=$departamentos[$i][0]?>"> <?=$departamentos[$i][1]?></option>
+                    <?php
+                    }
+                    ?>
+                    </select><br>
+          </div>
+         
+         
+        </div>
 
-                                    <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
-                                    <div class="col col-md-5"><label for="hf-dir" class=" form-control-label">Dirección:</label></div>
-                                    <div class="col-12 col-md-5"><input type="textarea" id="hf-dir" name="direccion" placeholder="Ingrese la dirección" minlength="5" maxlength="30" required="required" class="form-control" value="<?php echo $data['direccion']; ?>"></div>
-                                    </div>
-
-                                    <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
-                                    <div class="col col-md-5"><label for="hf-tlf" class=" form-control-label">Teléfono:</label></div>
-                                    <div class="col-12 col-md-5"><input type="text" id="hf-tlf" name="telefono" placeholder="Ingrese el número de teléfono" onkeypress="return solonumeros(event)" required="required" minlength="7" maxlength="11" class="form-control" value="<?php echo $data['telefono']; ?>"></div>
-                                    </div>
-
-                                    <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
-                                    <div class="col col-md-5"><label for="hf-fechai" class=" form-control-label">Fecha de Ingreso:</label></div>
-                                    <div class="col-12 col-md-5"><input type="date" id="hf-fechai" name="fecha_ingreso" placeholder="Ingrese la fecha de ingreso"  required="required" class="form-control" value="<?php echo $data['fecha_ingreso']; ?>"></div>
-                                    </div>
-
-                                    <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
-                                    <div class="col col-md-5"><label for="hf-condicion" class=" form-control-label">Condición</label></div>
-                                    <div class="col-12 col-md-5">
-                                    <select id="hf-condicion" name="condicion" required="required" class="form-control" value="<?php echo $data['condicion']; ?>">
-                                    <option value="Fijo">Fijo</option>
-                                    <option value="Contratado">Contratado</option>             
-                                    </select></div>
-                                    </div>
-
-                                    <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
-                                    <div class="col col-md-5"><label for="hf-fechav" class=" form-control-label">Fecha de Vencimiento:</label></div>
-                                    <div class="col-12 col-md-5"><input type="date" id="hf-fechav" name="fecha_venc" placeholder="Ingrese la fecha de vencimiento" required="required" class="form-control" value="<?php echo $data['fecha_venc']; ?>"></div>
-                                    </div>
-
-                                    
-                                
-
-
-                                    <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
-                                    <div class="col col-md-5"><label for="hf-ncuenta" class=" form-control-label">Número de Cuenta:</label></div>
-                                    <div class="col-12 col-md-5"><input type="text" id="hf-ncuenta" name="ncuenta" placeholder="Ingrese el número de cuenta" onkeypress="return solonumeros(event)" minlength="20" maxlength="20" required="required" class="form-control" value="<?php echo $data['ncuenta']; ?>"></div>
-                                    </div>
-                                </div>
-
-                <dir>
-                <input type="hidden" name="operacion" value="actualizar">
+        
+      
+        <div class="row" style="padding-left: 350px;">
+           <input type="hidden" name="operacion" value="actualizar">
                 <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
-                </dir>
-                <div class="card-footer">
-                <button type="submit" class="btn btn-primary btn-sm">
+                    <button type="submit" class="btn btn-primary btn-sm">
                 <i class="fa fa-check"></i>
                 </button>
+                <p style="color: white;">.</p>
                 <button type="reset" class="btn btn-danger btn-sm">
                 <i class="fa fa-ban"></i>
                 </button>
-                <button class="btn btn-primary btn-sm"><a href="../../Controladores/ControladorEmpleado.php?operacion=index"><i class="fa fa-mail-reply"></i>&nbsp;</a></button>
-                </form>
-                                                    </div>
-                                                </div>
-                                                
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><!-- .animated -->
-                                    </div><!-- .content -->
-                                </div><!-- /#right-panel -->
-                                <!-- Right Panel -->
+                
+        </div>
+      </form>
+    </div>
 
+   <br><br><br><br><br><br><br><br><br><br><br><br>     
+   <?php include_once "../includes/footer.php"; ?>
+    <script src="../../bootstrap/js/jquery.js"></script>
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../vendors/js/feather.min.js"></script>
+    <script>
+            
+   
 
+   <script type="text/javascript">
+     function seleccionar_todo(){
+   for (i=0;i<document.f1.elements.length;i++)
+      if(document.f1.elements[i].type == "checkbox")
+         document.f1.elements[i].checked=1
+}
 
+function deseleccionar_todo(){
+   for (i=0;i<document.f1.elements.length;i++)
+      if(document.f1.elements[i].type == "checkbox")
+         document.f1.elements[i].checked=0
+}
+   </script>
 
-<?php include_once "../includes/footer.php"; ?>

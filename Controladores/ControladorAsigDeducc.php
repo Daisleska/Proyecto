@@ -1,6 +1,7 @@
 <?php 
 include("../Modelos/clasedb.php");
 extract($_REQUEST);
+session_start();
 
 
 
@@ -65,11 +66,16 @@ if ($nombresbd>0){
 	$resultado=mysqli_query($conex,$sql);
 	
 	if($resultado) {
+         $sql="INSERT INTO auditoria VALUES (NULL, '".$_SESSION['id_usuario']."', 'registró asignación o deducción', 'asignacion_deduccion', CURRENT_TIMESTAMP, '".$_SESSION['tipo_usuario']."')";
 
+		$resultado=mysqli_query($conex,$sql);
 		?> 
-		<?php
-		 header('location:ControladorAsigDeducc.php?operacion=index');
-		 ?>
+		
+		<script>
+		alert("Registro exitoso");
+		 window.location="ControladorAsigDeducc.php?operacion=index";
+		</script>
+		
 			
 			<?php 
 	
@@ -78,6 +84,7 @@ if ($nombresbd>0){
 
 			<script type="text/javascript">
 				alert("Registro fallido");
+				window.location="ControladorAsigDeducc.php?operacion=index";
 			</script>
 		<?php 
 			}
@@ -109,6 +116,10 @@ if ($nombresbd>0){
     $resultado=mysqli_query($conex,$sql);
 
 	if($resultado) {
+
+		$sql="INSERT INTO auditoria VALUES (NULL, '".$_SESSION['id_usuario']."', 'modificó asignación o deducción', 'asignacion_deduccion', CURRENT_TIMESTAMP, '".$_SESSION['tipo_usuario']."')";
+
+		$resultado=mysqli_query($conex,$sql);
 
 		?> 
 			<script type="text/javascript">
@@ -143,6 +154,9 @@ if ($nombresbd>0){
 		
 	$res=mysqli_query($conex,$sql);
 		if ($res) {
+			$sql="INSERT INTO auditoria VALUES (NULL, '".$_SESSION['id_usuario']."', 'eliminó asignación o deducción', 'asignacion_deduccion', CURRENT_TIMESTAMP, '".$_SESSION['tipo_usuario']."')";
+
+		$resultado=mysqli_query($conex,$sql);
 			?>
 				<script type="text/javascript">
 					alert("Registro eliminado");
@@ -158,6 +172,75 @@ if ($nombresbd>0){
 			<?php
 		}
 	}
+
+public function asigdeducc() {
+	extract($_REQUEST);
+	$db=new clasedb();
+	$conex=$db->conectar();
+
+	$sql="SELECT asignacion_deduccion.id, asignacion_deduccion.descripcion, asignacion_deduccion.tipo, asignacion_deduccion.monto FROM asignacion_deduccion, empleado, empleado_asig WHERE empleado_asig.id_empleado=empleado.id AND empleado_asig.id_asignaciones=asignacion_deduccion.id AND empleado.id=".$id_empleado."";
+	
+
+	if ($res=mysqli_query($conex,$sql)) {
+	
+	$campos=mysqli_num_fields($res);//cuantos campos trae la consulta
+	$filas=mysqli_num_rows($res);//cuantas filas trae la consulta
+
+		$i=0;
+	
+	$datos[]=array();
+
+	while($data=mysqli_fetch_array($res)){
+			for ($j=0; $j < $campos; $j++) { 
+				$datos[$i][$j]=$data[$j];
+			} 
+			$i++;
+		}
+		//enviando datos
+		header("Location: ../Vistas/empleados/asig_deducc.php?filas=".$filas."&campos=".$campos."&data=".serialize($datos));
+	}else{
+		echo "Error en la Base de Datos";
+	}
+}//fin de la funcion 
+
+public function eliminarasigdeducc() {
+	extract($_REQUEST);
+	$db=new clasedb();
+	$conex=$db->conectar();
+
+	$sql="DELETE FROM empleado_asig WHERE id=".$id;
+    
+    $res=mysqli_query($conex,$sql);
+		if ($res) {
+		
+			?>
+				<script type="text/javascript">
+					alert("Registro eliminado");
+					window.location="";
+				</script>
+			<?php
+		} else {
+			?>
+				<script type="text/javascript">
+					alert("Registro no eliminado");
+					window.location="";
+				</script>
+			<?php
+		}
+	}
+
+	
+
+public function agregarasigdeducc() {
+	extract($_REQUEST);
+	$db=new clasedb();
+	$conex=$db->conectar();
+
+	$sql="INSERT INTO `empleado_asig` (NULL, `id_empleado`, `id_asignaciones`) VALUES ()";
+
+	
+}//fin de la funcion
+
 
 static function controlador($operacion) {
 		$ad=new ControladorAsigDeducc();
@@ -182,6 +265,18 @@ static function controlador($operacion) {
 		case 'eliminar':
  			$ad->eliminar();
  			break;
+
+ 		case 'asigdeducc':
+		$ad->asigdeducc();
+		break;
+
+		case 'eliminarasigdeducc':
+		$ad->eliminarasigdeducc();
+		break;
+
+		case 'agregarasigdeducc':
+		$ad->agregarasigdeducc();
+		break;
 		
 		default: 
 		?>

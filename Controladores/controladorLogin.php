@@ -63,6 +63,11 @@ public function loguear()
             ?>
 			<?php	
 		} else {
+
+			$sql="INSERT INTO auditoria VALUES (NULL, '".$_SESSION['id_usuario']."', 'inició sesión', 'usuarios', CURRENT_TIMESTAMP, '".$_SESSION['tipo_usuario']."')";
+
+		$resultado=mysqli_query($conex,$sql);
+		
 			//creando variables de sesión
 			$data=mysqli_fetch_object($res);
 			
@@ -88,6 +93,7 @@ public function logout()
 		session_unset();
 
 		if (session_destroy()) {
+			
 		?>
 				<script type="text/javascript">
 					window.location="../Vistas/login/login.php"

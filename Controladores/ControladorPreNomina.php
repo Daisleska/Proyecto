@@ -2,6 +2,7 @@
 
 include("../Modelos/clasedb.php");
 extract($_REQUEST);
+session_start();
 
 class ControladorPreNomina
 {
@@ -17,7 +18,7 @@ public function prenomina(){
 	$res=mysqli_query($conex,$sql);
 	while($fila=mysqli_fetch_array($res)){
 		$id=$fila['id'];
-		$sql2="SELECT COUNT(prenomina_empleado.id_prenomina) AS cantidad, pre_nomina.status, pre_nomina.id, pre_nomina.departamento FROM pre_nomina INNER JOIN prenomina_empleado ON pre_nomina.id=prenomina_empleado.id_prenomina WHERE pre_nomina.id='$id'";
+		$sql2="SELECT pre_nomina.quincena, COUNT(prenomina_empleado.id_prenomina) AS cantidad, pre_nomina.status, pre_nomina.id FROM pre_nomina INNER JOIN prenomina_empleado ON pre_nomina.id=prenomina_empleado.id_prenomina WHERE pre_nomina.id='$id'";
 		$resultado=mysqli_query($conex,$sql2);
 		$fila2=mysqli_fetch_assoc($resultado);
 		$prenomina[$count]=$fila2;
@@ -37,10 +38,9 @@ public function aprobadas(){
 	$count=0;
 	$sql="SELECT id FROM pre_nomina WHERE status=2";
 	$res=mysqli_query($conex,$sql);
-
 	while($fila=mysqli_fetch_array($res)){
 		$id=$fila['id'];
-		$sql2="SELECT COUNT(prenomina_empleado.id_prenomina) AS cantidad, pre_nomina.status, pre_nomina.id, pre_nomina.departamento FROM pre_nomina INNER JOIN prenomina_empleado ON pre_nomina.id=prenomina_empleado.id_prenomina WHERE pre_nomina.id='$id'";
+		$sql2="SELECT pre_nomina.quincena, COUNT(prenomina_empleado.id_prenomina) AS cantidad, pre_nomina.status, pre_nomina.id FROM pre_nomina INNER JOIN prenomina_empleado ON pre_nomina.id=prenomina_empleado.id_prenomina WHERE pre_nomina.id='$id'";
 		$resultado=mysqli_query($conex,$sql2);
 		$fila2=mysqli_fetch_assoc($resultado);
 		$aprobadas[$count]=$fila2;
@@ -66,24 +66,15 @@ public function generar(){
 
     //$filas=0;
     if ($filas==0 && date('d')<16) {
-
-    	$sql="SELECT nombre FROM departamentos";
-    	$res=mysqli_query($conex, $sql);
-        $id_departamento=1;
-        $count=0;
-
-    	while ($fila=mysqli_fetch_array($res)) {
-
-        $nombre=$fila['nombre'];
 	 
-    	$sql="INSERT INTO `pre_nomina` (`id`, `quincena`, `mes`, `anio`, `departamento`, `status`) VALUES (NULL, '1', MONTH( CURDATE() ), YEAR( CURDATE() ), '$nombre', 'Procesando')";
+    	$sql="INSERT INTO `pre_nomina` (`id`, `quincena`, `mes`, `anio`, `status`) VALUES (NULL, '1', MONTH( CURDATE() ), YEAR( CURDATE() ), 'Procesando')";
 
     	$res=mysqli_query($conex,$sql);
 
     	$id_prenomina=mysqli_insert_id($conex);//obteniendo el último id generado
 	    //echo $id_prenomina;
         
-    	$sql2="SELECT DISTINCT empleado.*,cargos.nombre,cargos.salario FROM empleado, cargos, departamentos WHERE empleado.id_cargo=cargos.id AND empleado.id_departamento=".$id_departamento." ";
+    	$sql2="SELECT DISTINCT empleado.*,cargos.nombre,cargos.salario FROM empleado, cargos, departamentos WHERE empleado.id_cargo=cargos.id";
 
         $res2=mysqli_query($conex,$sql2);
         $filas=mysqli_num_rows($res2);//cuantos registro trae la consulta
@@ -124,11 +115,15 @@ public function generar(){
        
 		$resultado=mysqli_query($conex,$sql3);
 		$i++;
-   }
-   $count++;
-   $id_departamento++;
+ 
+ 
+
+    $sql4="INSERT INTO auditoria VALUES (NULL, '".$_SESSION['id_usuario']."', 'generó primera quincena', 'pre_nomina', CURRENT_TIMESTAMP, '".$_SESSION['tipo_usuario']."')";
+
+		$resultado=mysqli_query($conex,$sql4);
 
     ?>
+
 		<script type="text/javascript">
 			alert("¡Se generó exitosamente!");
 			window.location="ControladorPreNomina.php?operacion=prenomina";
@@ -141,24 +136,15 @@ public function generar(){
   	
     }else if ($filas==1  && date('d')>15) {
 
-    	$sql="SELECT nombre FROM departamentos";
-    	$res=mysqli_query($conex, $sql);
-        $id_departamento=1;
-        $count=0;
-
-    	while ($fila=mysqli_fetch_array($res)) {
-
-        $nombre=$fila['nombre'];
-	 
-
-    	$sql="INSERT INTO `pre_nomina` (`id`, `quincena`, `mes`, `anio`, `departamento`, `status`) VALUES (NULL, '2', MONTH( CURDATE() ), YEAR( CURDATE() ), '$nombre', 'Procesando')";
+    	
+    	$sql="INSERT INTO `pre_nomina` (`id`, `quincena`, `mes`, `anio`, `status`) VALUES (NULL, '2', MONTH( CURDATE() ), YEAR( CURDATE() ), 'Procesando')";
 
     	$res=mysqli_query($conex,$sql);
 
     	$id_prenomina=mysqli_insert_id($conex);//obteniendo el último id generado
 	    //echo $id_prenomina;
         
-    	$sql2="SELECT empleado.*,cargos.nombre,cargos.salario FROM empleado, cargos WHERE empleado.id_cargo=cargos.id AND empleado.id_departamento=".$id_departamento." ";
+    	$sql2="SELECT empleado.*,cargos.nombre,cargos.salario FROM empleado, cargos WHERE empleado.id_cargo=cargos.id";
 
         $res2=mysqli_query($conex,$sql2);
         $filas=mysqli_num_rows($res2);//cuantos registro trae la consulta
@@ -210,8 +196,11 @@ public function generar(){
 		$i++;
      }
 
-    $count++;
-   $id_departamento++;
+    
+
+   $sql4="INSERT INTO auditoria VALUES (NULL, '".$_SESSION['id_usuario']."', 'generó segunda quincena', 'pre_nomina', CURRENT_TIMESTAMP, '".$_SESSION['tipo_usuario']."')";
+
+		$resultado=mysqli_query($conex,$sql4);
 
     ?>
 		<script type="text/javascript">
@@ -219,7 +208,7 @@ public function generar(){
 			window.location="ControladorPreNomina.php?operacion=prenomina";
 		</script>
 			<?php
-    }
+    
     
     } elseif (($filas==1 && date('d')<16) || ($filas==2 && date('d')>15)) {
     	?>
@@ -304,7 +293,10 @@ public function aprobar(){
 		$resultado=mysqli_query($conex,$sql3);
 		$i++;
     }
+    
+     $sql="INSERT INTO auditoria VALUES (NULL, '".$_SESSION['id_usuario']."', 'aprobó primera quincena', 'pre_nomina', CURRENT_TIMESTAMP, '".$_SESSION['tipo_usuario']."')";
 
+		$resultado=mysqli_query($conex,$sql);
     ?>
 		<script type="text/javascript">
 			alert("Nomina Aprobada");
@@ -368,7 +360,9 @@ public function aprobar(){
 		$resultado=mysqli_query($conex,$sql3);
 		$i++;
      }
+    $sql="INSERT INTO auditoria VALUES (NULL, '".$_SESSION['id_usuario']."', 'aprobó segunda quincena', 'pre_nomina', CURRENT_TIMESTAMP, '".$_SESSION['tipo_usuario']."')";
 
+		$resultado=mysqli_query($conex,$sql);
     ?>
 		<script type="text/javascript">
 			alert("Nomina Aprobada");
@@ -674,6 +668,41 @@ public function ver(){
 } //fin función ver
 
 
+public function veraprobadas(){
+	extract($_REQUEST);
+	$db=new clasedb();
+	$conex=$db->conectar();
+
+	$sql="SELECT empleado.id, empleado.nombres, empleado.apellidos,empleado.cedula, nomina.id, nomina.total_asig, nomina.total_deducc, nomina.monto, nomina.id_prenomina FROM empleado, nomina WHERE nomina.id_prenomina=".$id_nomina." AND nomina.id_empleado=empleado.id";
+
+	if ($res=mysqli_query($conex,$sql)) {
+		//echo "entro";
+		$campos=mysqli_num_fields($res);//cuantos campos trae la consulta	
+		$filas=mysqli_num_rows($res);//cuantos registro trae la consulta
+		$i=0;
+		$datos[]=array();//inicializando array
+		//extrayendo datos
+		while($data=mysqli_fetch_array($res)){
+			for ($j=0; $j <$campos; $j++) { 
+				$datos[$i][$j]=$data[$j];
+			} 
+			$i++;
+		}
+		
+	    header("Location: ../Vistas/pre_nomina/vernomina.php?filas=".$filas."&campos=".$campos."&data=".serialize($datos));
+	} else {
+		echo "Error en la BASE DE DATOS";
+
+	}//enviando datos
+
+   
+
+} //fin función ver aprobadas
+
+
+
+
+
 
 
 
@@ -686,6 +715,9 @@ public function eliminar()
   $sql="DELETE FROM pre_nomina WHERE id=".$id_prenomina;
 
     $res=mysqli_query($conex,$sql);
+    $sql="INSERT INTO auditoria VALUES (NULL, '".$_SESSION['id_usuario']."', 'eliminó quincena', 'pre_nomina', CURRENT_TIMESTAMP, '".$_SESSION['tipo_usuario']."')";
+
+		$resultado=mysqli_query($conex,$sql);
     if ($res) {
       ?>
         <script type="text/javascript">
@@ -705,6 +737,7 @@ public function eliminar()
 
 static function controlador($operacion){
 		$pago=new ControladorPreNomina();
+		
 	switch ($operacion) {
 		case 'prenomina':
 			$pago->prenomina();
@@ -720,6 +753,10 @@ static function controlador($operacion){
 
 		case 'ver':
 			$pago->ver();
+			break;
+
+		case 'veraprobadas':
+			$pago->veraprobadas();
 			break;
 
 		case 'aprobadas':

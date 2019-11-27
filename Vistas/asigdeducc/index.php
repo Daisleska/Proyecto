@@ -4,33 +4,17 @@ $data=unserialize($data);
 include_once "../includes/menu.php"; 
 ?>
 
-        <div class="breadcrumbs">
-            <div class="col-sm-5">
-                <div class="page-header float-left">
-
-                
-    
-            </div>
-            <div class="col-sm-7">
-                <div class="page-header float-right">
-                    <div class="page-title">
-
-                     
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="content mt-3">
-            <div class="animated fadeIn">
-                <div class="row">
-
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title"><i class="fa fa-list"></i> LISTADO DE ASIGNACIONES Y DEDUCCIONES</strong>
-                            </div>
-                            <div class="card-body">
+ <div class="contenido">
+    <div class="content-2">
+    <section  class="content-header">
+      <ol class="breadcrumb">
+       
+         <h1 align="center">  <span style="margin-left: 2cm;"  class="badge badge-info">Listado de Asignaciones y Deducciones <i class="menu-icon fa fa-list"></i> </span></h1>
+        
+      </ol>
+   </section >
+<br>
+<div class="table-responsive">
                                 <table class="table table-striped table-sm " id="table">
                                     <thead>
                                         <tr>
@@ -79,14 +63,7 @@ include_once "../includes/menu.php";
                     </div>
 
 
-                </div>
-            </div><!-- .animated -->
-        </div><!-- .content -->
-    </div>
-
-
-
-    </div><!-- /#right-panel -->
+<br><br><br><br><br><br><br><br><br><br><br><br>
  <?php include_once "../includes/footer.php"; ?>
 
   <?php

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-11-2019 a las 05:28:41
+-- Tiempo de generación: 27-11-2019 a las 07:02:18
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.2.12
 
@@ -64,7 +64,7 @@ CREATE TABLE `asignacion_deduccion` (
 INSERT INTO `asignacion_deduccion` (`id`, `descripcion`, `tipo`, `monto`) VALUES
 (1, 'Memoriales La Victoria C.A', 'Deduccion', 15000),
 (2, 'Prima por Hijo', 'Asignacion', 50000),
-(4, 'Prima Prof. TSU', 'Asignacion', 60000);
+(4, 'Prima Prof. TSU', 'Asignacion', 65000);
 
 -- --------------------------------------------------------
 
@@ -94,7 +94,10 @@ INSERT INTO `asistencias` (`id`, `id_empleado`, `fecha_hora`, `status`, `justifi
 (10, 1, '2019-11-22 04:30:00', 'Sin Marcar', ''),
 (11, 1, '2019-11-27 04:30:00', 'Sin Marcar', ''),
 (12, 2, '2019-11-27 04:30:00', 'Sin Marcar', ''),
-(13, 3, '2019-11-27 04:30:00', 'Sin Marcar', '');
+(13, 3, '2019-11-27 04:30:00', 'Sin Marcar', ''),
+(14, 1, '2019-11-24 05:00:00', 'Sin Marcar', ''),
+(15, 1, '2019-11-25 05:00:00', 'Sin Marcar', ''),
+(16, 2, '2019-11-25 05:00:00', 'Sin Marcar', '');
 
 -- --------------------------------------------------------
 
@@ -106,17 +109,61 @@ CREATE TABLE `auditoria` (
   `id` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `actividad` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `fecha` date NOT NULL,
-  `hora` time NOT NULL,
-  `status` enum('0','1') COLLATE utf8_unicode_ci NOT NULL
+  `tabla` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
+  `fecha_hora` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` varchar(90) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `auditoria`
 --
 
-INSERT INTO `auditoria` (`id`, `id_usuario`, `actividad`, `fecha`, `hora`, `status`) VALUES
-(1, 1, 'logueo', '2019-11-21', '00:00:00', '1');
+INSERT INTO `auditoria` (`id`, `id_usuario`, `actividad`, `tabla`, `fecha_hora`, `status`) VALUES
+(20, 2, 'modificÃ³ asignaciÃ³n o deducciÃ³n', 'asignacion_deduccion', '2019-11-26 04:07:17', 'Admin'),
+(21, 2, 'generÃ³ primera quincena', 'pre_nomina', '2019-11-15 04:10:35', 'Admin'),
+(22, 2, 'aprobÃ³ primera quincena', 'pre_nomina', '2019-11-15 04:14:45', 'Admin'),
+(23, 2, 'eliminÃ³ quincena', 'pre_nomina', '2019-11-15 04:15:58', 'Admin'),
+(24, 2, 'modificÃ³ empleados', 'empleados', '2019-11-26 04:48:31', 'Admin'),
+(25, 2, 'generÃ³ primera quincena', 'pre_nomina', '2019-11-14 05:56:42', 'Admin'),
+(26, 2, 'aprobÃ³ primera quincena', 'pre_nomina', '2019-11-14 05:56:51', 'Admin'),
+(27, 2, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-11-14 14:32:59', 'Admin'),
+(28, 2, 'aprobÃ³ primera quincena', 'pre_nomina', '2019-11-14 14:52:57', 'Admin'),
+(29, 2, 'generÃ³ primera quincena', 'pre_nomina', '2019-11-14 15:48:49', 'Admin'),
+(30, 2, 'generÃ³ primera quincena', 'pre_nomina', '2019-11-14 15:48:50', 'Admin'),
+(31, 2, 'generÃ³ primera quincena', 'pre_nomina', '2019-11-14 15:48:50', 'Admin'),
+(32, 2, 'aprobÃ³ primera quincena', 'pre_nomina', '2019-11-14 15:52:47', 'Admin'),
+(33, 2, 'generÃ³ segunda quincena', 'pre_nomina', '2019-11-28 16:07:49', 'Admin'),
+(34, 2, 'eliminÃ³ quincena', 'pre_nomina', '2019-11-28 16:11:52', 'Admin'),
+(35, 2, 'generÃ³ segunda quincena', 'pre_nomina', '2019-11-28 16:11:58', 'Admin'),
+(36, 2, 'aprobÃ³ segunda quincena', 'pre_nomina', '2019-11-28 16:12:44', 'Admin'),
+(37, 2, 'eliminÃ³ quincena', 'pre_nomina', '2019-11-28 16:30:12', 'Admin'),
+(38, 2, 'aprobÃ³ primera quincena', 'pre_nomina', '2019-11-28 16:30:16', 'Admin'),
+(39, 2, 'modificÃ³ asignaciÃ³n o deducciÃ³n', 'asignacion_deduccion', '2019-11-28 16:46:44', 'Admin'),
+(40, 2, 'modificÃ³ asignaciÃ³n o deducciÃ³n', 'asignacion_deduccion', '2019-11-28 16:47:00', 'Admin'),
+(41, 2, 'modificÃ³ cestaticket', 'cestaticket', '2019-11-28 16:49:46', 'Admin'),
+(42, 2, 'modificÃ³ cestaticket', 'cestaticket', '2019-11-28 16:49:59', 'Admin'),
+(43, 2, 'modificÃ³ cestaticket', 'cestaticket', '2019-11-28 16:51:17', 'Admin'),
+(44, 2, 'modificÃ³ cestaticket', 'cestaticket', '2019-11-28 17:00:36', 'Admin'),
+(45, 2, 'modificÃ³ cestaticket', 'cestaticket', '2019-11-28 17:00:51', 'Admin'),
+(46, 2, 'modificÃ³ cargos', 'cargos', '2019-11-28 17:39:24', 'Admin'),
+(47, 2, 'modificÃ³ empleados', 'empleados', '2019-11-28 18:25:10', 'Admin'),
+(48, 2, 'modificÃ³ empleados', 'empleados', '2019-11-28 18:27:06', 'Admin'),
+(49, 2, 'generÃ³ primera quincena', 'pre_nomina', '2019-11-14 18:35:57', 'Admin'),
+(50, 2, 'generÃ³ primera quincena', 'pre_nomina', '2019-11-14 18:35:57', 'Admin'),
+(51, 2, 'generÃ³ primera quincena', 'pre_nomina', '2019-11-14 18:35:57', 'Admin'),
+(52, 2, 'aprobÃ³ primera quincena', 'pre_nomina', '2019-11-14 18:36:04', 'Admin'),
+(53, 2, 'generÃ³ segunda quincena', 'pre_nomina', '2019-11-26 20:06:33', 'Admin'),
+(54, 2, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-11-26 20:45:08', 'Admin'),
+(55, 2, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-11-27 00:11:45', 'Admin'),
+(56, 0, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-11-27 03:36:54', ''),
+(57, 0, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-11-27 03:47:05', ''),
+(58, 0, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-11-27 04:39:35', ''),
+(59, 1, 'cambiÃ³ contraseÃ±a', 'usuarios', '2019-11-27 04:40:29', 'Usuario 2'),
+(60, 1, 'modificÃ³ perfil', 'usuarios', '2019-11-27 04:53:35', 'Usuario 2'),
+(61, 0, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-11-27 05:07:20', ''),
+(62, 2, 'modificÃ³ empleados', 'empleados', '2019-11-27 05:35:47', 'Admin'),
+(63, 0, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-11-27 05:55:28', ''),
+(64, 2, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-11-27 05:55:56', 'Admin');
 
 -- --------------------------------------------------------
 
@@ -136,7 +183,7 @@ CREATE TABLE `cargos` (
 --
 
 INSERT INTO `cargos` (`id`, `nombre`, `salario`, `id_departamento`) VALUES
-(1, 'Jefe', '1000000', 1),
+(1, 'Jefe', '100800', 1),
 (2, 'Asistente', '400000', 2);
 
 -- --------------------------------------------------------
@@ -155,7 +202,7 @@ CREATE TABLE `cestaticket` (
 --
 
 INSERT INTO `cestaticket` (`id`, `monto`) VALUES
-(1, '25000');
+(5, '25000');
 
 -- --------------------------------------------------------
 
@@ -249,8 +296,8 @@ CREATE TABLE `empleado` (
 --
 
 INSERT INTO `empleado` (`id`, `cedula`, `nombres`, `apellidos`, `direccion`, `telefono`, `fecha_ingreso`, `condicion`, `fecha_venc`, `ncuenta`, `id_cargo`, `id_departamento`) VALUES
-(1, '25873122', 'Juan Carlos', 'Figueredo ', 'La Victoria', '04243160235', '2019-10-08', 'Fijo', '2024-10-18', '01354567898765432345', 2, 1),
-(2, '28147989', 'Hector Argenis', 'Hernandez Ceballo', 'San Mateo', '04243590130', '2019-10-09', 'Contratado', '2019-11-06', '01915678890998787654', 1, 2),
+(1, '25873122', 'Juan ', 'Figueredo ', 'La Victoria', '04243160235', '2019-09-18', 'Contratado', '2020-04-21', '01354567898765432345', 2, 1),
+(2, '28147989', 'Hector Argenis', 'Hernandez Ceballo', 'San Mateo', '04243590130', '2019-09-11', 'Fijo', '2020-04-15', '01915678890998787654', 1, 2),
 (3, '18610668', 'Eynsterd Samuel', 'Velazco', 'Zuata', '04163462604', '2019-10-08', 'Fijo', '2019-10-30', '01027693406500432765', 2, 1);
 
 -- --------------------------------------------------------
@@ -273,7 +320,6 @@ INSERT INTO `empleado_asig` (`id`, `id_empleado`, `id_asignaciones`) VALUES
 (1, 1, 2),
 (2, 1, 1),
 (3, 2, 1),
-(4, 2, 2),
 (5, 3, 1),
 (6, 3, 2),
 (7, 3, 4);
@@ -489,6 +535,15 @@ CREATE TABLE `nomina` (
   `monto` varchar(90) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `nomina`
+--
+
+INSERT INTO `nomina` (`id`, `id_empleado`, `id_prenomina`, `sueldo`, `total_asig`, `total_deducc`, `monto`) VALUES
+(16, 1, 6, '200000', '250000', '15000', '235000'),
+(17, 2, 6, '50400', '100400', '15000', '85400'),
+(18, 3, 6, '200000', '315000', '15000', '300000');
+
 -- --------------------------------------------------------
 
 --
@@ -509,7 +564,9 @@ INSERT INTO `notificaciones` (`id`, `titulo`, `mensaje`) VALUES
 (1, 'Inventario', '1 artÃ­culo requiere atenciÃ³n'),
 (2, 'Inventario', '1 artÃ­culo requiere atenciÃ³n'),
 (3, 'Inventario', '2 artÃ­culos requieren atenciÃ³n'),
-(4, 'Inventario', '2 artÃ­culos requieren atenciÃ³n');
+(4, 'Inventario', '2 artÃ­culos requieren atenciÃ³n'),
+(5, 'Inventario', '1 artÃ­culo requiere atenciÃ³n'),
+(6, 'Pedido interno', 'Tienes 2 pedidos internos en espera');
 
 -- --------------------------------------------------------
 
@@ -573,7 +630,7 @@ INSERT INTO `pedido` (`id`, `fecha_registro`, `fecha_edicion`, `estado`, `tipo`,
 (2, '2019-11-08 17:33:06', '2019-11-08 03:20:35', 'Cancelado', 'interno', NULL),
 (3, '2019-11-08 16:43:26', '2019-11-08 16:43:26', 'En Espera', 'interno', NULL),
 (4, '2019-11-08 17:25:36', '2019-11-08 17:25:36', 'En Espera', 'interno', NULL),
-(6, '2019-11-20 16:42:31', '2019-11-20 16:42:31', 'En Espera', 'interno', NULL);
+(6, '2019-11-27 02:35:50', '2019-11-20 16:42:31', 'Completado', 'interno', NULL);
 
 -- --------------------------------------------------------
 
@@ -602,7 +659,7 @@ INSERT INTO `pedido_detalles` (`id`, `id_pedido`, `tiempo_registro`, `tiempo_mod
 (2, 3, '2019-11-08 16:43:26', NULL, 2, NULL, 9, NULL, NULL),
 (3, 3, '2019-11-08 16:43:26', NULL, 1, NULL, 19, NULL, NULL),
 (4, 4, '2019-11-08 17:25:36', NULL, 1, NULL, 9, NULL, NULL),
-(5, 6, '2019-11-20 16:42:31', NULL, 1, NULL, 2, NULL, NULL);
+(5, 6, '2019-11-20 16:42:31', '2019-11-27 02:35:50', 1, NULL, 2, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -642,6 +699,18 @@ CREATE TABLE `prenomina_empleado` (
   `id_empleado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `prenomina_empleado`
+--
+
+INSERT INTO `prenomina_empleado` (`id`, `id_prenomina`, `id_empleado`) VALUES
+(14, 6, 1),
+(15, 6, 2),
+(16, 6, 3),
+(17, 7, 1),
+(18, 7, 2),
+(19, 7, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -653,9 +722,16 @@ CREATE TABLE `pre_nomina` (
   `quincena` int(90) NOT NULL,
   `mes` int(90) NOT NULL,
   `anio` int(90) NOT NULL,
-  `departamento` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
   `status` enum('Procesando','Aprobado') COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `pre_nomina`
+--
+
+INSERT INTO `pre_nomina` (`id`, `quincena`, `mes`, `anio`, `status`) VALUES
+(6, 1, 11, 2019, 'Aprobado'),
+(7, 2, 11, 2019, 'Procesando');
 
 -- --------------------------------------------------------
 
@@ -749,7 +825,7 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `codigo`, `nombre`, `presentacion`, `unidad`, `stock`, `stock_minimo`, `stock_maximo`, `borrado`, `activo`, `valor_unitario`, `id_ubicacion`) VALUES
-(1, '12356', 'hierro', 'paletas', 'Kgs', 3, 5, 30, 'N', 'S', NULL, NULL),
+(1, '12356', 'hierro', 'paletas', 'Kgs', 5, 5, 30, 'N', 'S', NULL, NULL),
 (2, '7272727', 'metal', 'paletas', 'Lts', 80, 10, 5000, 'N', 'S', NULL, NULL),
 (3, 'nuh779', 'cosa', 'paletas', 'Kgs', 10, 10, 200, 'S', 'S', NULL, NULL),
 (4, '32020', 'madera', 'flota', 'Lts', 56, 10, 100, 'N', 'N', NULL, NULL),
@@ -1139,37 +1215,37 @@ ALTER TABLE `almacen`
 -- AUTO_INCREMENT de la tabla `asignacion_deduccion`
 --
 ALTER TABLE `asignacion_deduccion`
-  MODIFY `id` int(90) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(90) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `asistencias`
 --
 ALTER TABLE `asistencias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `auditoria`
 --
 ALTER TABLE `auditoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT de la tabla `cargos`
 --
 ALTER TABLE `cargos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `cestaticket`
 --
 ALTER TABLE `cestaticket`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `departamentos`
 --
 ALTER TABLE `departamentos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `despachos`
@@ -1181,19 +1257,19 @@ ALTER TABLE `despachos`
 -- AUTO_INCREMENT de la tabla `dia_lab`
 --
 ALTER TABLE `dia_lab`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado_asig`
 --
 ALTER TABLE `empleado_asig`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `enviados`
@@ -1229,13 +1305,13 @@ ALTER TABLE `materia_prima`
 -- AUTO_INCREMENT de la tabla `nomina`
 --
 ALTER TABLE `nomina`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `pago`
@@ -1265,13 +1341,13 @@ ALTER TABLE `permisos`
 -- AUTO_INCREMENT de la tabla `prenomina_empleado`
 --
 ALTER TABLE `prenomina_empleado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `pre_nomina`
 --
 ALTER TABLE `pre_nomina`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `privilegios`
@@ -1313,7 +1389,7 @@ ALTER TABLE `ubicacion`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas

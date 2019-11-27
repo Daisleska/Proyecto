@@ -1,94 +1,89 @@
-
-<?php include_once "../includes/menu.php";
+<?php 
 include ('../../Modelos/clasedb.php');
-
-extract($_REQUEST);
+include_once "../includes/menu.php";
+extract ($_REQUEST);
 $data=unserialize($data);
+
 ?>
+<?php include_once "../includes/menu.php"; ?>
+<script type="text/javascript">
+    function solonumeros(e){
+        key=e.keyCode || e.which;
+        teclado=String.fromCharCode(key);
+        numeros="0123456789";
+        especiales="8-37-38-46";
+        teclado_especial=false;
+        for (var i in especiales) {
+            if (key==especiales[i]) {
+                teclado_especial=true;
+
+            }
+            
+        }
+        if (numeros.indexOf(teclado)==-1 && !teclado_especial) {
+            return false;
+        }
+    }
+</script>
 
 
+<div class="contenido">
+    <div class="content-2">
+    <section  class="content-header">
+      <ol class="breadcrumb">
+       
+         <h1 align="center">  <span style="margin-left: 5.5cm;" class="badge badge-info">Modificar Datos <i class="menu-icon fa fa-edit"></i> </span></h1>
+         <li style="padding-left: 4cm;"><a href="../../Controladores/ControladorPerfil.php?operacion=verperfil"><i class="fa fa-user"></i> Perfil </a></li>
+        
+      </ol>
+   </section >
+<br>
 
-<div class="content mt-3">
-            <div class="animated fadeIn">
-                <div class="col-lg-10" style="margin-left: 2cm;">
-                    <div class="card">
-                      <div class="card-header">
-                      <section class="content-header">
-                          <ol class="breadcrumb">
-                             <li><a href="../../Controladores/ControladorPerfil.php?operacion=verperfil"><i class="fa fa-user"></i> Datos Personales /</a></li>
-                             <li><a href="../../Controladores/ControladorPerfil.php?operacion=cambiar_clave"><i class="fa fa-lock"></i> Cambiar Contraseña</a></li>
-                         </ol>
-                    </section>
-                    </div>
-                        <div class="card-body card-block">
-                        <form action="../../Controladores/ControladorPerfil.php?operacion=actualizar" method="post" class="form-horizontal" enctype="multipart/form-data">
+ <form action="../../Controladores/ControladorPerfil.php?operacion=actualizar" method="POST" name="form" class="form">
+  
+    <h6 class="nota-input">Los campos con un <i class="estado-r">*</i> son obligatorios </h6><br>
+
+     <div class="row" style="padding-left: 2cm;">
+      <div class="col-md-5">
+            <label><strong>Nombre</strong> <strong class='estado-r'>*</strong></label>
+            <input name="nombre" minlength="4" maxlength="20" type="text" class="form-control" required="required" placeholder="Nombre" value="<?=$data[0]?>"><br>
+          </div>
+          <div class="col-md-5">
+            <label><strong>Correo</strong> <strong class='estado-r'>*</strong></label>
+            <input name="correo" required="required" minlength="15" maxlength="25" type="email" class="form-control" placeholder="Correo" value="<?=$data[1]?>"><br>
+          </div>
+
+    </div>
+     <div class="row" style="padding-left: 2cm;">
+
+            <div class="col-md-5">
+            <label><strong>Pregunta de Seguridad</strong> <strong class='estado-r'>*</strong></label>
+             <input name="pregunta" required="required" minlength="6" maxlength="20" type="text" class="form-control" placeholder="Color favorito?" value="<?=$data[2]?>">
+          </div><br>
+
+          <div class="col-md-5">
+            <label><strong>Respuesta de Seguridad</strong> <strong class='estado-r'>*</strong></label>
+             <input name="respuesta" required="required" minlength="5" maxlength="20" type="text" class="form-control" placeholder="Azul" value="<?=$data[3]?>">
+          </div><br>
+      </div>
+
+      <br>
+      
+        <div class="row" style="padding-left: 350px;">
+         <input type="hidden" name="operacion" value="actualizar">
+                    
+        <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-check"></i></button>
+        </div>
+      </form>
+    </div>
+
+   <br><br><br><br><br><br><br><br><br><br><br><br>     
+   <?php include_once "../includes/footer.php"; ?>
+    <script src="../../bootstrap/js/jquery.js"></script>
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../vendors/js/feather.min.js"></script>
+    <script>
             
 
-                        <div style="padding-left: 50px;" class="form-group">
-                            <div class="col col-md-5"><label>Nombre</label></div>
-                            <div class="col col-md-6"><input name="nombre" minlength="4" maxlength="20" type="text" class="form-control" required="required" placeholder="Nombre" value="<?=$data[0]?>"></div>
-
-
-                        </div>
-                        <br>
-                        <br>
-
-
-                        <div style="padding-left: 50px;" class="form-group">
-                                <div class="col col-md-5"><label>Correo</label></div>
-                                <div class="col col-md-6"><input name="correo" required="required" minlength="15" maxlength="25" type="email" class="form-control" placeholder="Correo" value="<?=$data[1]?>"></div>
-                        </div>
-                        <br>
-                        <br>
-
-                        <div style="padding-left: 50px;" class="form-group">
-                                    <div class="col col-md-5"><label>Pregunta de Seguridad</label></div>
-                                    <div class="col col-md-6"><input name="pregunta" required="required" minlength="6" maxlength="20" type="text" class="form-control" placeholder="Color favorito?" value="<?=$data[2]?>"></div>
-                        </div>
-                        <br>
-                        <br>
-
-                        <div style="padding-left: 50px;" class="form-group">
-                                    <div class="col col-md-5"><label>Respuesta de Seguridad</label></div>
-                                    <div class="col col-md-6"><input name="respuesta" required="required" minlength="5" maxlength="20" type="text" class="form-control" placeholder="Azul" value="<?=$data[3]?>"></div>
-                        </div>
-                        <br>
-                        <br>
-                        
-                        <div style="padding-left: 50px;" class="form-group">
-                                    <div class="col col-md-2"><label>Imagen</label>
-                                    <br>
-                                    <img src="" height="150" width="150">
-                                    <br>
-                                    <br>
-                                     <input name="avatar" type="file"  placeholder="Imagen"></div>
-                        </div>
-                    </div>
-               
-                  
-                        
-                        
-
-                    <div class="card-footer">
-                    <input type="hidden" name="operacion" value="actualizar">
-                    
-                    <button type="submit" name="Guardar" value="Guardar" class="btn btn-success">
-                    <i class="fa fa-check"></i> 
-                    </button></div>
-
-
-                        
-               
-                    
-
-                    </form>       
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-                                                
-
-
-<?php include_once "../includes/footer.php"; ?>
+            
+ <?php include_once "../includes/footer.php"; ?>

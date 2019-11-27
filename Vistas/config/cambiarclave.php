@@ -1,68 +1,87 @@
-
-
+<?php
+extract($_REQUEST);
+$data=unserialize($data);
+?>
 
 <?php include_once "../includes/menu.php"; ?>
-<div class="content mt-3">
-      <div class="animated fadeIn">
-      
-           <div class="col-lg-10" style="margin-left: 2cm;">
-              <div class="card">
-                 <div class="card-header">
-                      
-              
-    <section class="content-header">
+<script type="text/javascript">
+    function solonumeros(e){
+        key=e.keyCode || e.which;
+        teclado=String.fromCharCode(key);
+        numeros="0123456789";
+        especiales="8-37-38-46";
+        teclado_especial=false;
+        for (var i in especiales) {
+            if (key==especiales[i]) {
+                teclado_especial=true;
+
+            }
+            
+        }
+        if (numeros.indexOf(teclado)==-1 && !teclado_especial) {
+            return false;
+        }
+    }
+</script>
+
+
+<div class="contenido" style="padding-left: 20px">
+    <div class="content-2">
+     <section class="content-header">
       <ol class="breadcrumb">
-        <li><a href="../../Controladores/ControladorPerfil.php?operacion=verperfil"><i class="fa fa-user"></i> Datos Personales /</a></li>
-        <li><a href="../../Controladores/ControladorPerfil.php?operacion=cambiar_clave"><i class="fa fa-lock"></i> Cambiar Contraseña</a></li>
-      </ol>
-    </section>
-  </div>
-    
-                <div class="card-body card-block">
-                  <form action="../../Controladores/ControladorPerfil.php?operacion=actualizar_clave" id="cambiarclave" method="POST" class="form-horizontal myaccount" role="form">
-                  <input type="hidden" name="operacion" value="cambiar_clave">
-                   <input type="hidden" name="id_usuario" value="<?=$id_usuario?>">
-
-                  <div style="padding-left: 50px;" class="form-group">
-                    <div class="col col-md-5"><label>Contraseña Actual</label></div>
-                    <div class="col col-md-6">
-                      <input type="password" name="clave_actual" id="clave_actual" class="form-control" minlength="6" maxlength="20" required="required" placeholder="Contraseña Actual">
-                      <span class="help-block"></span>
-                    </div>
-                  </div>
-                  <br>
-                  <br>
-                  <div style="padding-left: 50px;" class="form-group">
-                    <div class="col col-md-5"><label>Nueva Contraseña</label></div>
-                    <div class="col col-md-6">
-                      <input type="password" class="form-control" name="clave" id="clave" minlength="6" maxlength="20" required="required" placeholder="Nueva Contraseña">
-                      <span class="help-block"></span>
-                    </div>
-                  </div>
-                  <br>
-                  <br>
-                  <div style="padding-left: 50px;" class="form-group">
-                    <div class="col col-md-5"><label>Confirmar Contraseña</label></div>
-                    <div class="col col-md-6">
-                      <input type="password" name="clave_nueva_confirm" id="clave_nueva_confirm" class="form-control" minlength="6" maxlength="20" required="required" placeholder="Confirmar Contraseña ">
-                      <span class="help-block"></span>
-                    </div>
-                  </div>
-                  </div>
-
-                 <div class="card-footer">
-                <input type="hidden" name="operacion" value="actualizar_clave"><input type="hidden" name="id_usuario" value=".$_SESSION['id_usuario'];">
-                <button type="submit" class="btn btn-success">
-                <i class="fa fa-check"></i>
-                </button>
-               
          
-                </form>
-              </div>
-            </div>
-           </div>
-         </div>
-      </div>
-    </div>
+         <h1 align="center">  <span style="margin-left: 3.5cm;" class="badge badge-info">Cambiar Contraseña <i class="menu-icon fa fa-edit"></i> </span></h1>
 
-<?php include_once "../includes/footer.php"; ?>
+         <li style="padding-left: 4cm;"><a href="../../Controladores/ControladorPerfil.php?operacion=verperfil"><i class="fa fa-user"></i> Perfil </a></li>
+        
+      </ol>
+   </section >
+<br>
+
+ <form action="../../Controladores/ControladorPerfil.php?operacion=actualizar_clave" method="POST" name="form" class="form">
+         <input type="hidden" name="operacion" value="cambiar_clave">
+         
+         <input type="hidden" name="id_usuario" value="<?=$id_usuario?>">
+  
+        <h6 class="nota-input">Los campos con un <i class="estado-r">*</i> son obligatorios </h6><br>
+        
+              
+        
+        <div class="row">
+          <div class="col-md-4">
+            <label><strong>Contraseña Actual</strong> <strong class='estado-r'>*</strong></label>
+            <input type="password" name="clave_actual" id="clave_actual" class="form-control" minlength="6" maxlength="20" required="required" placeholder="Contraseña Actual"<br>
+          </div>
+          <div class="col-md-4">
+            <label><strong>Nueva Contraseña</strong> <strong class='estado-r'>*</strong></label>
+            <input type="password" class="form-control" name="clave" id="clave" minlength="6" maxlength="20" required="required" placeholder="Nueva Contraseña"><br>
+          </div>
+
+           <div class="col-md-4">
+            <label><strong>Confirmar Contraseña</strong> <strong class='estado-r'>*</strong></label>
+             <input type="password" name="clave_nueva_confirm" id="clave_nueva_confirm" class="form-control" minlength="6" maxlength="20" required="required" placeholder="Confirmar Contraseña ">
+          </div>
+        </div>
+      
+        <div>
+           <input type="hidden" name="operacion" value="actualizar_clave"><input type="hidden" name="id_usuario" value=".$_SESSION['id_usuario'];">
+                <form action="../../Controladores/ControladorPerfil.php?operacion=modificar" method="POST">
+                                
+                                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-check"></i>
+                                
+                                </button>
+                            </form>
+        </div>
+      </form>
+    </div>
+   </div>
+   <br><br><br><br><br><br><br><br><br><br><br><br>     
+   <?php include_once "../includes/footer.php"; ?>
+    <script src="../../bootstrap/js/jquery.js"></script>
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../vendors/js/feather.min.js"></script>
+    <script>
+            <!-- Right Panel -->
+
+            
+ <?php include_once "../includes/footer.php"; ?>

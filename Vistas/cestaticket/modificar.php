@@ -4,6 +4,9 @@ include_once "../includes/menu.php";
 extract ($_REQUEST);
 $data=unserialize($data);
 ?>
+
+
+<?php include_once "../includes/menu.php"; ?>
 <script type="text/javascript">
     function solonumeros(e){
         key=e.keyCode || e.which;
@@ -23,67 +26,52 @@ $data=unserialize($data);
         }
     }
 </script>
-       <div class="breadcrumbs">
-           <div class="col-sm-5">
-                <div class="page-header float-left">
-                   
-                        <!-- <ol class="breadcrumb text-right">
-                            <li><a href="#">Proveedores</a></li>
-                            <li class="active">Materia Prima</li>
-                        </ol> -->
-                </div>
-            </div>
 
-            <div class="col-sm-7">
-                <div class="page-header float-right">
-                    <div class="page-title">
-                    
-                 </div>
-                </div>
-            </div>
-            
+
+<div class="contenido" style="padding-left: 20px">
+    <div class="content-2">
+    <section  class="content-header">
+      <ol class="breadcrumb">
+       
+         <h1 align="center">  <span style="margin-left: 4cm;" class="badge badge-info">Modificar Cestaticket <i class="menu-icon fa fa-edit"></i> </span></h1>
+        
+      </ol>
+   </section >
+<br>
+
+ <form action="../../Controladores/ControladorCestaticket.php?operacion=actualizar" method="POST" name="form" class="form">
+  
+    <div class="row" style="padding-left: 250px;">
+          <div class="col-md-5" >
+            <label><strong>Monto</strong></label>
+            <input type="text" class="form-control" name="monto" onkeypress="return solonumeros(event)" minlength="5" maxlength="20" placeholder="Ej. 100000" value="<?php echo $data['monto']; ?>"><br>
+          </div>
+
+         
         </div>
+      </div>
+      
+      
+        <div class="row" style="padding-left: 350px;">
+           <input type="hidden" name="operacion" value="actualizar">
+                <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
+                <button type="submit" class="btn btn-primary btn-sm">
+                <i class="fa fa-check"></i>
+                </button>
+                <p style="color: white">..</p>
+                <button type="reset" class="btn btn-danger btn-sm">
+                    <i class="fa fa-ban"></i></button>
+        </div>
+      </form>
+    </div>
 
-        <!-- contenido -->
- <form action="../../Controladores/ControladorCestaticket.php?operacion=actualizar" method="POST"  class="form">
-       <div style="padding-left: 150px;" class="col-lg-10">
-              <div class="card">
-              <div class="card-header">
-              <strong><i class="fa fa-edit"></i> MODIFICAR CESTATICKET</strong> 
-              </div>
-
-
-           <div class="card-body card-block">
-          
-
-          <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
-                <div class="col col-md-3"><label for="hf-monto" class=" form-control-label">Monto:</label></div>
-                <div class="col-12 col-md-6"><input type="text" id="hf-monto" name="monto"  required="required" onkeypress="return solonumeros(event)" minlength="4" maxlength="20" class="form-control" value="<?php echo $data['monto']; ?>"></div>
-            </div>
-
-
-                     </div>
-                     <div class="card-footer">
-                <input type="hidden" name="operacion" value="actualizar">
-
-                <div><input type="hidden" name="operacion" value="actualizar"><input type="hidden" name="id_cestaticket" value="<?=$data[0]?>"><br>
-                </div>
-
-                      <button type="submit" class="btn btn-primary btn-sm">
-                          <i class="fa fa-check"></i>&nbsp; 
-                      </button>
- 
-                            <button type="reset" class="btn btn-danger btn-sm">
-                    <i class="fa fa-ban"></i> 
-                            </form>
-                               </div>
-                         </div>
-
-                
-            </div><!-- /#right-panel -->
-         </div>
-
-            <!-- Right Panel -->
+   <br><br><br><br><br><br><br><br><br><br><br><br>     
+   <?php include_once "../includes/footer.php"; ?>
+    <script src="../../bootstrap/js/jquery.js"></script>
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../vendors/js/feather.min.js"></script>
+    <script>
+            
 
             
  <?php include_once "../includes/footer.php"; ?>

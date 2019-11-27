@@ -8,8 +8,11 @@ include_once "../includes/menu.php";
     <div class="content-2">
     <section  class="content-header">
       <ol class="breadcrumb">
+
+        <a href="../../Controladores/ControladorEmpleado.php?operacion=index" class="atras" title="Atras"><span class="fa fa-arrow-left" style="font-size: 35px;" ></span></a>
+
        
-         <h1 align="center">  <span style="margin-left: 5cm;" class="badge badge-info">Listado de Cargos <i class="menu-icon fa fa-list"></i> </span></h1>
+         <h1 align="center">  <span style="margin-left: 3cm;" class="badge badge-info">Asignaciones y Deducciones <i class="menu-icon fa fa-list"></i> </span></h1>
         
       </ol>
    </section >
@@ -19,8 +22,9 @@ include_once "../includes/menu.php";
                                     <thead>
                                         <tr>
                                             <th>N°</th>
-                                            <th>Cargo</th>
-                                            <th>Salario</th>
+                                            <th>Descripción</th>
+                                            <th>Tipo</th>
+                                            <th>Monto</th>
                                             <th>Opciones</th>
                                         </tr>
                                     </thead>
@@ -44,12 +48,12 @@ include_once "../includes/menu.php";
 
                                     }  ?>
     
-                                    <td><a  href="../../Controladores/ControladorCargos.php?operacion=modificar&id=<?=$data[$i][0]?>"><i title="Modificar" class="menu-icon fa fa-edit"></a></i>
+                                    <td>
     
                                     
     
 
-                                    <a href="../../Controladores/ControladorCargos.php?operacion=eliminar&id_cargos=<?=$data[$i][0]?>"><i title="Eliminar" class="menu-icon fa fa-trash-o"></a></i>
+                                    <a href="../../Controladores/ControladorAsigDeducc.php?operacion=eliminarasigdeducc&id=<?=$data[$i][0]?>"><i title="Eliminar" class="menu-icon fa fa-trash-o"></a></i>
                                     </td>
 
                                     <?php   

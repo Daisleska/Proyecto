@@ -2,7 +2,7 @@
 include("../Modelos/clasedb.php");
 
 extract($_REQUEST);
-
+session_start();
 
 class ControladorEmpleado
 {
@@ -170,7 +170,11 @@ if ($_POST['asignaciones'] !="")
   
   if($sql and $sql2 and $sql3 ) {
 
+     $sql="INSERT INTO auditoria VALUES (NULL, '".$_SESSION['id_usuario']."', 'registró empleados', 'empleados', CURRENT_TIMESTAMP, '".$_SESSION['tipo_usuario']."')";
+
+    $resultado=mysqli_query($conex,$sql);
     ?> 
+
 
     <script type="text/javascript">
         alert("Se registro éxitosamente");
@@ -198,10 +202,30 @@ public function modificar(){
   $conex=$db->conectar();//conectando con la base de datos
   
   $sql="SELECT empleado.id,empleado.cedula, empleado.nombres, empleado.apellidos, empleado.direccion, empleado.telefono, empleado.fecha_ingreso, empleado.condicion, empleado.fecha_venc, empleado.ncuenta FROM empleado WHERE empleado.id=".$id_empleado."";
+
+
   $res=mysqli_query($conex,$sql);//ejecutando consulta
   $data=mysqli_fetch_array($res);//extrayendo datos en array
+    
+  //-------
+  // consulta de tipos
+    $sql2="SELECT * FROM departamentos";
+    if ($res2=mysqli_query($conex,$sql2)) {
+      # se ejecutó la consulta
+      $campos_tip=mysqli_num_fields($res2);
+      $filas_tip=mysqli_num_rows($res2);
+      $departamentos[]=array();
+      $i=0;
+      while ($data2=mysqli_fetch_array($res2)) {
+        for ($j=0; $j < $campos_tip; $j++) { 
+          $departamentos[$i][$j]=$data2[$j];
+        }
+        $i++;
+      }
 
-  header("Location: ../Vistas/empleados/modificar.php?data=".serialize($data));
+    }
+
+  header("Location: ../Vistas/empleados/modificar.php?data=".serialize($data)."&campos_tip=".$campos_tip."&filas_tip=".$filas_tip."&departamentos=".serialize($departamentos));
 }
 public function actualizar()
 {
@@ -215,6 +239,9 @@ public function actualizar()
 
       $res=mysqli_query($conex,$sql);
         if ($res) {
+          $sql="INSERT INTO auditoria VALUES (NULL, '".$_SESSION['id_usuario']."', 'modificó empleados', 'empleados', CURRENT_TIMESTAMP, '".$_SESSION['tipo_usuario']."')";
+
+           $resultado=mysqli_query($conex,$sql);
           ?>
             <script type="text/javascript">
               alert("Registro modificado");
@@ -241,6 +268,9 @@ public function eliminar()
 
     $res=mysqli_query($conex,$sql);
     if ($res) {
+      $sql="INSERT INTO auditoria VALUES (NULL, '".$_SESSION['id_usuario']."', 'eliminó empleados', 'empleados', CURRENT_TIMESTAMP, '".$_SESSION['tipo_usuario']."')";
+
+    $resultado=mysqli_query($conex,$sql);
       ?>
         <script type="text/javascript">
           alert("Registro eliminado");

@@ -2,69 +2,73 @@
 include_once "../includes/menu.php"; 
 extract($_REQUEST);
 $data=unserialize($data);
+
 ?>
- 
+<script type="text/javascript">
+    function solonumeros(e){
+        key=e.keyCode || e.which;
+        teclado=String.fromCharCode(key);
+        numeros="0123456789";
+        especiales="8-37-38-46";
+        teclado_especial=false;
+        for (var i in especiales) {
+            if (key==especiales[i]) {
+                teclado_especial=true;
+
+            }
+            
+        }
+        if (numeros.indexOf(teclado)==-1 && !teclado_especial) {
+            return false;
+        }
+    }
+</script>
+
+      <div class="contenido">
+    <div class="content-2">
+    <section  class="content-header">
+      <ol class="breadcrumb">
+       
+         <h1 align="center">  <span style="margin-left: 5cm;" class="badge badge-info">Registro de Usuario <i class="menu-icon fa fa-edit"></i> </span></h1>
+        
+      </ol>
+   </section >
+<br>
+
+ <form action="../../Controladores/ControladorUsuario.php?operacion=guardar" method="POST" name="form" class="form">
+  
+    <h6 class="nota-input">Los campos con un <i class="estado-r">*</i> son obligatorios </h6><br>
+
+     <div class="row" >
+          <div class="col-md-4" >
+            <label><strong>Nombres</strong> <strong class='estado-r'>*</strong></label>
+            <input type="text" required="required" id="hf-nombres" minlength="4" maxlength="20" name="nombre" placeholder="Ej: Victor Alvarez" class="form-control"><br>
+          </div>
+
+       
+          <div class="col-md-4" >
+            <label><strong>Correo</strong> <strong class='estado-r'>*</strong></label>
+            <input type="email" minlength="15" maxlength="25" required="required" id="hf-correo" name="correo" placeholder="Ej: victor-12@gmail.com" class="form-control"><br>
+          </div>
 
 
+          <div class="col-md-4" >
+            <label><strong>Contraseña</strong> <strong class='estado-r'>*</strong></label>
+            <input type="password" required="required" minlength="6" maxlength="20" id="hf-clave" name="clave" class="form-control"><br>
+          </div>
+        
+         </div>
+        <div class="row" >
 
-        <div class="breadcrumbs">
-            <div class="col-sm-4">
-                <div class="page-header float-left">
-                    
-                </div>
-            </div>
-            <div class="col-sm-8">
-                <div class="page-header float-right">
-                    
-                </div>
-            </div>
-        </div>
+          <div class="col-md-4" >
+            <label><strong>Repetir Contraseña</strong> <strong class='estado-r'>*</strong></label>
+            <input type="password" required="required" minlength="6" maxlength="20" id="hf-clave" name="clave_repetir" class="form-control"><br>
+          </div>
 
-        <div class="content mt-3">
-            <div class="animated fadeIn">
-
-
-                                            
-                                                
-
-                
-                    <div class="col-lg-10" style="margin-left: 2cm;">
-                     <div class="card">
-                    <div class="card-header">
-                     <strong><i class="fa fa-edit"></i> REGISTRAR USUARIO</strong> 
-                                                    </div>
-
-                 
-                    <div class="card-body card-block">
-                    <form action="../../Controladores/ControladorUsuario.php?operacion=guardar" method="POST" class="form-horizontal">
-                                      
-
-                     <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
-                    <div class="col col-md-5"><label for="hf-nombres" class=" form-control-label">* Nombres:</label></div>
-                    <div class="col-12 col-md-6"><input type="text" required="required" id="hf-nombres" minlength="4" maxlength="20" name="nombre" placeholder="Ej: Victor Alvarez" class="form-control"></div>
-                     </div>
-
-                    <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
-                    <div class="col col-md-5"><label for="hf-correo" class=" form-control-label">* Correo:</label></div>
-                    <div class="col-12 col-md-6"><input type="email" minlength="15" maxlength="25" required="required" id="hf-correo" name="correo" placeholder="Ej: victor-12@gmail.com" class="form-control"></div>
-                     </div>
-
-
-                    <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
-                    <div class="col col-md-5"><label for="hf-clave" class=" form-control-label">* Contraseña:</label></div>
-                    <div class="col-12 col-md-6"><input type="password" required="required" minlength="6" maxlength="20" id="hf-clave" name="clave" class="form-control"></div>
-                     </div>
-
-                    <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
-                    <div class="col col-md-5"><label for="hf-clave" class=" form-control-label">* Repetir Contraseña:</label></div>
-                    <div class="col-12 col-md-6"><input type="password" required="required" minlength="6" maxlength="20" id="hf-clave" name="clave_repetir" class="form-control"></div>
-                     </div>
-                    
-                     <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
-                    <div class="col col-md-5"><label for="hf-tipo_usuario" class=" form-control-label">* Tipo de Usuario:</label></div>
-                    <div class="col-12 col-md-6">
-                    
-                               <select name="tipo_usuario" required="required" title="Seleccione el tipo de Usuario" class="form-control">
+       
+          <div class="col-md-4" >
+            <label><strong>Tipo de Usuario</strong> <strong class='estado-r'>*</strong></label>
+            <select name="tipo_usuario" required="required" title="Seleccione el tipo de Usuario" class="form-control">
                               <?php if ($data[4]=="Admin") {
                               ?>
                               <option value="Admin" <?php if($data[4]=="Admin"){ ?> selected="selected" <?php } ?> >Admin</option>
@@ -74,46 +78,51 @@ $data=unserialize($data);
                               <option value="Admin" <?php if($data[4]=="Admin"){ ?> selected="selected" <?php } ?> >Administrador</option>
                               <option value="Usuario 1" <?php if($data[4]=="Usuario 1"){ ?> selected="selected" <?php } ?> >Usuario 1</option>
                               <option value="Usuario 2" <?php if($data[4]=="Usuario 2"){ ?> selected="selected" <?php } ?> >Usuario 2</option>
-                              </select>
-                       </div>
-                       </div>
-                    
-
-                    <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
-                    <div class="col col-md-5"><label for="hf-pregunta" class=" form-control-label">* Pregunta de Seguridad:</label></div>
-                    <div class="col-12 col-md-6"><input type="text" required="required" id="hf-pregunta" minlength="5" maxlength="20" name="pregunta" class="form-control"></div>
-                     </div>
-
-                    <div style="padding-left: 50px; padding-top: 10px;" class="row form-group">
-                    <div class="col col-md-5"><label for="hf-respuesta" class=" form-control-label">* Respuesta de Seguridad:</label></div>
-                    <div class="col-12 col-md-6"><input type="text" required="required" minlength="4" maxlength="20" id="hf-respuesta" name="respuesta" class="form-control"></div>
-                     </div>
- 
-                    <p style="padding-left: 50px; padding-top: 10px;">(*) Campos obligatorios</p>
-                    </div>
+                              </select><br>
+          </div>
 
 
-                    
-                    
-                    <div class="card-footer">
-                    <input type="hidden" name="operacion" value="guardar">
-                    <button type="submit" class="btn btn-success">
+          <div class="col-md-4" >
+            <label><strong>Pregunta de Seguridad</strong> <strong class='estado-r'>*</strong></label>
+            <input type="text" required="required" id="hf-pregunta" minlength="5" maxlength="20" name="pregunta" class="form-control" placeholder="Ej: Mascota"><br>
+          </div>
+         
+        </div>
+     
+        
+        <div class="row" >
+
+          <div class="col-md-4" >
+            <label><strong>Respuesta de Seguridad</strong> <strong class='estado-r'>*</strong></label>
+            <input type="text" required="required" minlength="4" maxlength="20" id="hf-respuesta" name="respuesta" class="form-control" placeholder="Ej: Bucky"><br>
+          </div>
+
+       
+        </div>
+
+          
+       
+        <div class="row" style="padding-left: 350px;">
+           <input type="hidden" name="operacion" value="guardar">
+                    <button type="submit" class="btn btn-primary btn-sm">
                     <i class="fa fa-check"></i> 
                     </button>
-                  
-                    
-                                      </form>   
-                                          </div>
-                                                </div>
-                                                
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><!-- .animated -->
-                                    </div><!-- .content -->
-                                </div><!-- /#right-panel -->
-                                <!-- Right Panel -->
+                    <p style="color: white;">.</p>
+                    <button type="reset" class="btn btn-danger btn-sm">
+                    <i class="fa fa-ban"></i> 
+                    </button>
+        </div>
+      </form>
+    </div>
 
-
+   <br><br><br><br><br><br><br><br><br><br><br><br>     
    <?php include_once "../includes/footer.php"; ?>
+    <script src="../../bootstrap/js/jquery.js"></script>
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../vendors/js/feather.min.js"></script>
+    <script>
+            
+   
+
+  
+

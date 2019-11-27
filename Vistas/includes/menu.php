@@ -151,6 +151,12 @@ include("../../Modelos/conexion.php");
 
                 <?php } ?>
 
+                <h3 class="menu-title">AYUDA</h3>
+                     <li class="">
+                        <a href="../../Ayuda/Manual.pdf"> <i class="fa fa-book"></i> Manual de Usuario</a>
+                        
+                    </li>
+
                   
               <?php if ($_SESSION['tipo_usuario']=='Admin'){  ?>
                     <h3 class="menu-title">Ajustes</h3><!-- /.menu-title -->
@@ -158,10 +164,10 @@ include("../../Modelos/conexion.php");
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Mantenimiento</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-desktop"></i><a href="../config/bitacora.php">Bitacora</a></li>
+                            <li><i class="menu-icon fa fa-desktop"></i><a href="../../Controladores/ControladorBitacora.php?operacion=bitacora"">Bitacora</a></li>
                             <li><i class="menu-icon fa fa-cloud"></i><a href="../config/respaldar.php">Respaldar BD</a></li>
                             <li><i class="menu-icon fa fa-cloud-upload"></i><a href="../config/restaurar.php">Restaurar BD</a></li>
-                             <li><i class="menu-icon fa fa-cloud-upload"></i><a href="../../Controladores/controladorUsuario.php?operacion=login">Listado de usuarios</a></li>
+                             <li><i class="menu-icon fa fa-cloud-upload"></i><a href="../../Controladores/controladorUsuario.php?operacion=index">Listado de usuarios</a></li>
                         </ul>
                     </li>
                 <?php } ?>
@@ -188,8 +194,8 @@ include("../../Modelos/conexion.php");
                     
                 </div>
 <div class="col-md-4" style="align-content: center;">
-        <script type="text/javascript">
-//<![CDATA[
+<script type="text/javascript">
+
 
 function makeArray() {
 for (i = 0; i<makeArray.arguments.length; i++)
@@ -204,9 +210,7 @@ var year = (yy < 1000) ? yy + 1900 : yy;
 document.write("" + day + " de " + months[month] + " del " + year);
 //]]>
 
-</script>   
 
- <script type="text/javascript">
 
 function startTime(){
 today=new Date();
@@ -221,7 +225,7 @@ function checkTime(i)
 {if (i<10) {i="0" + i;}return i;}
 window.onload=function(){startTime();}
 </script>
-<div id="reloj" style="font-size:15px;" ></div>
+<div  id="reloj" style="font-size:15px;" ></div>
 
 </div>
 

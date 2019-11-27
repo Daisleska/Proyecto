@@ -6,53 +6,38 @@ $data=unserialize($data);
 
 ?>
 
-
-
-        <div class="breadcrumbs">
-           
-          <!--   <div class="col-sm-5">
-                <div class="page-header float-left">
-                    <div class="page-title">
-                        <div>
-                            LISTADO
-                        </div>
-                  </div>
-                </div>
-            </div>
-
-                        <div class="col-sm-7">
-                <div class="page-header float-right">
-                   <ol class="breadcrumb text-right">
-
-                            <li class="active"></li>
-                        </ol>
-                </div>
-            </div> -->
-
-                    
-        </div>
-
-        <div class="content mt-3">
-            <div class="animated fadeIn">
-                <div class="row">
-                    
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                
-                                <section class="content-header">
-      <ol class="breadcrumb">
-        <li><a href="../../Controladores/ControladorPerfil.php?operacion=verperfil"><i class="fa fa-user"></i> Datos Personales /</a></li>
-        <li><a href="../../Controladores/ControladorPerfil.php?operacion=cambiar_clave"><i class="fa fa-lock"></i> Cambiar Contraseña</a></li>
-      </ol>
-    </section>
-                            </div>
-                            <div class="card-body">
+ <div class="content mt-3" style="padding-left: 20px;">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-md-12">
+                 
+                  <section  class="content-header">
+                             <ol class="breadcrumb">
+       
+                            <h1 align="center">  <span style="margin-left: 5cm;" class="badge badge-info">Datos Personales <i class="fa fa-user"></i> </span></h1>
                             
-                                <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                            <li style="padding-left: 1cm;"><a href="../../Controladores/ControladorPerfil.php?operacion=cambiar_clave"><i class="fa fa-lock"></i> Cambiar Contraseña</a></li>
+                            </ol>
+
+                  </section >
+                  <br><br>
+             </div>
+                                        
+             </div>
+           </div>
+         </div>
+         
+            <br>
+                      
+                          
+                      
+                  
+ 
+              <div class="table-responsive" style="padding-left: 30px; padding-right: 20px;">
+                                <table class="table table-striped table-sm " id="table">
                                     <thead>
-                                    <tr>
-                                        <th>N°</th>
+                                       <tr>
+                                         <th>N°</th>
                                     
                                  
                                         <th>Nombre</th>
@@ -64,56 +49,69 @@ $data=unserialize($data);
                             
                                   
                                         <th>Respuesta</th>
-                                        
-                                    </tr>
-                                        
-                                        
+                                     
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                    <?php $num=1; 
-                                    for ($i=0; $i <$filas; $i++) { 
-                                    echo "<tr>";      
-                                    ?>  
+                                      <?php $num=1;
+                                    for($i=0; $i < $filas; $i++){
+
+                                    echo "<tr>";
+                                    ?>
+
                                     <td><?=$num?></td>
-                                    <?php for ($j=0; $j < $campos; $j++) { ?>
+                                    <?php 
+                                    for ($j=1; $j < $campos; $j++) 
+                                    { 
+                                     ?>
+
                                     <td><?=$data[$i][$j]?></td>
 
-                                    <?php } ?>
 
-                                    <?php   
-                                    $num++;
-                                    }   ?>
-                                    
+                                    <?php 
 
-                                       
-                                        
+                                    }  
+
+                                   
+                                $num++;
+                                }   ?>
+
                                     </tbody>
-
                                 </table>
-
-                            <form action="../../Controladores/ControladorPerfil.php?operacion=modificar" method="POST">
+                                <form action="../../Controladores/ControladorPerfil.php?operacion=modificar" method="POST">
                                 
-                                <button type="submit" class="btn btn-success" id="submit_btn"><i class="fa fa-edit"></i>
+                                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>
                                 
                                 </button>
                             </form>
-
-                            <button class="btn-success"><i class="menu-icon fa fa-cloud"></i><a href="../config/respaldar.php">Respaldar Base de datos</a></button>
-
-
-
                             </div>
                         </div>
-                    </div>
-
-
-
-
-                </div>
+               
             </div><!-- .animated -->
         </div><!-- .content -->
 
 
     </div><!-- /#right-panel -->
+<?php include_once "../includes/footer.php"; ?>
+    <script src="../../vendors/js/sweetalert.min.js"></script>
+    <script src="../../vendors/js/datatables.min.js"></script>
+    <script type="text/javascript">
+                            
+
+
+    
+                          
+
+
+
+
+
+
+   
+                
+
+
+    
+
+
+
 <?php include_once "../includes/footer.php"; ?>

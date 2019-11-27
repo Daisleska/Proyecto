@@ -1,5 +1,7 @@
 <?php 
 include("../Modelos/clasedb.php");
+session_start();
+
 extract($_REQUEST);
 
 class ControladorCestaticket
@@ -52,61 +54,88 @@ public function guardar(){
 		$resultado=mysqli_query($conex,$sql);
 	
 	if($resultado) {
+
+     
+		$sql="INSERT INTO auditoria VALUES (NULL, '".$_SESSION['id_usuario']."', 'registró cestaticket', 'cestaticket', CURRENT_TIMESTAMP, '".$_SESSION['tipo_usuario']."')";
+
+		$resultado=mysqli_query($conex,$sql);
+	
         ?>
 		<script type="text/javascript">
 			
-			if (confirm("Registro exitoso, desea registrar otro?")) {
-				window.location="ControladorCestaticket.php?operacion=registrar";	
-			}else{
+			    alert("Registro exitoso");
+		
 				window.location="ControladorCestaticket.php?operacion=index";
-			}
 			
 		</script>
 			<?php
 
-		} 
+		}else {
+				?>
+					<script type="text/javascript">
+						alert("Error al modificar el registro");
+						window.location="ControladorCestaticket.php?operacion=index";
+						
+					</script>
+			<?php
+			}		 
 		
 }//fin de la funcion guardar
 
 
 public function modificar(){
-	extract($_REQUEST);//extrayendo valores de url
-	$db=new clasedb();
+	extract($_REQUEST);
+
+		$db=new clasedb();
 	$conex=$db->conectar();//conectando con la base de datos
 	
-	$sql="SELECT * FROM cestaticket WHERE id=".$id_cestaticket."";
+	$sql="SELECT * FROM cestaticket WHERE id=".$id."";
+
 	$res=mysqli_query($conex,$sql);//ejecutando consulta
 	$data=mysqli_fetch_array($res);//extrayendo datos en array
 
-	header("Location: ../Vistas/cestaticket/modificar.php?data=".serialize($data));
+		header("Location: ../Vistas/cestaticket/modificar.php?data=".serialize($data));
 }//fin de la funcion modificar
 
 
 
 public function actualizar()
 {
-	extract($_POST);//EXTRAYENDO VARIABLES DEL FORMULARIO
-	$db=new clasedb();
-	$conex=$db->conectar();//conectando con la base de datos
-	
-	
-	$sql="UPDATE cestaticket SET monto='".$monto."' WHERE id=".$id_cestaticket."";
+	extract($_POST);
 
-		$res=mysqli_query($conex,$sql);
-			if ($res) {
-				?>
-			        <script type="text/javascript">
-						alert("Registro modificado");
-						window.location="ControladorCestaticket.php?operacion=index";
-					</script>
-				<?php
-			} else {
-				?>
-					<script type="text/javascript">
-						alert("Error al modificar el registro");
-						window.location="ControladorCestaticket.php?operacion=index";
-					</script>
-			<?php
+		$db=new clasedb();
+		$conex=$db->conectar();
+    
+	$sql="UPDATE cestaticket SET id='$id', monto='$monto' WHERE id='$id'";
+	
+
+    $resultado=mysqli_query($conex,$sql);
+
+	if($resultado) {
+
+		$sql="INSERT INTO auditoria VALUES (NULL, '".$_SESSION['id_usuario']."', 'modificó cestaticket', 'cestaticket', CURRENT_TIMESTAMP, '".$_SESSION['tipo_usuario']."')";
+
+		$resultado=mysqli_query($conex,$sql);
+
+		?> 
+			<script type="text/javascript">
+				alert("El registro se modifico con éxito");
+				window.location="ControladorCestaticket.php?operacion=index";
+			</script>
+
+
+		<?php 
+	} else { 
+		?> 
+
+			<script type="text/javascript">
+				alert("No se pudo modificar el registro");
+				window.location="ControladorCestaticket.php?operacion=index";
+			</script>
+
+
+		<?php 
+
 			}			
 			
 	
@@ -123,6 +152,9 @@ public function eliminar()
 
 		$res=mysqli_query($conex,$sql);
 		if ($res) {
+			$sql="INSERT INTO auditoria VALUES (NULL, '".$_SESSION['id_usuario']."', 'eliminó cestaticket', 'cestaticket', CURRENT_TIMESTAMP, '".$_SESSION['tipo_usuario']."')";
+
+		        $resultado=mysqli_query($conex,$sql);
 			?>
 				<script type="text/javascript">
 					alert("Registro eliminado");

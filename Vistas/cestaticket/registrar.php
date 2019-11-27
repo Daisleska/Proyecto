@@ -1,3 +1,5 @@
+
+
 <?php include_once "../includes/menu.php"; ?>
 <script type="text/javascript">
     function solonumeros(e){
@@ -19,67 +21,49 @@
     }
 </script>
 
-       <div class="breadcrumbs">
-           <div class="col-sm-5">
-                <div class="page-header float-left">
-                   
-                        <!-- <ol class="breadcrumb text-right">
-                            <li><a href="#">Proveedores</a></li>
-                            <li class="active">Materia Prima</li>
-                        </ol> -->
-                </div>
-            </div>
 
-            <div class="col-sm-7">
-                <div class="page-header float-right">
-                    <div class="page-title">
-                    
-                 </div>
-                </div>
-            </div>
-            
-        </div>
+<div class="contenido" style="padding-left: 20px">
+    <div class="content-2">
+    <section  class="content-header">
+      <ol class="breadcrumb">
+       
+         <h1 align="center">  <span style="margin-left: 4cm;" class="badge badge-info">Registro de Cestaticket <i class="menu-icon fa fa-edit"></i> </span></h1>
+        
+      </ol>
+   </section >
+<br>
 
-        <!-- contenido -->
- <form action="../../Controladores/ControladorCestaticket.php?operacion=guardar" method="POST"  class="form">
-       <div style="padding-left: 150px;" class="col-lg-10">
-              <div class="card">
-              <div class="card-header">
-              <strong class="card-title"><i class="fa fa-list"></i>  REGISTRAR CESTATICKET</strong> 
-              </div>
-
-
-           <div class="card-body card-block">
-          
-
-          <div style="padding-left: 50px;" class="row form-group">
-                   <div class="col col-md-4"><label class=" form-control-label">* Monto:</label></div>
-
-                   <div class="col-12 col-md-6"><input type="text" id="" name="monto" required="required" onkeypress="return solonumeros(event)" minlength="4" maxlength="20" class="form-control"></div>
+ <form action="../../Controladores/ControladorCestaticket.php?operacion=guardar" method="POST" name="form" class="form">
+  
+    <div class="row" style="padding-left: 250px;">
+          <div class="col-md-5" >
+            <label><strong>Monto</strong></label>
+            <input type="text" class="form-control" name="monto" onkeypress="return solonumeros(event)" minlength="5" maxlength="20" placeholder="Ej. 100000"><br>
           </div>
 
-          <p style="padding-left: 50px; padding-top: 10px;">(*) Campos obligatorios</p>
+         
+        </div>
+      </div>
+      
+      
+        <div class="row" style="padding-left: 350px;">
+           <input type="hidden" name="operacion" value="guardar">
 
+           <button type="reset" class="btn btn-danger btn-sm col-md-1"><i class="fa fa-ban"></i></button>
 
+          <p style="color: white">..</p>
+          <button type="submit" name="enviar" class="btn btn-primary btn-sm col-md-1"><i class="fa fa-check"></i>&nbsp;</button>
+        </div>
+      </form>
+    </div>
 
-                     </div>
-                     <div class="card-footer">
-                <input type="hidden" name="operacion" value="guardar">
-                      <button type="submit" class="btn btn-primary btn-sm">
-                          <i class="fa fa-check"></i>&nbsp; 
-                      </button>
- 
-                            <button type="reset" class="btn btn-danger btn-sm">
-                    <i class="fa fa-ban"></i> 
-                            </form>
-                               </div>
-                         </div>
-
-                
-            </div><!-- /#right-panel -->
-         </div>
-
-            <!-- Right Panel -->
+   <br><br><br><br><br><br><br><br><br><br><br><br>     
+   <?php include_once "../includes/footer.php"; ?>
+    <script src="../../bootstrap/js/jquery.js"></script>
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../vendors/js/feather.min.js"></script>
+    <script>
+            
 
             
  <?php include_once "../includes/footer.php"; ?>

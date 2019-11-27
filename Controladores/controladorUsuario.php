@@ -2,6 +2,7 @@
 include("../Modelos/clasedb.php");
 
 extract($_REQUEST);
+session_start();
 
 
 class ControladorUsuarios

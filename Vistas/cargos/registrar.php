@@ -1,3 +1,7 @@
+<?php
+extract($_REQUEST);
+$data=unserialize($data);
+?>
 
 <?php include_once "../includes/menu.php"; ?>
 <script type="text/javascript">
@@ -21,72 +25,65 @@
 </script>
 
 
-       <div class="breadcrumbs">
-           <div class="col-sm-5">
-                <div class="page-header float-left">
-                   
-                        <!-- <ol class="breadcrumb text-right">
-                            <li><a href="#">Proveedores</a></li>
-                            <li class="active">Materia Prima</li>
-                        </ol> -->
-                </div>
-            </div>
+<div class="contenido" style="padding-left: 20px">
+    <div class="content-2">
+     <section class="content-header">
+      <ol class="breadcrumb">
+         
+         <h1 align="center">  <span style="margin-left: 3.5cm;" class="badge badge-info">Registro de Cargos <i class="menu-icon fa fa-edit"></i> </span></h1>
+        
+      </ol>
+   </section >
+<br>
 
-            <div class="col-sm-7">
-                <div class="page-header float-right">
-                    <div class="page-title">
-                    
-                 </div>
-                </div>
-            </div>
-            
+ <form action="../../Controladores/ControladorCargos.php?operacion=guardar" method="POST" name="form" class="form">
+  
+        <h6 class="nota-input">Los campos con un <i class="estado-r">*</i> son obligatorios </h6><br>
+        
+              
+        
+        <div class="row">
+          <div class="col-md-4">
+            <label><strong>Cargo</strong> <strong class='estado-r'>*</strong></label>
+            <input type="text" class="form-control" name="nombre" placeholder="Ej. Asistente" required="required" minlength="4" maxlength="30"><br>
+          </div>
+          <div class="col-md-4">
+            <label><strong>Salario</strong> <strong class='estado-r'>*</strong></label>
+            <input type="text" class="form-control" name="salario" onkeypress="return solonumeros(event)" minlength="5" maxlength="20" placeholder="Ej. 100000"><br>
+          </div>
+
+           <div class="col-md-4">
+            <label><strong>Departamento</strong> <strong class='estado-r'>*</strong></label>
+             <select name="id_departamento" title="Seleccione el Departamento"class="form-control">
+                    <option disabled="disabled" selected="selected" value="">Seleccione</option>
+                    <?php 
+                    for ($i=0; $i<$filas; $i++){
+                    ?>
+                    <option value="<?=$data[$i][0]?>"> <?=$data[$i][1]?></option>
+                    <?php
+                    }
+                    ?>
+                    </select>
+          </div>
         </div>
+      
+        <div>
+           <input type="hidden" name="operacion" value="guardar">
 
-        <!-- contenido -->
- <form action="../../Controladores/ControladorCargos.php?operacion=guardar" method="POST"  class="form">
-       <div style="padding-left: 150px;" class="col-lg-10">
-              <div class="card">
-              <div class="card-header">
-              <strong><i class="fa fa-edit"></i> REGISTRAR CARGOS</strong> 
-              </div>
+           <button type="reset" class="btn btn-danger btn-sm col-md-1">
+          <i class="fa fa-ban"></i></button>
 
-
-           <div class="card-body card-block">
-          
-
-          <div style="padding-left: 50px;" class="row form-group">
-                   <div class="col col-md-4"><label class=" form-control-label">* Cargo:</label></div>
-
-                   <div class="col-12 col-md-6"><input type="text" id="" name="nombre" required="required"  minlength="4" maxlength="20" class="form-control"></div>
-          </div>
-
-            
-            <div style="padding-left: 50px;" class="row form-group">
-                   <div class="col col-md-4"><label class=" form-control-label">* Salario:</label></div>
-
-                   <div class="col-12 col-md-6"><input type="text" id="" name="salario" required="required"  minlength="6" maxlength="20" class="form-control" onkeypress="return solonumeros(event)"></div>
-          </div>
-
-          <p style="padding-left: 50px; padding-top: 10px;">(*) Campos obligatorios</p>
-
-
-                     </div>
-                     <div class="card-footer">
-                <input type="hidden" name="operacion" value="guardar">
-                      <button type="submit" class="btn btn-primary btn-sm">
-                          <i class="fa fa-check"></i>&nbsp; 
-                      </button>
- 
-                            <button type="reset" class="btn btn-danger btn-sm">
-                    <i class="fa fa-ban"></i> 
-                            </form>
-                               </div>
-                         </div>
-
-                
-            </div><!-- /#right-panel -->
-         </div>
-
+          <button type="submit" name="enviar" class="btn btn-primary btn-sm col-md-1"><i class="fa fa-check"></i>&nbsp;</button>
+        </div>
+      </form>
+    </div>
+   </div>
+   <br><br><br><br><br><br><br><br><br><br><br><br>     
+   <?php include_once "../includes/footer.php"; ?>
+    <script src="../../bootstrap/js/jquery.js"></script>
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../vendors/js/feather.min.js"></script>
+    <script>
             <!-- Right Panel -->
 
             
