@@ -10,10 +10,12 @@
       <ol class="breadcrumb">
         <a href="../asistencias/ControlA.php?operacion=index" class="atras" title="Atras"><span class="fa fa-arrow-left" style="font-size: 32px;" ></span></a>
         
-        <h1 align="center"><span style="margin-left: 5.5cm;" class="badge badge-info">Permisos <i class="fa fa-file-text-o"></i> </span></h1>
+        <h1 align="center"><span style="margin-left: 8.5cm;" class="badge badge-info">Permisos <i class="fa fa-file-text-o"></i> </span></h1>
       <br>
       </ol>
 </section >
+<center>
+  <a data-toggle="modal" data-target="#mediumModal" href="../inventario/registro-inventario.php" class="btn btn-primary"><i  class="ti-pencil-alt"></i> Registrar Permiso</a></center>
 
        <div class="table-responsive" style="padding-left: 20px;">
             <table class="table table-striped table-sm " id="table">
@@ -59,7 +61,7 @@
 
 
                         echo "  <td>
-                            <a href='javascript:ver(".$consulta['id'].")' class='ver'  title='Ver'><span class='fa fa-eye'></span></a>";
+                            <a href='../asistencias/ControlA.php?operacion=permiso_eliminar&id_permiso=(".$consulta['id'].")' class='eliminar'  title='Eliminar'><span class='fa fa-trash-o'></span></a>";
                     }
 
                      
@@ -69,6 +71,69 @@
         </div>
     </div>
 </div>
+
+<form action="../asistencias/ControlA.php?operacion=permiso_registro" method="POST">
+    <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                          <form action="" method="POST">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="mediumModalLabel">Permisos Empleados</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                            <div>
+                              <div class="row" >
+                                <div class="col-md-12">
+                                  <strong>Registrar permisos</strong>
+                                </div>   
+                              </div>
+                              <div class="row">
+                                <div class="col-md-12">
+                                   <label>Justificación: </label>
+                                   <select class="" name="motivo">
+                                   <option value="" selected="selected" disabled="disabled"></option>
+                                  <option>Reposo</option>
+                                  <option>Permiso</option>
+                                  </select>
+                                  </div>
+                                </div>
+                                <div class="row">
+                              <div class="col-md-12">
+                             <label>Dias de Permiso: </label>
+                              <input type="number" title="Ingrese la cantidad de dias de permiso" name="dias_permiso">
+                               </div> 
+                               </div>
+
+                               <div class="row">
+                               <div class="col-md-12">
+                                <label>Cédula de empleado: </label>
+                                 <input type="number" name="cedula" id="cedula" required="required" placeholder="Ingrese cédula">
+                               </div>
+                             </div>
+                              <div class="row">
+                               <div class="col-md-12">
+                                <label>Fin del permiso: </label>
+                                 <input type="date" name="fin_permiso" id="cedula" required="required" placeholder="Ingrese cédula">
+                               </div>
+                             </div>
+                             
+                            </div>
+                             
+                            </div>
+                            <div class="modal-footer"> 
+                              <input type="hidden" name="id_asistencia" id="id_asistencia">
+                              <input type="hidden" name="opcion" id="opcion">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Confirmar</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                </form>
 
 <?php include_once "../includes/footer.php"; ?>
     <script src="../../vendors/js/sweetalert.min.js"></script>

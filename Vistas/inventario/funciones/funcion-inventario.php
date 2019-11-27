@@ -143,7 +143,7 @@
 
 				$res1='S';
 
-				$sql2="SELECT * FROM articulos WHERE id='$articulos[$j]'";	
+				$sql2="SELECT * FROM productos WHERE id='$articulos[$j]'";	
 
 				$resultado2=mysqli_query($conexion,$sql2);
 
@@ -160,7 +160,7 @@
 					continue;
 				}else{
 					$stock_nuevo=$stock+$cantidad[$j];
-					$sql3="UPDATE articulos SET stock='$stock_nuevo' WHERE id='$articulos[$j]'";
+					$sql3="UPDATE productos SET stock='$stock_nuevo' WHERE id='$articulos[$j]'";
 					$resultado3=mysqli_query($conexion,$sql3);
 
 
@@ -175,7 +175,7 @@
 						if ($valor_u[$j]=='' or $valor_u[$j]==-1) {
 							# code...
 						}else{
-							$sql4="UPDATE articulos SET valor_unitario = '$valor_u[$j]' WHERE id = '$articulos[$j]' ";
+							$sql4="UPDATE productos SET valor_unitario = '$valor_u[$j]' WHERE id = '$articulos[$j]' ";
 
 							$resultado4=mysqli_query($conexion,$sql4);
 						}
@@ -216,14 +216,14 @@ function almacen($i,$ubicacion,$cantidad,$art){
 				continue;
 			}
 
-			$sql="UPDATE art_almacen set stock='$cantidad[$j]' WHERE id_articulo='$ar' AND id_ubicacion='$ubicacion[$j]'";
+			$sql="UPDATE almacen set stock='$cantidad[$j]' WHERE id_producto='$ar' AND id_ubicacion='$ubicacion[$j]'";
 
 			$resultado=mysqli_query($conexion,$sql);
 
 			if ($resultado) {
 
 			
-				$sql2="SELECT * FROM articulos WHERE id='$ubicacion[$j]'";	
+				$sql2="SELECT * FROM productos WHERE id='$ubicacion[$j]'";	
 
 				$resultado2=mysqli_query($conexion,$sql2);
 
@@ -240,7 +240,7 @@ function almacen($i,$ubicacion,$cantidad,$art){
 					continue;
 				}else{
 					$stock_nuevo=$stock+$cantidad[$j];
-					$sql3="UPDATE articulos SET stock='$stock_nuevo' WHERE id='$ubicacion[$j]'";
+					$sql3="UPDATE productos SET stock='$stock_nuevo' WHERE id='$ubicacion[$j]'";
 					$resultado3=mysqli_query($conexion,$sql3);
 				}
 

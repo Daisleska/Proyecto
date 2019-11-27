@@ -4,7 +4,7 @@
 
 	include('../../../Modelos/conexion.php');
 
-	$sql="SELECT * FROM proveedor WHERE borrado='N' AND cod_rif='$rs' AND cedula='$documento_numero'";
+	$sql="SELECT * FROM proveedor WHERE borrado='N' AND cod_rif='".$rs."' AND cedula='".$documento_numero."'";
 
 	$resultado=mysqli_query($conectar,$sql);
 
@@ -16,7 +16,5 @@
 
 		echo "1";
 	}
-
-	include('../../../Modelos/desconectar.php');
 
 ?>

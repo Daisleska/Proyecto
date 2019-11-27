@@ -165,11 +165,11 @@
   <br><br>
  <div class="contenido">
     <div class="content-2">
-    <h2 style="text-align: center"><strong>Inventario</strong><br></h2><hr>
+     <h1 align="center" style="text-align: center;">  <span  class="badge badge-info">Almacén <i class="menu-icon fa fa-book"></i> </span></h1><hr>
     <!--nav inventario -->
          <ul class="nav nav-tabs">
           <li class="nav-item">
-            <a class="nav-link" href="inventario.php">Productos 
+            <a class="nav-link" href="inventario.php">Materia Prima
               <?php
                 $res_busqueda=$contador[0];
 
@@ -227,21 +227,16 @@
               }
               echo '
 
-             <li class="nav-item">
-                  <a class="nav-link " href="../inventario/materiaprima.php">Materia Prima</a>
-                </li>
+             
                 <li class="nav-item">
                   <a class="nav-link active" href="ubicacion_inventario.php">Ubicación</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="proveedores.php">Proveedores</a>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Pedidos <span class="badge badge-primary badge-pill" style="float: right;">'.$res_busqueda.'</span></a>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="pedidos-internos.php">Internos <span class="badge badge-primary badge-pill" style="float: right;">'.$cont_interno.'</span></a>
-                    <a class="dropdown-item" href="pedidos-externos.php">Externos <span class="badge badge-primary badge-pill" style="float: right;">'.$cont_externo.'</span></a>
-                  </div>
+                <li class="nav-item ">
+                  <a class="nav-link" href="../inventario/pedidos-internos.php">Pedidos <span class="badge badge-primary badge-pill" style="float: right;"> </span> '.$cont_interno.'</a>
+                 
                 </li>
 
               ';
@@ -263,9 +258,6 @@
             
           echo $consulta['nombre'];
         }
-
-   
-include ("../../Modelos/desconectar.php");
       ?>
       <hr>
       </h4>
@@ -273,26 +265,16 @@ include ("../../Modelos/desconectar.php");
         <thead>
           <th>#</th>
           <th>Productos</th>
-           <!--  <th>Responsable</th> -->
           <th>Stock</th>
+          <th>Ubicación</th>
         </thead>
         <tbody>
-          <script type="text/javascript">
-            
-              
 
-
-          </script>
           <?php
           include("../../Modelos/conexion.php");
-
-
-
-
-include("../../Modelos/conexion.php");
    
 
-  $sql="SELECT almacen.*,productos.nombre FROM almacen,productos WHERE id_ubicacion='$ubicacion' AND productos.id=almacen.id_producto ";
+  $sql="SELECT almacen.*,productos.nombre FROM almacen,productos WHERE almacen.id_ubicacion='$ubicacion' && productos.id=almacen.id_producto";
 
  $resultado=mysqli_query($conectar,$sql);
             $i=0;

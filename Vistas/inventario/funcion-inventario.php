@@ -67,7 +67,7 @@
 
 		$conexion=conectar();
 
-		$motivo="Ingreso";
+		$motivo="Ingreso Pedido";
 
 		$sql="INSERT INTO historial (id_producto, motivo, cantidad , id_pedido) VALUES ('$id_producto', '$motivo' ,'$cantidad','$id_pedido')";
 		$resutado=mysqli_query($conexion,$sql);

@@ -40,7 +40,7 @@
        <!--nav inventario -->
          <ul class="nav nav-tabs">
           <li class="nav-item">
-            <a class="nav-link " href="inventario.php">Productos 
+            <a class="nav-link " href="inventario.php">Materia Prima 
               <?php
                 $res_busqueda=$contador[0];
 
@@ -58,21 +58,16 @@
           
               echo '
 
-                <li class="nav-item">
-                  <a class="nav-link" href="materiaprima.php">Materia Prima</a>
-                </li>
+                
                   <li class="nav-item">
                   <a class="nav-link " href="ubicacion_inventario.php">Ubicación</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link active" href="proveedores.php">Proveedores</a>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Pedidos <span class="badge badge-primary badge-pill" style="float: right;">'.$res_busqueda.'</span></a>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="pedidos-internos.php">Internos <span class="badge badge-primary badge-pill" style="float: right;">'.$cont_interno.'</span></a>
-                    <a class="dropdown-item" href="pedidos-externos.php">Externos <span class="badge badge-primary badge-pill" style="float: right;">'.$cont_externo.'</span></a>
-                  </div>
+                <li class="nav-item ">
+                  <a class="nav-link" href="../inventario/pedidos-internos.php">Pedidos <span class="badge badge-primary badge-pill" style="float: right;"> </span> '.$cont_interno.'</a>
+                 
                 </li>
 
               ';
@@ -166,10 +161,14 @@
       </div>  
     </div></div>
       <?php include_once "../includes/footer.php"; ?>
-
+   <script src="../../vendors/js/feather.min.js"></script>
+       <script src="../../vendors/js/popper.min.js"></script>
+     <script>
+      feather.replace();
+    </script>
    
                 <?php
-        error_reporting(0);
+       
         extract($_REQUEST);
         //Registro
         if ($reg==1) {
@@ -222,6 +221,7 @@
                 
               });
             ";
+
         }else if($e==2){
           echo
                "iziToast.error({

@@ -108,24 +108,24 @@ height: 30%;
 RIF J-31537859-0</h4>
    <br>  
     </th>
-    <th  colspan="6"  style=" "><h5> SERVIFORM C.A.<br> CALLE 3 Nro. 123-Local C.Urb. Los Samanes. Maracay-Aragua<br>
+    <th  colspan="6"  style=" "><h5> SERVIFORM C.A.<br> La Victoria, Estado Aragua, Municipio José Félix Ribas, Parroquia Juan Vicente Bolívar y Ponte, Calle Final la Redoma Zona Industrial la Chapa.<br>
 
  RIF J-31537859-0<br>
  TELÉFONO&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
 OFICINA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       0243-235.6141<br> 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-CELULARES&nbsp;&nbsp;&nbsp;   0414-147.9025                 Luis Alfredo Chacón<br>  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0424-335.1384               Myriam Zambrano García 
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <br>
 &nbsp;Próximamente WWW.SERVIFORM.COM <br>
- Correos: servi.form@gmail.com; servi1234.adm@gmail.com
+ Correo: servi.form@gmail.com; servi1234.adm@gmail.com
  </h5>  </th>
     <th colspan="2" Style="text-align: center;"><br><strong>Fecha:</strong> '.$fecha.'
     <br> N°'.$id.' <br> 
     </th>
   </tr>
   <tr>
-    <th colspan="10" style=""> LISTA DE ARTÍCULOS A SOLICITAR </th>
+    <th colspan="10" style=""> LISTA DE MATERIAS PRIMAS A SOLICITAR </th>
   </tr>
 </table>' , 0, 1, 0, true, '', true);
 

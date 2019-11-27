@@ -35,15 +35,13 @@ $data=unserialize($data);
                       </div><br>
                     </div>
 
-              <div class="content mt-3">
-            <div class="animated fadeIn">
-                <div class="row">
-
-                    <div class="col-md-12">
-                        <div class="card">
-                          
-                            <div class="card-body">
-                    <table  class="table table-striped table-sm " id="table" >
+        <div class="content mt-3">
+          <div class="animated fadeIn">
+             <div class="row">
+               <div class="col-md-12">
+                  <div class="card">
+                    <div class="card-body">
+                    <table  class="table table-striped table-sm " id="table">
                       <thead>
                         <tr>
                           <th>N°</th>
@@ -51,7 +49,6 @@ $data=unserialize($data);
                           <th>Empleado</th>
                           <th>Fecha de Registro</th>
                           <th>Estado</th>
-                        
                         </tr>
                       </thead>
                       <tbody>

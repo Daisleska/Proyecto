@@ -187,6 +187,7 @@ include("../../Modelos/conexion.php");
                     </div>
                     
                 </div>
+                
 <div class="col-md-4" style="align-content: center;">
         <script type="text/javascript">
 //<![CDATA[
@@ -238,14 +239,14 @@ window.onload=function(){startTime();}
                             <a class="nav-link" href="../../Controladores/controladorUsuario.php?operacion=registrar"><i class="fa fa-user"></i>Registrar usuario</a>
                         <?php }?>
                             <a class="nav-link" href="../../Controladores/controladorLogin.php?operacion=logout"><i class="fa fa-power-off" ></i> Salir</a>
-
-                           
                         </div>
                       
-                      <strong style="padding-left: 60px;" class="active"><?php echo $_SESSION['user'];?></strong><br>
-                      <cite style="padding-left: 60px;"><?php echo $_SESSION['tipo_usuario']; ?></cite>
+                      
 
                 </div>
+
+                <strong style="padding-left: 100px;" class="active"><?php echo $_SESSION['user'];?></strong><br>
+                      <cite style="padding-left: 100px;"><?php echo $_SESSION['tipo_usuario']; ?></cite>
             </div>
 
         </header><!-- /header -->

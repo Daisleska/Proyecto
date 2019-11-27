@@ -59,7 +59,7 @@
      <section style="padding-left: 20px;" class="content-header">
       <ol class="breadcrumb">
          
-         <h2 style="text-align: center"><a href="inventario.php" class="atras" title="Atras"><span data-feather="arrow-left"></span></a></h2>
+         <h2 style="text-align: center"><a href="proveedores.php" class="atras" title="Atras"><span data-feather="arrow-left"></span></a></h2>
           <br>
          <h1 align="center">  <span style="margin-left: 3.5cm;" class="badge badge-info">Registro Proveedor <i class="menu-icon fa fa-edit"></i> </span></h1>
         

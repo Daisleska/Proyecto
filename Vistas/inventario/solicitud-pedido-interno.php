@@ -153,7 +153,7 @@
         <!--Articulos-->
         <div class="row">
           <div class="col-md-6">
-            <label><strong>Artículo</strong> <strong class="estado-r required_ext">*</strong></label>
+            <label><strong>Materia Prima</strong> <strong class="estado-r required_ext">*</strong></label>
             <select class="form-control form-n0" name="articulos[0]" required="required" onchange="javascript:verificar(0)">
               <option value="" class="id_vaue_externo">Seleccione el artículo</option>
               <?php

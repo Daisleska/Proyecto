@@ -34,7 +34,7 @@
          include('../../Modelos/conexion.php');
 
 
-        $sql="UPDATE proveedor SET cod_rif='$nacionalidad', cedula='$numero_documento',nombre='$nombre',telefono='$telef1',direccion='$otro', email='$correo' WHERE id='$proveedor'";
+        $sql="UPDATE proveedor SET cod_rif='$nacionalidad', cedula='$numero_documento',nombre='$nombre',telefono='$telef1',direccion='$otros', email='$correo' WHERE id='$proveedor'";
 
         $resultado=mysqli_query($conectar,$sql);
 
@@ -82,8 +82,10 @@
 
   <div class="contenido">
     <div class="content-2">
-      <h2 style="text-align: center"><a href="proveedores.php" class="atras" title="Atras"><span data-feather="arrow-left"></span></a><strong>Editar proveedor</strong></h2>
-      <hr><br>
+     <h2 style="text-align: center"><a href="proveedores.php" class="atras" title="Atras"><span data-feather="arrow-left"></span></a></h2>
+          
+         <h1 align="center">  <span style="margin-left: 0.5cm;" class="badge badge-info">Editar Proveedor <i class="menu-icon fa fa-edit"></i> </span></h1>
+         <br>
 
       <form action="editar-proveedor.php?proveedor=<?php echo $proveedor ?>" method="POST" name="form" class="form">
         <h6 class="nota-input">Los campos con un <i class="estado-r">*</i> son obligatorios </h6><br>
@@ -92,8 +94,8 @@
             <label><strong>RIF:</strong> <strong class='estado-r'>*</strong></label>
               <div style="width: 100%;">
                 <div style="width: 20%; float: left;">
-                  <select class="form-control" name="nacionalidad" required="required" id="select_d" >
-                    <option selected="selected" value="">-</option>
+                  <select class="form-control" name="nacionalidad" required="required" id="select_d">
+                    <option selected="selected" ><?php echo $codrif; ?></option>
                     <option value="V">V</option>
                     <option value="J">J</option>
                     <option value="E">E</option>
@@ -121,7 +123,7 @@
 
           <div class="col-md-6">
             <label><strong>Correo</strong></label>
-            <input type="email" class="form-control" name="correo" placeholder="Ej. ejemplo@ejemplo.com"><br>
+            <input type="email" class="form-control" value="<?php echo $correo; ?>" name="correo" placeholder="Ej. ejemplo@ejemplo.com"><br>
           </div>
         </div>
 
@@ -129,7 +131,7 @@
         <div class="row">
           <div class="col">
             <label><strong>Dirección</strong></label>
-            <input type="text" class="form-control" name="otros" placeholder="Ej: La Victoria"><br>
+            <input type="text" class="form-control" value="<?php echo $otros; ?>" name="otros" placeholder="Ej: La Victoria"><br>
           </div>
         </div>
          

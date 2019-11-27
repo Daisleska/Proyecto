@@ -73,10 +73,8 @@ switch ($dia) {
 
     }
     //buscando los registros en asistencias
-    $sql4="SELECT * FROM asistencias join empleado where asistencias.id_empleado = empleado.id AND fecha_hora ='".$hoy."'";
+    $sql4="SELECT asistencias.*, empleado.id, empleado.nombres, empleado.apellidos, empleado.cedula FROM asistencias, empleado where asistencias.id_empleado = empleado.id AND fecha_hora='".$hoy."'";
 
-    echo $sql4;
-    
   
     $result=mysqli_query($conex,$sql4);
     $filas=mysqli_num_rows($result);
@@ -220,13 +218,14 @@ $conex=$db->conectar();
 
 if ($opcion=="asiste") {
    $sql="UPDATE asistencias SET status='A', justificacion='' WHERE id=".$id_asistencia;
-} else {
+} /*else {
 
     if ($justificacion!=="") {
         $sql="UPDATE asistencias SET status='NACJ', justificacion='".$justificacion."' WHERE id=".$id_asistencia;
-    } else {
+
+    }*/ else {
         $sql="UPDATE asistencias SET status='NASJ' WHERE id=".$id_asistencia;
-    }
+    /*}*/
     
 }
 //echo $sql;
@@ -318,6 +317,62 @@ public function permisos(){
 
 }//fin de la funcion permisos
 
+public function permiso_eliminar()
+{
+    extract($_REQUEST);//extrayendo variables del url
+    $db=new clasedb();
+    $conex=$db->conectar();//conectando con la base de datos
+
+    $sql="DELETE FROM permisos WHERE id=".$id_permiso;
+
+        $res=mysqli_query($conex,$sql);
+        if ($res) {
+            ?>
+                <script type="text/javascript">
+                    alert("Registro eliminado");
+                    window.location="ControlA.php?operacion=permisos";
+                </script>
+            <?php
+        } else {
+            ?>
+                <script type="text/javascript">
+                    alert("Registro no eliminado");
+                    window.location="ControlA.php?operacion=permisos";
+                </script>
+            <?php
+        }
+}//fin de la función eliminar
+
+public function permiso_registro(){
+     extract($_POST);
+    $db=new clasedb();
+    $conex=$db->conectar();
+    $sql="SELECT id FROM empleado WHERE cedula=".$cedula;
+    $result=mysqli_query($conex, $sql);
+    $resultado=mysqli_fetch_array($result);
+    $hoy=date('Y-m-d');
+    $id_empleado=$resultado['id'];
+
+    if ($resultado) {
+
+    $sql="INSERT INTO permisos VALUES(NULL,'".$motivo."','".$dias_permiso."','".$hoy."','".$fin_permiso."','".$dias_permiso."','En Curso','".$id_empleado."')";
+
+$result=mysqli_query($conex,$sql);
+if ($result) {
+    header("Location:permisos.php");
+}else{
+    echo "Error";
+}
+
+
+  die();
+
+  
+}
+}//fin de la funcion per
+
+
+
 static function controlador($operacion) {
 		$asis=new ControlA();
 		switch($operacion) {
@@ -341,6 +396,14 @@ static function controlador($operacion) {
 
         case 'permisos':
         $asis->permisos();
+        break;
+
+        case 'permiso_registro':
+        $asis->permiso_registro();
+        break;
+
+        case 'permiso_eliminar':
+        $asis->permiso_eliminar();
         break;
 		default: 
 		?>
