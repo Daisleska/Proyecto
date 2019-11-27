@@ -20,12 +20,13 @@
         $resultado = pedido_interno($i,$articulo,$cantidad,$id);
 
         if ($resultado=='S') {
-       /*  include('../../Modelos/conexion.php');
-          $motivo="Pedido";
+         include('../../Modelos/conexion.php');
+          $motivo="Egreso";
 
-    $sql="INSERT INTO historial ( motivo,id_producto, cantidad) VALUES ( '$motivo','$id','$cantidad')";
+    $sql="INSERT INTO historial ( motivo,id_producto, cantidad) VALUES ( '$motivo','$articulo[0]','$cantidad[0]')";
+
     $resutado=mysqli_query($conectar,$sql);
-*/
+
 
 
           header('location: pedidos-internos.php?pp=1');

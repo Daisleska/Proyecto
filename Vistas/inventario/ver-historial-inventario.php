@@ -222,7 +222,13 @@
                         <td><strong ".$class2.">".$consulta['motivo']."</strong></td>
                         <td><strong ".$class." > ".$consulta['cantidad']."</strong></td>
                         ";
-                    $motivo='N/A';
+
+                    if ($consulta['motivo']=='Ingreso') {
+                     $motivo='Pedido';
+                    }else{
+                       $motivo='Enviado';
+                    }
+                    
 
                     if ($consulta['id_pedido']=='') {
                         
@@ -245,7 +251,7 @@
 
                       ";
                   }
-                include('../../Modelos/desconectar.php');
+           
             ?>
           </tbody>
         </table>

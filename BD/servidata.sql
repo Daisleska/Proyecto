@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-11-2019 a las 07:02:18
+-- Tiempo de generación: 27-11-2019 a las 07:45:26
 -- Versión del servidor: 10.1.37-MariaDB
--- Versión de PHP: 7.2.12
+-- Versión de PHP: 7.1.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -42,7 +42,12 @@ CREATE TABLE `almacen` (
 --
 
 INSERT INTO `almacen` (`id`, `id_producto`, `id_ubicacion`, `stock`, `ce`, `paletas`) VALUES
-(1, 1, 1, 11, NULL, NULL);
+(1, 1, 1, 11, NULL, NULL),
+(2, 7, 2, 525, NULL, NULL),
+(3, 1, 2, 16, NULL, NULL),
+(4, 2, 2, 220, NULL, NULL),
+(5, 5, 2, 29, NULL, NULL),
+(6, 0, 2, 100, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -163,7 +168,8 @@ INSERT INTO `auditoria` (`id`, `id_usuario`, `actividad`, `tabla`, `fecha_hora`,
 (61, 0, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-11-27 05:07:20', ''),
 (62, 2, 'modificÃ³ empleados', 'empleados', '2019-11-27 05:35:47', 'Admin'),
 (63, 0, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-11-27 05:55:28', ''),
-(64, 2, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-11-27 05:55:56', 'Admin');
+(64, 2, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-11-27 05:55:56', 'Admin'),
+(65, 0, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-11-27 06:04:31', '');
 
 -- --------------------------------------------------------
 
@@ -359,7 +365,7 @@ CREATE TABLE `enviados` (
   `id` int(11) NOT NULL,
   `id_productos` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
   `id_ubicacion` int(11) NOT NULL,
-  `id_codigo` int(11) NOT NULL,
+  `codigo` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
   `cantidad` int(11) NOT NULL,
   `fecha_registro` date NOT NULL,
   `observacion` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL
@@ -369,26 +375,49 @@ CREATE TABLE `enviados` (
 -- Volcado de datos para la tabla `enviados`
 --
 
-INSERT INTO `enviados` (`id`, `id_productos`, `id_ubicacion`, `id_codigo`, `cantidad`, `fecha_registro`, `observacion`) VALUES
-(1, '0', 2, 0, 100, '2019-11-06', NULL),
-(2, '0', 2, 0, 100, '2019-11-06', NULL),
-(3, '0', 2, 0, 40, '2019-11-06', NULL),
-(4, '0', 2, 0, 1000, '2019-11-06', NULL),
-(5, '0', 2, 0, 100, '2019-11-06', NULL),
-(6, '0', 2, 0, 10, '2019-11-06', NULL),
-(7, '0', 1, 0, 50, '2019-11-08', NULL),
-(8, '0', 2, 0, 50, '2019-11-08', NULL),
-(9, '0', 1, 0, 100, '2019-11-08', NULL),
-(10, '0', 0, 0, 0, '2019-11-08', NULL),
-(11, '0', 2, 7272727, 10, '2019-11-08', NULL),
-(12, '0', 1, 2, 200, '2019-11-08', NULL),
-(13, '0', 2, 2, 90, '2019-11-08', NULL),
-(14, '0', 1, 12356, 12, '2019-11-08', NULL),
-(15, '0', 1, 0, 12, '2019-11-08', NULL),
-(16, '', 2, 12356, 11, '2019-11-08', NULL),
-(17, '1', 2, 2, 11, '2019-11-08', NULL),
-(18, '', 2, 2, 14, '2019-11-08', NULL),
-(19, '', 1, 12356, 10, '2019-11-20', NULL);
+INSERT INTO `enviados` (`id`, `id_productos`, `id_ubicacion`, `codigo`, `cantidad`, `fecha_registro`, `observacion`) VALUES
+(1, '0', 2, '0', 100, '2019-11-06', NULL),
+(2, '0', 2, '0', 100, '2019-11-06', NULL),
+(3, '0', 2, '0', 40, '2019-11-06', NULL),
+(4, '0', 2, '0', 1000, '2019-11-06', NULL),
+(5, '0', 2, '0', 100, '2019-11-06', NULL),
+(6, '0', 2, '0', 10, '2019-11-06', NULL),
+(7, '0', 1, '0', 50, '2019-11-08', NULL),
+(8, '0', 2, '0', 50, '2019-11-08', NULL),
+(9, '0', 1, '0', 100, '2019-11-08', NULL),
+(10, '0', 0, '0', 0, '2019-11-08', NULL),
+(11, '0', 2, '7272727', 10, '2019-11-08', NULL),
+(12, '0', 1, '2', 200, '2019-11-08', NULL),
+(13, '0', 2, '2', 90, '2019-11-08', NULL),
+(14, '0', 1, '12356', 12, '2019-11-08', NULL),
+(15, '0', 1, '0', 12, '2019-11-08', NULL),
+(16, '', 2, '12356', 11, '2019-11-08', NULL),
+(17, '1', 2, '2', 11, '2019-11-08', NULL),
+(18, '', 2, '2', 14, '2019-11-08', NULL),
+(19, '', 1, '12356', 10, '2019-11-20', NULL),
+(20, '7', 0, '70706', 55, '2019-11-27', NULL),
+(21, '7', 0, '70706', 55, '2019-11-27', NULL),
+(22, '1', 0, '12356', 8, '2019-11-27', NULL),
+(23, '2', 0, '7272727', 90, '2019-11-27', NULL),
+(24, '2', 0, '7272727', 40, '2019-11-27', NULL),
+(25, '5', 0, '2', 4, '2019-11-27', NULL),
+(26, '5', 0, '2', 4, '2019-11-27', NULL),
+(27, '5', 2, '2', 4, '2019-11-27', NULL),
+(28, '5', 2, '2h2h22', 4, '2019-11-27', NULL),
+(29, '5', 2, '2h2h22', 4, '2019-11-27', NULL),
+(30, '5', 2, '2h2h22', 5, '2019-11-27', NULL),
+(31, '5', 2, '2h2h22', 4, '2019-11-27', NULL),
+(32, '5', 2, '2h2h22', 4, '2019-11-27', NULL),
+(33, '7', 2, '70706', 50, '2019-11-27', NULL),
+(34, '<br />\r\n<b>Notice</b>:  Undefined variable: consulta in <b>C:xampphhtdocsProyectoVistasinv', 2, '70706', 50, '2019-11-27', NULL),
+(35, '7', 2, '70706', 50, '2019-11-27', NULL),
+(36, '7', 2, '70706', 50, '2019-11-27', NULL),
+(37, '7', 2, '70706', 50, '2019-11-27', NULL),
+(38, '7', 2, '70706', 50, '2019-11-27', NULL),
+(39, '7', 2, '70706', 50, '2019-11-27', NULL),
+(40, '7', 2, '70706', 5, '2019-11-27', NULL),
+(41, '7', 2, '70706', 51, '2019-11-27', NULL),
+(42, '7', 2, '70706', 4, '2019-11-27', NULL);
 
 -- --------------------------------------------------------
 
@@ -417,7 +446,9 @@ INSERT INTO `historial` (`id`, `tiempo`, `motivo`, `id_producto`, `cantidad`) VA
 (6, '2019-11-08 16:30:41', 'Ingreso', 5, 1),
 (7, '2019-11-20 15:46:33', 'Egreso', 1, -5),
 (8, '2019-11-20 15:47:22', 'Egreso', 1, -2),
-(9, '2019-11-21 15:22:47', 'Registro', 6, 10000);
+(9, '2019-11-21 15:22:47', 'Registro', 6, 10000),
+(10, '2019-11-27 01:37:06', 'Registro', 7, 2000),
+(11, '2019-11-27 01:37:57', 'Egreso', 7, 55);
 
 -- --------------------------------------------------------
 
@@ -566,7 +597,9 @@ INSERT INTO `notificaciones` (`id`, `titulo`, `mensaje`) VALUES
 (3, 'Inventario', '2 artÃ­culos requieren atenciÃ³n'),
 (4, 'Inventario', '2 artÃ­culos requieren atenciÃ³n'),
 (5, 'Inventario', '1 artÃ­culo requiere atenciÃ³n'),
-(6, 'Pedido interno', 'Tienes 2 pedidos internos en espera');
+(6, 'Pedido interno', 'Tienes 2 pedidos internos en espera'),
+(7, 'Inventario', '1 artÃ­culo requiere atenciÃ³n'),
+(8, 'Pedido interno', 'Tienes 2 pedidos internos en espera');
 
 -- --------------------------------------------------------
 
@@ -630,7 +663,8 @@ INSERT INTO `pedido` (`id`, `fecha_registro`, `fecha_edicion`, `estado`, `tipo`,
 (2, '2019-11-08 17:33:06', '2019-11-08 03:20:35', 'Cancelado', 'interno', NULL),
 (3, '2019-11-08 16:43:26', '2019-11-08 16:43:26', 'En Espera', 'interno', NULL),
 (4, '2019-11-08 17:25:36', '2019-11-08 17:25:36', 'En Espera', 'interno', NULL),
-(6, '2019-11-27 02:35:50', '2019-11-20 16:42:31', 'Completado', 'interno', NULL);
+(6, '2019-11-27 02:35:50', '2019-11-20 16:42:31', 'Completado', 'interno', NULL),
+(7, '2019-11-27 06:07:57', '2019-11-27 06:07:46', 'Completado', 'interno', NULL);
 
 -- --------------------------------------------------------
 
@@ -659,7 +693,8 @@ INSERT INTO `pedido_detalles` (`id`, `id_pedido`, `tiempo_registro`, `tiempo_mod
 (2, 3, '2019-11-08 16:43:26', NULL, 2, NULL, 9, NULL, NULL),
 (3, 3, '2019-11-08 16:43:26', NULL, 1, NULL, 19, NULL, NULL),
 (4, 4, '2019-11-08 17:25:36', NULL, 1, NULL, 9, NULL, NULL),
-(5, 6, '2019-11-20 16:42:31', '2019-11-27 02:35:50', 1, NULL, 2, 2, NULL);
+(5, 6, '2019-11-20 16:42:31', '2019-11-27 02:35:50', 1, NULL, 2, 2, NULL),
+(6, 7, '2019-11-27 06:07:46', '2019-11-27 06:07:57', 7, NULL, 55, 55, NULL);
 
 -- --------------------------------------------------------
 
@@ -817,20 +852,22 @@ CREATE TABLE `productos` (
   `borrado` enum('N','S') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N',
   `activo` enum('S','N') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'S',
   `valor_unitario` int(11) DEFAULT NULL,
-  `id_ubicacion` int(11) DEFAULT NULL
+  `id_ubicacion` int(11) DEFAULT NULL,
+  `id_proveedor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id`, `codigo`, `nombre`, `presentacion`, `unidad`, `stock`, `stock_minimo`, `stock_maximo`, `borrado`, `activo`, `valor_unitario`, `id_ubicacion`) VALUES
-(1, '12356', 'hierro', 'paletas', 'Kgs', 5, 5, 30, 'N', 'S', NULL, NULL),
-(2, '7272727', 'metal', 'paletas', 'Lts', 80, 10, 5000, 'N', 'S', NULL, NULL),
-(3, 'nuh779', 'cosa', 'paletas', 'Kgs', 10, 10, 200, 'S', 'S', NULL, NULL),
-(4, '32020', 'madera', 'flota', 'Lts', 56, 10, 100, 'N', 'N', NULL, NULL),
-(5, '2h2h22', 'koll', 'tablas', 'Lts', 870, 9, 900, 'N', 'S', NULL, NULL),
-(6, '65247', 'arena', 'sacos', 'Kgs', 10000, 1000, 20000, 'N', 'S', NULL, NULL);
+INSERT INTO `productos` (`id`, `codigo`, `nombre`, `presentacion`, `unidad`, `stock`, `stock_minimo`, `stock_maximo`, `borrado`, `activo`, `valor_unitario`, `id_ubicacion`, `id_proveedor`) VALUES
+(1, '12356', 'hierro', 'paletas', 'Kgs', 5, 5, 30, 'N', 'S', NULL, NULL, 0),
+(2, '7272727', 'metal', 'paletas', 'Lts', 80, 10, 5000, 'N', 'S', NULL, NULL, 0),
+(3, 'nuh779', 'cosa', 'paletas', 'Kgs', 10, 10, 200, 'S', 'S', NULL, NULL, 0),
+(4, '32020', 'madera', 'flota', 'Lts', 56, 10, 100, 'N', 'N', NULL, NULL, 0),
+(5, '2h2h22', 'koll', 'tablas', 'Lts', 870, 9, 900, 'N', 'S', NULL, NULL, 0),
+(6, '65247', 'arena', 'sacos', 'Kgs', 10000, 1000, 20000, 'N', 'S', NULL, NULL, 0),
+(7, '70706', 'esoo', 'tablas', 'Kgs', 2000, 100, 5000, 'N', 'S', NULL, NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -1047,7 +1084,7 @@ ALTER TABLE `empleado_producto`
 ALTER TABLE `enviados`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_ubicacion` (`id_ubicacion`),
-  ADD KEY `id_codigo` (`id_codigo`),
+  ADD KEY `id_codigo` (`codigo`),
   ADD KEY `id_productos` (`id_productos`);
 
 --
@@ -1168,7 +1205,8 @@ ALTER TABLE `produccion`
 --
 ALTER TABLE `productos`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_ubicacion` (`id_ubicacion`);
+  ADD KEY `id_ubicacion` (`id_ubicacion`),
+  ADD KEY `id_proveedor` (`id_proveedor`);
 
 --
 -- Indices de la tabla `producto_proveedor`
@@ -1209,7 +1247,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `almacen`
 --
 ALTER TABLE `almacen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `asignacion_deduccion`
@@ -1227,7 +1265,7 @@ ALTER TABLE `asistencias`
 -- AUTO_INCREMENT de la tabla `auditoria`
 --
 ALTER TABLE `auditoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT de la tabla `cargos`
@@ -1275,13 +1313,13 @@ ALTER TABLE `empleado_asig`
 -- AUTO_INCREMENT de la tabla `enviados`
 --
 ALTER TABLE `enviados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT de la tabla `historial`
 --
 ALTER TABLE `historial`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `historial_mp`
@@ -1311,7 +1349,7 @@ ALTER TABLE `nomina`
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `pago`
@@ -1323,13 +1361,13 @@ ALTER TABLE `pago`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido_detalles`
 --
 ALTER TABLE `pedido_detalles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `permisos`
@@ -1365,7 +1403,7 @@ ALTER TABLE `produccion`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`

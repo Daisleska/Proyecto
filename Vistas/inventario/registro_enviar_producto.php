@@ -10,28 +10,25 @@ include("../../Modelos/conexion.php");
  
 $resultado=mysqli_fetch_array($result);
   if ($resultado['activo']=='N') {
-  	header ("Location: inventario.php?er=1");
+    header ("Location: inventario.php?er=1");
   }else{
 
-   /*$sql8="SELECT id_ubicacion FROM almacen where id_producto='$id_articulo'";
-echo $sql8;
-die();
+   $sql8="SELECT id FROM almacen where id_producto='$id_articulo' AND id_ubicacion='$destino'";
     $result=mysqli_query($conectar, $sql8);
  
-$resultado=mysqli_fetch_array($result);
-  	if ($resultado) {
-  		header ("Location: inventario.php?er=1");  	
-  	} else {
-  		# code...
-  	}*/
-  	
-  
-	 $hoy = getdate();
+    $resultado=mysqli_fetch_array($result);
+    if ($resultado=='') {
+      $sql="INSERT INTO almacen (id,id_producto, id_ubicacion, stock) VALUES (NULL,'".$id_articulo."','".$destino."','".$stock."')";
+
+$result=mysqli_query($conectar,$sql);
+    } 
+    
+   $hoy = getdate();
      $actual=$hoy['year']."-".$hoy['mon']."-".$hoy['mday'];
   
 
 
-$sql="INSERT INTO enviados (id_productos, id_ubicacion, id_codigo, cantidad, fecha_registro) VALUES ('".$id_articulo."','".$ubicacion."','".$codigo."','".$stock."','".$actual."')";
+$sql="INSERT INTO enviados (id_productos, id_ubicacion, codigo, cantidad, fecha_registro) VALUES ('".$id_articulo."','".$destino."','".$codigo."','".$stock."','".$actual."')";
 
 $result=mysqli_query($conectar,$sql);
 
@@ -60,7 +57,7 @@ $sumado=mysqli_query($conectar,$sql3);
 
 if ($sumado){
 
-$sql5="SELECT stock FROM productos where id='$id_articulo' AND id_ubicacion='$destino'";
+$sql5="SELECT stock FROM productos where id='$id_articulo'";
 
 $result=mysqli_query($conectar,$sql5);
 
@@ -68,14 +65,13 @@ $re=mysqli_fetch_array($result);
 
 $nuevo_stock= $re['stock']-$stock;
 
-$sql6="UPDATE productos SET stock='$nuevo_stock' WHERE id='$id_articulo' AND id_ubicacion='$destino'";
-
+$sql6="UPDATE productos SET stock='$nuevo_stock' WHERE id='$id_articulo'";
 
 $sumado=mysqli_query($conectar,$sql6);
 
-	header ("Location: inventario.php?env=1");
-}		else {
-	header("Location: inventario.php?env=2");
+  header ("Location: inventario.php?env=1");
+}   else {
+  header("Location: inventario.php?env=2");
 }
 
 }
@@ -96,7 +92,7 @@ $sql="UPDATE almacen SET stock='$nuevo_stok 'WHERE id_producto='$id_articulo' AN
 $resultado=mysqli_query($conectar, $sql);
 
 
- 	}	elseif ($resultado['tipo']=='E') {
+  } elseif ($resultado['tipo']=='E') {
 
 
 $sql="SELECT stock FROM almacen where id_producto='$id_articulo' AND id_ubicacion='$destino '";
@@ -126,9 +122,9 @@ $resultado=mysqli_query($conectar, $sql);
 
 if ($resultado){
 
-	header ("Location: inventario.php?env=1");
-}		else {
-	header("Location: inventario.php?env=2");
+  header ("Location: inventario.php?env=1");
+}   else {
+  header("Location: inventario.php?env=2");
 }
 $sql="SELECT stock FROM productos WHERE id='$id_articulo'";
 
@@ -145,5 +141,5 @@ $resultado=mysqli_query($conectar, $sql);
 
 } 
 
- 	} 
+  } 
 ?>

@@ -14,7 +14,7 @@ extract($_REQUEST);
           <div class="col-md-4">
             <label><strong>Código</strong> <strong class="estado-r">*</strong></label>
             <input type="text" name="codigo" id="code" class="form-control codarticulo" required="required" placeholder="Ej. RJ-59014a">
-		</div>
+    </div>
        
           <div class="col-md-4">
              <label><strong>Producto</strong> <strong class="estado-r">*</strong></label>
@@ -24,26 +24,16 @@ extract($_REQUEST);
             <label><strong>Cantidad</strong> <strong class="estado-r">*</strong></label>
             <input type="number" class="form-control" name="stock" id="stock" required="required"  min="0" placeholder="Ej. 50"><br>
           </div>
-          	
-          	 <input type="hidden" name="id_articulo" value="<?=$consulta['id']?>" id="id_articulo" >
+            
+             <input type="hidden" name="id_articulo" value="<?=$consulta['id']?>" id="id_articulo" >
           <!--     <input type="hidden" name="id_usuario" id="id_usuario" > -->
     </div>
         <div class="row">
           
               
        <div class="col-md-6">
-                    <div id="ubicacion"><label><strong>Ubicación Retiro</strong></label></div>
-                    <select class="form-control " name="ubicacion" id="input_ubicacion" required="required">
-                      <option id="empresa_select" value="">Seleccione una ubicación</option>
-                     <?php 
-                       include("../../Modelos/conexion.php");
-                     $sql="SELECT * FROM ubicacion WHERE tipo='I' AND borrado='N'";
-                    $res_emp=$conectar->query($sql);
-                        while ($ubicacion=$res_emp->fetch_array()) {
-                       ?>
-                      <option value="<?=$ubicacion['id']?>" class="id_vaue_externo"><?=$ubicacion['nombre']?></option>
-                      <?php } ?> 
-                    </select><br>
+                    <div id="ubicacion"><label><strong>Almacén Retiro</strong></label></div>
+                   <input type="text" class="form-control" name="retiro" value="Materia Prima" disabled="disabled">
                   </div>
            
               
@@ -70,10 +60,10 @@ extract($_REQUEST);
           <a href="inventario.php" class="btn btn-danger">Cancelar</a>
           <input type="submit" value="Registrar" class="btn btn-primary btn-reg" name="btn_registrar_art">
         </center>
-	</form>
+  </form>
           
         </div>
-      	</div>
+        </div>
           
   <?php include_once "../includes/footer.php"; ?>  
 
@@ -91,8 +81,8 @@ extract($_REQUEST);
      
 
       $("#code").keyup(function(e) {
-      	
-      	$.ajax({
+        
+        $.ajax({
 
               type: "POST",
               url : "funciones/buscar_articulos.php",
@@ -103,7 +93,7 @@ extract($_REQUEST);
               },
               success: function( respuesta ){  
 
-              	 $('#art').val(respuesta);
+                 $('#art').val(respuesta);
               }
 
             });

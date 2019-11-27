@@ -165,7 +165,7 @@
   <br><br>
  <div class="contenido">
     <div class="content-2">
-     <h1 align="center" style="text-align: center;">  <span  class="badge badge-info">Almacén <i class="menu-icon fa fa-book"></i> </span></h1><hr>
+     <h1 align="center" style="text-align: center;">  <span  class="badge badge-info">Almacenes <i class="menu-icon fa fa-book"></i> </span></h1><hr>
     <!--nav inventario -->
          <ul class="nav nav-tabs">
           <li class="nav-item">
