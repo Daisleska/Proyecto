@@ -166,7 +166,7 @@
     <!--nav inventario -->
          <ul class="nav nav-tabs">
           <li class="nav-item">
-            <a class="nav-link" href="inventario.php">Productos 
+            <a class="nav-link" href="inventario.php">Materia Prima 
               <?php
                 $res_busqueda=$contador[0];
 
@@ -183,21 +183,16 @@
 
               echo '
 
-             <li class="nav-item">
-                  <a class="nav-link " href="materiaprima.php">Materia Prima</a>
-                </li>
+             
                 <li class="nav-item">
                   <a class="nav-link active" href="ubicacion_inventario.php">Ubicación</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="proveedores.php">Proveedores</a>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Pedidos <span class="badge badge-primary badge-pill" style="float: right;">'.$res_busqueda.'</span></a>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="pedidos-internos.php">Internos <span class="badge badge-primary badge-pill" style="float: right;">'.$cont_interno.'</span></a>
-                    <a class="dropdown-item" href="pedidos-externos.php">Externos <span class="badge badge-primary badge-pill" style="float: right;">'.$cont_externo.'</span></a>
-                  </div>
+               <li class="nav-item ">
+                  <a class="nav-link" href="../inventario/pedidos-internos.php">Pedidos <span class="badge badge-primary badge-pill" style="float: right;"> </span> '.$cont_interno.'</a>
+                 
                 </li>
 
               ';
@@ -270,19 +265,19 @@ elseif ($consulta['tipo']=='E') {
                   $link2="javascript: eliminar(".$consulta['id'].")";
               }
 
-if ($consulta['tipo']=='Interno') {
+if ($consulta['tipo']=='Interno' or $consulta['tipo']=='Externo') {
  
 
 
               echo "
               <td>
               <a href='historial_almacen_interno.php?ubicacion=".$consulta['id']."' class='ver'  title='Ver'><span class='fa fa-eye'></span></a>
-               <a href='reporte_almacen_interno.php?ubicacion=".$consulta['id']."' class='ver'  title='File'><span class='fa fa-file-o'></span></a>
+               <a href='../../reportes/reporte_almacen_interno.php?ubicacion=".$consulta['id']."' class='ver'  title='File'><span class='fa fa-file-o'></span></a>
 
 
               ";
 } 
-elseif ($consulta['tipo']=='Externo') {
+/*elseif ($consulta['tipo']=='Externo') {
 
 
 
@@ -294,7 +289,7 @@ elseif ($consulta['tipo']=='Externo') {
 
               ";
 
-}
+}*/
 
 
            
@@ -406,7 +401,7 @@ elseif ($consulta['tipo']=='Externo') {
                     <div class="modal-body">
                        <h6 class="nota-input">Los campos con un <i class="estado-r">*</i> son obligatorios </h6><br>
                       <label><strong>Ubicación</strong></label>
-                      <input type="text" name="ubicacion_act" id="ubicacion_act" class="form-control" placeholder="CUbicación" value="" required="required">
+                      <input type="text" name="ubicacion_act" id="ubicacion_act" class="form-control" placeholder="Ubicación" value="" required="required">
                       <div id="result"></div>
                       <div class="valid-feedback">
                         Disponible

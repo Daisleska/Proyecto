@@ -20,6 +20,14 @@
         $resultado = pedido_interno($i,$articulo,$cantidad,$id);
 
         if ($resultado=='S') {
+       /*  include('../../Modelos/conexion.php');
+          $motivo="Pedido";
+
+    $sql="INSERT INTO historial ( motivo,id_producto, cantidad) VALUES ( '$motivo','$id','$cantidad')";
+    $resutado=mysqli_query($conectar,$sql);
+*/
+
+
           header('location: pedidos-internos.php?pp=1');
         }else{
           header('location: pedidos-internos.php?pp=2');
@@ -62,7 +70,7 @@
             <!--nav inventario -->
          <ul class="nav nav-tabs">
           <li class="nav-item">
-            <a class="nav-link" href="inventario.php">Productos 
+            <a class="nav-link" href="inventario.php">Materia Prima
               <?php
                 $res_busqueda=$contador[0];
 
@@ -119,21 +127,16 @@
               }
               echo '
 
-                <li class="nav-item">
-                   <a class="nav-link" href="../inventario/materiaprima.php">Materia Prima</a>
-                </li>
+                
                   <li class="nav-item">
                   <a class="nav-link " href="../inventario/ubicacion_inventario.php">Ubicación</a>
                 </li>
                 <li class="nav-item">
                  <a class="nav-link" href="../inventario/proveedores.php">Proveedores</a>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Pedidos <span class="badge badge-primary badge-pill" style="float: right;">'.$res_busqueda.' '.$cont_interno.'</span></a>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item active" href="pedidos-internos.php">Internos <span class="badge badge-primary badge-pill" style="float: right;"></span></a>
-                    <a class="dropdown-item" href="pedidos-externos.php">Externos <span class="badge badge-primary badge-pill" style="float: right;">'.$cont_externo.'</span></a>
-                  </div>
+               <li class="nav-item ">
+                  <a class="nav-link" href="../inventario/pedidos-internos.php">Pedidos <span class="badge badge-primary badge-pill" style="float: right;"> </span> '.$cont_interno.'</a>
+                 
                 </li>
 
               ';

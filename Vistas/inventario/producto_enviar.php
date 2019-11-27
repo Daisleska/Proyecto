@@ -1,10 +1,12 @@
  <?php 
 include_once "../includes/menu.php";
+extract($_REQUEST);
+
 ?>
  <div class="contenido">
     <div class="content-2">
  <form action="registro_enviar_producto.php" method="POST" enctype="multipart/form-data">
-      <h2 style="text-align: center"><a href="inventario.php" class="atras" title="Atras"><span data-feather="arrow-left" ></span></a><strong>Enviar Producto</strong></h2>
+      <h2 style="text-align: center"><a href="inventario.php" class="atras" title="Atras"><span data-feather="arrow-left" ></span></a><strong>Enviar Materia Prima</strong></h2>
       <hr><br>
      
         <h6 class="nota-input">Los campos con un <i class="estado-r">*</i> son obligatorios </h6><br>
@@ -16,14 +18,14 @@ include_once "../includes/menu.php";
        
           <div class="col-md-4">
              <label><strong>Producto</strong> <strong class="estado-r">*</strong></label>
-            <input type="text" name="producto" id="art"  class="form-control" required="required" maxlength="120" disabled="disabled"><br>
+            <input type="text" name="id_articulo"  id="art"  class="form-control" required="required"  maxlength="120" disabled="disabled"><br>
           </div>
         <div class="col-md-4">
             <label><strong>Cantidad</strong> <strong class="estado-r">*</strong></label>
             <input type="number" class="form-control" name="stock" id="stock" required="required"  min="0" placeholder="Ej. 50"><br>
           </div>
           	
-          	<input type="hidden" name="id_producto" id="id_producto" >
+          	 <input type="hidden" name="id_articulo" value="<?=$consulta['id']?>" id="id_articulo" >
           <!--     <input type="hidden" name="id_usuario" id="id_usuario" > -->
     </div>
         <div class="row">

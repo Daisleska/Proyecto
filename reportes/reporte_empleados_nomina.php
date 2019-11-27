@@ -22,7 +22,7 @@ class PDF extends FPDF {
     $this->SetFont('Times','BU',12);
     $this->Ln(4);
     $this->Cell(0,40,utf8_decode('LISTADO DE NOMINAS APROBADAS'),0,0,'C');
-    $this->Cell(-30,35,utf8_decode ('RIF: j-293901039'),0,0,'C');
+    $this->Cell(-30,35,utf8_decode ('RIF: J-30478166-0'),0,0,'C');
     $this->Ln(20);
 
     $this->SetX(25);

@@ -93,7 +93,7 @@ include("../../Modelos/conexion.php");
 
 
                 <?php if ($_SESSION['tipo_usuario']=='Usuario 1' or $_SESSION['tipo_usuario']=='Admin' ){  ?>
-                    <h3 class="menu-title">ALMACEN</h3><!-- /.menu-title -->
+                    <h3 class="menu-title">ALMACÉN</h3><!-- /.menu-title -->
                    
 
                     <li class="">
@@ -145,7 +145,7 @@ include("../../Modelos/conexion.php");
                     </li>
 
                      <li class="">
-                        <a href="../../Controladores/ControladorPreNomina.php?operacion=prenomina"> <i class="menu-icon fa fa-money"></i>Nomina</a>
+                        <a href="../../Controladores/ControladorPreNomina.php?operacion=prenomina"> <i class="menu-icon fa fa-money"></i>Nómina</a>
                         
                     </li>
 
@@ -164,7 +164,11 @@ include("../../Modelos/conexion.php");
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Mantenimiento</a>
                         <ul class="sub-menu children dropdown-menu">
+<<<<<<< HEAD
                             <li><i class="menu-icon fa fa-desktop"></i><a href="../../Controladores/ControladorBitacora.php?operacion=bitacora"">Bitacora</a></li>
+=======
+                            <li><i class="menu-icon fa fa-desktop"></i><a href="../config/bitacora.php">Bitácora</a></li>
+>>>>>>> d12b4e557553620d46dcce20f3e3114c6d109486
                             <li><i class="menu-icon fa fa-cloud"></i><a href="../config/respaldar.php">Respaldar BD</a></li>
                             <li><i class="menu-icon fa fa-cloud-upload"></i><a href="../config/restaurar.php">Restaurar BD</a></li>
                              <li><i class="menu-icon fa fa-cloud-upload"></i><a href="../../Controladores/controladorUsuario.php?operacion=index">Listado de usuarios</a></li>
@@ -193,6 +197,7 @@ include("../../Modelos/conexion.php");
                     </div>
                     
                 </div>
+                
 <div class="col-md-4" style="align-content: center;">
 <script type="text/javascript">
 
@@ -242,14 +247,14 @@ window.onload=function(){startTime();}
                             <a class="nav-link" href="../../Controladores/controladorUsuario.php?operacion=registrar"><i class="fa fa-user"></i>Registrar usuario</a>
                         <?php }?>
                             <a class="nav-link" href="../../Controladores/controladorLogin.php?operacion=logout"><i class="fa fa-power-off" ></i> Salir</a>
-
-                           
                         </div>
                       
-                      <strong style="padding-left: 60px;" class="active"><?php echo $_SESSION['user'];?></strong><br>
-                      <cite style="padding-left: 60px;"><?php echo $_SESSION['tipo_usuario']; ?></cite>
+                      
 
                 </div>
+
+                <strong style="padding-left: 100px;" class="active"><?php echo $_SESSION['user'];?></strong><br>
+                      <cite style="padding-left: 100px;"><?php echo $_SESSION['tipo_usuario']; ?></cite>
             </div>
 
         </header><!-- /header -->

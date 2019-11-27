@@ -5,7 +5,7 @@
 
     if (isset($_POST['btn_registrar_art'])) {
 
-      if ($codigo=='' or $nombre=='' or $presentacion=='' or $unidad=='' or $stock=='' or $stock_minimo=='' or $activo=='' or $stock_maximo=='') {
+      if ($codigo=='' or $nombre=='' or $presentacion=='' or $unidad=='' or $stock=='' or $stock_minimo=='' or $activo=='' or $stock_maximo==''  or $proveedor=='') {
         
         echo '
             <script src="../../bootstrap/js/jquery.js"></script>
@@ -76,7 +76,7 @@
 
                 error_reporting(0);
 
-                    $sql="INSERT INTO productos(codigo,nombre,presentacion,unidad,stock, stock_minimo, stock_maximo,activo) VALUES ('$codigo','$nombre','$presentacion','$unidad','$stock','$stock_minimo', '$stock_maximo','$activo')"; 
+                    $sql="INSERT INTO productos(codigo,nombre,presentacion,unidad,stock, stock_minimo, stock_maximo,activo, id_proveedor) VALUES ('$codigo','$nombre','$presentacion','$unidad','$stock','$stock_minimo', '$stock_maximo','$activo','$proveedor')"; 
 
                  $resultado=mysqli_query($conectar,$sql);
                    
@@ -130,7 +130,7 @@
          
          <h2 style="text-align: center"><a href="inventario.php" class="atras" title="Atras"><span data-feather="arrow-left"></span></a></h2>
           <br>
-         <h1 align="center">  <span style="margin-left: 5cm;" class="badge badge-info">Registro de Producto <i class="menu-icon fa fa-edit"></i> </span></h1>
+         <h1 align="center">  <span style="margin-left: 5cm;" class="badge badge-info">Registro de Materia Prima <i class="menu-icon fa fa-edit"></i> </span></h1>
         
       </ol>
    </section >
@@ -189,13 +189,28 @@
         <div class="row" style="padding-left: 20px">
           
           <div class="col-md-4">
-            <label><strong>Cantidad minima</strong> <strong class="estado-r">*</strong></label>
+            <label><strong>Cantidad mínima</strong> <strong class="estado-r">*</strong></label>
             <input type="number" class="form-control" name="stock_minimo" id="stock_minimo" required="required" min="0" placeholder="Ej. 10"><br>
           </div>
 
           <div class="col-md-4">
-            <label><strong>Cantidad maxima</strong> <strong class="estado-r">*</strong></label>
+            <label><strong>Cantidad máxima</strong> <strong class="estado-r">*</strong></label>
             <input type="number" name="stock_maximo" id="stock_maximo" class="form-control" required="required" placeholder="Ej. 60"><br>
+          </div>
+
+            <div class="col-md-4">
+            <label><strong>Proveedor</strong> <strong class="estado-r">*</strong></label>
+            <select class="form-control " name="proveedor" id="input_ubicacion" required="required">
+                      <option id="empresa_select" value="">Seleccione</option>
+                     <?php 
+                       include("../../Modelos/conexion.php");
+                     $sql="SELECT * FROM proveedor WHERE  borrado='N'";
+                    $res_emp=$conectar->query($sql);
+                        while ($proveedor=$res_emp->fetch_array()) {
+                       ?>
+                      <option value="<?=$proveedor['id']?>" class="id_vaue_externo"><?=$proveedor['nombre']?></option>
+                      <?php } ?> 
+                    </select><br>
           </div>
         </div>
        

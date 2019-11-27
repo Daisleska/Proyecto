@@ -4,7 +4,7 @@
 
 	extract($_REQUEST);
 
-	$sql="SELECT nombre FROM productos WHERE codigo='$id'";
+	$sql="SELECT nombre, id FROM productos WHERE codigo='$id'";
 
 	$resultado=mysqli_query($conectar,$sql);
 

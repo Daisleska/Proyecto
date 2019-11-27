@@ -1,14 +1,13 @@
 <p style="text-align: justify;">
-	<strong>¿Confirma haber recibido todo los artículos de la lista?</strong>
+	<strong>¿Confirma haber recibido toda la materia prima de la lista?</strong>
 </p>
 
 <div class="table-responsive">
     <table class="table table-striped table-sm " id="table">
         <thead>
         	<th>#</th>
-        	<th>Artículo</th>
+        	<th>Materia Prima</th>
         	<th>Cantidad solicitada</th>
-        	
         	<th>Cantidad recibida</th>
         </thead>
         <tbody>
@@ -53,7 +52,7 @@
 </div>
 
 <p style="text-align: justify;">
-	<strong>Nota:</strong> los siguientes articulos se sumaran al inventario automaticamente
+	<strong>Nota:</strong> los siguientes productos se sumarán al inventario automáticamente
 </p>
 
 <?php

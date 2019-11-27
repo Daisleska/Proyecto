@@ -137,7 +137,30 @@
                 }
               }     
           }
-            
+      
+             if ($er==1) {
+                            echo '
+                              <script src="../../bootstrap/js/jquery.js"></script>
+                              <script src="../../vendors/js/sweetalert.min.js"></script>
+                              <script>
+                                $(document).ready(function(){
+                                  swal("Error","El producto que desea enviar no se encuentra activo", "error");
+                                });
+                              </script>
+                          ';  
+                        }
+             
+         if ($er==2) {
+             echo '
+       <script src="../../bootstrap/js/jquery.js"></script>
+        <script src="../../vendors/js/sweetalert.min.js"></script>
+         <script>
+           $(document).ready(function(){
+             swal("Error","El producto que desea enviar no se almacená en la ubicación seleccionada", "error");
+              });
+            </script>
+             ';  
+          }
          // retirar
 
          if (isset($_POST['btn-retirar'])){
@@ -266,14 +289,14 @@ include_once "../includes/menu.php";
     <section  class="content-header">
       <ol class="breadcrumb">
        
-         <h1 align="center">  <span style="margin-left: 8.5cm;" class="badge badge-info">Inventario <i class="menu-icon fa fa-badge"></i> </span></h1>
+         <h1 align="center">  <span style="margin-left: 8.5cm;" class="badge badge-info">Materia Prima <i class="menu-icon fa fa-book"></i> </span></h1>
         
       </ol>
    </section >
     <!--nav inventario -->
          <ul class="nav nav-tabs" >
           <li class="nav-item">
-            <a class="nav-link active" href="inventario.php">Productos
+            <a class="nav-link active" href="inventario.php">Materia Prima
               <?php
                 $res_busqueda=$contador[0];
 
@@ -291,9 +314,7 @@ include_once "../includes/menu.php";
            
               echo '
 
-                <li class="nav-item">
-                  <a class="nav-link" href="../inventario/materiaprima.php">Materia Prima</a>
-                </li>
+               
                   <li class="nav-item">
                   <a class="nav-link " href="../inventario/ubicacion_inventario.php">Ubicación</a>
                 </li><div></div>
@@ -326,7 +347,7 @@ include_once "../includes/menu.php";
          
               echo '
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                  '.$i.' producto requiere atención
+                  '.$i.' materia Prima requiere atención
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -341,11 +362,11 @@ include_once "../includes/menu.php";
               echo '
 
                 <center>
-                    <a href="../inventario/registro-inventario.php" class="btn btn-primary"><i class="ti-pencil-alt"></i> Registrar Producto</a>
+                    <a href="../inventario/registro-inventario.php" class="btn btn-primary"><i class="ti-pencil-alt"></i> Registrar Materia</a>
 
                     <a href="../../reportes/reporte_inventario.php" class="btn btn-secondary" title="Descargar PDF"><i class="ti ti-import"></i> Descargar PDF</a>
 
-                    <a href="../inventario/producto_enviar.php" class="btn btn-success"><i class="fa fa-truck"></i> Enviar Productos</a>   
+                    <a href="../inventario/producto_enviar.php" class="btn btn-success"><i class="fa fa-truck"></i> Enviar Materia</a>   
               </center><br>
 
               ';
@@ -595,7 +616,7 @@ include_once "../includes/menu.php";
             echo "
               iziToast.success({
                 title: '¡Registrado! ',
-                message: 'Producto registrado correctamente',
+                message: ' registrado correctamente',
                 color: 'rgb(174, 240, 191)',
                 
               });
@@ -604,7 +625,7 @@ include_once "../includes/menu.php";
           echo
                "iziToast.error({
                 title: '¡Error al registrar! ',
-                message: 'El Producto no pudo ser registrado',
+                message: ' no pudo ser registrado',
                 color: '#ffb6bb',
             
               });";
@@ -615,7 +636,7 @@ include_once "../includes/menu.php";
             echo "
               iziToast.success({
                 title: '¡Actualizado! ',
-                message: 'Producto actualizado correctamente',
+                message: ' actualizado correctamente',
                 color: 'rgb(174, 240, 191)',
                 
               });
@@ -624,7 +645,7 @@ include_once "../includes/menu.php";
           echo
                "iziToast.error({
                 title: '¡Error al actualizar! ',
-                message: 'El Producto no pudo ser actualizado',
+                message: ' no pudo ser actualizado',
                 color: '#ffb6bb',
             
               });";
@@ -636,7 +657,7 @@ include_once "../includes/menu.php";
             echo "
               iziToast.success({
                 title: '¡Eliminado! ',
-                message: 'Artículo eliminado correctamente',
+                message: ' eliminado correctamente',
                 color: 'rgb(174, 240, 191)',
                 
               });
@@ -645,7 +666,7 @@ include_once "../includes/menu.php";
           echo
                "iziToast.error({
                 title: '¡Error al eliminar! ',
-                message: 'El artículo no pudo ser eliminado',
+                message: 'no pudo ser eliminado',
                 color: '#ffb6bb',
             
               });";
@@ -657,7 +678,7 @@ include_once "../includes/menu.php";
             echo "
               iziToast.success({
                 title: '¡Enviado! ',
-                message: 'Artículo se ha enviado correctamente',
+                message: ' enviado correctamente',
                 color: 'rgb(174, 240, 191)',
                 
               });
@@ -666,11 +687,12 @@ include_once "../includes/menu.php";
           echo
                "iziToast.error({
                 title: '¡Error al enviar! ',
-                message: 'El artículo no pudo ser enviado',
+                message: ' no pudo ser enviado',
                 color: '#ffb6bb',
             
               });";
         } 
+
 
       ?>
     </script>

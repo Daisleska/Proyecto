@@ -1,7 +1,8 @@
 <?php
 	extract($_REQUEST);
 	include('../../Modelos/conexion.php');
-	$sql="SELECT * FROM productos WHERE id='$cod'";
+	$sql="SELECT productos.*, proveedor.nombre AS pro FROM productos, proveedor WHERE proveedor.id=productos.id_proveedor AND productos.id='$cod'";
+	
 
 	$resultado=mysqli_query($conectar,$sql);
 
@@ -73,6 +74,16 @@
 						}
 					?>	
 				</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<label><strong>Proveedor:</strong></label>
+				<?php 
+					
+
+					echo $consulta['pro'].'<br>';
+				?>
+					</div>
 				</div>
 					
  <!-- <?php

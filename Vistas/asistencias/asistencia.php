@@ -2,6 +2,12 @@
 
 extract($_REQUEST);
 $asistencia=unserialize($asistencia);
+/*print_r($asistencia[0][3]);
+
+exit();*/
+/*echo $campos."-";
+echo $filas;
+exit();*/
 $justificacion=unserialize($justificacion);
 
 /*$query_perfil=mysqli_query($con,"select * from perfil where id=1");
@@ -17,7 +23,7 @@ $justificacion=unserialize($justificacion);
   <section style="padding-left: 20px;" class="content-header">
       <ol class="breadcrumb">
        
-         <h1 align="center">  <span style="margin-left: 6.5cm;" class="badge badge-info">Asistencias <i class="menu-icon fa fa-edit"></i> </span></h1>
+         <h1 align="center">  <span style="margin-left: 8.5cm;" class="badge badge-info">Asistencias <i class="menu-icon fa fa-edit"></i> </span></h1>
         
       </ol>
    </section >
@@ -66,7 +72,6 @@ $justificacion=unserialize($justificacion);
                           <th>Apellidos</th>
                           <th>Cédula</th>
                           <th>Estado</th>
-                          <th>Justificación</th>
                           <th>Opciones</th>
                         </tr>
                       </thead>
@@ -78,22 +83,24 @@ $justificacion=unserialize($justificacion);
               ?>  
               
               <td><?=$num?></td>
-            <?php for ($j=1; $j <$campos; $j++) { ?>
-            <td><?php=utf8_encode($asistencia[$i][$j])?></td>
-
-              <?php } ?>
+            
+            <td><?=$asistencia[$i][6]?></td>
+            <td><?=$asistencia[$i][7]?></td>
+            <td><?=$asistencia[$i][8]?></td>
+            <td><?=$asistencia[$i][3]?></td>
+       
 
               <td>
 
                     <?php 
-                   if (utf8_encode($asistencia[$i][4])=="Sin Marcar") {
+                   if (utf8_encode($asistencia[$i][3])=="Sin Marcar") {
                     ?>
                <i data-toggle="modal" onclick="asistio(<?=$asistencia[$i][0]?>)" data-target="#mediumModal" style="font-size: 20px;" title="Marcar Asistencia" class="menu-icon fa fa-check"></i>
 
                <i data-toggle="modal" onclick="noasistio(<?=$asistencia[$i][0]?>)" data-target="#mediumModal" style="font-size: 20px;" title="No asistió" class="menu-icon fa fa-times"></i>
                   <?php 
                   }else{
-                    if(utf8_encode($asistencia[$i][4])=="A"){?>
+                    if(utf8_encode($asistencia[$i][3])=="A"){?>
                     <i data-toggle="modal" onclick="noasistio(<?=$asistencia[$i][0]?>)" data-target="#mediumModal" style="font-size: 20px;" title="No asistió" class="menu-icon fa fa-times"></i>
                     <?php
 
@@ -137,7 +144,7 @@ $justificacion=unserialize($justificacion);
                               <div id="asiste" style="display: none;">
                               <div class="row" >
                                 <div class="col-md-12">
-                                  <label>¿Seguro que desea marcar como asistió?</label>
+                                  <strong>¿Seguro que desea marcar que este empleado asistio?</strong>
                                 </div>   
                               </div>
                             </div>
@@ -145,21 +152,10 @@ $justificacion=unserialize($justificacion);
                             <div id="noasiste" style="display: none;">
                               <div class="row" >
                                 <div class="col-md-12">
-                                  <label>¿Seguro que desea marcar como no asistió?</label>
+                                  <strong>¿Seguro que desea marcar que este empleado no asistió?</strong>
                                 </div>   
                               </div>
-                              <div class="row">
-                                <div class="col-md-12">
-                                   <label>Justificación: </label>
-                                   <select class="" name="justificacion">
-                                   <option value="" selected="selected" disabled="disabled"></option>
-                                  <option>Reposo</option>
-                                  <option>Permiso</option>
-                                  </select>
-                             <label>Dias de Permiso: </label>
-                             <input type="number" title="Ingrese la cantidad de dias de permiso" name="dias_permiso">
-                                </div>
-                             </div>
+                            
                             </div>
                              
                             </div>

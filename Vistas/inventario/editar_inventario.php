@@ -10,7 +10,7 @@
 
     if (isset($_POST['btn_registrar_art'])) {
 
-      if ($codarticulo=='' or $articulo=='' or $stock=='' or $stock_minimo=='' or $activo=='' or $stock_maximo=='') {
+      if ($codarticulo=='' or $articulo=='' or $stock=='' or $stock_minimo=='' or $activo=='' or $stock_maximo==''  or $presentacion==''  or $unidad=='') {
         
         echo '
             <script src="../../bootstrap/js/jquery.js"></script>
@@ -80,7 +80,7 @@
                 include('../../Modelos/conexion.php');
                 
 
-                      $sql="UPDATE productos SET codigo='$codarticulo',  nombre='$articulo',presentacion='presentacion', unidad='unidad',stock='$stock', stock_minimo='$stock_minimo', stock_maximo='$stock_maximo',activo='$activo'WHERE id='$art'";
+                      $sql="UPDATE productos SET codigo='$codarticulo',  nombre='$articulo',presentacion='$presentacion', unidad='$unidad',stock='$stock', stock_minimo='$stock_minimo', stock_maximo='$stock_maximo',activo='$activo' WHERE id='$art'";
                     
                   }
                 }
@@ -97,7 +97,7 @@
                   header('location: inventario.php?act=2');
 
                 }
-                include('../../Modelos/desconectar.php');
+          
 
               }
         
@@ -105,7 +105,7 @@
       }
   }
 
-    include('../../Modelos/conectar.php');
+    include('../../Modelos/conexion.php');
     $sql="SELECT * FROM productos WHERE id='$art'";
     $resultado=mysqli_query($conectar,$sql);
 
@@ -186,13 +186,13 @@ include_once "../includes/menu.php";
   <div class="contenido">
     <div class="content-2">
 
-      <h2 style="text-align: center"><a href="inventario.php" class="atras" title="Atras"><span data-feather="arrow-left" ></span></a><strong>Editar Producto</strong></h2>
+      <h2 style="text-align: center"><a href="inventario.php" class="atras" title="Atras"><span data-feather="arrow-left" ></span></a><strong>Editar Materia Prima</strong></h2>
       <hr><br>
-      <form action="editar-inventario.php?art=<?php echo $art ?>" method="POST">
+      <form action="editar_inventario.php?art=<?php echo $art ?>" method="POST">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <label><strong>Código</strong> <strong class="estado-r">*</strong></label>
-            <input type="text" name="codigo" class="form-control codarticulo" required="required" placeholder="Ej. RJ-59014a" value="<?php echo $codarticulo; ?>">
+            <input type="text" name="codarticulo" class="form-control codarticulo" required="required" placeholder="Ej. RJ-59014a" value="<?php echo $codarticulo; ?>">
 
             <div id="result"></div>
               <div class="valid-feedback">
@@ -203,76 +203,49 @@ include_once "../includes/menu.php";
               </div><br>
           </div>
           
-           <div class="col-md-6">
+           <div class="col-md-4">
             <label><strong>Activo</strong> <strong class="estado-r">*</strong></label>
             <select class="form-control" name="activo" required="required">
               <option value="S" <?php if ($activo=='S'){echo "selected='selected'";} ?> >Si</option>
               <option value="N" <?php if ($activo=='N'){echo "selected='selected'";} ?> >No</option>
             </select><br>
           </div>
+           <div class="col-md-4">
+             <label><strong>Producto</strong> <strong class="estado-r">*</strong></label>
+            <input type="text" name="articulo" class="form-control" required="required" maxlength="120" placeholder="Cauchos" value="<?php echo $articulo; ?>"><br>
+          </div>
+
         </div>
         
-        </div>
         <div class="row">
-         
-          <div class="col-md-6">
-             <label><strong>Producto</strong> <strong class="estado-r">*</strong></label>
-            <input type="text" name="nombre" class="form-control" required="required" maxlength="120" placeholder="Cauchos" value="<?php echo $articulo; ?>"><br>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <label><strong>Cantidad</strong> <strong class="estado-r">*</strong></label>
             <input type="number" class="form-control" name="stock" id="stock" required="required"  min="0" placeholder="Ej. 50" value="<?php echo $stock; ?>" ><br>
           </div>
-          <div class="col-md-6">
-            <label><strong>Cantidad minima</strong> <strong class="estado-r">*</strong></label>
+          <div class="col-md-4">
+            <label><strong>Cantidad mínima</strong> <strong class="estado-r">*</strong></label>
             <input type="number" class="form-control" name="stock_minimo" id="stock_minimo" required="required" min="0" placeholder="Ej. 10" value="<?php echo $stock_minimo; ?>"><br>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <label><strong>Cantidad maxima</strong> <strong class="estado-r">*</strong></label>
+
+           <div class="col-md-4">
+            <label><strong>Cantidad máxima</strong> <strong class="estado-r">*</strong></label>
             <input type="number" name="stock_maximo" id="stock_maximo" class="form-control" required="required" placeholder="Ej. 60" value="<?php echo $stock_maximo; ?>"><br>
           </div>
-       
         </div>
+
         <div class="row">
-          <div class="col">
-            <label><strong>Ubicación del Producto</strong><strong class="estado-r required_ext">*</strong></label>
-            <select class="form-control" name="almacen" onChange="mostrar(this.value);"  id="seleccionar">
-           <option  value="0">Seleccione</option>   
-    <option value="Deposito Principal">Deposito Principal</option>
-    <option value="Cuarto de Inventario">Cuarto de Inventario</option>
-    <option value="Depositos Externos">Depositos Externos </option>
-
-            </select> 
+           <div class="col-md-4">
+            <label><strong>Presentación</strong> <strong class="estado-r">*</strong></label>
+            <input type="text" name="presentacion" id="presentacion" class="form-control" required="required" value="<?php echo $presentacion; ?>"><br>
           </div>
-       
-            
 
-               <div id="formPrincipal" >
-              </div>
-
-          <div id="formSecundario" >
-          </div>       
- <!-- tercera opcion-->
-          <div id="formActual" >
-      
-<label><strong> Ubicación Actual</strong> <strong class="estado-r required_ext">*</strong></label>
-<input type="text" name="ubicacion" class="form-control" style="width: 40%; margin-left: 29%;"> 
-<br>           
- <div class="campos_nuevos">
-           </div>
-          <a href="javascript:nuevos_campos()" class="control-sr mantenimiento_externo_show" title="Añadir" ><span data-feather="plus" style=" width: 35px; height: 35px;"></span></a>
-
-          <a href="#" class="control-sr control-sr_x mantenimiento_externo_show x control-sr_x_resposive eliminar-2" title="Eliminar" id="#"><span data-feather="trash" style=" width: 35px; height: 35px;"></span></a>
-</div>
-
-            <br>     <br>
-            
-      </div>
+          <div class="col-md-4">
+            <label><strong>Unidad</strong> <strong class="estado-r">*</strong></label>
+            <input type="text" name="unidad" id="unidad" class="form-control" required="required"  value="<?php echo $unidad; ?>"><br>
+          </div>
         </div>
+      
+             <br>
         <input type="hidden" name="stock_actual" value="<?php echo $stock ?>">
         <center>
           <a href="inventario.php" class="btn btn-danger">Cancelar</a>
@@ -280,9 +253,11 @@ include_once "../includes/menu.php";
         </center>
       </form>
     </div>
-  </div>
+ </div>
+ <br><br><br><br>
 
      <?php include_once "../includes/footer.php"; ?>
+
     <script src="../../bootstrap/js/jquery.js"></script>
     <script src="../../bootstrap/js/bootstrap.min.js"></script>
     <script src="../../vendors/js/sweetalert.min.js"></script>

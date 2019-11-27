@@ -27,9 +27,9 @@
 				<div class="col">
 					<label><strong>En stock:</strong></label>
 					<?php echo $consulta['stock']; ?><br>	
-					<label><strong>Stock minimo:</strong></label>
+					<label><strong>Stock mínimo:</strong></label>
 					<?php echo $consulta['stock_minimo']; ?><br>
-					<label><strong>Stock maximo:</strong></label>
+					<label><strong>Stock máximo:</strong></label>
 					<?php echo $consulta['stock_maximo']; ?><br>
                     <label><strong>Descripción:</strong></label>
 					<?php echo $consulta['informacion']; ?><br>

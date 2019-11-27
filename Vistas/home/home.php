@@ -2,7 +2,6 @@
 
 <?php include_once "../includes/menu.php"; ?>
 
-
   <div class="contenido">
     <div class="content-2">
       <div style="width: 100%; padding-left: 20px; padding-right: 20px;">
@@ -87,7 +86,7 @@
                 <img src="../../images/img/cube.png" class="img-responsive" height="100%">
               </div>
               <div class="col NHA" style=";text-align: justify;">
-                <label><strong>Empleados a laboral:</strong></label><br>
+                <label><strong>Empleados laboral:</strong></label><br>
                 <p style="font-size: 20px;">
 
                   <?php
@@ -132,7 +131,7 @@
 
             <div class="col-md-12">
                       
-                            <img style="page-break-after: 1cm; height: 7cm;" class="card-img-top" src="../../images/servi.jpg" alt="Card image cap">
+                            <img style="page-break-after: 1cm; height: 12cm;" class="card-img-top" src="../../images/fachada.jpg" alt="Card image cap">
                             <div class="card-body">
                                 <h4 class="card-title mb-3"></p>
                             </div>
