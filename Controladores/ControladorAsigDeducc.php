@@ -216,7 +216,7 @@ public function eliminarasigdeducc() {
 			?>
 				<script type="text/javascript">
 					alert("Registro eliminado");
-					window.location="";
+					window.location="ControladorEmpleado.php?operacion=index";
 				</script>
 			<?php
 		} else {

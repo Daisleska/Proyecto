@@ -114,23 +114,14 @@ $data=unserialize($data);
     <!-- Right Panel -->
 <?php include_once "../includes/footer.php"; ?>
 
-<<<<<<< HEAD
  <script>
       feather.replace();
     </script>
     <script src="../../bootstrap/js/bootstrap.min.js"></script>
-     <script src="../../vendors/js/feather.min.js"></script>
-    <script>
-      feather.replace();
-    </script>
- <?php include_once "../includes/footer.php"; ?>
-      <script src="../../vendors/js/datatables.min.js"></script>
-=======
-
       <script src="../../vendors/js/sweetalert.min.js"></script>
     <script src="../../vendors/js/feather.min.js"></script>
+     <script src="../../vendors/js/empleados.js"></script>
     <script src="../../vendors/js/datatables.min.js"></script>
->>>>>>> d12b4e557553620d46dcce20f3e3114c6d109486
     <script type="text/javascript">
 
           $('#table').DataTable({
@@ -158,8 +149,8 @@ $data=unserialize($data);
             
           });
 
-<<<<<<< HEAD
+
   </script>
-=======
+
   </script>
->>>>>>> d12b4e557553620d46dcce20f3e3114c6d109486
+

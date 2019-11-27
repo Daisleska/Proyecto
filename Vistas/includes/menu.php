@@ -151,11 +151,6 @@ include("../../Modelos/conexion.php");
 
                 <?php } ?>
 
-                <h3 class="menu-title">AYUDA</h3>
-                     <li class="">
-                        <a href="../../Ayuda/Manual.pdf"> <i class="fa fa-book"></i> Manual de Usuario</a>
-                        
-                    </li>
 
                   
               <?php if ($_SESSION['tipo_usuario']=='Admin'){  ?>
@@ -164,18 +159,26 @@ include("../../Modelos/conexion.php");
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Mantenimiento</a>
                         <ul class="sub-menu children dropdown-menu">
-<<<<<<< HEAD
-                            <li><i class="menu-icon fa fa-desktop"></i><a href="../../Controladores/ControladorBitacora.php?operacion=bitacora"">Bitacora</a></li>
-=======
+
+                            <li><i class="menu-icon fa fa-desktop"></i><a href="../../Controladores/ControladorBitacora.php?operacion=bitacora">Bitacora</a></li>
+
                             <li><i class="menu-icon fa fa-desktop"></i><a href="../config/bitacora.php">Bitácora</a></li>
->>>>>>> d12b4e557553620d46dcce20f3e3114c6d109486
+
                             <li><i class="menu-icon fa fa-cloud"></i><a href="../config/respaldar.php">Respaldar BD</a></li>
                             <li><i class="menu-icon fa fa-cloud-upload"></i><a href="../config/restaurar.php">Restaurar BD</a></li>
                              <li><i class="menu-icon fa fa-cloud-upload"></i><a href="../../Controladores/controladorUsuario.php?operacion=index">Listado de usuarios</a></li>
                         </ul>
                     </li>
                 <?php } ?>
+
+                
+                <h3 class="menu-title">AYUDA</h3>
+                     <li class="">
+                        <a href="../../Ayuda/Manual.pdf"> <i class="fa fa-book"></i> Manual de Usuario</a>
+                        
+                    </li>
                 </ul>
+
             </div><!-- /.navbar-collapse -->
         </nav>
     </aside><!-- /#left-panel -->
