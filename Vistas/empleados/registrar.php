@@ -37,7 +37,7 @@ $asignaciones=unserialize($asignaciones);
    </section >
 <br>
 
- <form action="../../Controladores/ControladorEmpleado.php?operacion=guardar" method="POST" name="form" class="form">
+ <form action="../../Controladores/ControladorEmpleado.php?operacion=guardar" method="POST" name="form" id="f1" class="form">
   
     <h6 class="nota-input">Los campos con un <i class="estado-r">*</i> son obligatorios </h6><br>
 
@@ -142,7 +142,7 @@ $asignaciones=unserialize($asignaciones);
          
         </div>
 
-        <div class="col-lg-11" style="padding-left: 50px;">
+        <div  class="col-lg-11" style="padding-left: 50px;">
                     <div class="card">
                       <div class="card-header">
                         <strong style="text-align: center;">ASIGNAR DÍAS LABORABLES</strong>
@@ -187,12 +187,13 @@ $asignaciones=unserialize($asignaciones);
 
         
        
-        <div class="row">
+    <div class="row">
           
           <label><strong>Asignaciones | Deducciones</strong> <strong class='estado-r'>*</strong></label>
+          <br>
            <select name="asignaciones[]" data-placeholder="Seleccione" multiple class="standardSelect" >
              <option value="" selected="selected" disabled="disabled"></option>
-                                    <?php 
+                  <?php 
                     for ($i=0; $i<$filas_asi; $i++){
                     ?>
                     <option value="<?=$asignaciones[$i][0]?>"><?=$asignaciones[$i][1]?> / <?=$asignaciones[$i][2]?></option>
@@ -224,11 +225,7 @@ $asignaciones=unserialize($asignaciones);
 
    <br><br><br><br><br><br><br><br><br><br><br><br>     
    <?php include_once "../includes/footer.php"; ?>
-    <script src="../../bootstrap/js/jquery.js"></script>
-    <script src="../../bootstrap/js/bootstrap.min.js"></script>
-    <script src="../../vendors/js/feather.min.js"></script>
-    <script>
-            
+
    
 
    <script type="text/javascript">

@@ -22,6 +22,7 @@ include("../../Modelos/conexion.php");
         
     }
 ?>
+
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="es"> <![endif]-->
@@ -87,7 +88,7 @@ include("../../Modelos/conexion.php");
                 <ul class="nav navbar-nav">
             
                     <li>
-                        <a href="../home/home.php"> <i class="menu-icon fa fa-home"></i>Inicio </a>
+                        <a href="../home/home.php"> <i class="menu-icon fa fa-home" title="Inicio"></i>Inicio </a>
                     </li>
 
 
@@ -97,7 +98,7 @@ include("../../Modelos/conexion.php");
                    
 
                     <li class="">
-                        <a href="../menu/ControladorMenu.php?operacion=inventario" > <i class="menu-icon fa fa-archive"></i>Inventario</a>
+                        <a href="../menu/ControladorMenu.php?operacion=inventario" > <i class="menu-icon fa fa-archive" title="Inventario"></i>Inventario</a>
                     </li>
 
                   <?php } ?>
@@ -106,46 +107,46 @@ include("../../Modelos/conexion.php");
                     <h3 class="menu-title">RECURSOS HUMANOS</h3><!-- /.menu-title -->
 
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user"></i>Empleados</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user" title="Empleados"></i>Empleados</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-edit"></i><a href="../../Controladores/ControladorEmpleado.php?operacion=registrar">Registro</a></li>
-                            <li><i class="menu-icon fa fa-table"></i><a href="../../Controladores/ControladorEmpleado.php?operacion=index">Listado</a></li>
+                            <li><i class="menu-icon fa fa-edit" title="Registar"></i><a href="../../Controladores/ControladorEmpleado.php?operacion=registrar">Registro</a></li>
+                            <li><i class="menu-icon fa fa-table" title="Listado"></i><a href="../../Controladores/ControladorEmpleado.php?operacion=index">Listado</a></li>
                         </ul>
                     </li>
 
                     <li>
-                        <a href="../asistencias/ControlA.php?operacion=index"> <i class="menu-icon fa fa-users"></i>Asistencia</a>
+                        <a href="../asistencias/ControlA.php?operacion=index"> <i class="menu-icon fa fa-users" title="Asistencia"></i>Asistencia</a>
                        
                     </li>
 
                     
 
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Asig / Deducc</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book" title="Asignaciones y Deducciones"></i>Asig / Deducc</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-users"></i><a href="../../Controladores/ControladorAsigDeducc.php?operacion=registrar">Registrar</a></li>
-                            <li><i class="menu-icon fa fa-list"></i><a href="../../Controladores/ControladorAsigDeducc.php?operacion=index">Listado</a></li>
+                            <li><i class="menu-icon fa fa-users" title="Registrar"></i><a href="../../Controladores/ControladorAsigDeducc.php?operacion=registrar">Registrar</a></li>
+                            <li><i title="Listado" class="menu-icon fa fa-list"></i><a href="../../Controladores/ControladorAsigDeducc.php?operacion=index">Listado</a></li>
                         </ul>
                     </li>
 
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon ti ti-stats-up"></i>Cargos</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i title="Cargos" class="menu-icon ti ti-stats-up"></i>Cargos</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-users"></i><a href="../../Controladores/ControladorCargos.php?operacion=registrar">Registrar</a></li>
-                            <li><i class="menu-icon fa fa-list"></i><a href="../../Controladores/ControladorCargos.php?operacion=index">Listado</a></li>
+                            <li><i title="Registrar" class="menu-icon fa fa-users"></i><a href="../../Controladores/ControladorCargos.php?operacion=registrar">Registrar</a></li>
+                            <li><i title="Listado" class="menu-icon fa fa-list"></i><a href="../../Controladores/ControladorCargos.php?operacion=index">Listado</a></li>
                         </ul>
                     </li>
 
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon ti ti-ticket"></i>Cestaticket</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i title="Cestaticket" class="menu-icon ti ti-ticket"></i>Cestaticket</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-users"></i><a href="../../Controladores/ControladorCestaticket.php?operacion=registrar">Registrar</a></li>
-                            <li><i class="menu-icon fa fa-list"></i><a href="../../Controladores/ControladorCestaticket.php?operacion=index">Listado</a></li>
+                            <li><i title="Registrar" class="menu-icon fa fa-users"></i><a href="../../Controladores/ControladorCestaticket.php?operacion=registrar">Registrar</a></li>
+                            <li><i title="Listado" class="menu-icon fa fa-list"></i><a href="../../Controladores/ControladorCestaticket.php?operacion=index">Listado</a></li>
                         </ul>
                     </li>
 
                      <li class="">
-                        <a href="../../Controladores/ControladorPreNomina.php?operacion=prenomina"> <i class="menu-icon fa fa-money"></i>Nómina</a>
+                        <a href="../../Controladores/ControladorPreNomina.php?operacion=prenomina"> <i title="Nómina" class="menu-icon fa fa-money"></i>Nómina</a>
                         
                     </li>
 
@@ -157,16 +158,15 @@ include("../../Modelos/conexion.php");
                     <h3 class="menu-title">Ajustes</h3><!-- /.menu-title -->
 
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Mantenimiento</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i title="Mantenimiento" class="menu-icon fa fa-cogs"></i>Mantenimiento</a>
                         <ul class="sub-menu children dropdown-menu">
 
-                            <li><i class="menu-icon fa fa-desktop"></i><a href="../../Controladores/ControladorBitacora.php?operacion=bitacora">Bitacora</a></li>
+                            <li><i title="Bitácora" class="menu-icon fa fa-desktop"></i><a href="../../Controladores/ControladorBitacora.php?operacion=bitacora">Bitácora</a></li>
 
-                            <li><i class="menu-icon fa fa-desktop"></i><a href="../config/bitacora.php">Bitácora</a></li>
 
-                            <li><i class="menu-icon fa fa-cloud"></i><a href="../config/respaldar.php">Respaldar BD</a></li>
-                            <li><i class="menu-icon fa fa-cloud-upload"></i><a href="../config/restaurar.php">Restaurar BD</a></li>
-                             <li><i class="menu-icon fa fa-cloud-upload"></i><a href="../../Controladores/controladorUsuario.php?operacion=index">Listado de usuarios</a></li>
+                            <li><i title="Respaldar BD" class="menu-icon fa fa-cloud"></i><a href="../config/respaldar.php">Respaldar BD</a></li>
+                            <li><i title="Restaurar BD" class="menu-icon fa fa-cloud-upload"></i><a href="../config/restaurar.php">Restaurar BD</a></li>
+                             <li><i title="Listado de usuarios" class="menu-icon fa fa-cloud-upload"></i><a href="../../Controladores/controladorUsuario.php?operacion=index">Listado de usuarios</a></li>
                         </ul>
                     </li>
                 <?php } ?>
@@ -174,7 +174,7 @@ include("../../Modelos/conexion.php");
                 
                 <h3 class="menu-title">AYUDA</h3>
                      <li class="">
-                        <a href="../../Ayuda/Manual.pdf"> <i class="fa fa-book"></i> Manual de Usuario</a>
+                        <a href="../../Ayuda/Manual.pdf"> <i title="Manual" class="fa fa-book"></i> Manual de Usuario</a>
                         
                     </li>
                 </ul>

@@ -275,7 +275,6 @@
    
 
   $sql="SELECT almacen.*,productos.nombre FROM almacen,productos WHERE almacen.id_ubicacion='$ubicacion' && productos.id=almacen.id_producto";
-
  $resultado=mysqli_query($conectar,$sql);
             $i=0;
             while ($consulta=mysqli_fetch_array($resultado)){
@@ -286,6 +285,7 @@
                 <td>'.$i.'</td>
                 <td>'.$consulta["nombre"].'</td>
                 <td>'.$consulta["stock"].'</td>
+                <td>'.$consulta["ce"].'</td>
                 ';
 
             echo " </td>

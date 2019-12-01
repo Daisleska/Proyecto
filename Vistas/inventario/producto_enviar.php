@@ -31,14 +31,14 @@ extract($_REQUEST);
         <div class="row">
           
               
-       <div class="col-md-6">
+       <div class="col-md-4">
                     <div id="ubicacion"><label><strong>Almacén Retiro</strong></label></div>
                    <input type="text" class="form-control" name="retiro" value="Materia Prima" disabled="disabled">
                   </div>
            
               
-       <div class="col-md-6">
-                    <div id="ubicacion"><label><strong>Ubicación Destino</strong></label></div>
+       <div class="col-md-4">
+                    <div id="ubicacion"><label><strong>Almacén Destino</strong></label></div>
                     <select class="form-control " name="destino" id="input_destino" required="required">
                       <option id="empresa_select" value="">Seleccione una ubicación</option>
                       <?php 
@@ -54,6 +54,10 @@ extract($_REQUEST);
                       ?> 
                     </select><br>
                   </div>
+                   <div class="col-md-4">
+                    <div id="ubicacion"><label><strong>Ubicación</strong></label></div>
+                   <input type="text" class="form-control" name="ce" placeholder="A-1" title="Ingrese la ubicacion en el almacén">
+                  </div>
              </div>
 
          <center>
@@ -64,6 +68,7 @@ extract($_REQUEST);
           
         </div>
         </div>
+        <br><br><br><br><br><br><br><br>
           
   <?php include_once "../includes/footer.php"; ?>  
 

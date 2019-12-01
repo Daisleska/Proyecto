@@ -322,7 +322,7 @@ include_once "../includes/menu.php";
                   <a class="nav-link" href="../inventario/proveedores.php">Proveedores</a>
                 </li>
                 <li class="nav-item ">
-                  <a class="nav-link" href="../inventario/pedidos-internos.php">Pedidos <span class="badge badge-primary badge-pill" style="float: right;"> </span> '.$cont_interno.'</a>
+                  <a class="nav-link" href="../inventario/pedidos-internos.php">Pedidos <span class="badge badge-primary badge-pill" style="float: right;">'.$res_busqueda.' </span> '.$cont_interno.'</a>
                  
                 </li>
 

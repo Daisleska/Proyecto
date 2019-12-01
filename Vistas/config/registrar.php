@@ -69,15 +69,15 @@ $data=unserialize($data);
           <div class="col-md-4" >
             <label><strong>Tipo de Usuario</strong> <strong class='estado-r'>*</strong></label>
             <select name="tipo_usuario" required="required" title="Seleccione el tipo de Usuario" class="form-control">
-                              <?php if ($data[4]=="Admin") {
+                              <?php if ($data[1]=="Admin") {
                               ?>
-                              <option value="Admin" <?php if($data[4]=="Admin"){ ?> selected="selected" <?php } ?> >Admin</option>
+                              <option value="Admin" <?php if($data[1]=="Admin"){ ?> selected="selected" <?php } ?> >Admin</option>
                               <?php 
                               }
                               ?>
-                              <option value="Admin" <?php if($data[4]=="Admin"){ ?> selected="selected" <?php } ?> >Administrador</option>
-                              <option value="Usuario 1" <?php if($data[4]=="Usuario 1"){ ?> selected="selected" <?php } ?> >Usuario 1</option>
-                              <option value="Usuario 2" <?php if($data[4]=="Usuario 2"){ ?> selected="selected" <?php } ?> >Usuario 2</option>
+                              <option value="Admin" <?php if($data[1]=="Admin"){ ?> selected="selected" <?php } ?> >Administrador</option>
+                              <option value="Usuario 1" <?php if($data[1]=="Usuario 1"){ ?> selected="selected" <?php } ?> >Usuario 1</option>
+                              <option value="Usuario 2" <?php if($data[1]=="Usuario 2"){ ?> selected="selected" <?php } ?> >Usuario 2</option>
                               </select><br>
           </div>
 

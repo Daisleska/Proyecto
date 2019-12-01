@@ -67,7 +67,7 @@
   <script src="../../vendors/plugins/datepicker/bootstrap-datepicker.js"></script>
  <script src="../../vendors/plugins/daterangepicker/daterangepicker.js"></script>
  <script src="../../vendors/chosen/chosen.jquery.min.js"></script>
-
+<script src="../../assets/js/main.js"></script>
  <!-- InputMask -->
 <script src="../../vendors/js/jquery.inputmask.js"></script>
 <script src="../../vendors/js/jquery.inputmask.date.extensions.js"></script>
@@ -82,9 +82,6 @@
     });
 </script>
 
- 
-
- 
       <!--  plugins sweet alert 2 -->
    <script src="../../vendors/plugins/sweetalert2.all.min.js"></script>
    <script src="../../vendors/popper.js/codigo.js"></script>

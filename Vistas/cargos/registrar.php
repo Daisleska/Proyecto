@@ -1,9 +1,9 @@
 <?php
 extract($_REQUEST);
 $data=unserialize($data);
+
 ?>
 
-<?php include_once "../includes/menu.php"; ?>
 <script type="text/javascript">
     function solonumeros(e){
         key=e.keyCode || e.which;
@@ -23,8 +23,7 @@ $data=unserialize($data);
         }
     }
 </script>
-
-
+<?php include_once "../includes/menu.php";?>
 <div class="contenido" style="padding-left: 20px">
     <div class="content-2">
      <section class="content-header">

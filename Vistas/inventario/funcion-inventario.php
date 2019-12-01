@@ -145,6 +145,8 @@
 			
 
 			$sql="UPDATE pedido_detalles set cantidad_despachada='$cantidad[$j]' WHERE id_pedido='$pedido' AND id_producto='$articulos[$j]'";
+			echo $sql;
+			exit();
 
 			$resultado=mysqli_query($conexion,$sql);
 

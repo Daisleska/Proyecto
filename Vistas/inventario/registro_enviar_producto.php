@@ -18,7 +18,8 @@ $resultado=mysqli_fetch_array($result);
  
     $resultado=mysqli_fetch_array($result);
     if ($resultado=='') {
-      $sql="INSERT INTO almacen (id,id_producto, id_ubicacion, stock) VALUES (NULL,'".$id_articulo."','".$destino."','".$stock."')";
+      $sql="INSERT INTO almacen (id,id_producto, id_ubicacion, stock, ce) VALUES (NULL,'".$id_articulo."','".$destino."','".$stock."','".$ce."')";
+    
 
 $result=mysqli_query($conectar,$sql);
     } 

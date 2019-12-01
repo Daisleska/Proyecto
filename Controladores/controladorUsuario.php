@@ -37,9 +37,29 @@ public function index(){
 }//fin de la funcion login
 
 public function registrar(){
+	$db=new clasedb();//instanciando clasedb
+	$conex=$db->conectar();//conectando con la base de datos
+
+	$sql="SELECT tipo_usuario FROM usuarios";//query	//ejecutando query
+	if ($res=mysqli_query($conex,$sql)) {
+		//echo "entro";
+		$campos=mysqli_num_fields($res);//cuantos campos trae la consulta	
+		$filas=mysqli_num_rows($res);//cuantos registro trae la consulta
+		$i=0;
+		$datos[]=array();//inicializando array
+		//extrayendo datos
+		while($data=mysqli_fetch_array($res)){
+			for ($j=0; $j <$campos; $j++) { 
+				$datos[$i][$j]=$data[$j];
+			} 
+			$i++;
+		}
 
 
-	header("Location: ../Vistas/config/registrar.php");
+	header("Location: ../Vistas/config/registrar.php?filas=".$filas."&campos=".$campos."&data=".serialize($datos));
+		}else{
+			echo "Error 404";
+		}
 }//fin registrar
 
 public function guardar(){

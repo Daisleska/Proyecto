@@ -54,6 +54,9 @@
 <p style="text-align: justify;">
 	<strong>Nota:</strong> los siguientes productos se sumarán al inventario automáticamente
 </p>
+<!-- <p style="text-align: left;">Observaciones (opcional)</p>
+<input type="text" name="observaciones" class="form-control" maxlength="90">
+ -->
 
 <?php
 	for ($j=0;$j<$i;$j++) { 

@@ -11,7 +11,7 @@ $data=unserialize($data);
                   <section  class="content-header">
                              <ol class="breadcrumb">
        
-                            <h1 align="center">  <span style="margin-left: 5cm;" class="badge badge-info">Bitácora de Acciones <i class="menu-icon fa fa-list"></i> </span></h1>
+                            <h1 align="center">  <span style="margin-left: 8.5cm;" class="badge badge-info">Bitácora de Acciones <i class="menu-icon fa fa-list"></i> </span></h1>
         
                             </ol>
                   </section >
