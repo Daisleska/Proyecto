@@ -36,7 +36,7 @@ class PDF extends FPDF {
     $this->SetY(55);
     $this->Cell(30,7,utf8_decode('Código'),1,0,'C');
     $this->Cell(45,7,utf8_decode ('Nombre'),1,0,'C');
-    $this->Cell(50,7,utf8_decode ('Presentación'),1,0,'C');
+    $this->Cell(60,7,utf8_decode ('Presentación'),1,0,'C');
     $this->Cell(20,7,utf8_decode('Activo'),1,0,'C');
     $this->Cell(35,7,utf8_decode('Stock'),1,0,'C');
     /*$this->Cell(35,7,utf8_decode('Fecha de Vencimiento'),1,0,'C');*/
@@ -62,7 +62,7 @@ $pdf=new PDF('P', 'mm', 'A4');
 $pdf -> AliasNbPages();
 $pdf->AddPage();
 
-    $sql= "SELECT  codigo, nombre, presentacion, activo, stock FROM materia_prima ORDER BY  id DESC";
+    $sql= "SELECT  codigo, nombre, presentacion, activo, stock FROM productos ORDER BY  id DESC";
     $consulta = mysqli_query($conectar, $sql) or die ("ERROR en la consulta ". mysqli_error($conectar));
 
     while ($fila=mysqli_fetch_array($consulta)) {
@@ -70,7 +70,7 @@ $pdf->AddPage();
      /* $fecha=date("d/m/Y", strtotime($fila["fecha_entrega"]));*/
       $pdf->Cell(30,7,utf8_decode($fila['codigo']),1,0,'C');
       $pdf->Cell(45,7,utf8_decode($fila['nombre'].' '),1,0,'C');
-      $pdf->Cell(50,7,utf8_decode($fila['presentacion'].' '),1,0,'C');
+      $pdf->Cell(60,7,utf8_decode($fila['presentacion'].' '),1,0,'C');
       $pdf->Cell(20,7,utf8_decode($fila['activo'].' '),1,0,'C');
       $pdf->Cell(35,7,utf8_decode($fila['stock']),1,0,'C');
     /*  $pdf->Cell(29,7,utf8_decode($fecha),1,0,'C');*/

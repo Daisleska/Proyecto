@@ -20,10 +20,10 @@ $justificacion=unserialize($justificacion);
 
 
 <div class="col-md-12">
-  <section style="padding-left: 20px;" class="content-header">
+  <section  class="content-header">
       <ol class="breadcrumb">
        
-         <h1 align="center">  <span style="margin-left: 8.5cm;" class="badge badge-info">Asistencias <i class="menu-icon fa fa-edit"></i> </span></h1>
+         <h1 align="center">  <span style="margin-left: 7cm;" class="badge badge-info">Asistencias <i class="menu-icon fa fa-edit"></i> </span></h1>
         
       </ol>
    </section >
@@ -144,7 +144,7 @@ $justificacion=unserialize($justificacion);
                               <div id="asiste" style="display: none;">
                               <div class="row" >
                                 <div class="col-md-12">
-                                  <strong>¿Seguro que desea marcar que este empleado asistio?</strong>
+                                  <strong>¿Seguro que desea marcar que este empleado asistió?</strong>
                                 </div>   
                               </div>
                             </div>

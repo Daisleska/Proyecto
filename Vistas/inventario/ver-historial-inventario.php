@@ -56,7 +56,7 @@
 
   <div class="contenido">
     <div class="content-2">
-      <h2 style="text-align: center"><a href="inventario.php" class="atras" title="Atras"><span data-feather="arrow-left" ></span></a><strong>
+      
 
      <?php
         include('../../Modelos/conexion.php');
@@ -65,7 +65,20 @@
 
         while ($consulta=mysqli_fetch_array($resultados)) {
                     
-          echo $consulta['nombre'];
+          
+        ?>
+
+        <section style="padding-left: 20px;" class="content-header">
+      <ol class="breadcrumb">
+         
+         <h2 style="text-align: center"><a href="inventario.php" class="atras" title="Atras"><span data-feather="arrow-left"></span></a></h2>
+          <br>
+         <h1 align="center"><span style="margin-left: 6.5cm;" class="badge badge-info"><?php echo $consulta['nombre']; ?> <i class="fa ti-spray"></i> </span></h1>
+        
+      </ol>
+   </section >
+   <?php
+
         }
 
         include('../../Modelos/desconectar.php');
@@ -75,9 +88,9 @@
 
       <div class="row">
         <div class="col">
-          <h2 style="text-align: center"><strong>Historial del año</strong></h2>
+          <h2 style="text-align: center;"><strong>Historial del año</strong></h2>
         </div>
-        <div class="col">
+        <div class="col-md-3">
           <select class="form-control" id="anio">
             <?php
 

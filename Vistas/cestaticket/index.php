@@ -60,7 +60,7 @@ include_once "../includes/menu.php";
     
         </div><!-- .content -->
           </div><!-- .content -->
-<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
              
     </div><!-- /#     anel -->
  <?php include_once "../includes/footer.php"; ?>

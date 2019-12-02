@@ -120,6 +120,7 @@
           ?>
         </tbody>
       </table> 
+      <br><br><br><br><br><br><br>
     </div>
        <style>
         .ver_articulo_modal .modal-header{

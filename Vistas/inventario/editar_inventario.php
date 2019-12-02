@@ -186,10 +186,17 @@ include_once "../includes/menu.php";
   <div class="contenido">
     <div class="content-2">
 
-      <h2 style="text-align: center"><a href="inventario.php" class="atras" title="Atras"><span data-feather="arrow-left" ></span></a><strong>Editar Materia Prima</strong></h2>
-      <hr><br>
+      <section style="padding-left: 20px;" class="content-header">
+      <ol class="breadcrumb">
+         
+         <h2 style="text-align: center"><a href="inventario.php" class="atras" title="Atras"><span data-feather="arrow-left"></span></a></h2>
+          <br>
+         <h1 align="center">  <span style="margin-left: 3.5cm;" class="badge badge-info">Modificar Materia Prima <i class="menu-icon fa fa-edit"></i> </span></h1>
+        
+      </ol>
+   </section >
       <form action="editar_inventario.php?art=<?php echo $art ?>" method="POST">
-        <div class="row">
+        <div class="row" style="padding-left: 20px;">
           <div class="col-md-4">
             <label><strong>Código</strong> <strong class="estado-r">*</strong></label>
             <input type="text" name="codarticulo" class="form-control codarticulo" required="required" placeholder="Ej. RJ-59014a" value="<?php echo $codarticulo; ?>">
@@ -217,7 +224,7 @@ include_once "../includes/menu.php";
 
         </div>
         
-        <div class="row">
+        <div class="row" style="padding-left: 20px;">
           <div class="col-md-4">
             <label><strong>Cantidad</strong> <strong class="estado-r">*</strong></label>
             <input type="number" class="form-control" name="stock" id="stock" required="required"  min="0" placeholder="Ej. 50" value="<?php echo $stock; ?>" ><br>
@@ -233,7 +240,7 @@ include_once "../includes/menu.php";
           </div>
         </div>
 
-        <div class="row">
+        <div class="row" style="padding-left: 20px;">
            <div class="col-md-4">
             <label><strong>Presentación</strong> <strong class="estado-r">*</strong></label>
             <input type="text" name="presentacion" id="presentacion" class="form-control" required="required" value="<?php echo $presentacion; ?>"><br>
@@ -248,10 +255,13 @@ include_once "../includes/menu.php";
              <br>
         <input type="hidden" name="stock_actual" value="<?php echo $stock ?>">
         <center>
-          <a href="inventario.php" class="btn btn-danger">Cancelar</a>
-          <input type="submit" value="Actualizar" class="btn btn-primary btn-reg" name="btn_registrar_art">
+          <button type="reset" class="btn btn-danger btn-sm col-md-1">
+          <i class="fa fa-ban"></i></button>
+
+          <button type="submit" name="btn_registrar_art" class="btn btn-primary btn-sm col-md-1"><i class="fa fa-check"></i>&nbsp;</button> 
         </center>
       </form>
+      <br><br><br><br><br><br><br>
     </div>
  </div>
  <br><br><br><br>

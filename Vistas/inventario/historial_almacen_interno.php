@@ -165,7 +165,17 @@
   <br><br>
  <div class="contenido">
     <div class="content-2">
-     <h1 align="center" style="text-align: center;">  <span  class="badge badge-info">Almacenes <i class="menu-icon fa fa-book"></i> </span></h1><hr>
+     <section  class="content-header">
+      <ol class="breadcrumb">
+
+         <h2 style="text-align: center"><a href="ubicacion_inventario.php" class="atras" title="Atras"><span data-feather="arrow-left"></span></a></h2>
+          <br>
+       
+         <h1 align="center">  <span style="margin-left: 6.5cm;" class="badge badge-info">Almacenes <i class="menu-icon fa fa-book"></i> </span></h1>
+        
+      </ol>
+   </section >
+     
     <!--nav inventario -->
          <ul class="nav nav-tabs">
           <li class="nav-item">
@@ -246,7 +256,7 @@
 
 
   
- <h4><a href="ubicacion_inventario.php" class="atras" title="Atras"><span data-feather="arrow-left" ></span></a><?php 
+ <?php 
 
         include('../../Modelos/conexion.php');
 
@@ -256,7 +266,7 @@
 
         while ($consulta=mysqli_fetch_array($res)) {
             
-          echo $consulta['nombre'];
+          
         }
       ?>
       <hr>
@@ -274,7 +284,7 @@
           include("../../Modelos/conexion.php");
    
 
-  $sql="SELECT almacen.*,productos.nombre FROM almacen,productos WHERE almacen.id_ubicacion='$ubicacion' && productos.id=almacen.id_producto";
+  $sql="SELECT almacen.*,productos.nombre, ubicacion.nombre As nombreu FROM almacen,productos, ubicacion WHERE almacen.id_ubicacion='$ubicacion' && productos.id=almacen.id_producto";
 
  $resultado=mysqli_query($conectar,$sql);
             $i=0;
@@ -286,6 +296,8 @@
                 <td>'.$i.'</td>
                 <td>'.$consulta["nombre"].'</td>
                 <td>'.$consulta["stock"].'</td>
+                <td>'.$consulta["nombreu"].'</td>
+
                 ';
 
             echo " </td>
@@ -296,6 +308,7 @@
           ?>
         </tbody>
       </table> 
+      <br><br><br><br><br><br><br><br><br><br>
   </div>
 </div>
        <?php include_once "../includes/footer.php"; ?>   

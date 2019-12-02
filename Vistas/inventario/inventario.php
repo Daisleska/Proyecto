@@ -289,7 +289,7 @@ include_once "../includes/menu.php";
     <section  class="content-header">
       <ol class="breadcrumb">
        
-         <h1 align="center">  <span style="margin-left: 8.5cm;" class="badge badge-info">Materia Prima <i class="menu-icon fa fa-book"></i> </span></h1>
+         <h1 align="center">  <span style="margin-left: 6cm;" class="badge badge-info">Materia Prima <i class="menu-icon fa fa-book"></i> </span></h1>
         
       </ol>
    </section >
@@ -364,7 +364,7 @@ include_once "../includes/menu.php";
                 <center>
                     <a href="../inventario/registro-inventario.php" class="btn btn-primary"><i class="ti-pencil-alt"></i> Registrar Materia</a>
 
-                    <a href="../../reportes/reporte_inventario.php" class="btn btn-secondary" title="Descargar PDF"><i class="ti ti-import"></i> Descargar PDF</a>
+                    <a href="../../reportes/reporte_materiaprima.php" class="btn btn-secondary" title="Descargar PDF"><i class="ti ti-import"></i> Descargar PDF</a>
 
                     <a href="../inventario/producto_enviar.php" class="btn btn-success"><i class="fa fa-truck"></i> Enviar Materia</a>   
               </center><br>
@@ -487,6 +487,7 @@ include_once "../includes/menu.php";
                   ?>
                 </tbody>
             </table>
+            <br><br><br><br><br><br><br>
         </div>
         </div>
       </div>

@@ -1,13 +1,21 @@
 <?php
     extract($_REQUEST);
     include('../../Modelos/conexion.php');
-    $sql="SELECT * FROM empleado WHERE id='$cod'";
+    $sql="SELECT empleado.*, cargos.nombre AS car, departamentos.nombre AS dep FROM empleado, departamentos, cargos WHERE departamentos.id=empleado.id_departamento AND cargos.id=empleado.id_cargo AND empleado.id='$cod'";
 
     $resultado=mysqli_query($conectar,$sql);
 
     while ($consulta=mysqli_fetch_array($resultado)) {
         if ($inf==1) {
+            ?>
+            <b>
+            <?php
+            echo $consulta['apellidos'];
+            ?>
+            <b>
+            <?php
             echo $consulta['nombres'];
+
                     }else if ($inf==2){
 
             ?>
@@ -80,26 +88,25 @@
                 <?php echo $consulta['fecha_venc']; ?>  
                 </div>   
 
-                
-            
                 <div class="col-md-3">
                 <label><strong>Cargo:</strong></label>
-                <?php  echo $consulta['id_cargo'];?>  
+                <?php  echo $consulta['car'];?>  
                 </div>
 
-
-               
-
+                
+             
         </div>
 
 
         <div class="row">
            
 
-                <div class="col-md-4">
+
+                <div class="col-md-5">
                 <label><strong>Departamento:</strong></label>
-                <?php  echo $consulta['id_departamento'];?>  
+                <?php  echo $consulta['dep'];?>  
                 </div>
+
 
                 <div class="col-md-6">
                 <label><strong>Número de Cuenta:</strong></label>
@@ -107,6 +114,15 @@
                 </div>
 
 
+        
+        </div>
+
+         <div class="row">
+           
+
+                
+           
+                
 
             
         </div>

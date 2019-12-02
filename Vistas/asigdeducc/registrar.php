@@ -74,7 +74,7 @@
       </form>
     </div>
 
-   <br><br><br><br><br><br><br><br><br><br><br><br>     
+   <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>     
    <?php include_once "../includes/footer.php"; ?>
     <script src="../../bootstrap/js/jquery.js"></script>
     <script src="../../bootstrap/js/bootstrap.min.js"></script>

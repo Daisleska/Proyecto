@@ -34,10 +34,10 @@ class PDF extends FPDF {
     $this->SetX(25); 
     $this->SetY(55);
     $this->Cell(10,7,utf8_decode('ID'),1,0,'C');
-    $this->Cell(35,7,utf8_decode ('Nombres'),1,0,'C');
-    $this->Cell(35,7,utf8_decode ('Apellidos'),1,0,'C');
-    $this->Cell(20,7,utf8_decode('Cédula'),1,0,'C');
-    $this->Cell(20,7,utf8_decode('Teléfono'),1,0,'C');
+    $this->Cell(40,7,utf8_decode ('Nombres'),1,0,'C');
+    $this->Cell(40,7,utf8_decode ('Apellidos'),1,0,'C');
+    $this->Cell(30,7,utf8_decode('Cédula'),1,0,'C');
+    $this->Cell(30,7,utf8_decode('Teléfono'),1,0,'C');
     $this->Cell(40,7,utf8_decode('Dirección'),1,0,'C');
     /*$this->Cell(35,7,utf8_decode('Fecha de Vencimiento'),1,0,'C');*/
     $this->SetFont('Times','',10);
@@ -69,10 +69,10 @@ $pdf->AddPage();
 
      /* $fecha=date("d/m/Y", strtotime($fila["fecha_entrega"]));*/
       $pdf->Cell(10,7,utf8_decode($fila['id']),1,0,'C');
-      $pdf->Cell(35,7,utf8_decode($fila['nombres'].' '),1,0,'C');
-      $pdf->Cell(35,7,utf8_decode($fila['apellidos'].' '),1,0,'C');
-      $pdf->Cell(20,7,utf8_decode($fila['cedula'].' '),1,0,'C');
-      $pdf->Cell(20,7,utf8_decode($fila['telefono']),1,0,'C');
+      $pdf->Cell(40,7,utf8_decode($fila['nombres'].' '),1,0,'C');
+      $pdf->Cell(40,7,utf8_decode($fila['apellidos'].' '),1,0,'C');
+      $pdf->Cell(30,7,utf8_decode($fila['cedula'].' '),1,0,'C');
+      $pdf->Cell(30,7,utf8_decode($fila['telefono']),1,0,'C');
       $pdf->Cell(40,7,utf8_decode($fila['direccion']),1,0,'C');
     /*  $pdf->Cell(29,7,utf8_decode($fecha),1,0,'C');*/
       $pdf->SetFont('Times','',10);

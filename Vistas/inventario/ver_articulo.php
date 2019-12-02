@@ -31,8 +31,7 @@
 					<label><strong>Stock minimo:</strong></label>
 					<?php echo $consulta['stock_minimo']; ?><br>
 					<label><strong>Stock maximo:</strong></label>
-					<?php echo $consulta['stock_maximo']; ?><br>
-
+					<?php echo $consulta['stock_maximo']; ?>
 					<br>
 							
 				</div>

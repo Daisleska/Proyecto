@@ -101,26 +101,35 @@
         </div>
         <div class="row" style="padding-left: 20px">
           <div class="col-md-5">
+          <div style="width: 100%; float: left;">
             <label><strong>Teléfono</strong> <strong class='estado-r'>*</strong></label>
             <input type="number" class="form-control" name="telefono" placeholder="Ej.0424987654 " required="required"><br>
           </div>
+        </div>
           <div class="col-md-5">
+          <div style="width: 100%; float: left; margin-left: 1.5cm;">
             <label><strong>Correo</strong></label>
             <input type="email" class="form-control" name="correo" placeholder="Ej. ejemplo@ejemplo.com"><br>
           </div>
         </div>
+      </div>
        
-         <div class="row">
-            <div class="col">
+         <div class="row" style="padding-left: 20px">
+            <div class="col-md-5">
+            <div style="width: 100%; float: left;">
               <label><strong>Dirección</strong></label>
               <textarea class="form-control" name="direccion"></textarea><br>
             </div>
           </div>
+          </div>
         <center>
-          <a href="proveedores.php" class="btn btn-danger">Cancelar</a>
-          <button  type="submit" class="btn btn-primary btn-reg" name="guardar-proveedor">Guardar</button>
+          <button type="reset" class="btn btn-danger btn-sm col-md-1">
+          <i class="fa fa-ban"></i></button>
+
+          <button type="submit" name="guardar-proveedor" class="btn btn-primary btn-sm col-md-1"><i class="fa fa-check"></i>&nbsp;</button>
         </center>
       </form>
+      <br><br><br><br><br><br><br><br><br>
     </div>
    </div>    
    <?php include_once "../includes/footer.php"; ?>

@@ -22,7 +22,7 @@ class PDF extends FPDF {
     $this->SetFont('Times','BU',12);
     $this->Ln(4);
     $this->Cell(0,40,utf8_decode('LISTADO DE NOMINAS APROBADAS'),0,0,'C');
-    $this->Cell(-30,35,utf8_decode ('RIF: j-293901039'),0,0,'C');
+    $this->Cell(-30,35,utf8_decode ('RIF: J-30478166-0'),0,0,'C');
     $this->Ln(20);
 
     $this->SetX(25);
@@ -33,13 +33,13 @@ class PDF extends FPDF {
     $this->Ln(4); 
     $this->SetX(25); 
     $this->SetY(55);
-    $this->Cell(40,7,utf8_decode('ID'),1,0,'C');
-    $this->Cell(25,7,utf8_decode('Nombres:'),1,0,'C');
+    
+    $this->Cell(30,7,utf8_decode('Nombres'),1,0,'C');
     $this->Cell(45,7,utf8_decode ('Apellidos'),1,0,'C');
-    $this->Cell(35,7,utf8_decode ('Cédula'),1,0,'C');
-    $this->Cell(40,7,utf8_decode ('Total Asignaciones'),1,0,'C');
-    $this->Cell(40,7,utf8_decode ('Total Deducciones'),1,0,'C');
-    $this->Cell(40,7,utf8_decode ('Total a Pagar'),1,0,'C');
+    $this->Cell(25,7,utf8_decode ('Cédula'),1,0,'C');
+    $this->Cell(33,7,utf8_decode ('Total Asignaciones'),1,0,'C');
+    $this->Cell(33,7,utf8_decode ('Total Deducciones'),1,0,'C');
+    $this->Cell(20,7,utf8_decode ('Total Pagar'),1,0,'C');
     
     /*$this->Cell(35,7,utf8_decode('Fecha de Vencimiento'),1,0,'C');*/
     $this->SetFont('Times','',10);
@@ -73,13 +73,13 @@ $pdf->AddPage();
 
      /* $fecha=date("d/m/Y", strtotime($fila["fecha_entrega"]));*/
    
-      $pdf->Cell(25,7,utf8_decode($fila['id'].' '),1,0,'C');
-      $pdf->Cell(45,7,utf8_decode($fila['nombres'].' '),1,0,'C');
-      $pdf->Cell(35,7,utf8_decode($fila['apellidos'].' '),1,0,'C');
-      $pdf->Cell(40,7,utf8_decode($fila['cedula']),1,0,'C');
-      $pdf->Cell(45,7,utf8_decode($fila['total_asig'].' '),1,0,'C');
-      $pdf->Cell(35,7,utf8_decode($fila['total_deducc'].' '),1,0,'C');
-      $pdf->Cell(40,7,utf8_decode($fila['monto']),1,0,'C');
+    
+      $pdf->Cell(30,7,utf8_decode($fila['nombres'].' '),1,0,'C');
+      $pdf->Cell(45,7,utf8_decode($fila['apellidos'].' '),1,0,'C');
+      $pdf->Cell(25,7,utf8_decode($fila['cedula']),1,0,'C');
+      $pdf->Cell(33,7,utf8_decode($fila['total_asig'].' '),1,0,'C');
+      $pdf->Cell(33,7,utf8_decode($fila['total_deducc'].' '),1,0,'C');
+      $pdf->Cell(20,7,utf8_decode($fila['monto']),1,0,'C');
     /*  $pdf->Cell(29,7,utf8_decode($fecha),1,0,'C');*/
       $pdf->SetFont('Times','',10);
       $pdf->Ln(); 

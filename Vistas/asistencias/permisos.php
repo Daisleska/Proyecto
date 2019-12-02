@@ -2,15 +2,15 @@
  extract($_REQUEST);
  include_once "../includes/menu.php"; ?>
 
- <div class="contenido" style="padding-left: 20px">
+ <div class="contenido" >
     <div class="content-2">
          
 
-     <section style="padding-left: 20px;" class="content-header">
+     <section class="content-header">
       <ol class="breadcrumb">
         <a href="../asistencias/ControlA.php?operacion=index" class="atras" title="Atras"><span class="fa fa-arrow-left" style="font-size: 32px;" ></span></a>
         
-        <h1 align="center"><span style="margin-left: 8.5cm;" class="badge badge-info">Permisos <i class="fa fa-file-text-o"></i> </span></h1>
+        <h1 align="center"><span style="margin-left: 6cm;" class="badge badge-info">Permisos <i class="fa fa-file-text-o"></i> </span></h1>
       <br>
       </ol>
 </section >
@@ -25,7 +25,7 @@
                     <th>Cédula</th>
                     <th>Fecha</th>
                     <th>Motivo</th>
-                    <th>días Cantidad</th>
+                    <th>Cantidad de días</th>
                     <th>Estado</th>
                     <!--th>Ubicación Actual</th-->
                     <?php
@@ -68,55 +68,51 @@
                   ?>
                 </tbody>
             </table>
+            <br><br><br><br><br><br><br><br><br><br><br>
         </div>
     </div>
 </div>
 
 <form action="../asistencias/ControlA.php?operacion=permiso_registro" method="POST">
-    <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+    <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true" >
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                           <form action="" method="POST">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="mediumModalLabel">Permisos Empleados</h5>
+                                <h5 class="modal-title" id="mediumModalLabel">Registrar Permiso</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
                             <div>
-                              <div class="row" >
-                                <div class="col-md-12">
-                                  <strong>Registrar permisos</strong>
-                                </div>   
-                              </div>
                               <div class="row">
-                                <div class="col-md-12">
-                                   <label>Justificación: </label>
-                                   <select class="" name="motivo">
-                                   <option value="" selected="selected" disabled="disabled"></option>
-                                  <option>Reposo</option>
-                                  <option>Permiso</option>
+                                <div class="col-md-4">
+                                   <label><strong>Justificación</strong> <strong class="estado-r"></strong></label>
+                                   <select class="form-control" required="required" name="motivo">
+                                   <option value="" selected="selected" >Seleccione</option>
+                                  <option value="Reposo">Reposo</option>
+                                  <option value="Permiso">Permiso</option>
                                   </select>
                                   </div>
                                 </div>
                                 <div class="row">
-                              <div class="col-md-12">
-                             <label>Dias de Permiso: </label>
-                              <input type="number" title="Ingrese la cantidad de dias de permiso" name="dias_permiso">
+                              <div class="col-md-4">
+                             <label><strong>Días de permiso</strong></label>
+                              <input type="number" title="Ingrese la cantidad de dias de permiso" name="dias_permiso" class="form-control">
                                </div> 
                                </div>
 
                                <div class="row">
-                               <div class="col-md-12">
-                                <label>Cédula de empleado: </label>
-                                 <input type="number" name="cedula" id="cedula" required="required" placeholder="Ingrese cédula">
+                               <div class="col-md-4">
+                                <label><strong>Cédula del empleado</strong></label>
+                                 <input type="number" name="cedula" id="cedula" required="required" placeholder="Ingrese cédula" class="form-control">
                                </div>
                              </div>
                               <div class="row">
-                               <div class="col-md-12">
-                                <label>Fin del permiso: </label>
-                                 <input type="date" name="fin_permiso" id="cedula" required="required" placeholder="Ingrese cédula">
+                               <div class="col-md-4">
+                                <label><strong>Fin del permiso</strong></label>
+                                 <input type="date" name="fin_permiso" id="cedula" required="required" placeholder="Ingrese cédula" class="form-control">
                                </div>
                              </div>
                              

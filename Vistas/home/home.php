@@ -10,7 +10,7 @@
           <div class="card mb-1 box-shadow"> <!--card mb-1 box-shadow-->
             <div class="row">
             <div class="col NHA" style=";padding: 0; text-align: left; ">
-                <img src="../../images/img/user.png" class="img-responsive" height="100%">
+                <img src="../../images/img/user.png" class="img-responsive" height="70%">
               </div>
               <div class="col NHA" style=";text-align: justify;">
                 <label><strong>Usuarios Registrados:</strong></label>
@@ -34,7 +34,7 @@
           <div class="card mb-1 box-shadow"> <!--card mb-1 box-shadow-->
             <div class="row">
             <div class="col NHA" style=";padding: 0; text-align: left; ">
-                <img src="../../images/img/vehiculo.png" class="img-responsive" height="100%">
+                <img src="../../images/img/vehiculo.png" class="img-responsive" height="70%">
               </div>
               <div class="col NHA" style=";text-align: justify;">
                 <label><strong>Proveedores Registrados:</strong></label><br>
@@ -58,7 +58,7 @@
           <div class="card mb-1 box-shadow"> <!--card mb-1 box-shadow-->
             <div class="row">
             <div class="col NHA" style=";padding: 0; text-align: left; ">
-                <img src="../../images/img/shop.png" class="img-responsive" height="100%">
+                <img src="../../images/img/shop.png" class="img-responsive" height="70%">
               </div>
               <div class="col NHA" style=";text-align: justify;">
                 <label><strong>Pedidos Pendientes:</strong></label><br>
@@ -83,7 +83,7 @@
           <div class="card mb-1 box-shadow"> <!--card mb-1 box-shadow-->
             <div class="row">
             <div class="col NHA" style=";padding: 0; text-align: left; ">
-                <img src="../../images/img/cube.png" class="img-responsive" height="100%">
+                <img src="../../images/img/cube.png" class="img-responsive" height="70%">
               </div>
               <div class="col NHA" style=";text-align: justify;">
                 <label><strong>Empleados laboral:</strong></label><br>
@@ -131,7 +131,7 @@
 
             <div class="col-md-12">
                       
-                            <img style="page-break-after: 1cm; height: 12cm;" class="card-img-top" src="../../images/fachada.jpg" alt="Card image cap">
+                            <img style="page-break-after: 1cm; height: 8cm;" class="card-img-top" src="../../images/fachada.jpg" alt="Card image cap">
                             <div class="card-body">
                                 <h4 class="card-title mb-3"></p>
                             </div>
@@ -147,7 +147,7 @@
           <!-- TABLE: LATEST ORDERS -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Pedidos Pendientes</h3>
+              <h3 class="box-title" style="text-align: center;">Pedidos Pendientes</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -207,8 +207,10 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer clearfix">
-              <a href="index.php?llave=registrar_inventario" class="btn btn-sm btn-info btn-flat pull-left">Nuevo registro</a>
+              <a href="index.php?llave=registrar_inventario" class="btn btn-sm btn-info btn-flat pull-left"><i class="fa fa-pencil-square-o"></i> Nuevo registro</a>
               <a href="../inventario/inventario.php" class="btn btn-sm btn-default btn-flat pull-right">Ver todo el inventario</a>
+              
+            <br><br>
             </div>
             <!-- /.box-footer -->
           </div>

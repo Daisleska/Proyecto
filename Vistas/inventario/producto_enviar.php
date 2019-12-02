@@ -6,8 +6,15 @@ extract($_REQUEST);
  <div class="contenido">
     <div class="content-2">
  <form action="registro_enviar_producto.php" method="POST" enctype="multipart/form-data">
-      <h2 style="text-align: center"><a href="inventario.php" class="atras" title="Atras"><span data-feather="arrow-left" ></span></a><strong>Enviar Materia Prima</strong></h2>
-      <hr><br>
+      <section  class="content-header">
+      <ol class="breadcrumb">
+         
+         <h2 style="text-align: center"><a href="inventario.php" class="atras" title="Atras"><span data-feather="arrow-left"></span></a></h2>
+          <br>
+         <h1 align="center">  <span style="margin-left: 3.5cm;" class="badge badge-info">Enviar Materia Prima <i class="menu-icon fa fa-edit"></i> </span></h1>
+        
+      </ol>
+   </section >
      
         <h6 class="nota-input">Los campos con un <i class="estado-r">*</i> son obligatorios </h6><br>
         <div class="row">
@@ -31,13 +38,13 @@ extract($_REQUEST);
         <div class="row">
           
               
-       <div class="col-md-6">
+       <div class="col-md-4">
                     <div id="ubicacion"><label><strong>Almacén Retiro</strong></label></div>
                    <input type="text" class="form-control" name="retiro" value="Materia Prima" disabled="disabled">
                   </div>
            
               
-       <div class="col-md-6">
+       <div class="col-md-4">
                     <div id="ubicacion"><label><strong>Ubicación Destino</strong></label></div>
                     <select class="form-control " name="destino" id="input_destino" required="required">
                       <option id="empresa_select" value="">Seleccione una ubicación</option>
@@ -57,10 +64,13 @@ extract($_REQUEST);
              </div>
 
          <center>
-          <a href="inventario.php" class="btn btn-danger">Cancelar</a>
-          <input type="submit" value="Registrar" class="btn btn-primary btn-reg" name="btn_registrar_art">
+         <button type="reset" class="btn btn-danger btn-sm col-md-1">
+          <i class="fa fa-ban"></i></button>
+
+          <button type="submit" name="btn_registrar_art" value="Registrar" class="btn btn-primary btn-sm col-md-1"><i class="fa fa-check"></i>&nbsp;</button>
         </center>
   </form>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
           
         </div>
         </div>

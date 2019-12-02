@@ -208,7 +208,7 @@ public function eliminarasigdeducc() {
 	$db=new clasedb();
 	$conex=$db->conectar();
 
-	$sql="DELETE FROM empleado_asig WHERE id=".$id;
+	$sql="DELETE FROM empleado_asig WHERE id=".$id."";
     
     $res=mysqli_query($conex,$sql);
 		if ($res) {
@@ -216,14 +216,14 @@ public function eliminarasigdeducc() {
 			?>
 				<script type="text/javascript">
 					alert("Registro eliminado");
-					window.location="";
+					header("Location: ../Vistas/empleados/asig_deducc.php");
 				</script>
 			<?php
 		} else {
 			?>
 				<script type="text/javascript">
 					alert("Registro no eliminado");
-					window.location="";
+					header("Location: ../Vistas/empleados/asig_deducc.php");
 				</script>
 			<?php
 		}

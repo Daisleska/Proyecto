@@ -145,14 +145,21 @@
 ?>
   <div class="contenido">
     <div class="content-2">
-      <h2 style="text-align: center"><a href="pedidos-internos.php" class="atras" title="Atras"><span data-feather="arrow-left" ></span></a><strong>solicitud de pedido interno</strong></h2>
-      <hr><br> 
+      <section style="padding-left: 20px;" class="content-header">
+      <ol class="breadcrumb">
+         
+         <h2 style="text-align: center"><a href="pedidos-internos.php" class="atras" title="Atras"><span data-feather="arrow-left"></span></a></h2>
+          <br>
+         <h1 align="center">  <span style="margin-left: 2.5cm;" class="badge badge-info">Solicitud de Pedido Interno <i class="menu-icon fa fa-edit"></i> </span></h1>
+        
+      </ol>
+   </section >
 
       <form action="solicitud-pedido-interno.php" name="form" method="POST" id="form">
          <h6 class="nota-input">Los campos con un <i class="estado-r">*</i> son obligatorios </h6><br>
         <!--Articulos-->
-        <div class="row">
-          <div class="col-md-6">
+        <div class="row" style="padding-left: 110px;">
+          <div class="col-md-5">
             <label><strong>Materia Prima</strong> <strong class="estado-r required_ext">*</strong></label>
             <select class="form-control form-n0" name="articulos[0]" required="required" onchange="javascript:verificar(0)">
               <option value="" class="id_vaue_externo">Seleccione el artículo</option>
@@ -172,14 +179,13 @@
 
               ?>
             </select><br>
-          </div>
-          <div class="col-md-6">
+        </div>
+          <div class="col-md-5">
             <label><strong>Cantidad</strong> <strong class="estado-r required_ext">*</strong></label>
             <input type="number" name="cantidad[0]" class="form-control cantidad0" placeholder="Ej. 2" required="required" min="1" ><br>
           </div>
-        </div>
-        <div class="campos_nuevos">
-          
+        </div>        
+        <div class="campos_nuevos">  
         </div>
         <center>
           <a href="javascript:nuevos_campos()" class="control-sr mantenimiento_externo_show" title="Añadir" ><span data-feather="plus" style=" width: 35px; height: 35px;"></span></a>
@@ -189,11 +195,14 @@
         <hr>
         <!--Fin-->
         
-          <a href="pedidos-internos.php" class="btn btn-danger">Cancelar</a>
-          <button type="sumbit" class="btn btn-primary" name="guardar-solicitud">Guardar</button>
+          <button type="reset" class="btn btn-danger btn-sm col-md-1">
+          <i class="fa fa-ban"></i></button>
+
+          <button type="submit" name="guardar-solicitud" class="btn btn-primary btn-sm col-md-1"><i class="fa fa-check"></i>&nbsp;</button>
 
         </center>
-      </form>       
+      </form>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br>       
     </div>
   </div>
     <!-- Modal -->
@@ -217,8 +226,8 @@
         $('.eliminar-2').prop('id',cont);
 
         $('.campos_nuevos').before(
-          '<div class="row" id="campos_nuevos'+cont+'">'+
-            '<div class="col-md-6">'+
+          '<div class="row" id="campos_nuevos'+cont+'" style="padding-left: 110px;">'+
+            '<div class="col-md-5">'+
 
             '<label><strong>Artículo</strong> <strong class="estado-r required_ext">*</strong></label>'+
             '<select onchange="javascript:verificar('+cont+')"  class=" articulo form-control form-n'+cont+'" name="articulos['+cont+']" required="required">'+

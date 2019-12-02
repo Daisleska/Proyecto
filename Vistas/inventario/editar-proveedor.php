@@ -82,14 +82,19 @@
 
   <div class="contenido">
     <div class="content-2">
-     <h2 style="text-align: center"><a href="proveedores.php" class="atras" title="Atras"><span data-feather="arrow-left"></span></a></h2>
-          
-         <h1 align="center">  <span style="margin-left: 0.5cm;" class="badge badge-info">Editar Proveedor <i class="menu-icon fa fa-edit"></i> </span></h1>
-         <br>
+     <section style="padding-left: 20px;" class="content-header">
+      <ol class="breadcrumb">
+         
+         <h2 style="text-align: center"><a href="proveedores.php" class="atras" title="Atras"><span data-feather="arrow-left"></span></a></h2>
+          <br>
+         <h1 align="center">  <span style="margin-left: 4.5cm;" class="badge badge-info">Modificar Proveedor <i class="menu-icon fa fa-edit"></i> </span></h1>
+        
+      </ol>
+   </section >
 
       <form action="editar-proveedor.php?proveedor=<?php echo $proveedor ?>" method="POST" name="form" class="form">
         <h6 class="nota-input">Los campos con un <i class="estado-r">*</i> son obligatorios </h6><br>
-        <div class="row">
+        <div class="row" style="padding-left: 20px">
           <div class="col-md-6">
             <label><strong>RIF:</strong> <strong class='estado-r'>*</strong></label>
               <div style="width: 100%;">
@@ -103,43 +108,52 @@
                   
                   </select>
                 </div>
-                <div style="width: 77%; float: right;">
+                <div class="col-md-8">
                   <input type="number" name="numero_documento" class="form-control" placeholder="Ej.112345" required="required" id="documento_numero" min="0" value="<?php echo $rif; ?>">
                 
                 </div>
               </div>
               
           </div>
-          <div class="col-md-6">
+          <div class="col-md-5">
             <label><strong>Nombre de la empresa</strong> <strong class='estado-r'>*</strong></label>
             <input type="text" class="form-control" name="nombre" placeholder="Ej. Corporación.C.A" required="required" value="<?php echo $empresa; ?>"><br>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-6">
+        <div class="row" style="padding-left: 20px">
+          <div class="col-md-5">
+          <div style="width: 100%; float: left;">
             <label><strong>Teléfono</strong> <strong class='estado-r'>*</strong></label>
             <input type="number" class="form-control" name="telef1" placeholder="Ej.0424987654 " required="required" value="<?php echo $telef1; ?>"><br>
           </div>
+        </div>
 
-          <div class="col-md-6">
+          <div class="col-md-5">
+            <div style="width: 100%; float: left; margin-left: 1.5cm;">
             <label><strong>Correo</strong></label>
             <input type="email" class="form-control" value="<?php echo $correo; ?>" name="correo" placeholder="Ej. ejemplo@ejemplo.com"><br>
           </div>
         </div>
+        </div>
 
 
-        <div class="row">
-          <div class="col">
+        <div class="row" style="padding-left: 20px">
+          <div class="col-md-5">
+            <div style="width: 100%; float: left;">
             <label><strong>Dirección</strong></label>
             <input type="text" class="form-control" value="<?php echo $otros; ?>" name="otros" placeholder="Ej: La Victoria"><br>
           </div>
         </div>
+        </div>
          
         <center>
-          <a href="proveedores.php" class="btn btn-danger">Cancelar</a>
-          <button  type="submit" class="btn btn-primary btn-reg" name="guardar-proveedor">Actualizar</button>
+          <button type="reset" class="btn btn-danger btn-sm col-md-1">
+          <i class="fa fa-ban"></i></button>
+
+          <button type="submit" name="guardar-proveedor" class="btn btn-primary btn-sm col-md-1"><i class="fa fa-check"></i>&nbsp;</button>
         </center>
       </form>
+      <br><br><br><br><br><br><br><br><br><br>
     </div>
    </div>    
 

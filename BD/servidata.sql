@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-11-2019 a las 07:45:26
+-- Tiempo de generación: 02-12-2019 a las 05:32:31
 -- Versión del servidor: 10.1.37-MariaDB
--- Versión de PHP: 7.1.26
+-- Versión de PHP: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -42,12 +42,7 @@ CREATE TABLE `almacen` (
 --
 
 INSERT INTO `almacen` (`id`, `id_producto`, `id_ubicacion`, `stock`, `ce`, `paletas`) VALUES
-(1, 1, 1, 11, NULL, NULL),
-(2, 7, 2, 525, NULL, NULL),
-(3, 1, 2, 16, NULL, NULL),
-(4, 2, 2, 220, NULL, NULL),
-(5, 5, 2, 29, NULL, NULL),
-(6, 0, 2, 100, NULL, NULL);
+(8, 8, 2, 20, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -102,7 +97,11 @@ INSERT INTO `asistencias` (`id`, `id_empleado`, `fecha_hora`, `status`, `justifi
 (13, 3, '2019-11-27 04:30:00', 'Sin Marcar', ''),
 (14, 1, '2019-11-24 05:00:00', 'Sin Marcar', ''),
 (15, 1, '2019-11-25 05:00:00', 'Sin Marcar', ''),
-(16, 2, '2019-11-25 05:00:00', 'Sin Marcar', '');
+(16, 2, '2019-11-25 05:00:00', 'Sin Marcar', ''),
+(17, 1, '2019-12-01 05:00:00', 'A', ''),
+(18, 1, '2019-12-02 05:00:00', 'NASJ', ''),
+(19, 2, '2019-12-02 05:00:00', 'NASJ', ''),
+(20, 4, '2019-12-02 05:00:00', 'A', '');
 
 -- --------------------------------------------------------
 
@@ -124,52 +123,33 @@ CREATE TABLE `auditoria` (
 --
 
 INSERT INTO `auditoria` (`id`, `id_usuario`, `actividad`, `tabla`, `fecha_hora`, `status`) VALUES
-(20, 2, 'modificÃ³ asignaciÃ³n o deducciÃ³n', 'asignacion_deduccion', '2019-11-26 04:07:17', 'Admin'),
-(21, 2, 'generÃ³ primera quincena', 'pre_nomina', '2019-11-15 04:10:35', 'Admin'),
-(22, 2, 'aprobÃ³ primera quincena', 'pre_nomina', '2019-11-15 04:14:45', 'Admin'),
-(23, 2, 'eliminÃ³ quincena', 'pre_nomina', '2019-11-15 04:15:58', 'Admin'),
-(24, 2, 'modificÃ³ empleados', 'empleados', '2019-11-26 04:48:31', 'Admin'),
-(25, 2, 'generÃ³ primera quincena', 'pre_nomina', '2019-11-14 05:56:42', 'Admin'),
-(26, 2, 'aprobÃ³ primera quincena', 'pre_nomina', '2019-11-14 05:56:51', 'Admin'),
-(27, 2, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-11-14 14:32:59', 'Admin'),
-(28, 2, 'aprobÃ³ primera quincena', 'pre_nomina', '2019-11-14 14:52:57', 'Admin'),
-(29, 2, 'generÃ³ primera quincena', 'pre_nomina', '2019-11-14 15:48:49', 'Admin'),
-(30, 2, 'generÃ³ primera quincena', 'pre_nomina', '2019-11-14 15:48:50', 'Admin'),
-(31, 2, 'generÃ³ primera quincena', 'pre_nomina', '2019-11-14 15:48:50', 'Admin'),
-(32, 2, 'aprobÃ³ primera quincena', 'pre_nomina', '2019-11-14 15:52:47', 'Admin'),
-(33, 2, 'generÃ³ segunda quincena', 'pre_nomina', '2019-11-28 16:07:49', 'Admin'),
-(34, 2, 'eliminÃ³ quincena', 'pre_nomina', '2019-11-28 16:11:52', 'Admin'),
-(35, 2, 'generÃ³ segunda quincena', 'pre_nomina', '2019-11-28 16:11:58', 'Admin'),
-(36, 2, 'aprobÃ³ segunda quincena', 'pre_nomina', '2019-11-28 16:12:44', 'Admin'),
-(37, 2, 'eliminÃ³ quincena', 'pre_nomina', '2019-11-28 16:30:12', 'Admin'),
-(38, 2, 'aprobÃ³ primera quincena', 'pre_nomina', '2019-11-28 16:30:16', 'Admin'),
-(39, 2, 'modificÃ³ asignaciÃ³n o deducciÃ³n', 'asignacion_deduccion', '2019-11-28 16:46:44', 'Admin'),
-(40, 2, 'modificÃ³ asignaciÃ³n o deducciÃ³n', 'asignacion_deduccion', '2019-11-28 16:47:00', 'Admin'),
-(41, 2, 'modificÃ³ cestaticket', 'cestaticket', '2019-11-28 16:49:46', 'Admin'),
-(42, 2, 'modificÃ³ cestaticket', 'cestaticket', '2019-11-28 16:49:59', 'Admin'),
-(43, 2, 'modificÃ³ cestaticket', 'cestaticket', '2019-11-28 16:51:17', 'Admin'),
-(44, 2, 'modificÃ³ cestaticket', 'cestaticket', '2019-11-28 17:00:36', 'Admin'),
-(45, 2, 'modificÃ³ cestaticket', 'cestaticket', '2019-11-28 17:00:51', 'Admin'),
-(46, 2, 'modificÃ³ cargos', 'cargos', '2019-11-28 17:39:24', 'Admin'),
-(47, 2, 'modificÃ³ empleados', 'empleados', '2019-11-28 18:25:10', 'Admin'),
-(48, 2, 'modificÃ³ empleados', 'empleados', '2019-11-28 18:27:06', 'Admin'),
-(49, 2, 'generÃ³ primera quincena', 'pre_nomina', '2019-11-14 18:35:57', 'Admin'),
-(50, 2, 'generÃ³ primera quincena', 'pre_nomina', '2019-11-14 18:35:57', 'Admin'),
-(51, 2, 'generÃ³ primera quincena', 'pre_nomina', '2019-11-14 18:35:57', 'Admin'),
-(52, 2, 'aprobÃ³ primera quincena', 'pre_nomina', '2019-11-14 18:36:04', 'Admin'),
-(53, 2, 'generÃ³ segunda quincena', 'pre_nomina', '2019-11-26 20:06:33', 'Admin'),
-(54, 2, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-11-26 20:45:08', 'Admin'),
-(55, 2, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-11-27 00:11:45', 'Admin'),
-(56, 0, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-11-27 03:36:54', ''),
-(57, 0, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-11-27 03:47:05', ''),
-(58, 0, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-11-27 04:39:35', ''),
-(59, 1, 'cambiÃ³ contraseÃ±a', 'usuarios', '2019-11-27 04:40:29', 'Usuario 2'),
-(60, 1, 'modificÃ³ perfil', 'usuarios', '2019-11-27 04:53:35', 'Usuario 2'),
-(61, 0, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-11-27 05:07:20', ''),
-(62, 2, 'modificÃ³ empleados', 'empleados', '2019-11-27 05:35:47', 'Admin'),
-(63, 0, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-11-27 05:55:28', ''),
-(64, 2, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-11-27 05:55:56', 'Admin'),
-(65, 0, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-11-27 06:04:31', '');
+(70, 1, 'modificÃ³ empleados', 'empleados', '2019-12-01 19:53:03', 'Usuario 2'),
+(71, 1, 'modificÃ³ empleados', 'empleados', '2019-12-01 19:53:48', 'Usuario 2'),
+(72, 1, 'modificÃ³ empleados', 'empleados', '2019-12-01 19:56:14', 'Usuario 2'),
+(73, 1, 'modificÃ³ empleados', 'empleados', '2019-12-01 20:01:23', 'Usuario 2'),
+(75, 2, 'aprobÃ³ segunda quincena', 'pre_nomina', '2019-12-02 03:06:12', 'Admin'),
+(76, 2, 'generÃ³ primera quincena', 'pre_nomina', '2019-12-02 03:17:57', 'Admin'),
+(77, 2, 'generÃ³ primera quincena', 'pre_nomina', '2019-12-02 03:17:57', 'Admin'),
+(78, 2, 'generÃ³ primera quincena', 'pre_nomina', '2019-12-02 03:17:58', 'Admin'),
+(79, 2, 'generÃ³ primera quincena', 'pre_nomina', '2019-12-02 03:17:58', 'Admin'),
+(80, 2, 'eliminÃ³ quincena', 'pre_nomina', '2019-12-02 03:18:52', 'Admin'),
+(81, 2, 'modificÃ³ cargos', 'cargos', '2019-12-02 03:21:34', 'Admin'),
+(82, 2, 'generÃ³ primera quincena', 'pre_nomina', '2019-12-02 03:23:04', 'Admin'),
+(83, 2, 'generÃ³ primera quincena', 'pre_nomina', '2019-12-02 03:23:04', 'Admin'),
+(84, 2, 'generÃ³ primera quincena', 'pre_nomina', '2019-12-02 03:23:05', 'Admin'),
+(85, 2, 'generÃ³ primera quincena', 'pre_nomina', '2019-12-02 03:23:05', 'Admin'),
+(86, 2, 'eliminÃ³ quincena', 'pre_nomina', '2019-12-02 03:25:35', 'Admin'),
+(87, 2, 'generÃ³ primera quincena', 'pre_nomina', '2019-12-02 03:25:40', 'Admin'),
+(88, 2, 'generÃ³ primera quincena', 'pre_nomina', '2019-12-02 03:25:40', 'Admin'),
+(89, 2, 'generÃ³ primera quincena', 'pre_nomina', '2019-12-02 03:25:40', 'Admin'),
+(90, 2, 'generÃ³ primera quincena', 'pre_nomina', '2019-12-02 03:25:40', 'Admin'),
+(91, 2, 'modificÃ³ perfil', 'usuarios', '2019-12-02 03:46:45', 'Admin'),
+(92, 0, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-12-02 04:16:39', ''),
+(93, 0, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-12-02 04:17:58', ''),
+(94, 0, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-12-02 04:18:12', ''),
+(95, 0, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-12-02 04:18:37', ''),
+(96, 0, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-12-02 04:18:57', ''),
+(97, 0, 'iniciÃ³ sesiÃ³n', 'usuarios', '2019-12-02 04:27:29', '');
 
 -- --------------------------------------------------------
 
@@ -189,7 +169,7 @@ CREATE TABLE `cargos` (
 --
 
 INSERT INTO `cargos` (`id`, `nombre`, `salario`, `id_departamento`) VALUES
-(1, 'Jefe', '100800', 1),
+(1, 'Jefe', '1500000', 2),
 (2, 'Asistente', '400000', 2);
 
 -- --------------------------------------------------------
@@ -274,7 +254,12 @@ INSERT INTO `dia_lab` (`id`, `id_empleado`, `nombre`) VALUES
 (43, 2, ' MiÃ©rcoles'),
 (44, 3, ' Martes'),
 (45, 3, ' MiÃ©rcoles'),
-(46, 3, ' Jueves');
+(46, 3, ' Jueves'),
+(47, 4, ' Lunes'),
+(48, 4, ' Martes'),
+(49, 4, ' MiÃ©rcoles'),
+(50, 4, ' Jueves'),
+(51, 4, ' Viernes');
 
 -- --------------------------------------------------------
 
@@ -302,9 +287,10 @@ CREATE TABLE `empleado` (
 --
 
 INSERT INTO `empleado` (`id`, `cedula`, `nombres`, `apellidos`, `direccion`, `telefono`, `fecha_ingreso`, `condicion`, `fecha_venc`, `ncuenta`, `id_cargo`, `id_departamento`) VALUES
-(1, '25873122', 'Juan ', 'Figueredo ', 'La Victoria', '04243160235', '2019-09-18', 'Contratado', '2020-04-21', '01354567898765432345', 2, 1),
-(2, '28147989', 'Hector Argenis', 'Hernandez Ceballo', 'San Mateo', '04243590130', '2019-09-11', 'Fijo', '2020-04-15', '01915678890998787654', 1, 2),
-(3, '18610668', 'Eynsterd Samuel', 'Velazco', 'Zuata', '04163462604', '2019-10-08', 'Fijo', '2019-10-30', '01027693406500432765', 2, 1);
+(1, '25873122', 'Juan Carlos', 'Figueredo EspaÃ±a', 'La Victoria', '04243160235', '2019-10-25', 'Contratado', '2020-02-25', '01354567898765432345', 2, 1),
+(2, '28147989', 'HÃ©ctor Argenis', 'HernÃ¡ndez Ceballos', 'San Mateo', '04243590130', '2019-09-18', 'Fijo', '2022-02-16', '01915678890998787654', 1, 2),
+(3, '18610668', 'Eynsterd Samuel', 'BriceÃ±o Velazco', 'Zuata', '04163462604', '2019-11-20', 'Contratado', '2020-04-20', '01027693406500432765', 2, 1),
+(4, '17896543', 'Luis Alberto ', 'Montilla Raga', 'Zuata', '04124808765', '2019-11-05', 'Contratado', '2020-03-11', '01029764863298007658', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -326,34 +312,13 @@ INSERT INTO `empleado_asig` (`id`, `id_empleado`, `id_asignaciones`) VALUES
 (1, 1, 2),
 (2, 1, 1),
 (3, 2, 1),
+(4, 2, 2),
 (5, 3, 1),
 (6, 3, 2),
-(7, 3, 4);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `empleado_pago`
---
-
-CREATE TABLE `empleado_pago` (
-  `id_empleado` int(11) NOT NULL,
-  `id_pago` int(11) NOT NULL,
-  `horas_justificadas` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
-  `horas_sobre_t` varchar(90) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `empleado_producto`
---
-
-CREATE TABLE `empleado_producto` (
-  `id_empleado` int(11) NOT NULL,
-  `id_producto` int(11) NOT NULL,
-  `linea_produccion` varchar(90) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+(7, 3, 4),
+(9, 4, 1),
+(10, 4, 2),
+(11, 4, 4);
 
 -- --------------------------------------------------------
 
@@ -417,7 +382,9 @@ INSERT INTO `enviados` (`id`, `id_productos`, `id_ubicacion`, `codigo`, `cantida
 (39, '7', 2, '70706', 50, '2019-11-27', NULL),
 (40, '7', 2, '70706', 5, '2019-11-27', NULL),
 (41, '7', 2, '70706', 51, '2019-11-27', NULL),
-(42, '7', 2, '70706', 4, '2019-11-27', NULL);
+(42, '7', 2, '70706', 4, '2019-11-27', NULL),
+(43, '8', 2, 'CE007', 50, '2019-12-01', NULL),
+(44, '8', 2, 'CE007', 10, '2019-12-01', NULL);
 
 -- --------------------------------------------------------
 
@@ -448,7 +415,9 @@ INSERT INTO `historial` (`id`, `tiempo`, `motivo`, `id_producto`, `cantidad`) VA
 (8, '2019-11-20 15:47:22', 'Egreso', 1, -2),
 (9, '2019-11-21 15:22:47', 'Registro', 6, 10000),
 (10, '2019-11-27 01:37:06', 'Registro', 7, 2000),
-(11, '2019-11-27 01:37:57', 'Egreso', 7, 55);
+(11, '2019-11-27 01:37:57', 'Egreso', 7, 55),
+(12, '2019-12-01 15:49:07', 'Registro', 8, 100),
+(13, '2019-12-01 18:11:41', 'Egreso', 8, 200);
 
 -- --------------------------------------------------------
 
@@ -487,40 +456,6 @@ CREATE TABLE `inventario` (
   `fecha_vencimiento` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Volcado de datos para la tabla `inventario`
---
-
-INSERT INTO `inventario` (`id`, `id_productos`, `estado`, `observaciones`, `cantidad`, `fecha_entrega`, `fecha_vencimiento`) VALUES
-(1, 1, 'aceptado', 'ninguna', 160, '2019-09-06', '2019-09-30'),
-(6, 2, 'aceptado', 'ninguno', 440, '2019-10-08', '0000-00-00');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `materiaprima_producto`
---
-
-CREATE TABLE `materiaprima_producto` (
-  `id_materiaprima` int(11) NOT NULL,
-  `id_producto` int(11) NOT NULL,
-  `cantidad_u_mp` int(90) NOT NULL,
-  `cantidad_exist_mp` int(90) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `materiaprima_proveedor`
---
-
-CREATE TABLE `materiaprima_proveedor` (
-  `id_materiaprima` int(11) NOT NULL,
-  `id_proveedor` int(11) NOT NULL,
-  `cantidad_c_mp` int(90) NOT NULL,
-  `cantidad_exist_mp` int(90) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
 -- --------------------------------------------------------
 
 --
@@ -545,10 +480,7 @@ CREATE TABLE `materia_prima` (
 --
 
 INSERT INTO `materia_prima` (`id`, `codigo`, `nombre`, `presentacion`, `unidad`, `stock`, `stock_minimo`, `stock_maximo`, `borrado`, `activo`) VALUES
-(1, 'C1903', 'XILENO ', 'BARITANQUE DE 1000 LTS ', 'Lts', 5050, 1000, '100000', 'N', 'S'),
-(2, '2h2h22', 'madera', 'tablas', 'Lts', 30, 10, '40', 'N', 'S'),
-(3, '2h2fkfk', 'agua', 'paletas', 'Lts', 3000, 100, '10000', 'N', 'S'),
-(4, 'hhhhh', 'maiz', 'sacos', 'Kgs', 9900, 100, '10000', 'N', 'S');
+(1, 'C1903', 'XILENO ', 'BARITANQUE DE 1000 LTS ', 'Lts', 5050, 1000, '100000', 'N', 'S');
 
 -- --------------------------------------------------------
 
@@ -573,7 +505,10 @@ CREATE TABLE `nomina` (
 INSERT INTO `nomina` (`id`, `id_empleado`, `id_prenomina`, `sueldo`, `total_asig`, `total_deducc`, `monto`) VALUES
 (16, 1, 6, '200000', '250000', '15000', '235000'),
 (17, 2, 6, '50400', '100400', '15000', '85400'),
-(18, 3, 6, '200000', '315000', '15000', '300000');
+(18, 3, 6, '200000', '315000', '15000', '300000'),
+(19, 1, 7, '200000', '275000', '15000', '260000'),
+(20, 2, 7, '50400', '75400', '15000', '60400'),
+(21, 3, 7, '200000', '340000', '15000', '325000');
 
 -- --------------------------------------------------------
 
@@ -599,7 +534,8 @@ INSERT INTO `notificaciones` (`id`, `titulo`, `mensaje`) VALUES
 (5, 'Inventario', '1 artÃ­culo requiere atenciÃ³n'),
 (6, 'Pedido interno', 'Tienes 2 pedidos internos en espera'),
 (7, 'Inventario', '1 artÃ­culo requiere atenciÃ³n'),
-(8, 'Pedido interno', 'Tienes 2 pedidos internos en espera');
+(8, 'Pedido interno', 'Tienes 2 pedidos internos en espera'),
+(9, 'Pedido interno', 'Tienes 2 pedidos internos en espera');
 
 -- --------------------------------------------------------
 
@@ -612,31 +548,6 @@ CREATE TABLE `notificaciones_detalles` (
   `id_notificaciones` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `visto` enum('N','S') COLLATE utf8_unicode_ci DEFAULT 'N'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `pago`
---
-
-CREATE TABLE `pago` (
-  `id` int(11) NOT NULL,
-  `sueldo` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
-  `monto` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
-  `fecha` date NOT NULL,
-  `periodo` varchar(90) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `pago_asignaciondeduccion`
---
-
-CREATE TABLE `pago_asignaciondeduccion` (
-  `id_pago` int(90) NOT NULL,
-  `id_ad` int(90) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -661,10 +572,12 @@ CREATE TABLE `pedido` (
 INSERT INTO `pedido` (`id`, `fecha_registro`, `fecha_edicion`, `estado`, `tipo`, `id_proveedor`) VALUES
 (1, '2019-11-08 03:03:58', '2019-11-08 02:42:53', 'Cancelado', 'interno', 1),
 (2, '2019-11-08 17:33:06', '2019-11-08 03:20:35', 'Cancelado', 'interno', NULL),
-(3, '2019-11-08 16:43:26', '2019-11-08 16:43:26', 'En Espera', 'interno', NULL),
-(4, '2019-11-08 17:25:36', '2019-11-08 17:25:36', 'En Espera', 'interno', NULL),
+(3, '2019-12-01 23:55:42', '2019-11-08 16:43:26', 'Cancelado', 'interno', NULL),
+(4, '2019-12-01 23:55:35', '2019-11-08 17:25:36', 'Cancelado', 'interno', NULL),
 (6, '2019-11-27 02:35:50', '2019-11-20 16:42:31', 'Completado', 'interno', NULL),
-(7, '2019-11-27 06:07:57', '2019-11-27 06:07:46', 'Completado', 'interno', NULL);
+(7, '2019-11-27 06:07:57', '2019-11-27 06:07:46', 'Completado', 'interno', NULL),
+(8, '2019-12-01 23:11:41', '2019-12-01 23:09:49', 'Completado', 'interno', NULL),
+(9, '2019-12-01 23:57:27', '2019-12-01 23:57:27', 'En Espera', 'interno', NULL);
 
 -- --------------------------------------------------------
 
@@ -694,7 +607,9 @@ INSERT INTO `pedido_detalles` (`id`, `id_pedido`, `tiempo_registro`, `tiempo_mod
 (3, 3, '2019-11-08 16:43:26', NULL, 1, NULL, 19, NULL, NULL),
 (4, 4, '2019-11-08 17:25:36', NULL, 1, NULL, 9, NULL, NULL),
 (5, 6, '2019-11-20 16:42:31', '2019-11-27 02:35:50', 1, NULL, 2, 2, NULL),
-(6, 7, '2019-11-27 06:07:46', '2019-11-27 06:07:57', 7, NULL, 55, 55, NULL);
+(6, 7, '2019-11-27 06:07:46', '2019-11-27 06:07:57', 7, NULL, 55, 55, NULL),
+(7, 8, '2019-12-01 23:09:49', '2019-12-01 23:11:40', 8, NULL, 200, 200, NULL),
+(8, 9, '2019-12-01 23:57:27', NULL, 8, NULL, 50, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -744,7 +659,11 @@ INSERT INTO `prenomina_empleado` (`id`, `id_prenomina`, `id_empleado`) VALUES
 (16, 6, 3),
 (17, 7, 1),
 (18, 7, 2),
-(19, 7, 3);
+(19, 7, 3),
+(28, 10, 1),
+(29, 10, 2),
+(30, 10, 3),
+(31, 10, 4);
 
 -- --------------------------------------------------------
 
@@ -766,7 +685,8 @@ CREATE TABLE `pre_nomina` (
 
 INSERT INTO `pre_nomina` (`id`, `quincena`, `mes`, `anio`, `status`) VALUES
 (6, 1, 11, 2019, 'Aprobado'),
-(7, 2, 11, 2019, 'Procesando');
+(7, 2, 11, 2019, 'Aprobado'),
+(10, 1, 12, 2019, 'Procesando');
 
 -- --------------------------------------------------------
 
@@ -861,27 +781,7 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `codigo`, `nombre`, `presentacion`, `unidad`, `stock`, `stock_minimo`, `stock_maximo`, `borrado`, `activo`, `valor_unitario`, `id_ubicacion`, `id_proveedor`) VALUES
-(1, '12356', 'hierro', 'paletas', 'Kgs', 5, 5, 30, 'N', 'S', NULL, NULL, 0),
-(2, '7272727', 'metal', 'paletas', 'Lts', 80, 10, 5000, 'N', 'S', NULL, NULL, 0),
-(3, 'nuh779', 'cosa', 'paletas', 'Kgs', 10, 10, 200, 'S', 'S', NULL, NULL, 0),
-(4, '32020', 'madera', 'flota', 'Lts', 56, 10, 100, 'N', 'N', NULL, NULL, 0),
-(5, '2h2h22', 'koll', 'tablas', 'Lts', 870, 9, 900, 'N', 'S', NULL, NULL, 0),
-(6, '65247', 'arena', 'sacos', 'Kgs', 10000, 1000, 20000, 'N', 'S', NULL, NULL, 0),
-(7, '70706', 'esoo', 'tablas', 'Kgs', 2000, 100, 5000, 'N', 'S', NULL, NULL, 2);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `producto_proveedor`
---
-
-CREATE TABLE `producto_proveedor` (
-  `id` int(11) NOT NULL,
-  `id_producto` int(11) NOT NULL,
-  `id_proveedor` int(11) NOT NULL,
-  `cantidad_d_p` int(90) NOT NULL,
-  `cantidad_exist_p` int(90) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+(8, 'CE007', 'XILENO', 'BARITANQUE DE 1000 LTS ', 'Lts', 240, 100, 300, 'N', 'S', NULL, NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -906,11 +806,8 @@ CREATE TABLE `proveedor` (
 
 INSERT INTO `proveedor` (`id`, `cod_rif`, `cedula`, `nombre`, `email`, `direccion`, `telefono`, `borrado`) VALUES
 (2, 'V', '25873122', 'Juan Carlos Figueredo', 'juan2912@gmail.com', 'La Victoria', '3163502', 'N'),
-(4, 'J', 'J-1345678', 'Inica Cagua C.A', 'inicacca@gmail.com', 'Cagua ', '9876556', 'S'),
-(5, 'V', '29554496', 'holahhh', 'holgggggga@gmail.com', 'aahha', '23456787654', 'S'),
-(6, 'V', '23353454', 'esaaaaaa', '', 'gagu', '342342323', 'N'),
-(7, 'V', '099988', 'koll', 'hectorher149@gmail.com', '', '8889998', 'S'),
-(8, 'J', '099988', 'el palmar', 'palmar@gmail.com', 'san mateo ', '0211230303', 'N');
+(8, 'J', '099988732', 'Agropatria C.A', 'agropatriaca@gmail.com', 'Cagua Estado Aragua', '0244230303', 'N'),
+(9, 'J', '658493209', 'Inica Cagua C.A', 'inicacca@gmail.com', 'Cagua Estado Aragua', '02446548769', 'N');
 
 -- --------------------------------------------------------
 
@@ -953,9 +850,7 @@ CREATE TABLE `ubicacion` (
 --
 
 INSERT INTO `ubicacion` (`id`, `nombre`, `bloqueado`, `borrado`, `tipo`) VALUES
-(1, 'produccion', 'N', 'S', 'I'),
-(2, 'almacen', 'N', 'N', 'I'),
-(3, 'aya', 'N', 'S', 'I');
+(2, 'almacen', 'N', 'N', 'I');
 
 -- --------------------------------------------------------
 
@@ -979,8 +874,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `correo`, `clave`, `tipo_usuario`, `pregunta`, `respuesta`, `borrado`) VALUES
-(1, 'Daileska Vilera', 'dvilera610@gmail.com', '044598473886535a33126083e3d2e1170e4a67befe897a83ad95a33209a64b3a', 'Usuario 2', 'Mascota', 'Sandy', 'S'),
-(2, 'hector hernandez', 'hectorher149@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Admin', 'nombre de mascota', 'body', 'N'),
+(1, 'Daileska Vilera', 'dvilera610@gmail.com', '044598473886535a33126083e3d2e1170e4a67befe897a83ad95a33209a64b3a', 'Usuario 2', 'Mascota', 'Sandy', 'N'),
+(2, 'HÃ©ctor HernÃ¡ndez', 'hectorher149@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Admin', 'nombre de mascota', 'body', 'N'),
 (3, 'Alejandro', 'darvisalfonso@gmail.com', '67d9f1c944a4ee6ef3634298c97639c81927a228d6aa490b343abf594e45aecf', 'Usuario 1', 'nombre de mascota', 'pelusa', 'S'),
 (4, 'Genessi', 'genessie@gmail.com', '8491502322172e09ec7222d33941d33afbfcc22ab0c4dd1033dd72232308675a', 'Admin', 'mes de nacimiento', 'noviembre', 'S');
 
@@ -1065,20 +960,6 @@ ALTER TABLE `empleado_asig`
   ADD KEY `asig` (`id_asignaciones`);
 
 --
--- Indices de la tabla `empleado_pago`
---
-ALTER TABLE `empleado_pago`
-  ADD KEY `ci_e` (`id_empleado`),
-  ADD KEY `id_pago` (`id_pago`);
-
---
--- Indices de la tabla `empleado_producto`
---
-ALTER TABLE `empleado_producto`
-  ADD KEY `ci_e` (`id_empleado`),
-  ADD KEY `cod_p` (`id_producto`);
-
---
 -- Indices de la tabla `enviados`
 --
 ALTER TABLE `enviados`
@@ -1109,20 +990,6 @@ ALTER TABLE `inventario`
   ADD KEY `inventario_producto` (`id_productos`);
 
 --
--- Indices de la tabla `materiaprima_producto`
---
-ALTER TABLE `materiaprima_producto`
-  ADD KEY `cod_mp` (`id_materiaprima`),
-  ADD KEY `cod_p` (`id_producto`);
-
---
--- Indices de la tabla `materiaprima_proveedor`
---
-ALTER TABLE `materiaprima_proveedor`
-  ADD KEY `cod_mp` (`id_materiaprima`),
-  ADD KEY `ci_pro` (`id_proveedor`);
-
---
 -- Indices de la tabla `materia_prima`
 --
 ALTER TABLE `materia_prima`
@@ -1141,19 +1008,6 @@ ALTER TABLE `nomina`
 --
 ALTER TABLE `notificaciones`
   ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `pago`
---
-ALTER TABLE `pago`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `pago_asignaciondeduccion`
---
-ALTER TABLE `pago_asignaciondeduccion`
-  ADD KEY `id_pago` (`id_pago`),
-  ADD KEY `id_ad` (`id_ad`);
 
 --
 -- Indices de la tabla `pedido`
@@ -1209,13 +1063,6 @@ ALTER TABLE `productos`
   ADD KEY `id_proveedor` (`id_proveedor`);
 
 --
--- Indices de la tabla `producto_proveedor`
---
-ALTER TABLE `producto_proveedor`
-  ADD KEY `cod_p` (`id_producto`),
-  ADD KEY `ci_pro` (`id_proveedor`);
-
---
 -- Indices de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
@@ -1247,7 +1094,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `almacen`
 --
 ALTER TABLE `almacen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `asignacion_deduccion`
@@ -1259,13 +1106,13 @@ ALTER TABLE `asignacion_deduccion`
 -- AUTO_INCREMENT de la tabla `asistencias`
 --
 ALTER TABLE `asistencias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `auditoria`
 --
 ALTER TABLE `auditoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 
 --
 -- AUTO_INCREMENT de la tabla `cargos`
@@ -1295,31 +1142,31 @@ ALTER TABLE `despachos`
 -- AUTO_INCREMENT de la tabla `dia_lab`
 --
 ALTER TABLE `dia_lab`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado_asig`
 --
 ALTER TABLE `empleado_asig`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `enviados`
 --
 ALTER TABLE `enviados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT de la tabla `historial`
 --
 ALTER TABLE `historial`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `historial_mp`
@@ -1343,31 +1190,25 @@ ALTER TABLE `materia_prima`
 -- AUTO_INCREMENT de la tabla `nomina`
 --
 ALTER TABLE `nomina`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT de la tabla `pago`
---
-ALTER TABLE `pago`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido_detalles`
 --
 ALTER TABLE `pedido_detalles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `permisos`
@@ -1379,13 +1220,13 @@ ALTER TABLE `permisos`
 -- AUTO_INCREMENT de la tabla `prenomina_empleado`
 --
 ALTER TABLE `prenomina_empleado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `pre_nomina`
 --
 ALTER TABLE `pre_nomina`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `privilegios`
@@ -1403,13 +1244,13 @@ ALTER TABLE `produccion`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `recibidos`
@@ -1421,13 +1262,13 @@ ALTER TABLE `recibidos`
 -- AUTO_INCREMENT de la tabla `ubicacion`
 --
 ALTER TABLE `ubicacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas
@@ -1465,30 +1306,10 @@ ALTER TABLE `empleado_asig`
   ADD CONSTRAINT `empl` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `empleado_pago`
---
-ALTER TABLE `empleado_pago`
-  ADD CONSTRAINT `empleado_pago_ibfk_1` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `empleado_pago_ibfk_2` FOREIGN KEY (`id_pago`) REFERENCES `pago` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `empleado_producto`
---
-ALTER TABLE `empleado_producto`
-  ADD CONSTRAINT `empleado_producto_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `rest_emp` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Filtros para la tabla `inventario`
 --
 ALTER TABLE `inventario`
   ADD CONSTRAINT `inventario_producto` FOREIGN KEY (`id_productos`) REFERENCES `productos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `materiaprima_proveedor`
---
-ALTER TABLE `materiaprima_proveedor`
-  ADD CONSTRAINT `materiaprima_proveedor_ibfk_2` FOREIGN KEY (`id_proveedor`) REFERENCES `proveedor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `nomina`
@@ -1496,18 +1317,6 @@ ALTER TABLE `materiaprima_proveedor`
 ALTER TABLE `nomina`
   ADD CONSTRAINT `nomina_ibfk_1` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `nomina_ibfk_2` FOREIGN KEY (`id_prenomina`) REFERENCES `pre_nomina` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `pago`
---
-ALTER TABLE `pago`
-  ADD CONSTRAINT `pago_ibfk_1` FOREIGN KEY (`id`) REFERENCES `pago_asignaciondeduccion` (`id_pago`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `pago_asignaciondeduccion`
---
-ALTER TABLE `pago_asignaciondeduccion`
-  ADD CONSTRAINT `pago_asignaciondeduccion_ibfk_1` FOREIGN KEY (`id_ad`) REFERENCES `asignacion_deduccion` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `permisos`
@@ -1521,12 +1330,6 @@ ALTER TABLE `permisos`
 ALTER TABLE `prenomina_empleado`
   ADD CONSTRAINT `prenomina_empleado_ibfk_1` FOREIGN KEY (`id_prenomina`) REFERENCES `pre_nomina` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `prenomina_empleado_ibfk_2` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `producto_proveedor`
---
-ALTER TABLE `producto_proveedor`
-  ADD CONSTRAINT `producto_proveedor_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

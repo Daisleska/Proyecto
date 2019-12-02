@@ -33,7 +33,7 @@ class PDF extends FPDF {
     $this->Ln(4); 
     $this->SetX(25); 
     $this->SetY(55);
-    $this->Cell(40,7,utf8_decode('Departamento'),1,0,'C');
+    $this->Cell(10,7,utf8_decode('ID'),1,0,'C');
     $this->Cell(25,7,utf8_decode('Quincena #'),1,0,'C');
     $this->Cell(45,7,utf8_decode ('Cantidad Empleados'),1,0,'C');
     $this->Cell(35,7,utf8_decode ('Mes / Año'),1,0,'C');
@@ -62,13 +62,13 @@ $pdf=new PDF('P', 'mm', 'A4');
 $pdf -> AliasNbPages();
 $pdf->AddPage();
 
-    $sql= "SELECT COUNT(prenomina_empleado.id_prenomina) AS cantidad,quincena, mes, anio, pre_nomina.status, pre_nomina.id FROM pre_nomina INNER JOIN prenomina_empleado ON pre_nomina.id=prenomina_empleado.id_prenomina";
+    $sql= "SELECT pre_nomina.id,  COUNT(prenomina_empleado.id_prenomina) AS cantidad, pre_nomina.quincena, pre_nomina.mes, pre_nomina.anio, pre_nomina.status FROM pre_nomina INNER JOIN prenomina_empleado ON pre_nomina.id=prenomina_empleado.id_prenomina";
     $consulta = mysqli_query($conectar, $sql) or die ("ERROR en la consulta ". mysqli_error($conectar));
 
     while ($fila=mysqli_fetch_array($consulta)) {
 
      /* $fecha=date("d/m/Y", strtotime($fila["fecha_entrega"]));*/
-      $pdf->Cell(40,7,utf8_decode('Recursos Humanos'),1,0,'C');
+      $pdf->Cell(10,7,utf8_decode($fila['id'].' '),1,0,'C');
       $pdf->Cell(25,7,utf8_decode($fila['quincena'].' '),1,0,'C');
       $pdf->Cell(45,7,utf8_decode($fila['cantidad'].' '),1,0,'C');
       $pdf->Cell(35,7,utf8_decode($fila['mes'].-$fila['anio'].' '),1,0,'C');

@@ -159,7 +159,7 @@
     <section style="padding-left: 20px;" class="content-header">
       <ol class="breadcrumb">
        
-         <h1 align="center">  <span style="margin-left: 8.5cm;" class="badge badge-info">Inventario <i class="menu-icon fa fa-edit"></i> </span></h1>
+         <h1 align="center">  <span style="margin-left: 6cm;" class="badge badge-info">Inventario <i class="menu-icon fa fa-edit"></i> </span></h1>
         
       </ol>
    </section >
@@ -313,6 +313,7 @@ if ($consulta['tipo']=='Interno' or $consulta['tipo']=='Externo') {
           ?>
         </tbody>
       </table> 
+      <br><br><br><br><br><br><br><br><br><br>
     </div>
                 <!--modal-->
      <div class="modal fade" id="modal-registrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

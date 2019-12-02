@@ -1,18 +1,16 @@
 <?php include_once "../includes/menu.php"; ?>
 
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>Herramientas<small>Restarar BD</small></h1>
+    <section class="content-header"  style="padding-left: 15px">
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Herremientas</a></li>
-        <li class="active">Restaurar BD</li>
+        <h1 align="center">  <span style="margin-left: 6.5cm;" class="badge badge-info">Restaurar BD <i class="fa fa-database"></i> </span></h1>
       </ol>
     </section>
         <!-- Main content -->
     <section class="content">
       <div class="box box-danger color-palette-box">
         <div class="box-header with-border">
-          <h3 class="box-title"><i class="fa fa-database"></i> Restauración de la Base de Datos</h3>
+          
         </div>
         <div class="box-body">
 <?php 
@@ -288,7 +286,7 @@ if (php_sapi_name() != "cli") {
 </section>
 
 
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
 

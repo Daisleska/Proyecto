@@ -45,7 +45,8 @@ $data=unserialize($data);
     <div class="content-2">
     <section  class="content-header">
       <ol class="breadcrumb">
-       
+         
+        
          <h1 align="center">  <span style="margin-left: 5cm;" class="badge badge-info">Modificar Usuario <i class="menu-icon fa fa-edit"></i> </span></h1>
         
       </ol>

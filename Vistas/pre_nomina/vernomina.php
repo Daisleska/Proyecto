@@ -40,7 +40,7 @@ var year = (yy < 1000) ? yy + 1900 : yy;
                     </section >
 
                            <div class="col-md-2,5">
-                                 <a style="margin-left: 16cm; width: 3.5cm;" href="../../reportes/reporte_nomina.php&id_nomina=<?=$data[$i][4]?>" target="blank" class="btn btn-block btn-danger btn-sm"><i class="fa fa-file-pdf-o"></i> Reporte PDF</a>
+                             <a style="margin-left: 16cm; width: 3.5cm;" href="../../reportes/reporte_nomina.php?id_nomina=<?=$data[0][8]?>" target="blank" class="btn btn-block btn-danger btn-sm"><i class="fa fa-file-pdf-o"></i> Reporte PDF</a>
 
                             </div>
                             

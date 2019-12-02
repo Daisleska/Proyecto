@@ -65,7 +65,7 @@
     <div class="content-2">
         <ol class="breadcrumb">
        
-         <h1 align="center">  <span style="margin-left: 8.5cm;" class="badge badge-info">Pedidos <i class="menu-icon fa fa-edit"></i> </span></h1>
+         <h1 align="center">  <span style="margin-left: 7cm;" class="badge badge-info">Pedidos <i class="menu-icon fa fa-edit"></i> </span></h1>
         
       </ol>
             <!--nav inventario -->
@@ -145,7 +145,7 @@
           ?>
         </ul><br>
         <center>
-          <a href="solicitud-pedido-interno.php" class="btn btn-primary agregar">Nuevo pedido interno</a>
+          <a href="solicitud-pedido-interno.php" class="btn btn-primary agregar"><i class="ti-pencil-alt"></i> Nuevo pedido interno</a>
         </center><br>
         <div class="table-responsive">
             <table class="table table-striped table-sm " id="table">
@@ -187,11 +187,11 @@
 
 
                         <td>
-                            <a href='pedido-interno-pdf.php?id=".$consulta['id']."' target='_blank' class='ver'  title='Ver'><span data-feather='eye'></span></a>";
+                            <a href='pedido-interno-pdf.php?id=".$consulta['id']."' target='_blank' class='ver'title='Ver'><span class='fa fa-eye'></span></a>";
 
                       if ($consulta['estado']=='En Espera') {
-                          echo "<a href='javascript:aprobartodo(".$consulta['id'].")' class='mas'  title='Aprobar pedido'><span data-feather='check'></span></a>";
-                          echo "<a href='javascript:rechazar(".$consulta['id'].")' class='x'  title='cancelar pedido'><span data-feather='x'></span></a>";
+                          echo "<a href='javascript:aprobartodo(".$consulta['id'].")' class='mas'  title='Aprobar pedido'><span class='fa fa-check'></span></a>";
+                          echo "<a href='javascript:rechazar(".$consulta['id'].")' class='x'  title='cancelar pedido'><span class='fa fa-times'></span></a>";
                       }
 
                       echo "  </td>

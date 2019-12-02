@@ -1,7 +1,7 @@
 <?php 
 include_once "../includes/menu.php"; 
 extract($_REQUEST);
-$data=unserialize($data);
+
 
 ?>
 <script type="text/javascript">
@@ -69,15 +69,9 @@ $data=unserialize($data);
           <div class="col-md-4" >
             <label><strong>Tipo de Usuario</strong> <strong class='estado-r'>*</strong></label>
             <select name="tipo_usuario" required="required" title="Seleccione el tipo de Usuario" class="form-control">
-                              <?php if ($data[4]=="Admin") {
-                              ?>
-                              <option value="Admin" <?php if($data[4]=="Admin"){ ?> selected="selected" <?php } ?> >Admin</option>
-                              <?php 
-                              }
-                              ?>
-                              <option value="Admin" <?php if($data[4]=="Admin"){ ?> selected="selected" <?php } ?> >Administrador</option>
-                              <option value="Usuario 1" <?php if($data[4]=="Usuario 1"){ ?> selected="selected" <?php } ?> >Usuario 1</option>
-                              <option value="Usuario 2" <?php if($data[4]=="Usuario 2"){ ?> selected="selected" <?php } ?> >Usuario 2</option>
+                              <option value="Admin">Admin</option>
+                              <option value="Usuario 1">Usuario 1</option>
+                              <option value="Usuario 2">Usuario 2</option>
                               </select><br>
           </div>
 
