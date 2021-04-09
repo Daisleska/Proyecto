@@ -3,7 +3,7 @@
 
   if (isset($_POST['guardar-proveedor'])){
         
-    if ($cod_rif=='' or $numero_documento=='' or $telefono=='' or $nombre=='') {
+    if ($cod_rif=='' or $cedula=='' or $telefono=='' or $nombre=='') {
       echo '
       <script src="../../bootstrap/js/jquery.js"></script>
       <script src="../../vendors/js/sweetalert.min.js"></script>
@@ -16,7 +16,7 @@
 
       include('../../Modelos/conexion.php');
 
-      $sql="SELECT * FROM proveedor WHERE borrado='N' AND cod_rif='$cod_rif' AND cedula='$numero_documento'";
+      $sql="SELECT * FROM proveedor WHERE borrado='N' AND cedula='".$cod_rif.$cedula."'";
       $resultado=mysqli_query($conectar,$sql);
 
       $busqueda = mysqli_num_rows($resultado);
@@ -33,7 +33,7 @@
       }else{
          include('../../Modelos/conexion.php');
 
-        $sql="INSERT INTO proveedor(cod_rif,cedula,nombre,email,direccion,telefono) VALUES ('$cod_rif','$numero_documento','$nombre','$correo','$direccion','$telefono')";
+        $sql="INSERT INTO proveedor(cedula,nombre,email,direccion,telefono) VALUES ('".$cod_rif.$cedula."','$nombre','$correo','$direccion','$telefono')";
 
         $resultado=mysqli_query($conectar,$sql);
 
@@ -74,7 +74,6 @@
               <div style="width: 100%;">
                 <div style="width: 20%; float: left;">
                   <select class="form-control" name="cod_rif" required="required"  >
-                    <option value="">-</option>
                     <option value="V">V</option>
                     <option value="J">J</option>
                     <option value="E">E</option>
@@ -82,7 +81,7 @@
                   </select>
                 </div>
                 <div class="col-md-8">
-                  <input type="text" name="numero_documento" class="form-control" placeholder="Ej.112345" required="required" min="0" maxlength="15">
+                  <input type="text" name="cedula" class="form-control" placeholder="Ej.112345" required="required" min="0" maxlength="15">
                 <!--   <div id="result"></div>id="documento_numero"
                   <div class="valid-feedback">
                     Disponible

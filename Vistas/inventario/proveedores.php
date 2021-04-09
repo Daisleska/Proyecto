@@ -98,7 +98,7 @@
              
               echo '
               <tr>
-                <td>'.$consulta["cod_rif"].'-'.$consulta['cedula'].' </td>
+                <td>'.$consulta['cedula'].' </td>
                 <td>'.$consulta["nombre"].'</td>
                 <td>'.$consulta["telefono"].'</td>
                 <td>'.$consulta["direccion"].'</td>

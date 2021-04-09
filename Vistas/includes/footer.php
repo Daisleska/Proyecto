@@ -2,9 +2,9 @@
             <div class="container">
                 <div class="row">
                     <div class=" col-sm-4">
-                        <h4 class="all-tittles">Acerca de</h4>
+                        <h4 class="all-tittles" style="text-align: center;">Acerca de</h4>
 
-                        <p class="foo" style="">
+                        <p class="foo" style="text-align: left;">
                            La misión de la empresa SERVIFORM C.A es asegurar la producción y distribución socialista suficiente y oportuna de productos y servicios de calidad que satisfagan las necesidades y expectativas de productores y productoras agrícolas y demás usuarios. </p>
 
                     </div>

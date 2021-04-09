@@ -16,7 +16,7 @@
 					<div class="row">
 					<div class="col-md-6">
 						<label><strong>RIF:</strong></label>
-						<?php echo $consulta['cod_rif']."-".$consulta['cedula']; ?><br>
+						<?php echo $consulta['cedula']; ?><br>
 						
 						<label><strong>Correo electrónico:</strong></label>
 						<?php if ($consulta['email']=='') {

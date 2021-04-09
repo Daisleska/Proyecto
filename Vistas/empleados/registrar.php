@@ -44,7 +44,19 @@ $asignaciones=unserialize($asignaciones);
      <div class="row" >
           <div class="col-md-4" >
             <label><strong>Cédula</strong> <strong class='estado-r'>*</strong></label>
-            <input required="required" type="text" id="hf-ci" minlength="8" maxlength="9" name="cedula" placeholder="Ej: 12.345.678" class="form-control"><br>
+            <div style="width: 100%;">
+                <div style="width: 25%; float: left;">
+                  <select class="form-control" name="cod_rif" required="required">
+                    <option value="V">V</option>
+                    <option value="J">J</option>
+                    <option value="E">E</option>
+                    <option value="G">G</option>
+                  </select>
+                </div>
+                <div class="col-md-8">
+                <input style="width: 125%;" required="required" type="text" id="hf-ci" minlength="8" maxlength="9" name="cedula" placeholder="Ej: 12.345.678" class="form-control">
+                </div></div>
+           
           </div>
 
        
@@ -88,8 +100,8 @@ $asignaciones=unserialize($asignaciones);
             <label><strong>Condición</strong> <strong class='estado-r'>*</strong></label>
              <select id="hf-condicion" name="condicion" class="form-control">
                     <option selected="selected">Seleccione</option>
-                     <option>Fijo</option>
-                    <option>Contratado</option>
+                     <option value="Fijo">Fijo</option>
+                    <option value="Contratado">Contratado</option>
                                                                         
                     </select><br>
           </div>
@@ -112,9 +124,10 @@ $asignaciones=unserialize($asignaciones);
 
           <div class="col-md-5" >
             <label><strong>Cargo</strong> <strong class='estado-r'>*</strong></label>
-            <select name="id_cargo" title="Seleccione el cargo"class="form-control">
+            <select name="id_cargo" title="Seleccione el cargo" class="form-control" id="id_cargo">
                     <option disabled="disabled" selected="selected" value="">Seleccione el Cargo</option>
                     <?php 
+                    
                     for ($i=0; $i<$filas_cat; $i++){
                     ?>
                     <option value="<?=$cargos[$i][0]?>"><?=$cargos[$i][1]?></option>
@@ -127,27 +140,24 @@ $asignaciones=unserialize($asignaciones);
        
           <div class="col-md-5" >
             <label><strong>Departamento</strong> <strong class='estado-r'>*</strong></label>
-            <select name="id_departamento" title="Seleccione el Departamento"class="form-control">
+            <select name="id_departamento" id="departamento" title="Seleccione el Departamento"class="form-control">
                     <option disabled="disabled" selected="selected" value="">Seleccione el Departamento</option>
-                    <?php 
-                    for ($i=0; $i<$filas_tip; $i++){
-                    ?>
-                    <option value="<?=$departamentos[$i][0]?>"> <?=$departamentos[$i][1]?></option>
-                    <?php
-                    }
-                    ?>
+
+                   
                     </select><br>
           </div>
          
          
         </div>
-
+  
+        <div class="row" >
         <div class="col-lg-11" style="padding-left: 50px;">
                     <div class="card">
                       <div class="card-header">
                         <strong style="text-align: center;">ASIGNAR DÍAS LABORABLES</strong>
                        
-                       <div style="text-align: left;">
+                       <div style="text-align: left;" ng-repeat="column in columns">
+                      
                         <th> Lunes</th>
                            <input type="checkbox" name="checkbox[]" id="checkbox" value="Lunes"> 
                            <br>
@@ -176,37 +186,37 @@ $asignaciones=unserialize($asignaciones);
                            <input type="checkbox" name="checkbox[]" id="checkbox" value="Domingo">
                            <br>
                            <br>
-                           <a href="javascript:seleccionar_todo()">Marcar todos</a> |
-                           <a href="javascript:deseleccionar_todo()">Marcar ninguno</a>
+                           <input type="checkbox" onclick="marcar(this);"> Marcar Todos | Desmarcar Todos
+                       
                        </div>
+                     </div>
+                   </div>
 
                       </div>
                     </div>
-            
-      
 
-        
-       
-        <div class="row">
+
+              <div class="row">
+          <div style="margin-left: 1.3cm; width: 17.7cm;">
           
           <label><strong>Asignaciones | Deducciones</strong> <strong class='estado-r'>*</strong></label>
-           <select name="asignaciones[]" data-placeholder="Seleccione" multiple class="standardSelect" >
+         
+           <select name="asignaciones[]" data-placeholder="Seleccione" multiple="" class="standardSelect" >
              <option value="" selected="selected" disabled="disabled"></option>
                                     <?php 
                     for ($i=0; $i<$filas_asi; $i++){
                     ?>
-                    <option value="<?=$asignaciones[$i][0]?>"><?=$asignaciones[$i][1]?> / <?=$asignaciones[$i][2]?></option>
+                    <option value="<?=$asignaciones[$i][0]?>"><?=$asignaciones[$i][1]?> | <?=$asignaciones[$i][2]?></option>
                     <?php
                     }
                     ?>
                                    
-             </select><br>
+             </select>
+             <br></br>
+         </div>
  
 
 </div>
-
-
-          </div>
 
    
         <div class="row" style="padding-left: 350px;">
@@ -221,27 +231,54 @@ $asignaciones=unserialize($asignaciones);
         </div>
       </form>
     </div>
+  </div>
 
    <br><br><br>  
    <?php include_once "../includes/footer.php"; ?>
-    <script src="../../bootstrap/js/jquery.js"></script>
+    <!--<script src="../../bootstrap/js/jquery.js"></script>
     <script src="../../bootstrap/js/bootstrap.min.js"></script>
-    <script src="../../vendors/js/feather.min.js"></script>
-    <script>
-            
-   
+    <script src="../../vendors/js/feather.min.js"></script>-->
+      <script src="../../vendors/js/datatables.min.js"></script>
 
-   <script type="text/javascript">
-     function seleccionar_todo(){
-   for (i=0;i<document.f1.elements.length;i++)
-      if(document.f1.elements[i].type == "checkbox")
-         document.f1.elements[i].checked=1
-}
 
-function deseleccionar_todo(){
-   for (i=0;i<document.f1.elements.length;i++)
-      if(document.f1.elements[i].type == "checkbox")
-         document.f1.elements[i].checked=0
-}
-   </script>
 
+<script type="text/javascript">
+  function marcar(source){
+    var checkboxes=document.getElementsByTagName('input');
+    for (var i = 0; i < checkboxes.length; i++) {
+      if (checkboxes[i].type=="checkbox") {
+        checkboxes[i].checked=source.checked;
+      }
+      
+    }
+
+
+  }
+
+
+
+  $(document).ready( function(){
+  
+    $("#id_cargo").on("change", function (event) {
+      
+      var id_cargo = event.target.value;
+     
+        //
+
+        $.ajax({
+        url: 'departamentos.php',
+        type: 'POST',
+        data: {id_cargo: id_cargo}
+        }).success(function(respuesta){
+        // console.log(respuesta);
+        $('#departamento').html(respuesta);
+        });
+
+      });
+
+  });
+
+
+
+
+</script>

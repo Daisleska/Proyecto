@@ -75,50 +75,49 @@
 
 <form action="../asistencias/ControlA.php?operacion=permiso_registro" method="POST">
     <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true" >
-                    <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-dialog modal-md" role="document">
                         <div class="modal-content">
                           <form action="" method="POST">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="mediumModalLabel">Registrar Permiso</h5>
+                                <h5 class="modal-title" id="mediumModalLabel" style="margin-left: 4cm;">Registrar Permiso</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                            <div>
+                              <h6 class="nota-input" style="margin-left: 2.5cm;">Los campos con un <i class="estado-r">*</i> son obligatorios </h6><br>
+                            
                               <div class="row">
-                                <div class="col-md-4">
-                                   <label><strong>Justificación</strong> <strong class="estado-r"></strong></label>
+                                <div class="col-md-6">
+                                   <label><strong>Justificación</strong><strong class="estado-r">*</strong></label>
                                    <select class="form-control" required="required" name="motivo">
                                    <option value="" selected="selected" >Seleccione</option>
                                   <option value="Reposo">Reposo</option>
                                   <option value="Permiso">Permiso</option>
                                   </select>
                                   </div>
-                                </div>
-                                <div class="row">
-                              <div class="col-md-4">
-                             <label><strong>Días de permiso</strong></label>
-                              <input type="number" title="Ingrese la cantidad de dias de permiso" name="dias_permiso" class="form-control">
-                               </div> 
-                               </div>
-
-                               <div class="row">
-                               <div class="col-md-4">
-                                <label><strong>Cédula del empleado</strong></label>
-                                 <input type="number" name="cedula" id="cedula" required="required" placeholder="Ingrese cédula" class="form-control">
+                                
+                              <div class="col-md-6">
+                                <label><strong>Días de permiso</strong><strong class="estado-r">*</strong></label><input type="number" title="Ingrese la cantidad de dias de permiso" required="required" name="dias_permiso" class="form-control">
                                </div>
                              </div>
-                              <div class="row">
-                               <div class="col-md-4">
-                                <label><strong>Fin del permiso</strong></label>
+
+                               <div class="row">
+                               <div class="col-md-6">
+                                <label><strong>Cédula del empleado</strong><strong class="estado-r">*</strong></label>
+                                 <input type="number" name="cedula" id="cedula" required="required" placeholder="Ingrese cédula" class="form-control" style="width: 5.8cm; margin-right: 0.7cm;">
+                               </div>
+                            
+                               <div class="col-md-6">
+                               <label><strong>Fin del permiso</strong><strong class="estado-r">*</strong></label>
                                  <input type="date" name="fin_permiso" id="cedula" required="required" placeholder="Ingrese cédula" class="form-control">
                                </div>
                              </div>
                              
                             </div>
+                            <br><br>
                              
-                            </div>
+                         
                             <div class="modal-footer"> 
                               <input type="hidden" name="id_asistencia" id="id_asistencia">
                               <input type="hidden" name="opcion" id="opcion">
@@ -129,6 +128,7 @@
                         </div>
                     </div>
                 </div>
+
                 </form>
 
 <?php include_once "../includes/footer.php"; ?>

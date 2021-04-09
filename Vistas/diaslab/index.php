@@ -17,7 +17,7 @@ $data=unserialize($data);
                                 <strong class="card-title"><i style="color: #006699;" class="fa fa-user"></i> Empleado: <?php
         for ($j=1; $j <=1; $j++) { 
         ?>
-        <input type="hidden" name="id" value="<?=$data[$i][0]?>"> <?=$data[$j][1]?> <?=$data[$j][2]?> C.I: <?=$data[$j][0]?>
+        <input type="hidden" name="id" value="<?=$data[$i][0]?>"> C.I: <?=$data[$j][1]?> <?=$data[$j][3]?> <?=$data[$j][2]?>
 
         <?php } ?> </strong> 
                             </div>
@@ -37,7 +37,7 @@ $data=unserialize($data);
                                     echo "<tr>";        
                                     ?>  
                                     <td><?=$num?></td>
-                                    <?php for ($j=3; $j <=3; $j++) { ?>
+                                    <?php for ($j=4; $j <=4; $j++) { ?>
                                     <td><?=$data[$i][$j]?></td>
 
                                     <?php } ?>
@@ -50,14 +50,12 @@ $data=unserialize($data);
                                     </tbody>
                                  
                                 </table>
-                                    <td><button class="btn btn-primary btn-sm"><i class="fa fa-edit"></i><a href="../../Controladores/ControladorDiasLab.php?operacion=modificar&id_empleado=<?=$data[$i][0]?>"></a></button>
+                                    
 
-                                  
+                                    <button class="btn btn-primary btn-sm"><a href="../../Controladores/ControladorDiasLab.php?operacion=modificar&id_empleado=<?=$data[0][0]?>"><i class="fa fa-edit"></i></a></button>
 
-                                    <button class="btn btn-danger btn-sm"><a href="javascript:eliminar(<?=$data[$i][0]?>)"><i class="menu-icon fa fa-trash-o"></i></a></button>
-                                    </td>
 
-                                    <button class="btn btn-primary btn-sm"><a href="../../Controladores/ControladorEmpleado.php?operacion=index"><i class="fa fa-mail-reply"></i>&nbsp;</a></button>
+                                    <button class="btn btn-primary btn-sm"><a href="../../Controladores/ControladorEmpleado.php?operacion=index"><i class="fa fa-mail-reply"></i></a></button>
                             </div>
                         </div>
                     </div>

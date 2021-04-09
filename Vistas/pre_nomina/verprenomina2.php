@@ -110,14 +110,14 @@ var year = (yy < 1000) ? yy + 1900 : yy;
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="mediumModalLabel" style="text-align: center;">Detalles de Nómina del Empleado</h5>
+                                <h5 class="modal-title" id="mediumModalLabel" style="margin-left: 5.5cm;">Detalles de Nómina del Empleado</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
 
-                            <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                            <table class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th style="border: hidden">Nombres: <span id="nombres" style="font-weight: normal;"></span></th>
@@ -134,7 +134,7 @@ var year = (yy < 1000) ? yy + 1900 : yy;
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary">Confirmar</button>
+                             
                             </div>
                         </div>
                     </div>
@@ -149,11 +149,13 @@ var year = (yy < 1000) ? yy + 1900 : yy;
     var num_ina=parseFloat(inasistencia);  
     var inadecimal=num_ina.toFixed(2);
 
+
     var num_sueldo=parseFloat(sueldo_neto);
     var sueldodecimal=num_sueldo.toFixed(2);
     
     var num_inames=parseFloat(inasistencia_mes);
     var inamesdecimal=num_inames.toFixed(2);
+
 
 
 
@@ -186,6 +188,7 @@ var year = (yy < 1000) ? yy + 1900 : yy;
 
 
 </script>
+
 
 <?php include_once "../includes/footer.php"; ?>
 <script src="../../vendors/js/sweetalert.min.js"></script>

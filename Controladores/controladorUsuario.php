@@ -62,7 +62,7 @@ public function guardar(){
 		if ($clave == $clave_repetir) {
 			
 		$clave=hash('sha256',$clave); 
-		$sql="INSERT INTO usuarios(nombre,correo,clave,tipo_usuario,pregunta,respuesta) VALUES('".$nombre."','".$correo."','".$clave."', '".$tipo_usuario."', '".$pregunta."','".$respuesta."')";
+		$sql="INSERT INTO usuarios(nombre,correo,clave,tipo_usuario,pregunta,respuesta,avatar) VALUES('".$nombre."','".$correo."','".$clave."', '".$tipo_usuario."', '".$pregunta."','".$respuesta."','".$avatar."')";
 
 		//echo $sql;
 		$result=mysqli_query($conex,$sql);

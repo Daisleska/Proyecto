@@ -1,7 +1,19 @@
 <?php
 include_once "../includes/menu.php"; 
 extract($_REQUEST);
-$data=unserialize($data);
+$empleado=unserialize($empleado);
+$sueldo_neto=unserialize($sueldo_neto);
+$asignaciones=unserialize($asignaciones);
+$deducciones=unserialize($deducciones);
+$inasistencia=unserialize($inasistencia);
+$id_nomina=unserialize($id_nomina);
+$anio=unserialize($anio);
+$mes=unserialize($mes);
+$quincena=unserialize($quincena);
+
+
+
+
 ?>
 
 <script type="text/javascript">
@@ -31,19 +43,18 @@ var year = (yy < 1000) ? yy + 1900 : yy;
                     <section style="padding-left: 20px;" class="content-header">
                        <ol class="breadcrumb">
 
-                        <a href="../../Controladores/ControladorPreNomina.php?operacion=aprobadas" class="atras" title="Atras"><span class="fa fa-arrow-left" style="font-size: 35px;" ></span></a>
+                        <a href="../../Controladores/ControladorPreNomina.php?operacion=prenomina" class="atras" title="Atras"><span class="fa fa-arrow-left" style="font-size: 35px;" ></span></a>
 
            
-                       <h1 align="center">  <span style="margin-left: 1cm;" class="badge badge-info">Detalles Nóminas </strong><script style="text-align: right;" type="text/javascript">document.write("" + months[month] + " " + year);</script> <i class="menu-icon fa fa-edit"></i> </span></h1>
+                       <h1 align="center">  <span style="margin-left: 0.5cm;" class="badge badge-info"><strong>Detalles Nóminas <?=$mes?> <?=$anio?> Quincena <?=$quincena?> </strong><i class="menu-icon fa fa-edit"></i> </span></h1>
             
                         </ol>
                     </section >
 
-                           <div class="col-md-2,5">
-                             <a style="margin-left: 16cm; width: 3.5cm;" href="../../reportes/reporte_nomina.php?id_nomina=<?=$data[0][8]?>" target="blank" class="btn btn-block btn-danger btn-sm"><i class="fa fa-file-pdf-o"></i> Reporte PDF</a>
+                    <div class="col-md-2,5">
+                                 <a style="margin-left: 16cm; width: 3.5cm;" href="../../reportes/vernomina1.php" target="blank" class="btn btn-block btn-danger btn-sm"><i class="fa fa-file-pdf-o"></i> Reporte PDF</a>
 
                             </div>
-                            
                       
                     </div>
                         <div class="table-responsive" style="padding-left: 30px; padding-right: 20px;">
@@ -54,9 +65,9 @@ var year = (yy < 1000) ? yy + 1900 : yy;
                                         <th>N°</th> 
                                         <th>Nombres</th>
                                         <th>Apellidos</th>
-                                        <th>Cédula</th>
-                                        <th>Total Asignaciones</th>
-                                        <th>Total Deducciones</th>
+                                        <th>Cedula</th>
+                                        <th>Cargo</th>
+                                        <th>Salario Base</th>
                                         <th>Total a pagar</th>
                                         <th>Opciones</th>
                                        </tr>
@@ -69,19 +80,30 @@ var year = (yy < 1000) ? yy + 1900 : yy;
                         ?>  
                             
                         <td><?=$num?></td>
-                        <td><?=$data[$i][1]?></td>
-                        <td><?=$data[$i][2]?></td>
-                        <td><?=$data[$i][3]?></td>
-                        <td><?=number_format($data[$i][5], 2, ',', '.');?></td>
-                        <td><?=number_format($data[$i][6], 2, ',', '.');?></td>
-                        <td><?=number_format($data[$i][7], 2, ',', '.');?></td>
-                           
+                        <?php for ($j=1; $j < 6; $j++) { ?>
+                        <td><?php 
+                        if ($j==5) {
+
+                            echo number_format($empleado[$i][$j], 2, ',', '.');
+
+                        }else{
+
+                            echo $empleado[$i][$j];
+                             
+                         } ?></td>
+
+                            <?php } ?>
+                            <td>
+                            <?php
+                                echo number_format($sueldo_neto[$i], 2, ',', '.');
+                             ?>   
+                            </td>
                         
 
 
                             <td><a href="#"></i></a>
-                                <input type="hidden" name="id_quincena" value="">
-                           <button><a href="../../reportes/reporte_individual.php&id_empleado=<?=$data[$i][0]?>&id_quincena=<?=$data[$i][8]?>"><i title="PDF" class="menu-icon fa fa-search-plus"></i></a></button>
+
+                           <button  onclick="detalles('<?=$asignaciones[$i]?>', '<?=$deducciones[$i]?>', '<?=$inasistencia[$i]?>', '<?=$sueldo_neto[$i]?>','<?=$empleado[$i][1]?>', '<?=$empleado[$i][2]?>', '<?=$empleado[$i][3]?>', '<?=$empleado[$i][4]?>', '<?=$empleado[$i][5]?>')"><i title="Detalles" class="fa fa-search"  data-toggle="modal" data-target="#mediumModal"></i></button>
 
                            
                                 
@@ -103,11 +125,81 @@ var year = (yy < 1000) ? yy + 1900 : yy;
     </div><!-- /#right-panel -->
 
 
+                <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg"   role="document">
+                        <div class="modal-content" >
+                            <div class="modal-header">
+                                <h5 style="margin-left: 5.5cm;" class="modal-title" id="mediumModalLabel">Detalles de Nómina del empleado</h5>
+                              
+                            </div>
+                            <div class="modal-body">
+                                
+                            <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th style="border: hidden">Nombres: <span id="nombres" style="font-weight: normal;"></span></th>
+                                            <th style="border: hidden">Apellidos: <span id="apellidos" style="font-weight: normal;"></span></th>
+                                            <th style="border: hidden">Cedula: <span id="cedula" style="font-weight: normal;"></span></th>
+                                            <th style="border: hidden">Cargo: <span id="nombre" style="font-weight: normal;"></span></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+
+                                <div id="tablita"></div>
+                                
+
+                            
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 
 
         <?php include_once "../includes/footer.php"; ?>
                   
 
+
+   <script type="text/javascript">
+    //descripcion, monto
+  
+  function detalles(asignaciones, deducciones, inasistencia, sueldo_neto, nombres, apellidos, cedula, nombre, salario) {
+var num_ina=parseFloat(inasistencia);  
+var inadecimal=num_ina.toFixed(2);
+var num_sueldo=parseFloat(sueldo_neto);
+var sueldodecimal=num_sueldo.toFixed(2);
+
+
+// console.log(asignaciones+" "+deducciones+" "+inasistencia+" "+sueldo_neto+" "+salario);
+
+
+    $.ajax({
+        url: 'ajax.php',
+        type: 'POST',
+        data: {nombres: nombres, apellidos: apellidos, cedula: cedula}
+    }).success(function(respuesta){
+        // console.log(respuesta);
+        $('#tablita').html(respuesta);
+    });
+  
+    $("#asignaciones").text(asignaciones);
+    $("#deducciones").text(deducciones);
+    $("#inasistencia").text(inadecimal);
+    $("#sueldo_neto").text(sueldodecimal);
+    $("#nombres").text(nombres);
+    $("#apellidos").text(apellidos);
+    $("#cedula").text(cedula);
+    $("#nombre").text(nombre);
+    $("#salario").text(salario);
+    
+
+  }
+  
+
+</script>
 
 
    <script src="../../vendors/js/sweetalert.min.js"></script>

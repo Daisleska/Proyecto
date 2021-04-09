@@ -21,11 +21,14 @@ include_once "../includes/menu.php";
                                             <th>N°</th>
                                             <th>Cargo</th>
                                             <th>Salario</th>
+                                            <th>Departamento</th>
                                             <th>Opciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <?php $num=1;
+                                    
+
                                     for($i=0; $i < $filas; $i++){
 
                                     echo "<tr>";
@@ -35,12 +38,17 @@ include_once "../includes/menu.php";
                                     <?php 
                                     for ($j=1; $j < $campos; $j++) 
                                     { 
-                                     ?>
-
-                                    <td><?=$data[$i][$j]?></td>
-
-
-                                    <?php 
+                                        if ($data[$i][$j]==$data[$i][2]) {
+                                        ?>
+                                        
+                                         <td><?=number_format($data[$i][$j],2,',','.')?></td>
+                                        <?php
+                                        }else{
+                                            ?>
+                                          <td><?=$data[$i][$j]?></td>
+                                            <?php
+                                        }
+                                     
 
                                     }  ?>
     

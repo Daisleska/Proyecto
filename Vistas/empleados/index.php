@@ -53,7 +53,7 @@ $data=unserialize($data);
 
                                     <a href="../../Controladores/ControladorAsigDeducc.php?operacion=asigdeducc&id_empleado=<?=$data[$i][0]?>"><i title="Asignaciones y Deducciones" class="fa fa-retweet"></a></i>
                                     
-                                    <a href="../../Controladores/ControladorAsigDeducc.php?operacion=agregarasigdeducc&id_empleado=<?=$data[$i][0]?>"><i title="Asignaciones y Deducciones" class="fa fa-search-plus"></a></i>
+                                    <a href="../../Controladores/ControladorDiasLab.php?operacion=index&id_empleado=<?=$data[$i][0]?>"><i title="Horario" class="fa fa-search-plus"></a></i>
 
                                     <a href="../../Controladores/ControladorEmpleado.php?operacion=eliminar&id_empleado=<?=$data[$i][0]?>"><i title="Eliminar" class="menu-icon fa fa-trash-o"></a></i>
                                     </td>

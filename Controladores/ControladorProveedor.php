@@ -42,11 +42,14 @@ public function registrar(){
 }//fin registrar
 
 public function guardar(){
-	extract($_POST);//EXTRAYENDO VARIABLES DEL FORMULARIO
-	$db=new clasedb();
-	$conex=$db->conectar();//conectando con la base de datos
 
-	$sql="SELECT * FROM proveedor WHERE cedula='".$cedula."'";
+	extract($_POST);//EXTRAYENDO VARIABLES DEL FORMULARIO
+	$cedu=$_POST['cod_rif'];
+    $la=$_POST['cedula'];
+	$db=new clasedb();
+	$conex=$db->conectar();//conectando con la base de datoscod_rif
+
+	$sql="SELECT * FROM proveedor WHERE cedula='".$cedu.$la."'";
 
 	$res=mysqli_query($conex,$sql);
 	$cuantos=mysqli_num_rows($res);
@@ -61,7 +64,7 @@ public function guardar(){
 	} else {
 		
 			
-		$sql="INSERT INTO proveedor VALUES (NULL,'".$cedula."','".$nombre."','".$email."','".$direccion."','".$telefono."')";
+		$sql="INSERT INTO proveedor VALUES (NULL,'".$cod_rif.$cedula."','".$nombre."','".$email."','".$direccion."','".$telefono."')";
 
 		$resultado=mysqli_query($conex,$sql);
 	
@@ -69,7 +72,7 @@ public function guardar(){
         ?>
 		<script type="text/javascript">
 			
-			if (confirm("Registro exitoso, desea registrar otro?")) {
+			if (confirm("Registro exitoso, ¿desea registrar otro?")) {
 				window.location="ControladorProveedor.php?operacion=registrar";	
 			}else{
 				window.location="ControladorProveedor.php?operacion=index";

@@ -91,6 +91,13 @@ extract($_REQUEST);
             <input type="text" required="required" minlength="4" maxlength="20" id="hf-respuesta" name="respuesta" class="form-control" placeholder="Ej: Bucky"><br>
           </div>
 
+    
+
+          <div class="col-md-4" >
+            <label><strong>Foto</strong> <strong class='estado-r'>*</strong></label>
+            <input type="file" required="required" minlength="4" maxlength="20" id="hf-foto" name="avatar" class="form-control"><br>
+          </div>
+
        
         </div>
 

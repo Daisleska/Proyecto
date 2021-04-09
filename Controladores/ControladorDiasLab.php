@@ -6,13 +6,13 @@ extract($_REQUEST);
 class ControladorDiasLab
 {
 
-public function index()
-{
+public function index(){
+
 	 extract($_REQUEST);
 	$db=new clasedb();
 	$conex=$db->conectar();
 
-	$sql="SELECT empleado.cedula,empleado.nombres, empleado.apellidos, empleados_has_dias_lab.dia FROM empleado, empleados_has_dias_lab WHERE empleado.id_empleados_has_dias_lab=empleados_has_dias_lab.id AND empleado.id=".$id_empleado."";
+	$sql="SELECT empleado.id, empleado.cedula,empleado.nombres, empleado.apellidos, dia_lab.nombre FROM empleado, dia_lab WHERE empleado.id=dia_lab.id_empleado AND empleado.id=".$id_empleado."";
 	
 	if ($res=mysqli_query($conex,$sql)) {
 		
@@ -33,6 +33,7 @@ public function index()
 	} else {
 		//en caso de no pasar la consulta
 		header("Location: ControladorEmpleado.php?index");
+
 	}
 	
 }//fin de index
@@ -134,14 +135,26 @@ public function modificar()
 	$db=new clasedb();
 	$conex=$db->conectar();
 
-	$sql="SELECT * FROM empleados_has_dias_lab WHERE id=".$id;
+	$sql2="SELECT id, nombre FROM dia_lab WHERE id_empleado=".$id_empleado;
 
-	$res=mysqli_query($conex,$sql);
-	$data_m=mysqli_fetch_array($res);
+	if($resul=mysqli_query($conex,$sql2)){
+		$campos2=mysqli_num_fields($resul);
+		$filas2=mysqli_num_rows($resul);
+		$dia_lab[]=array();
+		$i=0;
+		while($data_m=mysqli_fetch_array($resul)){
+			for($j=0; $j<$campos2; $j++){
+				$dia_lab[$i][$j]=$data_m[$j];
+			}
+			$i++;
+		}
+	}else{
+		$cont++;
+    }
 
 	$cont=0;
 
-	$sql="SELECT * FROM empleado";
+	$sql="SELECT * FROM empleado WHERE id=".$id_empleado;
 	if($res=mysqli_query($conex,$sql)){
 		$campos=mysqli_num_fields($res);
 		$filas=mysqli_num_rows($res);
@@ -159,7 +172,7 @@ public function modificar()
 
 
 if ($cont==0){
-	header("Location: ../Vistas/diaslab/modificar.php?data_m=".serialize($data_m)."&filas=".$filas."&empleado=".serialize($empleado));
+	header("Location: ../Vistas/diaslab/modificar.php?data_m="."&filas2=".$filas2."&dia_lab=".serialize($dia_lab)."&filas=".$filas."&empleado=".serialize($empleado));
 }else{
 	header("Location: ControladorDiasLab.php?operacion=index");
 }
@@ -240,7 +253,6 @@ public function eliminar()
 public function horario(){
 	header("Location: ../Vistas/diaslab/horario.php");
 }
-
 
 
 static function controlador($operacion){

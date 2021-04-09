@@ -21,6 +21,19 @@ include("../../Modelos/conexion.php");
             $cargo=$_SESSION['tipo_usuario'];
         
     }
+
+ 
+ $sql2="SELECT avatar FROM usuarios WHERE usuarios.id=".$_SESSION['id_usuario'];;
+
+  $resul = $conectar->query($sql2) or die ( "Algo ha ido mal en la consulta a la base de datos");
+
+    if ($img=$resul->fetch_array()) {
+
+        $image=$img['avatar'];
+
+    }
+
+
 ?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -161,7 +174,7 @@ include("../../Modelos/conexion.php");
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Mantenimiento</a>
                         <ul class="sub-menu children dropdown-menu">
 
-                            <li><i class="menu-icon fa fa-desktop"></i><a href="../../Controladores/ControladorBitacora.php?operacion=bitacora"">Bitácora</a></li>
+                        <li><i class="menu-icon fa fa-desktop"></i><a href="../../Controladores/ControladorBitacora.php?operacion=bitacora">Bitácora</a></li>
                             <li><i class="menu-icon fa fa-cloud"></i><a href="../config/respaldar.php">Respaldar BD</a></li>
                             <li><i class="menu-icon fa fa-cloud-upload"></i><a href="../config/restaurar.php">Restaurar BD</a></li>
                              <li><i class="menu-icon fa fa-cloud-upload"></i><a href="../../Controladores/controladorUsuario.php?operacion=index">Listado de usuarios</a></li>
@@ -229,14 +242,17 @@ function checkTime(i)
 {if (i<10) {i="0" + i;}return i;}
 window.onload=function(){startTime();}
 </script>
-<div  id="reloj" style="font-size:15px;" ></div>
+<div  id="reloj" style="margin-left: 1.3cm;" ></div>
 
 </div>
 
                 <div class="col-md-4">
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="../../images/admin.jpg" alt="User Avatar">
+
+                           
+                          
+                            <img class="user-avatar rounded-circle" src="../../images/<?=$image?>" alt="User Avatar">
 
                          </a>
 

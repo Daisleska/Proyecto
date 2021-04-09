@@ -34,9 +34,9 @@ class PDF extends FPDF {
     $this->SetX(25); 
     $this->SetY(55);
     $this->Cell(10,7,utf8_decode('ID'),1,0,'C');
-    $this->Cell(25,7,utf8_decode('Quincena #'),1,0,'C');
+    $this->Cell(35,7,utf8_decode('Quincena #'),1,0,'C');
     $this->Cell(45,7,utf8_decode ('Cantidad Empleados'),1,0,'C');
-    $this->Cell(35,7,utf8_decode ('Mes / Año'),1,0,'C');
+    $this->Cell(55,7,utf8_decode ('Mes / Año'),1,0,'C');
     $this->Cell(40,7,utf8_decode ('Status'),1,0,'C');
     
     /*$this->Cell(35,7,utf8_decode('Fecha de Vencimiento'),1,0,'C');*/
@@ -62,21 +62,32 @@ $pdf=new PDF('P', 'mm', 'A4');
 $pdf -> AliasNbPages();
 $pdf->AddPage();
 
-    $sql= "SELECT pre_nomina.id,  COUNT(prenomina_empleado.id_prenomina) AS cantidad, pre_nomina.quincena, pre_nomina.mes, pre_nomina.anio, pre_nomina.status FROM pre_nomina INNER JOIN prenomina_empleado ON pre_nomina.id=prenomina_empleado.id_prenomina";
-    $consulta = mysqli_query($conectar, $sql) or die ("ERROR en la consulta ". mysqli_error($conectar));
+    $count=0;
+  $anio=date("Y");
+  $sql="SELECT id FROM pre_nomina WHERE status=2 AND anio=".$anio."";
+  $res=mysqli_query($conectar, $sql);
+  while($fila=mysqli_fetch_array($res)){
+    $id=$fila['id'];
+    $sql2="SELECT pre_nomina.quincena, COUNT(prenomina_empleado.id_prenomina) AS cantidad, pre_nomina.status, pre_nomina.id, pre_nomina.mes, pre_nomina.anio FROM pre_nomina INNER JOIN prenomina_empleado ON pre_nomina.id=prenomina_empleado.id_prenomina WHERE pre_nomina.id='$id'";
+    $resultado=mysqli_query($conectar, $sql2);
+   
+    while ($fila=mysqli_fetch_array($resultado)) {
 
-    while ($fila=mysqli_fetch_array($consulta)) {
+    setlocale(LC_TIME, 'es_ES', 'esp_esp');
+    $fech=date_create_from_format('!m', $fila['mes']);
+    $mes=strftime("%B", $fech->getTimestamp());
+    $month=ucfirst($mes);
 
      /* $fecha=date("d/m/Y", strtotime($fila["fecha_entrega"]));*/
       $pdf->Cell(10,7,utf8_decode($fila['id'].' '),1,0,'C');
-      $pdf->Cell(25,7,utf8_decode($fila['quincena'].' '),1,0,'C');
+      $pdf->Cell(35,7,utf8_decode($fila['quincena'].' '),1,0,'C');
       $pdf->Cell(45,7,utf8_decode($fila['cantidad'].' '),1,0,'C');
-      $pdf->Cell(35,7,utf8_decode($fila['mes'].-$fila['anio'].' '),1,0,'C');
+      $pdf->Cell(55,7,utf8_decode($month.-$fila['anio'].' '),1,0,'C');
       $pdf->Cell(40,7,utf8_decode($fila['status']),1,0,'C');
     /*  $pdf->Cell(29,7,utf8_decode($fecha),1,0,'C');*/
       $pdf->SetFont('Times','',10);
       $pdf->Ln(); 
-    }
+    } }
     $pdf->Ln(1); 
     $pdf->Output();
 ?>

@@ -3,7 +3,6 @@ date_default_timezone_set('America/Caracas');
 require_once('../../Modelos/conexion.php');
 extract($_REQUEST);
 $data=unserialize($data);
-
 ?>
 
  <div class="content mt-3" style="padding-left: 20px;">
@@ -34,38 +33,40 @@ $data=unserialize($data);
                   
  
               <div class="table-responsive" style="padding-left: 30px; padding-right: 20px;">
+               
                                 <table class="table table-striped table-sm " id="table">
-                                    <thead>
-                                       <tr>
-                                         <th>N°</th>
-                                    
-                                 
-                                        <th>Nombre</th>
+                                <tr>
                                 
-                                        <th>Correo</th>
-                                  
-                                  
-                                        <th>Pregunta</th>
-                            
-                                  
-                                        <th>Respuesta</th>
-                                     
-                                    </thead>
-                                    <tbody>
+                                  <td rowspan="5" style="width: 4.4cm;"><img src="../../images/<?=$data[0][0];?>" style="margin: center;" width="153px" height="150"><br></br>
+                                    <form action="../../Controladores/ControladorPerfil.php?operacion=cambiarfoto" method="POST">
+                                    <input type="file" style="width: 153px;" name="image" required="required"><br></br>
+                                  <button type="submit" class="btn-primary" style="margin-left: 0.5cm;">Cambiar Foto</button></td>
+                                  </form>
+                             
+                                
+                                    <?php $nombres=array();
+                                          $nombres[0][1]="Nombre";
+                                          $nombres[0][2]="Correo";
+                                          $nombres[0][3]="Pregunta";
+                                          $nombres[0][4]="Respuesta";
+
+                                      ?>
                                       <?php $num=1;
                                     for($i=0; $i < $filas; $i++){
 
                                     echo "<tr>";
                                     ?>
-
-                                    <td><?=$num?></td>
                                     <?php 
+                                    
                                     for ($j=1; $j < $campos; $j++) 
+
                                     { 
                                      ?>
 
-                                    <td><?=$data[$i][$j]?></td>
-
+                                      
+                                      <td><strong><?=$nombres[0][$j]?>:</strong> <?=$data[$i][$j]?></td>
+                                    </tr>
+                                  
 
                                     <?php 
 
@@ -74,15 +75,17 @@ $data=unserialize($data);
                                    
                                 $num++;
                                 }   ?>
+                            
 
-                                    </tbody>
                                 </table>
-                                <form action="../../Controladores/ControladorPerfil.php?operacion=modificar" method="POST">
+                                <br>
+                                 <form action="../../Controladores/ControladorPerfil.php?operacion=modificar" method="POST">
                                 
-                                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>
+                                <button type="submit" class="btn btn-primary btn-sm" style="margin-left: 19cm;"><i class="fa fa-edit"></i>
                                 
                                 </button>
                             </form>
+                                
                             </div>
                         </div>
                

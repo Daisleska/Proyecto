@@ -12,9 +12,9 @@ public function prenomina(){
 	extract($_POST);
 	$db=new clasedb();//instanciando clasedb
 	$conex=$db->conectar();//conectando con la base de datos
-
+    $mes=date('m');
 	$count=0;
-	$sql="SELECT id FROM pre_nomina WHERE status=1";
+	$sql="SELECT id FROM pre_nomina WHERE status=1 AND mes=".$mes;
 	$res=mysqli_query($conex,$sql);
 	while($fila=mysqli_fetch_array($res)){
 		$id=$fila['id'];
@@ -36,11 +36,12 @@ public function aprobadas(){
 	$conex=$db->conectar();//conectando con la base de datos
 
 	$count=0;
-	$sql="SELECT id FROM pre_nomina WHERE status=2";
+	$anio=date("Y");
+	$sql="SELECT id FROM pre_nomina WHERE status=2 AND anio=".$anio."";
 	$res=mysqli_query($conex,$sql);
 	while($fila=mysqli_fetch_array($res)){
 		$id=$fila['id'];
-		$sql2="SELECT pre_nomina.quincena, COUNT(prenomina_empleado.id_prenomina) AS cantidad, pre_nomina.status, pre_nomina.id FROM pre_nomina INNER JOIN prenomina_empleado ON pre_nomina.id=prenomina_empleado.id_prenomina WHERE pre_nomina.id='$id'";
+		$sql2="SELECT pre_nomina.quincena, COUNT(prenomina_empleado.id_prenomina) AS cantidad, pre_nomina.status, pre_nomina.id, pre_nomina.mes, pre_nomina.anio FROM pre_nomina INNER JOIN prenomina_empleado ON pre_nomina.id=prenomina_empleado.id_prenomina WHERE pre_nomina.id='$id'";
 		$resultado=mysqli_query($conex,$sql2);
 		$fila2=mysqli_fetch_assoc($resultado);
 		$aprobadas[$count]=$fila2;
@@ -498,6 +499,7 @@ public function inasistencia2($id_empleado){
 
     $data=mysqli_fetch_object($res);
 
+
     return $data->inasistencias;
 
 
@@ -523,6 +525,7 @@ public function inasistencia_mes($id_empleado){
 
     $data=mysqli_fetch_object($res);
 
+  
     return $data->inasistencias_mes;
 
 
@@ -661,6 +664,7 @@ public function ver(){
        
 		$i++;
      }
+     
 
     header("Location: ../Vistas/pre_nomina/verprenomina2.php?filas=".$filas."&detalles=".serialize($detalles)."&asignaciones=".serialize($asignaciones)."&deducciones=".serialize($deducciones)."&inasistencia=".serialize($inasistencia)."&monto=".serialize($monto)."&inasistencia_mes=".serialize($inasistencia_mes)."&sueldo_neto=".serialize($sueldo_neto)."&empleado=".serialize($empleado));
     }
@@ -673,27 +677,111 @@ public function veraprobadas(){
 	$db=new clasedb();
 	$conex=$db->conectar();
 
-	$sql="SELECT empleado.id, empleado.nombres, empleado.apellidos,empleado.cedula, nomina.id, nomina.total_asig, nomina.total_deducc, nomina.monto, nomina.id_prenomina FROM empleado, nomina WHERE nomina.id_prenomina=".$id_nomina." AND nomina.id_empleado=empleado.id";
+    //$filas=0;
+    if ($quincena==1) {
+        
+    	$sql2="SELECT DISTINCT prenomina_empleado.id_prenomina, empleado.*,cargos.nombre,cargos.salario FROM empleado, cargos, prenomina_empleado WHERE empleado.id_cargo=cargos.id AND prenomina_empleado.id_empleado=empleado.id AND prenomina_empleado.id_prenomina=".$id_nomina;
 
-	if ($res=mysqli_query($conex,$sql)) {
-		//echo "entro";
-		$campos=mysqli_num_fields($res);//cuantos campos trae la consulta	
-		$filas=mysqli_num_rows($res);//cuantos registro trae la consulta
-		$i=0;
-		$datos[]=array();//inicializando array
-		//extrayendo datos
-		while($data=mysqli_fetch_array($res)){
-			for ($j=0; $j <$campos; $j++) { 
-				$datos[$i][$j]=$data[$j];
-			} 
-			$i++;
-		}
+        $res2=mysqli_query($conex, $sql2);
+        $filas=mysqli_num_rows($res2);
+       
+	    $i=0;
+	   
+
+	    while($data=mysqli_fetch_object($res2)){
+
+		//detalles de las asignaciones de cada empleado
+
+		$asignaciones[$i]=$this->calcular_asignaciones($data->id);
+
+		//echo $asignaciones[$i];
+
+		$deducciones[$i]=$this->calcular_deducciones($data->id);
+
+
+		$inasistencias[$i]=$this->inasistencia($data->id);
+
 		
-	    header("Location: ../Vistas/pre_nomina/vernomina.php?filas=".$filas."&campos=".$campos."&data=".serialize($datos));
-	} else {
-		echo "Error en la BASE DE DATOS";
+		$diast=$data->salario/30;//valor de un día de trabajo
 
-	}//enviando datos
+		$inasistencia[$i]=$inasistencias[$i]*$diast;//monto total de inasistencias 
+
+		$salario=$data->salario/2;
+
+		// $sueldo_neto[$i]=(($data->salario/2)-$inasistencia[$i])+($asignaciones[$i]-$deducciones[$i]);
+
+		$sueldo_neto[$i]=($asignaciones[$i]+$salario)-($deducciones[$i]+$inasistencia[$i]);
+
+        $empleado[$i][0]=$data->id;
+        $empleado[$i][1]=$data->nombres;
+        $empleado[$i][2]=$data->apellidos;
+        $empleado[$i][3]=$data->cedula;
+        $empleado[$i][4]=$data->nombre;
+        $empleado[$i][5]=$data->salario/2;
+
+	    
+		$i++;
+     }
+
+    header("Location: ../Vistas/pre_nomina/vernomina.php?filas=".$filas."&asignaciones=".serialize($asignaciones)."&deducciones=".serialize($deducciones)."&inasistencia=".serialize($inasistencia)."&sueldo_neto=".serialize($sueldo_neto)."&empleado=".serialize($empleado)."&id_nomina=".serialize($id_nomina)."&mes=".serialize($mes)."&anio=".serialize($anio)."&quincena=".serialize($quincena));
+    	
+    }else {
+        
+    	$sql2="SELECT DISTINCT prenomina_empleado.id_prenomina, empleado.*,cargos.nombre,cargos.salario FROM empleado, cargos, prenomina_empleado WHERE empleado.id_cargo=cargos.id AND prenomina_empleado.id_empleado=empleado.id AND prenomina_empleado.id_prenomina=".$id_nomina;
+
+
+
+        $res2=mysqli_query($conex,$sql2);
+        $filas=mysqli_num_rows($res2);//cuantos registro trae la consulta
+
+	    $i=0;
+	    
+	while($data=mysqli_fetch_object($res2)){
+
+	
+	
+		$asignaciones[$i]=$this->calcular_asignaciones($data->id);
+
+
+		$deducciones[$i]=$this->calcular_deducciones($data->id);
+
+
+		$inasistencias[$i]=$this->inasistencia2($data->id);
+
+		$inasistencias_mes[$i]=$this->inasistencia_mes($data->id);
+
+		$monto[$i]=$this->cestaticket($data->id);
+
+		
+		$diast=$data->salario/30;
+
+		$inasistencia[$i]=$inasistencias[$i]*$diast;
+
+		$diasc=$monto[$i]/30;
+
+		$inasistencia_mes[$i]=$inasistencias_mes[$i]*$diasc;
+
+        
+
+		$sueldo_neto[$i]=(($data->salario/2)-$inasistencia[$i])+($asignaciones[$i]-$deducciones[$i])+($monto[$i]-$inasistencia_mes[$i]);
+
+        $empleado[$i][0]=$data->id;
+        $empleado[$i][1]=$data->nombres;
+        $empleado[$i][2]=$data->apellidos;
+        $empleado[$i][3]=$data->cedula;
+        $empleado[$i][4]=$data->nombre;
+        $empleado[$i][5]=$data->salario/2;
+
+        
+
+	    
+       
+		$i++;
+     }
+     
+
+    header("Location: ../Vistas/pre_nomina/vernomina2.php?filas=".$filas."&detalles=".serialize($detalles)."&asignaciones=".serialize($asignaciones)."&deducciones=".serialize($deducciones)."&inasistencia=".serialize($inasistencia)."&monto=".serialize($monto)."&inasistencia_mes=".serialize($inasistencia_mes)."&sueldo_neto=".serialize($sueldo_neto)."&empleado=".serialize($empleado)."&id_nomina=".serialize($id_nomina)."&mes=".serialize($mes)."&anio=".serialize($anio)."&quincena=".serialize($quincena));
+    }
 
    
 
@@ -735,6 +823,17 @@ public function eliminar()
     }
 }//fin de la función eliminar
 
+public function pdfindinomina(){
+
+  extract($_REQUEST);//extrayendo variables del url
+  $db=new clasedb();
+  $conex=$db->conectar();//conectando con la base de datos
+
+  
+  
+
+}
+
 static function controlador($operacion){
 		$pago=new ControladorPreNomina();
 		
@@ -765,6 +864,10 @@ static function controlador($operacion){
 
 		case 'eliminar':
 			$pago->eliminar();
+			break;
+
+		case 'pdfindinomina':
+			$pago->pdfindinomina();
 			break;
 
 		

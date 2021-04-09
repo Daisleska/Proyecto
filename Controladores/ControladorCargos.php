@@ -12,9 +12,8 @@ public function index(){
 	$db=new clasedb();//instanciando clasedb
 	$conex=$db->conectar();//conectando con la base de datos
 
-	$sql="SELECT id, nombre, salario FROM cargos";//query
-
-
+	$sql="SELECT cargos.id, cargos.nombre, cargos.salario, departamentos.nombre AS departamento FROM cargos, departamentos WHERE cargos.id_departamento=departamentos.id";//query
+	
 	//ejecutando query
 	if ($res=mysqli_query($conex,$sql)) {
 		//echo "entro";
@@ -69,7 +68,7 @@ public function guardar(){
 	$db=new clasedb();
 	$conex=$db->conectar();//conectando con la base de datos
 
-	$sql="SELECT nombre, salario FROM cargos WHERE nombre='".$nombre."'";
+	$sql="SELECT nombre, salario, id_departamento FROM cargos WHERE nombre='".$nombre."' AND id_departamento='".$id_departamento."'";
 
 	$res=mysqli_query($conex,$sql);
 	$cuantos=mysqli_num_rows($res);

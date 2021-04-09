@@ -328,7 +328,7 @@ if ($consulta['tipo']=='Interno' or $consulta['tipo']=='Externo') {
                   <form action="ubicacion_inventario.php" method="POST" id="form-modificar">
                     <div class="modal-body">
                        <h6 class="nota-input">Los campos con un <i class="estado-r">*</i> son obligatorios </h6><br>
-                      <label><strong>Ubicación</strong></label>
+                      <label><strong>Ubicación</strong> <strong class="estado-r">*</strong></label>
                       <input type="text" name="ubicacion_registro" id="ubicacion_edit" class="form-control ubicacion" placeholder="Ubicación" required="required">
                       <div id="result"></div>
                       <div class="valid-feedback">

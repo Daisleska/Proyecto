@@ -108,7 +108,7 @@ height: 30%;
 RIF J-31537859-0</h4>
    <br>  
     </th>
-    <th  colspan="6"  style=" "><h5> SERVIFORM C.A.<br> La Victoria, Estado Aragua, Municipio José Félix Ribas, Parroquia Juan Vicente Bolívar y Ponte, Calle Final la Redoma Zona Industrial la Chapa.<br>
+    <th  colspan="6"  style="text-align: center;"><h5> SERVIFORM C.A.<br> La Victoria, Estado Aragua, Municipio José Félix Ribas, Parroquia Juan Vicente Bolívar y Ponte, Calle Final la Redoma Zona Industrial la Chapa.<br>
 
  RIF J-31537859-0<br>
  TELÉFONO&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
@@ -125,7 +125,7 @@ OFICINA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       0243-235.614
     </th>
   </tr>
   <tr>
-    <th colspan="10" style=""> LISTA DE MATERIAS PRIMAS A SOLICITAR </th>
+    <th colspan="10" style="text-align:center;"> LISTA DE MATERIAS PRIMAS A SOLICITAR </th>
   </tr>
 </table>' , 0, 1, 0, true, '', true);
 

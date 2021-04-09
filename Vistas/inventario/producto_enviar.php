@@ -110,18 +110,7 @@ extract($_REQUEST);
 
      
 
-        $.ajax({
-
-              type: "POST",
-              url : "funciones/buscar_stock_articulo.php",
-              data: "producto="+$("#code").val(),
-              success: function( respuesta ){
-             
-                $('#stock').prop('max',respuesta);
-                  
-              }
-
-            });
+      
 
        $.ajax({
 

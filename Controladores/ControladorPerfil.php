@@ -30,6 +30,10 @@ class ControladorPerfil{
 			$perfil->actualizar();
 			break;
 
+		case 'cambiarfoto':
+			$perfil->cambiarfoto();
+			break;
+
 
 
 	
@@ -150,7 +154,7 @@ public function verperfil (){
   $conex=$db->conectar();//conectando con la base de datos
 
    
-  	$sql="SELECT id,nombre, correo, pregunta, respuesta FROM usuarios WHERE usuarios.id=".$_SESSION['id_usuario'];;//query
+  	$sql="SELECT avatar,nombre, correo, pregunta, respuesta FROM usuarios WHERE usuarios.id=".$_SESSION['id_usuario'];;//query
   
 			
 
@@ -220,7 +224,7 @@ public function actualizar(){
 
 		         $resultado=mysqli_query($conex,$sql);
                 ?>
-					?>
+					
 					<script type="text/javascript">
 						alert("Registro modificado");
 						window.location="ControladorPerfil.php?operacion=verperfil";
@@ -243,7 +247,40 @@ public function actualizar(){
 
 
 
+public function cambiarfoto(){
+	extract($_REQUEST);
+	$db=new clasedb();
+	$conex=$db->conectar();//conectando con la base de datos
 
+
+ $sql="UPDATE usuarios SET avatar='".$image."' WHERE usuarios.id=".$_SESSION['id_usuario'];;
+
+
+			$res=mysqli_query($conex,$sql);
+			if ($res) {
+				$sql="INSERT INTO auditoria VALUES (NULL, '".$_SESSION['id_usuario']."', 'modificó foto de perfil', 'usuarios', CURRENT_TIMESTAMP, '".$_SESSION['tipo_usuario']."')";
+
+		         $resultado=mysqli_query($conex,$sql);
+                ?>
+				
+					<script type="text/javascript">
+						alert("Registro modificado");
+						window.location="ControladorPerfil.php?operacion=verperfil";
+					</script>
+					<?php
+			} else {
+					?>
+					<script type="text/javascript">
+						alert("Error al modificar el registro");
+						window.location="ControladorPerfil.php?operacion=verperfil";
+					</script>
+					<?php
+					}			
+			
+
+
+	
+}
 
 
 }//fin de la clase controlador Perfil

@@ -4,6 +4,10 @@ extract($_REQUEST);
 $data=unserialize($data);
 $departamentos=unserialize($departamentos);
 
+
+
+
+
 ?>
 <script type="text/javascript">
     function solonumeros(e){
@@ -72,10 +76,10 @@ $departamentos=unserialize($departamentos);
             <input type="text" onkeypress="return solonumeros(event)" id="hf-tlf" name="telefono"  minlength="7" maxlength="11" required="required" placeholder="Ej: 0212-0120300" class="form-control" value="<?php echo $data['telefono']; ?>"><br>
           </div>
 
-
+  
           <div class="col-md-4" >
             <label><strong>Fecha de Ingreso</strong> <strong class='estado-r'>*</strong></label>
-            <input type="date" id="hf-fechai" name="fecha_ingreso" placeholder="Ej: 12-00-0000" class="form-control" value="<?php echo $data['fecha_ingreso']; ?>" readonly="readonly"><br>
+            <input type="date" id="hf-fechai" name="fecha_ingreso" placeholder="Ej: 12-00-0000" class="form-control" readonly="readonly" value="<?php echo $data['fecha_ingreso'];?>"><br>
           </div>
          
         </div>
@@ -87,8 +91,8 @@ $departamentos=unserialize($departamentos);
             <label><strong>Condición</strong> <strong class='estado-r'>*</strong></label>
              <select id="hf-condicion" name="condicion" class="form-control" value="<?php echo $data['condicion']; ?>">
                     <option selected="selected">Seleccione</option>
-                     <option>Fijo</option>
-                    <option>Contratado</option>
+                     <option value="Fijo">Fijo</option>
+                    <option value="Contratado">Contratado</option>
                                                                         
                     </select><br>
           </div>

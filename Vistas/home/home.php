@@ -9,7 +9,7 @@
         <div class="col-md-3">
           <div class="card mb-1 box-shadow"> <!--card mb-1 box-shadow-->
             <div class="row">
-            <div class="col NHA" style=";padding: 0; text-align: left; ">
+            <div class="col NHA" style=";padding: 0; text-align: left;">
                 <img src="../../images/img/user.png" class="img-responsive" height="70%">
               </div>
               <div class="col NHA" style=";text-align: justify;">
@@ -147,7 +147,7 @@
           <!-- TABLE: LATEST ORDERS -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title" style="text-align: center;">Pedidos Pendientes</h3>
+              <h4 class="box-title" style="text-align: center;">Pedidos Pendientes</h4>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>

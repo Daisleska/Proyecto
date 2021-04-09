@@ -117,15 +117,19 @@ public function guardar(){
 
   
     extract($_POST);
-    $cedula=$_POST['cedula'];
+    $cedu=$_POST['cod_rif'];
+    $la=$_POST['cedula'];
+    
 
     $connect=mysqli_connect("localhost", "root", "" , "servidata");
     $db=new clasedb();
     $conex=$db->conectar();
 
-      $sql="SELECT * FROM empleado WHERE cedula='".$cedula."'"; 
+
+      $sql="SELECT * FROM empleado WHERE cedula='".$cedu.$la."'"; 
       $result=mysqli_query($conex,$sql);
       $cuantos=mysqli_num_rows($result);
+     
 
 if ($cuantos>0){
       ?>
@@ -134,8 +138,9 @@ if ($cuantos>0){
         window.location="ControladorEmpleado.php?operacion=registrar";
       </script>
         <?php
+       
       }  else {
-        $xx="INSERT INTO empleado VALUES (NULL,".$cedula.",'".$nombres."','".$apellidos."','".$direccion."','".$telefono."','".$fecha_ingreso."', '".$condicion."', '".$fecha_venc."', '".$ncuenta."', ".$id_cargo.", ".$id_departamento.")";
+        $xx="INSERT INTO empleado VALUES (NULL,'".$cod_rif.$cedula."','".$nombres."','".$apellidos."','".$direccion."','".$telefono."','".$fecha_ingreso."', '".$condicion."', '".$fecha_venc."', '".$ncuenta."', ".$id_cargo.", ".$id_departamento.")";
         //echo $xx;
      $sql=mysqli_query($connect  ,$xx);
      $id_empleado=mysqli_insert_id($connect);
@@ -235,7 +240,7 @@ public function actualizar()
   
 
 
- $sql="UPDATE empleado SET cedula='".$cedula."',nombres='".$nombres."',apellidos='".$apellidos."',direccion='".$direccion."',telefono='".$telefono."' ,fecha_ingreso=".$fecha_ingreso." ,condicion='".$condicion."',fecha_venc=".$fecha_venc." ,ncuenta='".$ncuenta."' WHERE id=".$id;
+ $sql="UPDATE empleado SET cedula='".$cedula."',nombres='".$nombres."',apellidos='".$apellidos."',direccion='".$direccion."',telefono='".$telefono."' ,fecha_ingreso='".$fecha_ingreso."' ,condicion='".$condicion."',fecha_venc='".$fecha_venc."' ,ncuenta='".$ncuenta."' WHERE id=".$id;
 
       $res=mysqli_query($conex,$sql);
         if ($res) {

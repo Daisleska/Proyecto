@@ -33,7 +33,7 @@ var year = (yy < 1000) ? yy + 1900 : yy;
 
                     <a href="../../Controladores/ControladorPreNomina.php?operacion=prenomina" class="atras" title="Atras"><span class="fa fa-arrow-left" style="font-size: 35px;" ></span></a>
            
-                   <h1 align="center">  <span style="margin-left: 1cm;" class="badge badge-info">Nóminas Aprobadas </strong><script style="text-align: right;" type="text/javascript">document.write("" + months[month] + " " + year);</script> <i class="menu-icon fa fa-edit"></i> </span></h1>
+                   <h1 align="center">  <span style="margin-left: 3cm;" class="badge badge-info">Nóminas Aprobadas </strong><script style="text-align: right;" type="text/javascript">document.write(year);</script> <i class="menu-icon fa fa-edit"></i> </span></h1>
             
                     </ol>
                   </section >
@@ -50,6 +50,7 @@ var year = (yy < 1000) ? yy + 1900 : yy;
                                        <tr>
                                         <th>N°</th>
                                         <th>Quincena</th>
+                                        <th>Mes</th>
                                         <th>Cantidad</th>
                                         <th>Estado</th>
                                         <th>Opciones</th>
@@ -57,17 +58,24 @@ var year = (yy < 1000) ? yy + 1900 : yy;
                                     </thead>
                                     <tbody>
                           <?php $num=1;
+                          
+
                           if ($aprobadas !=NULL) {
                           foreach ($aprobadas as $aprobad) {
+                          setlocale(LC_TIME, 'es_ES', 'esp_esp');
+                          $fech=date_create_from_format('!m', $aprobad['mes']);
+                          $mes=strftime("%B", $fech->getTimestamp());
+                          $month=ucfirst($mes);
                               ?>
                               <tr>
                                   <td><?=$num?></td>
                                   <td><?php echo($aprobad['quincena']); ?></td>
+                                  <td><?php echo($month); ?></td>
                                   <td><?php echo($aprobad['cantidad']); ?></td>
                                   <td><?php echo($aprobad['status']); ?></td>
                                 <td>
                                  
-                                 <button><a href="../../Controladores/ControladorPreNomina.php?operacion=veraprobadas&id_nomina=<?php echo($aprobad['id']); ?>"><i title="Ver Detalles" class="menu-icon fa fa-search-plus"></i></a></button>
+                                 <button><a href="../../Controladores/ControladorPreNomina.php?operacion=veraprobadas&id_nomina=<?php echo($aprobad['id']); ?>&mes=<?php echo($month);?>&anio=<?php echo($aprobad['anio']); ?>&quincena=<?php echo($aprobad['quincena']); ?>"><i title="Ver Detalles" class="menu-icon fa fa-search-plus"></i></a></button>
 
                               </tr>
                               <?php

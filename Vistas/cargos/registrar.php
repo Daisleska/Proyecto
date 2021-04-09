@@ -30,7 +30,7 @@ $data=unserialize($data);
      <section class="content-header">
       <ol class="breadcrumb">
          
-         <h1 align="center">  <span style="margin-left: 3.5cm;" class="badge badge-info">Registro de Cargos <i class="menu-icon fa fa-edit"></i> </span></h1>
+         <h1 align="center">  <span style="margin-left: 5.5cm;" class="badge badge-info">Registro de Cargos <i class="menu-icon fa fa-edit"></i> </span></h1>
         
       </ol>
    </section >

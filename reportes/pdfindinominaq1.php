@@ -21,7 +21,7 @@ class PDF extends FPDF {
  
     $this->SetFont('Times','BU',12);
     $this->Ln(4);
-    $this->Cell(0,40,utf8_decode('REPORTE ALMACÉN INTERNO'),0,0,'C');
+    $this->Cell(0,40,utf8_decode('Nomina 1'),0,0,'C');
     $this->Cell(-30,35,utf8_decode ('RIF: J-30478166-0'),0,0,'C');
     $this->Ln(20);
 
@@ -29,15 +29,7 @@ class PDF extends FPDF {
     $this->SetY(25);
     $this->SetFont('Times','B',10);
 
-    $this->Cell(350,50," Fecha: ".date('d/m/Y')." ",0,0,'C');
-    $this->Ln(4); 
-    $this->SetX(25); 
-    $this->SetY(55);
-    $this->Cell(62,7,utf8_decode('Materia Prima'),1,0,'C');
-    $this->Cell(62,7,utf8_decode ('Almacén'),1,0,'C');
-    $this->Cell(62,7,utf8_decode ('Stock'),1,0,'C');
-    
- 
+   
     /*$this->Cell(35,7,utf8_decode('Fecha de Vencimiento'),1,0,'C');*/
     $this->SetFont('Times','',10);
     $this->Ln(); 
@@ -62,22 +54,6 @@ $pdf -> AliasNbPages();
 $pdf->AddPage();
 
     
- $sql="SELECT almacen.*,productos.nombre, ubicacion.nombre FROM almacen,productos, ubicacion WHERE almacen.id_ubicacion='$ubicacion' && productos.id=almacen.id_producto AND ubicacion.id=almacen.id_ubicacion";
-  
-    $consulta = mysqli_query($conectar, $sql) or die ("ERROR en la consulta ". mysqli_error($conectar));
-
-    while ($fila=mysqli_fetch_array($consulta)) {
-
-     /* $fecha=date("d/m/Y", strtotime($fila["fecha_entrega"]));*/
-      $pdf->Cell(62,7,utf8_decode($fila[6]),1,0,'C');
-      $pdf->Cell(62,7,utf8_decode($fila[7].' '),1,0,'C');
-      $pdf->Cell(62,7,utf8_decode($fila[3].' '),1,0,'C');
-     
-    
-    /*  $pdf->Cell(29,7,utf8_decode($fecha),1,0,'C');*/
-      $pdf->SetFont('Times','',10);
-      $pdf->Ln(); 
-    }
     $pdf->Ln(1); 
     $pdf->Output();
 ?>
